@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --soft-green: #dcfce7;
+  --primary-brand: #166534;
+  --heading-dark: #064e3b;
+  --input-bg: #f3f4f6;
+  --text-main: #1e293b;
+  --white: #ffffff;
+  --green-light: #f0fdf4;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text-main);
+  background: #ffffff;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: 'Sora', sans-serif;
+  color: var(--heading-dark);
+}
+
+@keyframes scanDown {
+  0%   { top: 0px;   opacity: 1; }
+  88%  { top: 414px; opacity: 1; }
+  100% { top: 414px; opacity: 0; }
+}
+.scan-laser { animation: scanDown 1.25s cubic-bezier(.4,0,.2,1) forwards; }
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in-up { animation: fadeInUp 0.7s ease forwards; }
+
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer {
+  background: linear-gradient(90deg, #f0fdf4 25%, #dcfce7 50%, #f0fdf4 75%);
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes floatY {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+.float-anim { animation: floatY 4s ease-in-out infinite; }
+
+@keyframes pulseGreen {
+  0%,100% { box-shadow: 0 0 0 0 rgba(22,101,52,0.3); }
+  50%     { box-shadow: 0 0 0 12px rgba(22,101,52,0); }
+}
+.pulse-green { animation: pulseGreen 2s ease-in-out infinite; }
+
+@keyframes marquee {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.marquee-track { animation: marquee 28s linear infinite; }
+.marquee-track:hover { animation-play-state: paused; }
+
+@keyframes videoGlow {
+  0%,100% { box-shadow: 0 0 30px rgba(22,101,52,0.2); }
+  50%     { box-shadow: 0 0 60px rgba(22,101,52,0.4); }
+}
+.video-glow { animation: videoGlow 3s ease-in-out infinite; }
+
+@keyframes nfcPulse {
+  0%   { transform: scale(1);   opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+.nfc-ring { animation: nfcPulse 1.8s ease-out infinite; }
+
+/* scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f0fdf4; }
+::-webkit-scrollbar-thumb { background: #166534; border-radius: 3px; }
