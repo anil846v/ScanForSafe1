@@ -1,410 +1,344 @@
-export default function QRCodeFormEnhanced() {
+import { useState } from "react";
+
+export default function QRCodeCard() {
+  const [hovered, setHovered] = useState(false);
+
   const formUrl =
-    'https://docs.google.com/forms/d/e/1FAIpQLSd9A7Dl1-VyVYOpzuSFH1dy_vWdsYBxjFUqh6h3LpmicZwKRg/viewform'
+    "https://docs.google.com/forms/d/e/1FAIpQLSd9A7Dl1-VyVYOpzuSFH1dy_vWdsYBxjFUqh6h3LpmicZwKRg/viewform";
 
-  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=520x520&data=${encodeURIComponent(formUrl)}&color=064e3b&bgcolor=ffffff`
-
-  const stats = [
-    {
-      num: '5K+',
-      sub: 'Products Scanned',
-      badge: 'AP State Leader',
-      title: 'Rapid Detection',
-      desc: 'Scan · Detect · Protect',
-    },
-    {
-      num: '98%',
-      sub: 'Detection Accuracy',
-      badge: 'All India Record',
-      title: 'Zero False Alarms',
-      desc: 'AI-Powered Safety Engine',
-    },
-    {
-      num: '200+',
-      sub: 'Partner Institutes',
-      badge: 'TG State Leader',
-      title: 'Real-Time Alerts',
-      desc: 'Instant Smart Response',
-    },
-  ]
+  const qrUrl = `https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=${encodeURIComponent(formUrl)}&color=064e3b&bgcolor=ffffff&margin=10`;
 
   const miniStats = [
-    { num: '5K+', lbl: 'Scans' },
-    { num: '98%', lbl: 'Accuracy' },
-    { num: '200+', lbl: 'Institutes' },
-  ]
+    { num: "5K+", lbl: "Products Scanned" },
+    { num: "98%", lbl: "Detection Accuracy" },
+    { num: "200+", lbl: "Partner Institutes" },
+  ];
 
   return (
-    <div
-      style={{
-        fontFamily: "'Inter',sans-serif",
-        minHeight: '100vh',
-        background:
-          'radial-gradient(circle at top,#dcfce7 0%,#bbf7d0 40%,#064e3b 120%)',
-        overflow: 'hidden',
-        position: 'relative',
-      }}
-    >
-      {/* Glow Background */}
-      <div
-        style={{
-          position: 'absolute',
-          top: -120,
-          left: -120,
-          width: 320,
-          height: 320,
-          borderRadius: '50%',
-          background: 'rgba(34,197,94,0.25)',
-          filter: 'blur(90px)',
-        }}
-      />
+    <>
+      <style>{`
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
-      {/* HERO HEADER */}
-      <div
-        style={{
-          background: 'linear-gradient(135deg,#022c22,#065f46,#047857)',
-          padding: '18px 24px 28px',
-          textAlign: 'center',
-          borderBottom: '4px solid #4ade80',
-          boxShadow: '0 10px 40px rgba(0,0,0,0.25)',
-        }}
-      >
-        <div
-          style={{
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 10,
-            background: 'linear-gradient(90deg,#dc2626,#ef4444)',
-            color: '#fff',
-            padding: '10px 34px',
-            borderRadius: 999,
-            fontSize: 16,
-            fontWeight: 900,
-            letterSpacing: '.08em',
-            marginBottom: 14,
-            boxShadow: '0 6px 18px rgba(239,68,68,0.4)',
-          }}
-        >
-          🚀 Domination Continues...
-        </div>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
-        <h1
-          style={{
-            color: '#fff',
-            fontSize: 40,
-            margin: 0,
-            fontWeight: 900,
-            letterSpacing: '-1px',
-          }}
-        >
-          Scan For Safe
-        </h1>
+        .qr-page {
+          font-family: 'Space Grotesk', sans-serif;
+          min-height: 100vh;
+          display: flex; align-items: center; justify-content: center;
+          padding: 40px 16px;
+          background: #f8fafc;
+          position: relative;
+          overflow: hidden;
+        }
 
-        <p
-          style={{
-            color: '#a7f3d0',
-            marginTop: 10,
-            fontSize: 15,
-            fontWeight: 500,
-          }}
-        >
-          India's #1 Smart Safety Verification Platform
-        </p>
-      </div>
+        /* Subtle background texture */
+        .qr-page::before {
+          content: "";
+          position: absolute; inset: 0;
+          background:
+            radial-gradient(ellipse 80% 60% at 50% -10%, rgba(22,163,74,0.08) 0%, transparent 70%),
+            radial-gradient(ellipse 50% 40% at 100% 100%, rgba(6,78,59,0.05) 0%, transparent 60%);
+          pointer-events: none;
+        }
 
-      {/* STAT SECTION */}
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fit,minmax(220px,1fr))',
-          gap: 20,
-          padding: '36px 24px 10px',
-          maxWidth: 1200,
-          margin: '0 auto',
-        }}
-      >
-        {stats.map((s, i) => (
-          <div
-            key={i}
-            style={{
-              background: 'rgba(255,255,255,0.12)',
-              backdropFilter: 'blur(16px)',
-              border: '1px solid rgba(255,255,255,0.15)',
-              borderRadius: 26,
-              padding: '28px 22px',
-              textAlign: 'center',
-              boxShadow: '0 18px 40px rgba(0,0,0,0.18)',
-              transition: 'transform .3s ease',
-            }}
-          >
-            <div
-              style={{
-                fontSize: 58,
-                fontWeight: 900,
-                color: '#facc15',
-                lineHeight: 1,
-              }}
-            >
-              {s.num}
-            </div>
+        /* ── CARD ── */
+        .qr-card {
+          position: relative;
+          width: 100%; max-width: 440px;
+          background: #ffffff;
+          border-radius: 28px;
+          border: 1px solid rgba(22,163,74,0.15);
+          box-shadow:
+            0 0 0 1px rgba(22,163,74,0.06),
+            0 4px 6px rgba(0,0,0,0.03),
+            0 20px 60px rgba(6,78,59,0.10),
+            0 40px 80px rgba(0,0,0,0.05);
+          padding: 36px 32px 32px;
+          text-align: center;
+          overflow: hidden;
+        }
 
-            <div
-              style={{
-                marginTop: 8,
-                color: '#ecfeff',
-                fontSize: 14,
-                fontWeight: 600,
-              }}
-            >
-              {s.sub}
-            </div>
+        /* top green bar accent */
+        .qr-card::before {
+          content: "";
+          position: absolute; top: 0; left: 0; right: 0; height: 3px;
+          background: linear-gradient(90deg, #064e3b, #16a34a, #4ade80, #16a34a, #064e3b);
+        }
 
-            <div
-              style={{
-                display: 'inline-block',
-                marginTop: 16,
-                background: 'linear-gradient(90deg,#f97316,#dc2626)',
-                padding: '8px 14px',
-                borderRadius: 999,
-                color: '#fff',
-                fontSize: 10,
-                fontWeight: 900,
-                letterSpacing: '.2em',
-                textTransform: 'uppercase',
-              }}
-            >
-              {s.badge}
-            </div>
+        /* corner dot decorations */
+        .qr-card::after {
+          content: "";
+          position: absolute; bottom: -60px; right: -60px;
+          width: 160px; height: 160px; border-radius: 50%;
+          background: radial-gradient(circle, rgba(22,163,74,0.07) 0%, transparent 70%);
+          pointer-events: none;
+        }
 
-            <div style={{ marginTop: 18 }}>
-              <div
-                style={{
-                  color: '#86efac',
-                  fontWeight: 800,
-                  fontSize: 14,
-                }}
-              >
-                {s.title}
-              </div>
-              <div
-                style={{
-                  color: '#d1fae5',
-                  fontSize: 12,
-                  marginTop: 4,
-                }}
-              >
-                {s.desc}
-              </div>
-            </div>
+        /* ── BADGE ── */
+        .qr-badge {
+          display: inline-flex; align-items: center; gap: 6px;
+          background: #f0fdf4;
+          border: 1px solid rgba(22,163,74,0.3);
+          border-radius: 999px;
+          padding: 5px 14px;
+          margin-bottom: 20px;
+        }
+        .qr-badge-dot {
+          width: 6px; height: 6px; border-radius: 50%;
+          background: #16a34a;
+          animation: blink 2s ease-in-out infinite;
+        }
+        @keyframes blink {
+          0%,100% { opacity:.4; transform:scale(.8); }
+          50% { opacity:1; transform:scale(1.2); }
+        }
+        .qr-badge-text {
+          font-size: 10px; font-weight: 800;
+          letter-spacing: .2em; text-transform: uppercase;
+          color: #15803d;
+        }
+
+        /* ── HEADING ── */
+        .qr-title {
+          font-family: 'Outfit', sans-serif;
+          font-size: 26px; font-weight: 900;
+          color: #0f172a; letter-spacing: -.03em;
+          line-height: 1.15; margin-bottom: 8px;
+        }
+        .qr-title span {
+          background: linear-gradient(130deg, #16a34a, #059669);
+          -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        .qr-subtitle {
+          font-size: 13px; color: #64748b; line-height: 1.6;
+          margin-bottom: 28px; font-weight: 500;
+        }
+
+        /* ── QR FRAME ── */
+        .qr-frame-wrap {
+          position: relative;
+          display: inline-flex;
+          align-items: center; justify-content: center;
+          margin-bottom: 28px;
+        }
+
+        /* outer glow ring */
+        .qr-frame-wrap::before {
+          content: "";
+          position: absolute; inset: -8px;
+          border-radius: 28px;
+          background: linear-gradient(145deg, #16a34a22, #4ade8011, #16a34a22);
+          border: 1.5px solid rgba(22,163,74,0.2);
+        }
+
+        .qr-frame {
+          position: relative;
+          padding: 10px;
+          background: #fff;
+          border-radius: 20px;
+          border: 2.5px solid #16a34a;
+          box-shadow:
+            0 0 0 6px rgba(22,163,74,0.06),
+            0 12px 40px rgba(6,78,59,0.15);
+          transition: transform .4s cubic-bezier(.34,1.3,.64,1), box-shadow .4s ease;
+          cursor: pointer;
+        }
+        .qr-frame.hovered {
+          transform: scale(1.03) translateY(-3px);
+          box-shadow:
+            0 0 0 6px rgba(22,163,74,0.1),
+            0 20px 56px rgba(6,78,59,0.22);
+        }
+
+        /* scan line animation over QR */
+        .qr-scan-line {
+          position: absolute;
+          left: 10px; right: 10px; height: 2px;
+          background: linear-gradient(90deg, transparent, rgba(22,163,74,0.7), transparent);
+          border-radius: 999px;
+          animation: scanQR 2.8s ease-in-out infinite;
+          pointer-events: none; z-index: 3;
+        }
+        @keyframes scanQR {
+          0%   { top: 10px; opacity: 0; }
+          8%   { opacity: 1; }
+          92%  { opacity: .8; }
+          100% { top: calc(100% - 10px); opacity: 0; }
+        }
+
+        /* corner finder-pattern accents */
+        .qr-corner {
+          position: absolute;
+          width: 18px; height: 18px;
+          border-color: #16a34a; border-style: solid;
+          z-index: 4; pointer-events: none;
+          transition: opacity .3s ease;
+        }
+        .qr-corner.tl { top: 6px; left: 6px; border-width: 2.5px 0 0 2.5px; border-radius: 4px 0 0 0; }
+        .qr-corner.tr { top: 6px; right: 6px; border-width: 2.5px 2.5px 0 0; border-radius: 0 4px 0 0; }
+        .qr-corner.bl { bottom: 6px; left: 6px; border-width: 0 0 2.5px 2.5px; border-radius: 0 0 0 4px; }
+        .qr-corner.br { bottom: 6px; right: 6px; border-width: 0 2.5px 2.5px 0; border-radius: 0 0 4px 0; }
+
+        .qr-img {
+          display: block;
+          width: 240px; height: 240px;
+          border-radius: 12px;
+          position: relative; z-index: 2;
+        }
+
+        /* ── DIVIDER ── */
+        .qr-divider {
+          height: 1px;
+          background: linear-gradient(90deg, transparent, rgba(22,163,74,0.15), transparent);
+          margin: 0 0 20px;
+        }
+
+        /* ── MINI STATS ── */
+        .qr-stats {
+          display: grid; grid-template-columns: repeat(3,1fr);
+          gap: 10px; margin-bottom: 24px;
+        }
+        .qr-stat {
+          background: #f8fffe;
+          border: 1px solid rgba(22,163,74,0.14);
+          border-radius: 14px; padding: 12px 8px;
+          transition: all .22s ease;
+        }
+        .qr-stat:hover {
+          background: #f0fdf4;
+          border-color: rgba(22,163,74,0.3);
+          transform: translateY(-2px);
+        }
+        .qr-stat-num {
+          font-family: 'Outfit', sans-serif;
+          font-size: 22px; font-weight: 900;
+          color: #064e3b; line-height: 1;
+          margin-bottom: 4px;
+        }
+        .qr-stat-lbl {
+          font-size: 10px; font-weight: 600;
+          color: #64748b; letter-spacing: .02em;
+          line-height: 1.3;
+        }
+
+        /* ── CTA BUTTON ── */
+        .qr-cta {
+          display: flex; align-items: center; justify-content: center; gap: 8px;
+          width: 100%; padding: 14px 24px;
+          background: #064e3b; color: #fff;
+          border-radius: 14px; text-decoration: none;
+          font-family: 'Outfit', sans-serif;
+          font-size: 15px; font-weight: 800;
+          letter-spacing: -.01em;
+          box-shadow: 0 4px 20px rgba(6,78,59,0.28), inset 0 1px 0 rgba(255,255,255,0.1);
+          transition: all .25s ease;
+          margin-bottom: 16px;
+          position: relative; overflow: hidden;
+        }
+        .qr-cta::before {
+          content: "";
+          position: absolute; inset: 0;
+          background: linear-gradient(135deg, rgba(74,222,128,0.15), transparent);
+          opacity: 0; transition: opacity .25s ease;
+        }
+        .qr-cta:hover {
+          background: #022c22;
+          transform: translateY(-2px);
+          box-shadow: 0 8px 28px rgba(6,78,59,0.36), inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+        .qr-cta:hover::before { opacity: 1; }
+        .qr-cta-arrow {
+          font-size: 18px; transition: transform .25s ease;
+        }
+        .qr-cta:hover .qr-cta-arrow { transform: translateX(3px); }
+
+        /* ── FOOTER TAG ── */
+        .qr-footer {
+          display: flex; align-items: center; justify-content: center; gap: 16px;
+          flex-wrap: wrap;
+        }
+        .qr-footer-item {
+          display: flex; align-items: center; gap: 5px;
+          font-size: 11px; font-weight: 600; color: #94a3b8;
+        }
+        .qr-footer-item::before {
+          content: "";
+          width: 5px; height: 5px; border-radius: 50%;
+          background: #16a34a; flex-shrink: 0;
+        }
+        .qr-footer-sep {
+          width: 3px; height: 3px; border-radius: 50%;
+          background: #e2e8f0;
+        }
+      `}</style>
+
+      <div className="qr-page">
+        <div className="qr-card">
+
+          {/* Badge */}
+          <div className="qr-badge">
+            <span className="qr-badge-dot" />
+            <span className="qr-badge-text">Smart Shield · Verified</span>
           </div>
-        ))}
-      </div>
 
-      {/* MAIN QR CARD */}
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          padding: '28px 20px 60px',
-        }}
-      >
-        <div
-          style={{
-            background: 'rgba(255,255,255,0.92)',
-            backdropFilter: 'blur(14px)',
-            borderRadius: 34,
-            padding: '42px 34px',
-            width: '100%',
-            maxWidth: 520,
-            textAlign: 'center',
-            boxShadow: '0 25px 60px rgba(6,78,59,0.35)',
-            position: 'relative',
-            overflow: 'hidden',
-          }}
-        >
-          {/* Decorative glow */}
-          <div
-            style={{
-              position: 'absolute',
-              top: -80,
-              right: -80,
-              width: 180,
-              height: 180,
-              background: 'rgba(34,197,94,0.18)',
-              borderRadius: '50%',
-              filter: 'blur(40px)',
-            }}
-          />
-
-          <div
-            style={{
-              display: 'inline-block',
-              background: '#dc2626',
-              color: '#fff',
-              fontSize: 10,
-              fontWeight: 900,
-              letterSpacing: '.3em',
-              padding: '7px 18px',
-              borderRadius: 999,
-              marginBottom: 18,
-              textTransform: 'uppercase',
-            }}
-          >
-            Smart Shield
+          {/* Heading */}
+          <div className="qr-title">
+            <span>Scan</span> &amp; Verify
+          </div>
+          <div className="qr-subtitle">
+            Scan the QR code below to access the official<br />
+            safety verification form instantly.
           </div>
 
-          <h2
-            style={{
-              fontSize: 34,
-              fontWeight: 900,
-              color: '#064e3b',
-              margin: 0,
-            }}
-          >
-            Scan & Verify
-          </h2>
-
-          <p
-            style={{
-              color: '#4b5563',
-              fontSize: 14,
-              lineHeight: 1.7,
-              marginTop: 12,
-              marginBottom: 28,
-            }}
-          >
-            Scan the secure QR code below to access the
-            <br />
-            official safety verification form instantly.
-          </p>
-
-          {/* QR */}
-          <div style={{ position: 'relative', display: 'inline-block' }}>
-            <div
-              style={{
-                position: 'absolute',
-                inset: -16,
-                background: 'linear-gradient(135deg,#22c55e,#16a34a)',
-                borderRadius: 28,
-                filter: 'blur(16px)',
-                opacity: 0.25,
-              }}
-            />
-
+          {/* QR Frame */}
+          <div className="qr-frame-wrap">
             <a href={formUrl} target="_blank" rel="noopener noreferrer">
-              <img
-                src={qrUrl}
-                alt="ScanForSafe QR"
-                style={{
-                  width: 260,
-                  height: 260,
-                  borderRadius: 24,
-                  border: '5px solid #16a34a',
-                  background: '#fff',
-                  position: 'relative',
-                  zIndex: 2,
-                  boxShadow: '0 10px 34px rgba(22,163,74,0.3)',
-                  transition: 'all .35s ease',
-                  cursor: 'pointer',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'scale(1.05) rotate(1deg)'
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = 'scale(1) rotate(0deg)'
-                }}
-              />
+              <div
+                className={`qr-frame ${hovered ? "hovered" : ""}`}
+                onMouseEnter={() => setHovered(true)}
+                onMouseLeave={() => setHovered(false)}
+              >
+                <div className="qr-scan-line" />
+                <div className="qr-corner tl" />
+                <div className="qr-corner tr" />
+                <div className="qr-corner bl" />
+                <div className="qr-corner br" />
+                <img src={qrUrl} alt="ScanForSafe QR Code" className="qr-img" />
+              </div>
             </a>
           </div>
 
+          {/* Divider */}
+          <div className="qr-divider" />
+
           {/* Mini Stats */}
-          <div
-            style={{
-              display: 'flex',
-              justifyContent: 'space-between',
-              marginTop: 30,
-              gap: 14,
-            }}
-          >
+          <div className="qr-stats">
             {miniStats.map((m, i) => (
-              <div
-                key={i}
-                style={{
-                  flex: 1,
-                  background: '#f0fdf4',
-                  borderRadius: 18,
-                  padding: '14px 10px',
-                  border: '1px solid #bbf7d0',
-                }}
-              >
-                <div
-                  style={{
-                    fontSize: 24,
-                    fontWeight: 900,
-                    color: '#065f46',
-                  }}
-                >
-                  {m.num}
-                </div>
-                <div
-                  style={{
-                    marginTop: 4,
-                    fontSize: 11,
-                    color: '#6b7280',
-                    fontWeight: 700,
-                  }}
-                >
-                  {m.lbl}
-                </div>
+              <div className="qr-stat" key={i}>
+                <div className="qr-stat-num">{m.num}</div>
+                <div className="qr-stat-lbl">{m.lbl}</div>
               </div>
             ))}
           </div>
 
           {/* CTA */}
-          <a
-            href={formUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{
-              marginTop: 28,
-              display: 'inline-block',
-              background: 'linear-gradient(90deg,#16a34a,#059669)',
-              color: '#fff',
-              padding: '14px 28px',
-              borderRadius: 999,
-              textDecoration: 'none',
-              fontWeight: 800,
-              fontSize: 14,
-              boxShadow: '0 10px 24px rgba(5,150,105,0.28)',
-            }}
-          >
-            Open Verification Form →
+          <a href={formUrl} target="_blank" rel="noopener noreferrer" className="qr-cta">
+            Open Verification Form
+            <span className="qr-cta-arrow">→</span>
           </a>
 
-          <div
-            style={{
-              marginTop: 22,
-              fontSize: 11,
-              color: '#6b7280',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              gap: 8,
-            }}
-          >
-            <span
-              style={{
-                width: 8,
-                height: 8,
-                borderRadius: '50%',
-                background: '#16a34a',
-                display: 'inline-block',
-              }}
-            />
-            Secure • Instant • No App Required
+          {/* Footer */}
+          <div className="qr-footer">
+            <span className="qr-footer-item">Secure</span>
+            <span className="qr-footer-sep" />
+            <span className="qr-footer-item">Instant</span>
+            <span className="qr-footer-sep" />
+            <span className="qr-footer-item">No App Required</span>
           </div>
+
         </div>
       </div>
-    </div>
-  )
+    </>
+  );
 }
