@@ -41,10 +41,40 @@ export default function VehicleDetails() {
           ].map(({ icon: Icon, title, color, bg, items }) => (
             <div key={title} style={{
               background: '#fafafa', borderRadius: 20, padding: '22px 22px 24px',
-              border: '1px solid #e5e7eb', transition: 'all 0.25s',
+              border: '1px solid #e5e7eb', transition: 'all 0.25s cubic-bezier(0.4, 0, 0.2, 1)',
+              cursor: 'pointer',
             }}
-              onMouseEnter={e=>{ e.currentTarget.style.transform='translateY(-4px)'; e.currentTarget.style.boxShadow='0 16px 40px rgba(22,101,52,0.1)'; e.currentTarget.style.borderColor='#e8f8eb'; }}
-              onMouseLeave={e=>{ e.currentTarget.style.transform=''; e.currentTarget.style.boxShadow=''; e.currentTarget.style.borderColor='#e5e7eb'; }}
+              onMouseEnter={e=>{
+                e.currentTarget.style.transform='translateY(-6px)';
+                e.currentTarget.style.boxShadow='0 16px 40px rgba(46,189,58,0.15)';
+                e.currentTarget.style.borderColor='#2ebd3a';
+                e.currentTarget.style.background='#e8f8eb';
+              }}
+              onMouseLeave={e=>{
+                e.currentTarget.style.transform='';
+                e.currentTarget.style.boxShadow='';
+                e.currentTarget.style.borderColor='#e5e7eb';
+                e.currentTarget.style.background='#fafafa';
+              }}
+              onMouseDown={e=>{
+                e.currentTarget.style.transform='translateY(-2px) scale(0.98)';
+                e.currentTarget.style.borderColor='#0B2545';
+              }}
+              onMouseUp={e=>{
+                e.currentTarget.style.transform='translateY(-6px) scale(1)';
+                e.currentTarget.style.borderColor='#2ebd3a';
+              }}
+              onTouchStart={e=>{
+                e.currentTarget.style.transform='translateY(-2px) scale(0.98)';
+                e.currentTarget.style.borderColor='#0B2545';
+                e.currentTarget.style.background='#e8f8eb';
+              }}
+              onTouchEnd={e=>{
+                e.currentTarget.style.transform='';
+                e.currentTarget.style.boxShadow='';
+                e.currentTarget.style.borderColor='#e5e7eb';
+                e.currentTarget.style.background='#fafafa';
+              }}
             >
               <div style={{ width: 46, height: 46, borderRadius: 14, background: bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
                 <Icon size={22} color={color} />

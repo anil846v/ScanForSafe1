@@ -221,25 +221,36 @@ function IPhoneMockup() {
 
 function StepCard({ number, icon: Icon, title, description, badge, badgeIcon: BadgeIcon }) {
   const [hovered, setHovered] = useState(false);
+  const [active, setActive] = useState(false);
   return (
     <div
       onMouseEnter={() => setHovered(true)}
-      onMouseLeave={() => setHovered(false)}
+      onMouseLeave={() => { setHovered(false); setActive(false); }}
+      onMouseDown={() => setActive(true)}
+      onMouseUp={() => setActive(false)}
+      onTouchStart={() => setActive(true)}
+      onTouchEnd={() => setActive(false)}
       style={{
-        background: "white",
+        background: active ? "#e8f8eb" : (hovered ? "#f8fafc" : "white"),
         borderRadius: 20,
         padding: "28px 22px 20px",
         flex: 1,
         minWidth: 0,
         position: "relative",
         boxShadow: hovered
-          ? "0 16px 48px rgba(22,101,52,0.14), 0 2px 8px rgba(0,0,0,0.07)"
-          : "0 4px 20px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.05)",
-        transform: hovered ? "translateY(-4px)" : "translateY(0)",
-        transition: "all 0.3s ease",
-        // Dotted outline using border
-        border: hovered ? "2px dashed #2ebd3a" : "2px dashed #e8f8eb",
-        display: "flex", flexDirection: "column",
+          ? "0 16px 48px rgba(46,189,58,0.18), 0 2px 8px rgba(0,0,0,0.05)"
+          : "0 4px 20px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.02)",
+        transform: active
+          ? "translateY(-2px) scale(0.98)"
+          : (hovered ? "translateY(-6px) scale(1.02)" : "translateY(0) scale(1)"),
+        transition: "all 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
+        // High contrast border mapped to brand colors
+        border: active
+          ? "2px solid #0B2545"
+          : (hovered ? "2px solid #2ebd3a" : "2px solid #e8f8eb"),
+        display: "flex",
+        flexDirection: "column",
+        cursor: "pointer",
       }}
     >
       {/* Number badge */}
@@ -256,10 +267,11 @@ function StepCard({ number, icon: Icon, title, description, badge, badgeIcon: Ba
       {/* Icon */}
       <div style={{
         width: 62, height: 62, borderRadius: "50%",
-        background: "linear-gradient(135deg, #e8f8eb 0%, #f8fafc 100%)",
+        background: hovered ? "white" : "linear-gradient(135deg, #e8f8eb 0%, #f8fafc 100%)",
         display: "flex", alignItems: "center", justifyContent: "center",
         margin: "10px auto 16px",
-        border: "1.5px solid #7ded88",
+        border: hovered ? "1.5px solid #2ebd3a" : "1.5px solid #7ded88",
+        transition: "all 0.25s ease",
       }}>
         <Icon size={26} color="#2ebd3a" strokeWidth={1.8} />
       </div>
@@ -279,9 +291,11 @@ function StepCard({ number, icon: Icon, title, description, badge, badgeIcon: Ba
       {/* Badge */}
       <div style={{
         display: "flex", alignItems: "center", justifyContent: "center", gap: 5,
-        background: "#e8f8eb", borderRadius: 20,
+        background: active ? "white" : "#e8f8eb", borderRadius: 20,
         padding: "6px 12px",
         fontSize: 11, fontWeight: 700, color: "#2ebd3a",
+        border: active ? "1px solid #7ded88" : "1px solid transparent",
+        transition: "all 0.25s ease",
       }}>
         <BadgeIcon size={12} color="#2ebd3a" />
         {badge}
