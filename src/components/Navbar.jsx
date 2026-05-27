@@ -83,12 +83,12 @@ export default function Navbar() {
           backdrop-filter:blur(20px) saturate(180%);
           border-bottom:1px solid rgba(226,232,240,0.9);
           transition:all .4s cubic-bezier(.4,0,.2,1);
-          box-shadow:0 2px 12px rgba(15,23,42,0.07);
+          box-shadow:0 2px 12px rgba(11, 37, 69,0.07);
         }
 
         .sfs-nav.scrolled .sfs-bar{
           height:72px;
-          box-shadow:0 6px 28px rgba(15,23,42,0.10);
+          box-shadow:0 6px 28px rgba(11, 37, 69,0.10);
         }
 
         .sfs-logo{
