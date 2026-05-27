@@ -98,11 +98,8 @@ export default function StatsBar() {
           {STATS.map(({ value, label, icon }, index) => (
             <div
               key={label}
-              className="group relative overflow-hidden rounded-[34px] border border-[#e8f8eb] bg-white p-8 shadow-[0_20px_60px_rgba(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-3 hover:border-[#2ebd3a] hover:bg-[#e8f8eb]/30 active:scale-[0.98] active:border-[#0B2545] cursor-pointer hover:shadow-[0_25px_80px_rgba(46,189,58,0.18)]"
+              className="group relative overflow-hidden rounded-[34px] border-2 border-[#e8f8eb] bg-white p-8 shadow-[0_20px_60px_rgba(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-3 hover:border-[#2ebd3a] active:scale-[0.98] active:border-[#0B2545] cursor-pointer hover:shadow-[0_25px_80px_rgba(46,189,58,0.18)]"
             >
-
-              {/* CARD GLOW */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition duration-500 bg-gradient-to-br from-[#2ebd3a]/15 via-transparent to-[#0B2545]/10" />
 
               {/* INNER BORDER */}
               <div className="absolute inset-[1px] rounded-[33px] border border-white/70 pointer-events-none" />
