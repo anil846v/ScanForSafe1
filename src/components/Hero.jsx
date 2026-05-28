@@ -190,7 +190,7 @@ html { scroll-behavior:smooth; }
   animation: slideInLeft .7s cubic-bezier(.22,1,.36,1) both;
 }
 .sfs-badge-dot {
-  width: 7px; height: 7px; border-radius: 50%;
+  width: 10px; height: 7px; border-radius: 50%;
   background: var(--g1);
   animation: livePulse 2s ease-out infinite;
 }

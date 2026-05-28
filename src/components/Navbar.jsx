@@ -46,7 +46,7 @@ export default function Navbar() {
 
         .sfs-topbar {
           height: 2px;
-          background: linear-gradient(90deg, #064e3b 0%, #16a34a 40%, #4ade80 60%, #16a34a 80%, #064e3b 100%);
+          background: linear-gradient(90deg, #0B2545 0%, #2ebd3a 35%, #e8f8eb 50%, #2ebd3a 65%, #0B2545 100%);
         }
 
         /* ── MAIN BAR ── */
@@ -73,7 +73,7 @@ export default function Navbar() {
           text-decoration: none; flex-shrink: 0;
         }
 
-        /* The badge itself */
+        /* The badge itself — clean rounded square aspect ratio */
         .sfs-badge {
           position: relative;
           width: 56px; height: 56px; flex-shrink: 0;
@@ -82,25 +82,27 @@ export default function Navbar() {
         .sfs-logo:hover .sfs-badge { transform: scale(1.07) translateY(-1px); }
         .sfs-nav.scrolled .sfs-badge { width: 46px; height: 46px; }
 
-        /* Outer ring — the identity border */
+        /* Outer ring — the identity border in high-tech corporate gradient */
         .sfs-badge-ring {
           position: absolute; inset: 0;
-          border-radius: 16px;
-          background: linear-gradient(145deg, #16a34a, #064e3b);
+          border-radius: 12px;
+          background: linear-gradient(145deg, #2ebd3a, #0B2545);
           padding: 2px;
           transition: border-radius .35s ease;
         }
-        .sfs-nav.scrolled .sfs-badge-ring { border-radius: 14px; }
+        .sfs-nav.scrolled .sfs-badge-ring { border-radius: 10px; }
 
-        /* Inner face */
+        /* Inner face — padded to contain the logo uncropped */
         .sfs-badge-face {
           width: 100%; height: 100%;
-          border-radius: 14px;
+          border-radius: 10px;
           background: #fff;
           display: flex; align-items: center; justify-content: center;
           overflow: hidden;
           position: relative;
+          padding: 4px;
         }
+        .sfs-nav.scrolled .sfs-badge-face { border-radius: 8px; }
 
         /* Corner accent marks — minimal, structural */
         .sfs-badge-face::before,
@@ -108,7 +110,7 @@ export default function Navbar() {
           content: "";
           position: absolute;
           width: 10px; height: 10px;
-          border-color: #16a34a; border-style: solid;
+          border-color: #2ebd3a; border-style: solid;
           opacity: 0.6;
           transition: opacity .3s ease;
         }
@@ -125,21 +127,22 @@ export default function Navbar() {
         .sfs-logo:hover .sfs-badge-face::before,
         .sfs-logo:hover .sfs-badge-face::after { opacity: 1; }
 
-        /* Logo image */
+        /* Logo image — perfectly centered & bounded */
         .sfs-badge-img {
-          width: 78%; height: 78%;
+          width: 90%; height: 90%;
           object-fit: contain;
           display: block;
           position: relative; z-index: 1;
           transition: transform .4s cubic-bezier(.34,1.3,.64,1);
+          border-radius: 6px;
         }
-        .sfs-logo:hover .sfs-badge-img { transform: scale(1.1); }
+        .sfs-logo:hover .sfs-badge-img { transform: scale(1.05); }
 
         /* Subtle scan line — single, calm */
         .sfs-badge-scan {
           position: absolute;
           left: 6px; right: 6px; height: 1.5px;
-          background: linear-gradient(90deg, transparent, rgba(22,163,74,0.5), transparent);
+          background: linear-gradient(90deg, transparent, rgba(46, 189, 58, 0.5), transparent);
           border-radius: 999px;
           animation: scan 3s ease-in-out infinite;
           z-index: 2;
@@ -167,10 +170,10 @@ export default function Navbar() {
           font-family: 'Outfit', sans-serif;
           font-size: 1.1rem; font-weight: 900;
           letter-spacing: -.03em; line-height: 1;
-          color: #0f172a; white-space: nowrap;
+          color: #0B2545; white-space: nowrap;
         }
         .sfs-wordmark-primary .accent {
-          background: linear-gradient(135deg, #16a34a 0%, #059669 100%);
+          background: #2ebd3a;
           -webkit-background-clip: text; -webkit-text-fill-color: transparent;
           background-clip: text;
         }
@@ -178,12 +181,12 @@ export default function Navbar() {
         /* Status pill — inline next to brand name */
         .sfs-status {
           display: inline-flex; align-items: center; gap: 4px;
-          background: #f0fdf4; border: 1px solid rgba(22,163,74,0.25);
+          background: #e8f8eb; border: 1px solid rgba(46, 189, 58, 0.25);
           border-radius: 999px; padding: 2px 7px;
           flex-shrink: 0;
         }
         .sfs-status-pulse {
-          width: 5px; height: 5px; border-radius: 50%; background: #16a34a;
+          width: 5px; height: 5px; border-radius: 50%; background: #2ebd3a;
           animation: pulse-dot 2.2s ease-in-out infinite;
           flex-shrink: 0;
         }
@@ -193,13 +196,13 @@ export default function Navbar() {
         }
         .sfs-status-label {
           font-size: 9px; font-weight: 800;
-          letter-spacing: .16em; text-transform: uppercase; color: #15803d;
+          letter-spacing: .16em; text-transform: uppercase; color: #2ebd3a;
         }
 
         /* Row 2: Subtitle */
         .sfs-wordmark-secondary {
           font-size: 10px; font-weight: 600;
-          letter-spacing: .05em; color: #94a3b8;
+          letter-spacing: .05em; color: #475569;
           text-transform: uppercase; line-height: 1; white-space: nowrap;
         }
 
@@ -215,13 +218,13 @@ export default function Navbar() {
           letter-spacing: .01em;
           transition: color .2s ease, background .2s ease;
         }
-        .sfs-link:hover { color: #15803d; background: rgba(220,252,231,.6); }
-        .sfs-link.active { color: #15803d; }
+        .sfs-link:hover { color: #2ebd3a; background: rgba(232, 248, 235, .6); }
+        .sfs-link.active { color: #2ebd3a; }
         .sfs-link.active::after {
           content: ""; position: absolute;
           left: 14px; right: 14px; bottom: 4px;
           height: 2px; border-radius: 999px;
-          background: linear-gradient(90deg, #16a34a, #4ade80);
+          background: linear-gradient(90deg, #2ebd3a, #4bd557);
         }
 
         /* ── ACTION BUTTONS ── */
@@ -230,47 +233,47 @@ export default function Navbar() {
         .sfs-login {
           height: 40px; display: flex; align-items: center;
           padding: 0 20px; border-radius: 10px; text-decoration: none;
-          font-size: 13px; font-weight: 700; color: #15803d;
-          border: 1.5px solid rgba(22,163,74,.3); background: transparent;
+          font-size: 13px; font-weight: 700; color: #0B2545;
+          border: 1.5px solid rgba(46, 189, 58, .3); background: transparent;
           transition: all .22s ease;
         }
         .sfs-login:hover {
-          background: #f0fdf4;
-          border-color: rgba(22,163,74,.55);
+          background: #e8f8eb;
+          border-color: rgba(46, 189, 58, .65);
           transform: translateY(-1px);
         }
 
         .sfs-prereg {
           height: 40px; display: flex; align-items: center; gap: 8px;
           padding: 0 22px; border-radius: 10px;
-          background: #16a34a;
+          background: #2ebd3a;
           color: #fff; border: none; cursor: pointer;
           font-family: 'Space Grotesk', sans-serif;
           font-size: 13px; font-weight: 700;
           letter-spacing: .01em;
-          box-shadow: 0 1px 0 rgba(0,0,0,.12), 0 4px 16px rgba(22,163,74,.3);
+          box-shadow: 0 1px 0 rgba(0,0,0,.12), 0 4px 16px rgba(46, 189, 58, .3);
           transition: all .22s ease; white-space: nowrap;
         }
         .sfs-prereg:hover {
-          background: #15803d;
+          background: #1b7a21;
           transform: translateY(-1px);
-          box-shadow: 0 1px 0 rgba(0,0,0,.12), 0 8px 24px rgba(22,163,74,.38);
+          box-shadow: 0 1px 0 rgba(0,0,0,.12), 0 8px 24px rgba(46, 189, 58, .38);
         }
         .prereg-dot {
           width: 6px; height: 6px; border-radius: 50%;
-          background: #86efac; flex-shrink: 0;
+          background: #4bd557; flex-shrink: 0;
           animation: pulse-dot 1.8s ease-in-out infinite;
         }
 
         /* ── MOBILE ── */
         .sfs-mobile-btn {
           display: none; width: 40px; height: 40px; border: none;
-          border-radius: 10px; background: #f0fdf4;
-          border: 1px solid rgba(22,163,74,.2);
-          cursor: pointer; font-size: 18px; color: #15803d;
+          border-radius: 10px; background: #e8f8eb;
+          border: 1px solid rgba(46, 189, 58, 0.2);
+          cursor: pointer; font-size: 18px; color: #0B2545;
           align-items: center; justify-content: center;
         }
-
+ 
         .sfs-mobile-overlay {
           position: fixed; inset: 0; background: rgba(15,23,42,.5);
           backdrop-filter: blur(8px); opacity: 0; pointer-events: none;
@@ -293,7 +296,7 @@ export default function Navbar() {
           transition: all .15s ease;
         }
         .sfs-mobile-link:hover, .sfs-mobile-link.active {
-          background: rgba(220,252,231,.8); color: #15803d;
+          background: rgba(232, 248, 235, .8); color: #2ebd3a;
         }
         .sfs-mobile-actions { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
 
@@ -313,10 +316,10 @@ export default function Navbar() {
 
       <header className={`sfs-nav ${scrolled ? "scrolled" : ""}`}>
         <div className="sfs-topbar" />
-        <div className="sfs-bar">
+        <div className="sfs-bar" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: scrolled ? '66px' : '80px', padding: '0 40px', transition: 'all 0.35s ease' }}>
 
           {/* ── LOGO ── */}
-          <Link to="/" className="sfs-logo">
+          <Link to="/" className="sfs-logo" style={{ display: 'flex', alignItems: 'center', gap: '14px', textDecoration: 'none' }}>
             <div className="sfs-badge">
               <div className="sfs-badge-ring">
                 <div className="sfs-badge-face">
@@ -341,7 +344,7 @@ export default function Navbar() {
           </Link>
 
           {/* ── NAV LINKS ── */}
-          <nav className="sfs-links">
+          <nav className="sfs-links" style={{ display: 'flex', alignItems: 'center', gap: '0px' }}>
             {navLinks.map((item) => (
               <Link
                 key={item.label}
@@ -354,9 +357,9 @@ export default function Navbar() {
           </nav>
 
           {/* ── ACTIONS ── */}
-          <div className="sfs-actions">
-            <Link to="/login" className="sfs-login">Login</Link>
-            <button className="sfs-prereg" onClick={handlePreRegistration}>
+          <div className="sfs-actions" style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <Link to="/login" className="sfs-login" style={{ display: 'flex', alignItems: 'center' }}>Login</Link>
+            <button className="sfs-prereg" onClick={handlePreRegistration} style={{ display: 'flex', alignItems: 'center' }}>
               <span className="prereg-dot" />
               Pre Registration
             </button>
@@ -377,8 +380,8 @@ export default function Navbar() {
             style={{
               position: "absolute", top: "16px", right: "16px",
               width: "36px", height: "36px", border: "none",
-              borderRadius: "9px", background: "#f0fdf4", cursor: "pointer",
-              fontSize: "15px", color: "#15803d", display: "flex",
+              borderRadius: "9px", background: "#e8f8eb", cursor: "pointer",
+              fontSize: "15px", color: "#0B2545", display: "flex",
               alignItems: "center", justifyContent: "center"
             }}
           >✕</button>
