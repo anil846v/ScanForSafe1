@@ -36,23 +36,39 @@ export default function Navbar() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        * {
+          box-sizing: border-box;
+          -webkit-tap-highlight-color: transparent;
+        }
 
-        /* ── TOP ACCENT LINE ── */
+        /* ══════════════════════════════════════
+           NAV SHELL
+        ══════════════════════════════════════ */
+
         .sfs-nav {
-          position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+          position: fixed;
+          top: 0; left: 0; right: 0;
+          z-index: 9999;
           font-family: 'Space Grotesk', sans-serif;
         }
 
         .sfs-topbar {
           height: 2px;
-          background: linear-gradient(90deg, #064e3b 0%, #16a34a 40%, #4ade80 60%, #16a34a 80%, #064e3b 100%);
+          background: linear-gradient(
+            90deg,
+            #064e3b 0%,
+            #16a34a 40%,
+            #4ade80 60%,
+            #16a34a 80%,
+            #064e3b 100%
+          );
         }
 
-        /* ── MAIN BAR ── */
         .sfs-bar {
           height: 80px;
-          display: flex; align-items: center; justify-content: space-between;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
           padding: 0 40px;
           background: rgba(255,255,255,0.97);
           backdrop-filter: blur(20px);
@@ -60,180 +76,315 @@ export default function Navbar() {
           transition: height .35s ease, box-shadow .35s ease;
           box-shadow: 0 1px 0 rgba(0,0,0,0.04);
         }
+
         .sfs-nav.scrolled .sfs-bar {
           height: 66px;
-          box-shadow: 0 4px 24px rgba(6,78,59,0.08), 0 1px 0 rgba(0,0,0,0.04);
+          box-shadow:
+            0 4px 24px rgba(6,78,59,0.08),
+            0 1px 0 rgba(0,0,0,0.04);
         }
 
-        /* ══════════════════════════
-           LOGO — clean, layered mark
-        ══════════════════════════ */
+        /* ══════════════════════════════════════
+           LOGO
+        ══════════════════════════════════════ */
+
         .sfs-logo {
-          display: flex; align-items: center; gap: 14px;
-          text-decoration: none; flex-shrink: 0;
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          text-decoration: none;
+          flex-shrink: 0;
         }
 
-        /* The badge itself */
-        .sfs-badge {
+        /* ── Badge container with float animation ── */
+        .sfs-badge-wrap {
           position: relative;
-          width: 56px; height: 56px; flex-shrink: 0;
-          transition: transform .4s cubic-bezier(.34,1.3,.64,1);
-        }
-        .sfs-logo:hover .sfs-badge { transform: scale(1.07) translateY(-1px); }
-        .sfs-nav.scrolled .sfs-badge { width: 46px; height: 46px; }
-
-        /* Outer ring — the identity border */
-        .sfs-badge-ring {
-          position: absolute; inset: 0;
-          border-radius: 16px;
-          background: linear-gradient(145deg, #16a34a, #064e3b);
-          padding: 2px;
-          transition: border-radius .35s ease;
-        }
-        .sfs-nav.scrolled .sfs-badge-ring { border-radius: 14px; }
-
-        /* Inner face */
-        .sfs-badge-face {
-          width: 100%; height: 100%;
-          border-radius: 14px;
-          background: #fff;
-          display: flex; align-items: center; justify-content: center;
-          overflow: hidden;
-          position: relative;
+          width: 58px;
+          height: 58px;
+          flex-shrink: 0;
+          animation: sfs-float 4s ease-in-out infinite;
+          transition: transform .3s cubic-bezier(.34,1.3,.64,1);
         }
 
-        /* Corner accent marks — minimal, structural */
-        .sfs-badge-face::before,
-        .sfs-badge-face::after {
-          content: "";
+        .sfs-nav.scrolled .sfs-badge-wrap {
+          width: 50px;
+          height: 50px;
+        }
+
+        .sfs-logo:hover .sfs-badge-wrap {
+          animation-play-state: paused;
+          transform: scale(1.07) translateY(-3px);
+        }
+
+        @keyframes sfs-float {
+          0%, 100% { transform: translateY(0px); }
+          50%       { transform: translateY(-4px); }
+        }
+
+        /* ── Pulse rings ── */
+        .sfs-pulse-ring {
           position: absolute;
-          width: 10px; height: 10px;
-          border-color: #16a34a; border-style: solid;
-          opacity: 0.6;
-          transition: opacity .3s ease;
-        }
-        .sfs-badge-face::before {
-          top: 4px; left: 4px;
-          border-width: 1.5px 0 0 1.5px;
-          border-radius: 2px 0 0 0;
-        }
-        .sfs-badge-face::after {
-          bottom: 4px; right: 4px;
-          border-width: 0 1.5px 1.5px 0;
-          border-radius: 0 0 2px 0;
-        }
-        .sfs-logo:hover .sfs-badge-face::before,
-        .sfs-logo:hover .sfs-badge-face::after { opacity: 1; }
-
-        /* Logo image */
-        .sfs-badge-img {
-          width: 78%; height: 78%;
-          object-fit: contain;
-          display: block;
-          position: relative; z-index: 1;
-          transition: transform .4s cubic-bezier(.34,1.3,.64,1);
-        }
-        .sfs-logo:hover .sfs-badge-img { transform: scale(1.1); }
-
-        /* Subtle scan line — single, calm */
-        .sfs-badge-scan {
-          position: absolute;
-          left: 6px; right: 6px; height: 1.5px;
-          background: linear-gradient(90deg, transparent, rgba(22,163,74,0.5), transparent);
-          border-radius: 999px;
-          animation: scan 3s ease-in-out infinite;
-          z-index: 2;
+          inset: -6px;
+          border-radius: 22px;
+          border: 1.5px solid rgba(34,197,94,0.35);
+          animation: sfs-pulse-out 2.8s ease-out infinite;
           pointer-events: none;
         }
-        @keyframes scan {
-          0%   { top: 12%; opacity: 0; }
+
+        .sfs-pulse-ring:nth-child(2) {
+          animation-delay: 0.9s;
+          inset: -12px;
+          border-radius: 26px;
+        }
+
+        @keyframes sfs-pulse-out {
+          0%   { opacity: 0.7; transform: scale(0.92); }
+          100% { opacity: 0;   transform: scale(1.18); }
+        }
+
+        /* ── Spinning conic gradient ring ── */
+        .sfs-ring-outer {
+          position: absolute;
+          inset: 0;
+          border-radius: 17px;
+          background: conic-gradient(
+            from 0deg,
+            #22c55e 0%,
+            #16a34a 30%,
+            #064e3b 60%,
+            #4ade80 80%,
+            #22c55e 100%
+          );
+          animation: sfs-spin-ring 4s linear infinite;
+          padding: 2.5px;
+          transition: border-radius .35s ease;
+        }
+
+        .sfs-nav.scrolled .sfs-ring-outer {
+          border-radius: 15px;
+        }
+
+        .sfs-logo:hover .sfs-ring-outer {
+          animation-duration: 1.2s;
+        }
+
+        @keyframes sfs-spin-ring {
+          from { transform: rotate(0deg); }
+          to   { transform: rotate(360deg); }
+        }
+
+        /* ── Pure white face ── */
+        .sfs-badge-face {
+          width: 100%;
+          height: 100%;
+          border-radius: 15px;
+          background: #ffffff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          position: relative;
+          overflow: hidden;
+          transition: border-radius .35s ease;
+        }
+
+        .sfs-nav.scrolled .sfs-badge-face {
+          border-radius: 13px;
+        }
+
+        /* ── QR scan line ── */
+        .sfs-scan-line {
+          position: absolute;
+          left: 8px; right: 8px;
+          height: 1.5px;
+          background: linear-gradient(90deg, transparent, rgba(22,163,74,0.7), transparent);
+          animation: sfs-scan 2.4s ease-in-out infinite;
+          border-radius: 999px;
+          z-index: 3;
+          pointer-events: none;
+        }
+
+        @keyframes sfs-scan {
+          0%   { top: 10%; opacity: 0; }
           15%  { opacity: 1; }
-          85%  { opacity: .8; }
-          100% { top: 88%; opacity: 0; }
+          85%  { opacity: 0.9; }
+          100% { top: 90%; opacity: 0; }
         }
 
-        /* ── LOGO TEXT ── */
+        /* ── Corner brackets ── */
+        .sfs-bracket {
+          position: absolute;
+          width: 10px;
+          height: 10px;
+          z-index: 4;
+          pointer-events: none;
+          border-color: #16a34a;
+          border-style: solid;
+        }
+        .sfs-bracket.tl { top:6px;    left:6px;   border-width: 2px 0 0 2px; border-radius: 2px 0 0 0; }
+        .sfs-bracket.tr { top:6px;    right:6px;  border-width: 2px 2px 0 0; border-radius: 0 2px 0 0; }
+        .sfs-bracket.bl { bottom:6px; left:6px;   border-width: 0 0 2px 2px; border-radius: 0 0 0 2px; }
+        .sfs-bracket.br { bottom:6px; right:6px;  border-width: 0 2px 2px 0; border-radius: 0 0 2px 0; }
+
+        /* ── Logo image ── */
+        .sfs-badge-img {
+          width: 70%;
+          height: 70%;
+          object-fit: contain;
+          position: relative;
+          z-index: 2;
+          transition: transform .4s cubic-bezier(.34,1.3,.64,1);
+        }
+
+        .sfs-logo:hover .sfs-badge-img {
+          transform: scale(1.12);
+        }
+
+        /* ══════════════════════════════════════
+           WORDMARK
+        ══════════════════════════════════════ */
+
         .sfs-wordmark {
-          display: flex; flex-direction: column;
-          justify-content: center; gap: 2px;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          gap: 2px;
         }
 
-        /* Row 1: Brand name + pill inline */
         .sfs-wordmark-row1 {
-          display: flex; align-items: center; gap: 8px; line-height: 1;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          line-height: 1;
         }
 
         .sfs-wordmark-primary {
           font-family: 'Outfit', sans-serif;
-          font-size: 1.1rem; font-weight: 900;
-          letter-spacing: -.03em; line-height: 1;
-          color: #0f172a; white-space: nowrap;
+          font-size: 1.1rem;
+          font-weight: 900;
+          letter-spacing: -.03em;
+          line-height: 1;
+          color: #0f172a;
+          white-space: nowrap;
         }
+
         .sfs-wordmark-primary .accent {
           background: linear-gradient(135deg, #16a34a 0%, #059669 100%);
-          -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
           background-clip: text;
         }
 
-        /* Status pill — inline next to brand name */
         .sfs-status {
-          display: inline-flex; align-items: center; gap: 4px;
-          background: #f0fdf4; border: 1px solid rgba(22,163,74,0.25);
-          border-radius: 999px; padding: 2px 7px;
+          display: inline-flex;
+          align-items: center;
+          gap: 4px;
+          background: #f0fdf4;
+          border: 1px solid rgba(22,163,74,0.25);
+          border-radius: 999px;
+          padding: 2px 7px;
           flex-shrink: 0;
         }
+
         .sfs-status-pulse {
-          width: 5px; height: 5px; border-radius: 50%; background: #16a34a;
-          animation: pulse-dot 2.2s ease-in-out infinite;
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          background: #16a34a;
+          animation: sfs-blink 2.2s ease-in-out infinite;
           flex-shrink: 0;
         }
-        @keyframes pulse-dot {
-          0%, 100% { opacity: .5; transform: scale(.85); }
-          50% { opacity: 1; transform: scale(1.15); }
+
+        @keyframes sfs-blink {
+          0%, 100% { opacity: 0.4; transform: scale(0.8); }
+          50%       { opacity: 1;   transform: scale(1.2); }
         }
+
         .sfs-status-label {
-          font-size: 9px; font-weight: 800;
-          letter-spacing: .16em; text-transform: uppercase; color: #15803d;
+          font-size: 9px;
+          font-weight: 800;
+          letter-spacing: .16em;
+          text-transform: uppercase;
+          color: #15803d;
         }
 
-        /* Row 2: Subtitle */
         .sfs-wordmark-secondary {
-          font-size: 10px; font-weight: 600;
-          letter-spacing: .05em; color: #94a3b8;
-          text-transform: uppercase; line-height: 1; white-space: nowrap;
+          font-size: 10px;
+          font-weight: 600;
+          letter-spacing: .05em;
+          color: #94a3b8;
+          text-transform: uppercase;
+          line-height: 1;
+          white-space: nowrap;
         }
 
-        /* ── NAV LINKS ── */
+        /* ══════════════════════════════════════
+           NAV LINKS
+        ══════════════════════════════════════ */
+
         .sfs-links {
-          display: flex; align-items: center; gap: 0;
-          margin-left: auto; margin-right: 20px;
+          display: flex;
+          align-items: center;
+          gap: 0;
+          margin-left: auto;
+          margin-right: 20px;
         }
+
         .sfs-link {
-          position: relative; padding: 8px 14px; border-radius: 10px;
-          text-decoration: none; color: #475569;
-          font-size: 13px; font-weight: 600;
+          position: relative;
+          padding: 8px 14px;
+          border-radius: 10px;
+          text-decoration: none;
+          color: #475569;
+          font-size: 13px;
+          font-weight: 600;
           letter-spacing: .01em;
           transition: color .2s ease, background .2s ease;
         }
-        .sfs-link:hover { color: #15803d; background: rgba(220,252,231,.6); }
-        .sfs-link.active { color: #15803d; }
+
+        .sfs-link:hover {
+          color: #15803d;
+          background: rgba(220,252,231,.6);
+        }
+
+        .sfs-link.active {
+          color: #15803d;
+        }
+
         .sfs-link.active::after {
-          content: ""; position: absolute;
-          left: 14px; right: 14px; bottom: 4px;
-          height: 2px; border-radius: 999px;
+          content: "";
+          position: absolute;
+          left: 14px; right: 14px;
+          bottom: 4px;
+          height: 2px;
+          border-radius: 999px;
           background: linear-gradient(90deg, #16a34a, #4ade80);
         }
 
-        /* ── ACTION BUTTONS ── */
-        .sfs-actions { display: flex; align-items: center; gap: 10px; }
+        /* ══════════════════════════════════════
+           ACTION BUTTONS
+        ══════════════════════════════════════ */
+
+        .sfs-actions {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+        }
 
         .sfs-login {
-          height: 40px; display: flex; align-items: center;
-          padding: 0 20px; border-radius: 10px; text-decoration: none;
-          font-size: 13px; font-weight: 700; color: #15803d;
-          border: 1.5px solid rgba(22,163,74,.3); background: transparent;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          padding: 0 20px;
+          border-radius: 10px;
+          text-decoration: none;
+          font-size: 13px;
+          font-weight: 700;
+          color: #15803d;
+          border: 1.5px solid rgba(22,163,74,.3);
+          background: transparent;
           transition: all .22s ease;
         }
+
         .sfs-login:hover {
           background: #f0fdf4;
           border-color: rgba(22,163,74,.55);
@@ -241,87 +392,219 @@ export default function Navbar() {
         }
 
         .sfs-prereg {
-          height: 40px; display: flex; align-items: center; gap: 8px;
-          padding: 0 22px; border-radius: 10px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          padding: 0 22px;
+          border-radius: 10px;
           background: #16a34a;
-          color: #fff; border: none; cursor: pointer;
+          color: #fff;
+          border: none;
+          cursor: pointer;
           font-family: 'Space Grotesk', sans-serif;
-          font-size: 13px; font-weight: 700;
+          font-size: 13px;
+          font-weight: 700;
           letter-spacing: .01em;
-          box-shadow: 0 1px 0 rgba(0,0,0,.12), 0 4px 16px rgba(22,163,74,.3);
-          transition: all .22s ease; white-space: nowrap;
+          box-shadow:
+            0 1px 0 rgba(0,0,0,.12),
+            0 4px 16px rgba(22,163,74,.3);
+          transition: all .22s ease;
+          white-space: nowrap;
         }
+
         .sfs-prereg:hover {
           background: #15803d;
           transform: translateY(-1px);
-          box-shadow: 0 1px 0 rgba(0,0,0,.12), 0 8px 24px rgba(22,163,74,.38);
-        }
-        .prereg-dot {
-          width: 6px; height: 6px; border-radius: 50%;
-          background: #86efac; flex-shrink: 0;
-          animation: pulse-dot 1.8s ease-in-out infinite;
+          box-shadow:
+            0 1px 0 rgba(0,0,0,.12),
+            0 8px 24px rgba(22,163,74,.38);
         }
 
-        /* ── MOBILE ── */
+        .prereg-dot {
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background: #86efac;
+          flex-shrink: 0;
+          animation: sfs-blink 1.8s ease-in-out infinite;
+        }
+
+        /* ══════════════════════════════════════
+           MOBILE
+        ══════════════════════════════════════ */
+
         .sfs-mobile-btn {
-          display: none; width: 40px; height: 40px; border: none;
-          border-radius: 10px; background: #f0fdf4;
+          display: none;
+          width: 40px;
+          height: 40px;
           border: 1px solid rgba(22,163,74,.2);
-          cursor: pointer; font-size: 18px; color: #15803d;
-          align-items: center; justify-content: center;
+          border-radius: 10px;
+          background: #f0fdf4;
+          cursor: pointer;
+          font-size: 18px;
+          color: #15803d;
+          align-items: center;
+          justify-content: center;
         }
 
         .sfs-mobile-overlay {
-          position: fixed; inset: 0; background: rgba(15,23,42,.5);
-          backdrop-filter: blur(8px); opacity: 0; pointer-events: none;
-          transition: opacity .3s ease; z-index: 9998;
+          position: fixed;
+          inset: 0;
+          background: rgba(15,23,42,.5);
+          backdrop-filter: blur(8px);
+          opacity: 0;
+          pointer-events: none;
+          transition: opacity .3s ease;
+          z-index: 9998;
         }
-        .sfs-mobile-overlay.open { opacity: 1; pointer-events: auto; }
+
+        .sfs-mobile-overlay.open {
+          opacity: 1;
+          pointer-events: auto;
+        }
+
         .sfs-mobile-drawer {
-          position: absolute; top: 0; right: 0;
-          width: min(88vw, 310px); height: 100%;
+          position: absolute;
+          top: 0; right: 0;
+          width: min(88vw, 310px);
+          height: 100%;
           background: #fff;
           padding: 84px 20px 30px;
-          display: flex; flex-direction: column; gap: 6px;
-          transform: translateX(100%); transition: transform .32s cubic-bezier(.4,0,.2,1);
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+          transform: translateX(100%);
+          transition: transform .32s cubic-bezier(.4,0,.2,1);
           box-shadow: -8px 0 40px rgba(15,23,42,.12);
         }
-        .sfs-mobile-overlay.open .sfs-mobile-drawer { transform: translateX(0); }
+
+        .sfs-mobile-overlay.open .sfs-mobile-drawer {
+          transform: translateX(0);
+        }
+
         .sfs-mobile-link {
-          padding: 12px 14px; border-radius: 10px; text-decoration: none;
-          color: #334155; font-size: 14.5px; font-weight: 600;
+          padding: 12px 14px;
+          border-radius: 10px;
+          text-decoration: none;
+          color: #334155;
+          font-size: 14.5px;
+          font-weight: 600;
           transition: all .15s ease;
         }
-        .sfs-mobile-link:hover, .sfs-mobile-link.active {
-          background: rgba(220,252,231,.8); color: #15803d;
+
+        .sfs-mobile-link:hover,
+        .sfs-mobile-link.active {
+          background: rgba(220,252,231,.8);
+          color: #15803d;
         }
-        .sfs-mobile-actions { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
+
+        .sfs-mobile-actions {
+          margin-top: 16px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .sfs-mobile-prereg {
+          height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          border-radius: 10px;
+          background: #16a34a;
+          color: #fff;
+          border: none;
+          cursor: pointer;
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 14px;
+          font-weight: 700;
+          box-shadow: 0 4px 16px rgba(22,163,74,.3);
+        }
+
+        .sfs-mobile-login {
+          height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 10px;
+          text-decoration: none;
+          font-size: 14px;
+          font-weight: 700;
+          color: #15803d;
+          border: 1.5px solid rgba(22,163,74,.3);
+          background: transparent;
+        }
+
+        /* ══════════════════════════════════════
+           RESPONSIVE
+        ══════════════════════════════════════ */
 
         @media (max-width: 980px) {
-          .sfs-links, .sfs-actions { display: none; }
-          .sfs-mobile-btn { display: flex; }
-          .sfs-bar { height: 68px; padding: 0 18px; }
-          .sfs-badge { width: 48px; height: 48px; }
+          .sfs-links,
+          .sfs-actions {
+            display: none;
+          }
+
+          .sfs-mobile-btn {
+            display: flex;
+          }
+
+          .sfs-bar {
+            height: 68px;
+            padding: 0 18px;
+          }
+
+          .sfs-badge-wrap {
+            width: 48px;
+            height: 48px;
+          }
         }
+
         @media (max-width: 480px) {
-          .sfs-status { display: none; }
+          .sfs-status {
+            display: none;
+          }
         }
+
         @media (max-width: 380px) {
-          .sfs-wordmark-secondary { display: none; }
+          .sfs-wordmark-secondary {
+            display: none;
+          }
         }
       `}</style>
 
       <header className={`sfs-nav ${scrolled ? "scrolled" : ""}`}>
         <div className="sfs-topbar" />
+
         <div className="sfs-bar">
 
           {/* ── LOGO ── */}
           <Link to="/" className="sfs-logo">
-            <div className="sfs-badge">
-              <div className="sfs-badge-ring">
+            <div className="sfs-badge-wrap">
+              {/* Pulse rings */}
+              <div className="sfs-pulse-ring" />
+              <div className="sfs-pulse-ring" />
+
+              {/* Spinning conic ring */}
+              <div className="sfs-ring-outer">
                 <div className="sfs-badge-face">
-                  <img src="/logo.png" alt="ScanForSafe" className="sfs-badge-img" />
-                  <div className="sfs-badge-scan" />
+                  {/* QR corner brackets */}
+                  <div className="sfs-bracket tl" />
+                  <div className="sfs-bracket tr" />
+                  <div className="sfs-bracket bl" />
+                  <div className="sfs-bracket br" />
+
+                  {/* Scan line */}
+                  <div className="sfs-scan-line" />
+
+                  {/* Logo on white */}
+                  <img
+                    src="/logo.png"
+                    alt="ScanForSafe"
+                    className="sfs-badge-img"
+                  />
                 </div>
               </div>
             </div>
@@ -336,7 +619,9 @@ export default function Navbar() {
                   <span className="sfs-status-label">Smart Shield</span>
                 </div>
               </div>
-              <div className="sfs-wordmark-secondary">Innovations Pvt Ltd</div>
+              <div className="sfs-wordmark-secondary">
+                Innovations Pvt Ltd
+              </div>
             </div>
           </Link>
 
@@ -355,34 +640,35 @@ export default function Navbar() {
 
           {/* ── ACTIONS ── */}
           <div className="sfs-actions">
-            <Link to="/login" className="sfs-login">Login</Link>
+            <Link to="/login" className="sfs-login">
+              Login
+            </Link>
             <button className="sfs-prereg" onClick={handlePreRegistration}>
               <span className="prereg-dot" />
               Pre Registration
             </button>
           </div>
 
-          <button className="sfs-mobile-btn" onClick={() => setMobileOpen(true)}>☰</button>
+          {/* ── MOBILE TOGGLE ── */}
+          <button
+            className="sfs-mobile-btn"
+            onClick={() => setMobileOpen(true)}
+            aria-label="Open menu"
+          >
+            ☰
+          </button>
         </div>
       </header>
 
-      {/* ── MOBILE MENU ── */}
+      {/* ── MOBILE DRAWER ── */}
       <div
         className={`sfs-mobile-overlay ${mobileOpen ? "open" : ""}`}
         onClick={() => setMobileOpen(false)}
       >
-        <div className="sfs-mobile-drawer" onClick={(e) => e.stopPropagation()}>
-          <button
-            onClick={() => setMobileOpen(false)}
-            style={{
-              position: "absolute", top: "16px", right: "16px",
-              width: "36px", height: "36px", border: "none",
-              borderRadius: "9px", background: "#f0fdf4", cursor: "pointer",
-              fontSize: "15px", color: "#15803d", display: "flex",
-              alignItems: "center", justifyContent: "center"
-            }}
-          >✕</button>
-
+        <div
+          className="sfs-mobile-drawer"
+          onClick={(e) => e.stopPropagation()}
+        >
           {navLinks.map((item) => (
             <Link
               key={item.label}
@@ -395,11 +681,16 @@ export default function Navbar() {
           ))}
 
           <div className="sfs-mobile-actions">
-            <Link to="/login" className="sfs-login" onClick={() => setMobileOpen(false)}>
+            <Link
+              to="/login"
+              className="sfs-mobile-login"
+              onClick={() => setMobileOpen(false)}
+            >
               Login
             </Link>
-            <button className="sfs-prereg" onClick={handlePreRegistration}>
-              <span className="prereg-dot" /> Pre Registration
+            <button className="sfs-mobile-prereg" onClick={handlePreRegistration}>
+              <span className="prereg-dot" />
+              Pre Registration
             </button>
           </div>
         </div>
