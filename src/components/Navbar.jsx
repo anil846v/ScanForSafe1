@@ -85,7 +85,7 @@ export default function Navbar() {
         }
 
         /* ══════════════════════════════════════
-           LOGO
+           LOGO BADGE — full redesign
         ══════════════════════════════════════ */
 
         .sfs-logo {
@@ -96,67 +96,69 @@ export default function Navbar() {
           flex-shrink: 0;
         }
 
-        /* ── Badge container with float animation ── */
+        /* Outer wrapper — float + size transition */
         .sfs-badge-wrap {
           position: relative;
-          width: 58px;
-          height: 58px;
+          width: 64px;
+          height: 64px;
           flex-shrink: 0;
           animation: sfs-float 4s ease-in-out infinite;
-          transition: transform .3s cubic-bezier(.34,1.3,.64,1);
+          transition: width .35s ease, height .35s ease;
         }
 
         .sfs-nav.scrolled .sfs-badge-wrap {
-          width: 50px;
-          height: 50px;
+          width: 52px;
+          height: 52px;
+        }
+
+        @keyframes sfs-float {
+          0%, 100% { transform: translateY(0px); }
+          50%       { transform: translateY(-5px); }
         }
 
         .sfs-logo:hover .sfs-badge-wrap {
           animation-play-state: paused;
           transform: scale(1.07) translateY(-3px);
+          transition: transform .3s cubic-bezier(.34,1.3,.64,1);
         }
 
-        @keyframes sfs-float {
-          0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-4px); }
-        }
-
-        /* ── Pulse rings ── */
+        /* Dual pulse rings */
         .sfs-pulse-ring {
           position: absolute;
-          inset: -6px;
-          border-radius: 22px;
+          inset: -7px;
+          border-radius: 24px;
           border: 1.5px solid rgba(34,197,94,0.35);
           animation: sfs-pulse-out 2.8s ease-out infinite;
           pointer-events: none;
         }
-
         .sfs-pulse-ring:nth-child(2) {
-          animation-delay: 0.9s;
-          inset: -12px;
-          border-radius: 26px;
+          animation-delay: 1s;
+          inset: -14px;
+          border-radius: 29px;
         }
 
         @keyframes sfs-pulse-out {
-          0%   { opacity: 0.7; transform: scale(0.92); }
-          100% { opacity: 0;   transform: scale(1.18); }
+          0%   { opacity: 0.75; transform: scale(0.9); }
+          100% { opacity: 0;    transform: scale(1.2); }
         }
 
-        /* ── Spinning conic gradient ring ── */
+        /* Spinning conic ring — speeds up on hover */
         .sfs-ring-outer {
           position: absolute;
           inset: 0;
-          border-radius: 17px;
+          border-radius: 18px;
+          /* Conic gradient gives the spinning rainbow-green effect */
           background: conic-gradient(
             from 0deg,
             #22c55e 0%,
-            #16a34a 30%,
-            #064e3b 60%,
-            #4ade80 80%,
+            #16a34a 25%,
+            #0d9488 50%,
+            #1d4ed8 65%,
+            #16a34a 80%,
             #22c55e 100%
           );
-          animation: sfs-spin-ring 4s linear infinite;
-          padding: 2.5px;
+          animation: sfs-spin-ring 5s linear infinite;
+          padding: 3px;
           transition: border-radius .35s ease;
         }
 
@@ -165,7 +167,7 @@ export default function Navbar() {
         }
 
         .sfs-logo:hover .sfs-ring-outer {
-          animation-duration: 1.2s;
+          animation-duration: 1.4s;
         }
 
         @keyframes sfs-spin-ring {
@@ -173,7 +175,7 @@ export default function Navbar() {
           to   { transform: rotate(360deg); }
         }
 
-        /* ── Pure white face ── */
+        /* White badge face */
         .sfs-badge-face {
           width: 100%;
           height: 100%;
@@ -191,52 +193,70 @@ export default function Navbar() {
           border-radius: 13px;
         }
 
-        /* ── QR scan line ── */
+        /* Inner soft white vignette so edges feel clean */
+        .sfs-badge-face::after {
+          content: "";
+          position: absolute;
+          inset: 0;
+          border-radius: inherit;
+          box-shadow: inset 0 0 10px rgba(255,255,255,0.9);
+          pointer-events: none;
+          z-index: 5;
+        }
+
+        /* QR scan line */
         .sfs-scan-line {
           position: absolute;
-          left: 8px; right: 8px;
-          height: 1.5px;
-          background: linear-gradient(90deg, transparent, rgba(22,163,74,0.7), transparent);
-          animation: sfs-scan 2.4s ease-in-out infinite;
+          left: 6px; right: 6px;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, rgba(22,163,74,0.65), transparent);
+          animation: sfs-scan 2.6s ease-in-out infinite;
           border-radius: 999px;
-          z-index: 3;
+          z-index: 4;
           pointer-events: none;
         }
 
         @keyframes sfs-scan {
-          0%   { top: 10%; opacity: 0; }
-          15%  { opacity: 1; }
-          85%  { opacity: 0.9; }
-          100% { top: 90%; opacity: 0; }
+          0%   { top: 8%;  opacity: 0; }
+          12%  { opacity: 1; }
+          88%  { opacity: 0.85; }
+          100% { top: 92%; opacity: 0; }
         }
 
-        /* ── Corner brackets ── */
+        /* Corner brackets */
         .sfs-bracket {
           position: absolute;
-          width: 10px;
-          height: 10px;
-          z-index: 4;
+          width: 11px;
+          height: 11px;
+          z-index: 6;
           pointer-events: none;
           border-color: #16a34a;
           border-style: solid;
+          opacity: 0.8;
         }
-        .sfs-bracket.tl { top:6px;    left:6px;   border-width: 2px 0 0 2px; border-radius: 2px 0 0 0; }
-        .sfs-bracket.tr { top:6px;    right:6px;  border-width: 2px 2px 0 0; border-radius: 0 2px 0 0; }
-        .sfs-bracket.bl { bottom:6px; left:6px;   border-width: 0 0 2px 2px; border-radius: 0 0 0 2px; }
-        .sfs-bracket.br { bottom:6px; right:6px;  border-width: 0 2px 2px 0; border-radius: 0 0 2px 0; }
+        .sfs-bracket.tl { top:5px;    left:5px;   border-width: 2px 0 0 2px; border-radius: 2px 0 0 0; }
+        .sfs-bracket.tr { top:5px;    right:5px;  border-width: 2px 2px 0 0; border-radius: 0 2px 0 0; }
+        .sfs-bracket.bl { bottom:5px; left:5px;   border-width: 0 0 2px 2px; border-radius: 0 0 0 2px; }
+        .sfs-bracket.br { bottom:5px; right:5px;  border-width: 0 2px 2px 0; border-radius: 0 0 2px 0; }
 
-        /* ── Logo image ── */
+        /*
+          KEY FIX: mix-blend-mode: multiply makes the black background of the logo
+          completely transparent against the white badge face.
+          The green/blue shield fills the full badge area.
+          object-fit: contain + 100% size = fills edge to edge.
+        */
         .sfs-badge-img {
-          width: 70%;
-          height: 70%;
+          width: 92%;
+          height: 92%;
           object-fit: contain;
           position: relative;
-          z-index: 2;
+          z-index: 3;
+          mix-blend-mode: multiply;
           transition: transform .4s cubic-bezier(.34,1.3,.64,1);
         }
 
         .sfs-logo:hover .sfs-badge-img {
-          transform: scale(1.12);
+          transform: scale(1.08);
         }
 
         /* ══════════════════════════════════════
@@ -247,7 +267,7 @@ export default function Navbar() {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          gap: 2px;
+          gap: 3px;
         }
 
         .sfs-wordmark-row1 {
@@ -259,7 +279,7 @@ export default function Navbar() {
 
         .sfs-wordmark-primary {
           font-family: 'Outfit', sans-serif;
-          font-size: 1.1rem;
+          font-size: 1.15rem;
           font-weight: 900;
           letter-spacing: -.03em;
           line-height: 1;
@@ -543,13 +563,9 @@ export default function Navbar() {
 
         @media (max-width: 980px) {
           .sfs-links,
-          .sfs-actions {
-            display: none;
-          }
+          .sfs-actions { display: none; }
 
-          .sfs-mobile-btn {
-            display: flex;
-          }
+          .sfs-mobile-btn { display: flex; }
 
           .sfs-bar {
             height: 68px;
@@ -557,21 +573,17 @@ export default function Navbar() {
           }
 
           .sfs-badge-wrap {
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
           }
         }
 
         @media (max-width: 480px) {
-          .sfs-status {
-            display: none;
-          }
+          .sfs-status { display: none; }
         }
 
         @media (max-width: 380px) {
-          .sfs-wordmark-secondary {
-            display: none;
-          }
+          .sfs-wordmark-secondary { display: none; }
         }
       `}</style>
 
@@ -583,28 +595,35 @@ export default function Navbar() {
           {/* ── LOGO ── */}
           <Link to="/" className="sfs-logo">
             <div className="sfs-badge-wrap">
-              {/* Pulse rings */}
+
+              {/* Pulse rings behind everything */}
               <div className="sfs-pulse-ring" />
               <div className="sfs-pulse-ring" />
 
-              {/* Spinning conic ring */}
+              {/* Spinning conic gradient ring */}
               <div className="sfs-ring-outer">
                 <div className="sfs-badge-face">
+
                   {/* QR corner brackets */}
                   <div className="sfs-bracket tl" />
                   <div className="sfs-bracket tr" />
                   <div className="sfs-bracket bl" />
                   <div className="sfs-bracket br" />
 
-                  {/* Scan line */}
+                  {/* Animated scan line */}
                   <div className="sfs-scan-line" />
 
-                  {/* Logo on white */}
+                  {/*
+                    mix-blend-mode: multiply removes the black background
+                    so the shield logo renders cleanly on the white face.
+                    Use width/height 92% so it fills the badge edge-to-edge.
+                  */}
                   <img
                     src="/logo.png"
                     alt="ScanForSafe"
                     className="sfs-badge-img"
                   />
+
                 </div>
               </div>
             </div>
