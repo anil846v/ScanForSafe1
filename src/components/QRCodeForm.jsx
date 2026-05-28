@@ -25,7 +25,7 @@ export default function QRCodeCard() {
           font-family: 'Space Grotesk', sans-serif;
           min-height: 100vh;
           display: flex; align-items: center; justify-content: center;
-          padding: 40px 16px;
+          padding: 100px 16px 40px; /* ← increased top padding to push away from navbar */
           background: #f8fafc;
           position: relative;
           overflow: hidden;
@@ -123,32 +123,20 @@ export default function QRCodeCard() {
           margin-bottom: 28px;
         }
 
-        /* outer glow ring */
-        .qr-frame-wrap::before {
-          content: "";
-          position: absolute; inset: -8px;
-          border-radius: 28px;
-          background: linear-gradient(145deg, #16a34a22, #4ade8011, #16a34a22);
-          border: 1.5px solid rgba(22,163,74,0.2);
-        }
+        /* removed outer glow ring ::before entirely */
 
         .qr-frame {
           position: relative;
           padding: 10px;
           background: #fff;
-          border-radius: 20px;
-          border: 2.5px solid #16a34a;
-          box-shadow:
-            0 0 0 6px rgba(22,163,74,0.06),
-            0 12px 40px rgba(6,78,59,0.15);
-          transition: transform .4s cubic-bezier(.34,1.3,.64,1), box-shadow .4s ease;
+          border-radius: 0;          /* ← removed rounded corners */
+          border: none;              /* ← removed border */
+          box-shadow: none;          /* ← removed box shadow */
+          transition: transform .4s cubic-bezier(.34,1.3,.64,1);
           cursor: pointer;
         }
         .qr-frame.hovered {
           transform: scale(1.03) translateY(-3px);
-          box-shadow:
-            0 0 0 6px rgba(22,163,74,0.1),
-            0 20px 56px rgba(6,78,59,0.22);
         }
 
         /* scan line animation over QR */
@@ -175,15 +163,15 @@ export default function QRCodeCard() {
           z-index: 4; pointer-events: none;
           transition: opacity .3s ease;
         }
-        .qr-corner.tl { top: 6px; left: 6px; border-width: 2.5px 0 0 2.5px; border-radius: 4px 0 0 0; }
-        .qr-corner.tr { top: 6px; right: 6px; border-width: 2.5px 2.5px 0 0; border-radius: 0 4px 0 0; }
-        .qr-corner.bl { bottom: 6px; left: 6px; border-width: 0 0 2.5px 2.5px; border-radius: 0 0 0 4px; }
-        .qr-corner.br { bottom: 6px; right: 6px; border-width: 0 2.5px 2.5px 0; border-radius: 0 0 4px 0; }
+        .qr-corner.tl { top: 6px; left: 6px; border-width: 2.5px 0 0 2.5px; border-radius: 0; }
+        .qr-corner.tr { top: 6px; right: 6px; border-width: 2.5px 2.5px 0 0; border-radius: 0; }
+        .qr-corner.bl { bottom: 6px; left: 6px; border-width: 0 0 2.5px 2.5px; border-radius: 0; }
+        .qr-corner.br { bottom: 6px; right: 6px; border-width: 0 2.5px 2.5px 0; border-radius: 0; }
 
         .qr-img {
           display: block;
           width: 240px; height: 240px;
-          border-radius: 12px;
+          border-radius: 0;          /* ← removed rounded corners on image */
           position: relative; z-index: 2;
         }
 
