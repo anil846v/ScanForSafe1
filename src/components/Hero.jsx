@@ -4,7 +4,7 @@ import carImg from "../../assets/car.png";
 import bikeImg from "../../assets/bike.png";
 import luggageImg from "../../assets/luggage.png";
 import qrImg from "../../assets/qr.png";
-import logoImg from "/public/logo.png";
+// import logoImg from "/public/logo.png";
 
 const TICKER = [
   "🛡️  10,000+ Assets Protected",
