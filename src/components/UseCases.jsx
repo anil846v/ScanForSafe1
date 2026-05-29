@@ -1,11 +1,26 @@
 import { useState } from 'react'
-import { Bike, PawPrint, Package, Laptop, Baby, UserCheck } from 'lucide-react'
-import bike1img from "../../assets/bike1.png";
-import carimg from "../../assets/car1.png";
-import petimg from "../../assets/dog.png";
-import luggageimg from "../../assets/luggage1.png";
-import seniorimg from "../../assets/senior.png";
-import kidimg from "../../assets/kid.png";
+import {
+  Bike,
+  PawPrint,
+  Package,
+  Laptop,
+  Baby,
+  UserCheck,
+  ArrowUpRight,
+  ShieldCheck,
+  Zap,
+  MapPin,
+  Bell,
+  Clock,
+  Wifi,
+} from 'lucide-react'
+
+import bike1img from "../../assets/bike1.png"
+import carimg from "../../assets/car1.png"
+import petimg from "../../assets/dog.png"
+import luggageimg from "../../assets/luggage1.png"
+import seniorimg from "../../assets/senior.png"
+import kidimg from "../../assets/kid.png"
 
 const USE_CASES = [
   {
@@ -25,6 +40,12 @@ const USE_CASES = [
     image: bike1img,
     badge: '🏍️',
     qrPosition: 'On fuel tank / handlebar',
+    features: ['Waterproof', 'Tamper-evident', 'UV-resistant'],
+    stats: [
+      { icon: Clock, value: '< 3s',  label: 'Alert' },
+      { icon: MapPin, value: 'Live',  label: 'GPS'   },
+      { icon: Bell,  value: '24/7',   label: 'Active' },
+    ],
   },
   {
     icon: Package,
@@ -43,6 +64,12 @@ const USE_CASES = [
     image: luggageimg,
     badge: '🎒',
     qrPosition: 'On bag strap / handle',
+    features: ['Airport-ready', 'Low-light scan', 'Flexible tag'],
+    stats: [
+      { icon: Wifi,  value: 'NFC',    label: '+QR'    },
+      { icon: MapPin, value: 'Global', label: 'Scan'  },
+      { icon: Bell,  value: 'Instant',label: 'Alert'  },
+    ],
   },
   {
     icon: PawPrint,
@@ -61,6 +88,12 @@ const USE_CASES = [
     image: petimg,
     badge: '🐕',
     qrPosition: 'On pet collar',
+    features: ['Lightweight', 'Weatherproof', 'Any camera'],
+    stats: [
+      { icon: MapPin, value: 'GPS',   label: 'Per scan' },
+      { icon: Bell,  value: 'Auto',   label: 'WhatsApp' },
+      { icon: Zap,   value: '5+',     label: 'Contacts' },
+    ],
   },
   {
     icon: Baby,
@@ -79,6 +112,12 @@ const USE_CASES = [
     image: kidimg,
     badge: '🧒',
     qrPosition: 'On hand band / shoulder',
+    features: ['Soft band', 'No app needed', 'Instant alert'],
+    stats: [
+      { icon: Bell,  value: 'Instant', label: 'Parent' },
+      { icon: MapPin, value: 'Live',   label: 'GPS'    },
+      { icon: Zap,   value: 'Any',     label: 'Phone'  },
+    ],
   },
   {
     icon: Laptop,
@@ -97,6 +136,12 @@ const USE_CASES = [
     image: carimg,
     badge: '💻',
     qrPosition: 'Back of device',
+    features: ['Ultra-thin', 'Dual mode', 'No bulge'],
+    stats: [
+      { icon: Wifi,  value: 'NFC',    label: '+QR'    },
+      { icon: Bell,  value: 'Auto',   label: 'Alert'  },
+      { icon: MapPin, value: 'Live',  label: 'GPS'    },
+    ],
   },
   {
     icon: UserCheck,
@@ -116,6 +161,12 @@ const USE_CASES = [
     badge: '👴',
     qrPosition: 'Wristband / wallet card',
     isNew: true,
+    features: ['Medical ID', 'Blood group', 'SOS alert'],
+    stats: [
+      { icon: Zap,   value: 'SOS',    label: 'Workflow' },
+      { icon: Bell,  value: '5',      label: 'Family'   },
+      { icon: MapPin, value: 'Med',   label: 'Info'     },
+    ],
   },
 ]
 
@@ -129,7 +180,6 @@ export default function UseCases() {
       }}
     >
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
-
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: 56 }}>
           <div
@@ -144,6 +194,7 @@ export default function UseCases() {
               marginBottom: 16,
             }}
           >
+            <ShieldCheck size={15} color="#2ebd3a" strokeWidth={2.2} />
             <span style={{ fontSize: 13, fontWeight: 700, color: '#2ebd3a' }}>
               Real-World Use Cases
             </span>
@@ -174,7 +225,7 @@ export default function UseCases() {
           </p>
         </div>
 
-        {/* Grid — exactly 3 columns on desktop, 2 on tablet, 1 on mobile */}
+        {/* Grid */}
         <div
           style={{
             display: 'grid',
@@ -189,7 +240,6 @@ export default function UseCases() {
         </div>
       </div>
 
-      {/* Responsive overrides */}
       <style>{`
         @media (max-width: 960px) {
           .use-cases-grid {
@@ -223,6 +273,8 @@ function UseCard({
   badge,
   qrPosition,
   isNew,
+  features,
+  stats,
 }) {
   const [hovered, setHovered] = useState(false)
 
@@ -243,6 +295,7 @@ function UseCard({
         transform: hovered ? 'translateY(-6px)' : 'translateY(0)',
         display: 'flex',
         flexDirection: 'column',
+        height: '100%',
       }}
     >
       {/* NEW badge */}
@@ -323,8 +376,8 @@ function UseCard({
         </div>
       </div>
 
-      {/* Card body — no min-height, fits content exactly */}
-      <div style={{ padding: '18px 18px 20px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+      {/* Card body */}
+      <div style={{ padding: '18px 18px 20px', display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
 
         {/* Title row */}
         <div
@@ -348,7 +401,7 @@ function UseCard({
                 flexShrink: 0,
               }}
             >
-              <Icon size={20} color="#fff" />
+              <Icon size={20} color="#fff" strokeWidth={2.2} />
             </div>
 
             <div>
@@ -382,6 +435,119 @@ function UseCard({
         <p style={{ margin: 0, fontSize: 14, color: descColor, lineHeight: 1.65 }}>
           {description}
         </p>
+
+        {/* ── NEW: Feature pills ── */}
+        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+          {features.map((f) => (
+            <span
+              key={f}
+              style={{
+                fontSize: 11,
+                fontWeight: 700,
+                padding: '4px 11px',
+                borderRadius: 100,
+                background: tagBg,
+                color: tagColor,
+                border: `1px solid ${tagColor}22`,
+                letterSpacing: '0.02em',
+              }}
+            >
+              {f}
+            </span>
+          ))}
+        </div>
+
+        {/* ── NEW: Stats strip ── */}
+        <div
+          style={{
+            display: 'flex',
+            gap: 6,
+            background: 'rgba(255,255,255,0.55)',
+            borderRadius: 14,
+            padding: '10px 8px',
+            border: `1px solid ${tagColor}18`,
+          }}
+        >
+          {stats.map((s, i) => {
+            const StatIcon = s.icon
+            return (
+              <div
+                key={i}
+                style={{
+                  flex: 1,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  gap: 3,
+                  borderRight: i < stats.length - 1 ? `1px solid ${tagColor}20` : 'none',
+                  paddingRight: i < stats.length - 1 ? 6 : 0,
+                }}
+              >
+                <StatIcon size={12} color={iconBg} strokeWidth={2.4} />
+                <span style={{ fontSize: 13, fontWeight: 900, color: titleColor, lineHeight: 1 }}>
+                  {s.value}
+                </span>
+                <span style={{ fontSize: 9.5, fontWeight: 600, color: subColor, opacity: 0.8, textTransform: 'uppercase', letterSpacing: '0.04em' }}>
+                  {s.label}
+                </span>
+              </div>
+            )
+          })}
+        </div>
+
+        {/* Footer row */}
+        <div
+          style={{
+            marginTop: 'auto',
+            paddingTop: 4,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: 12,
+          }}
+        >
+          <div
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 8,
+              fontSize: 12,
+              fontWeight: 700,
+              color: subColor,
+            }}
+          >
+            <span
+              style={{
+                width: 8,
+                height: 8,
+                borderRadius: '50%',
+                background: '#2ebd3a',
+                boxShadow: '0 0 0 4px rgba(46,189,58,0.10)',
+                flexShrink: 0,
+              }}
+            />
+            Finder-friendly setup
+          </div>
+
+          <button
+            type="button"
+            style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: 6,
+              fontSize: 13,
+              fontWeight: 800,
+              color: titleColor,
+              background: 'transparent',
+              border: 'none',
+              padding: 0,
+              cursor: 'pointer',
+            }}
+          >
+            Learn more
+            <ArrowUpRight size={16} strokeWidth={2.4} />
+          </button>
+        </div>
       </div>
     </div>
   )
