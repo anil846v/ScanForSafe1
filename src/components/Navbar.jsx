@@ -59,8 +59,8 @@ export default function Navbar() {
           align-items: center;
           justify-content: space-between;
           padding: 0 40px;
-          background: rgba(255,255,255,0.97);
-          backdrop-filter: blur(20px);
+          background: rgba(255, 255, 255, 0.95);
+          backdrop-filter: blur(14px);
           border-bottom: 1px solid rgba(226,232,240,0.8);
           transition: height .35s ease, box-shadow .35s ease;
           box-shadow: 0 1px 0 rgba(0,0,0,0.04);
@@ -98,8 +98,28 @@ export default function Navbar() {
           transform: scale(1.05);
         }
 
-        /* Clean rounded border */
-        .sfs-badge-border {
+        /* Dual pulse rings */
+        // .sfs-pulse-ring {
+        //   position: absolute;
+        //   inset: -7px;
+        //   border-radius: 24px;
+        //   border: 1.5px solid rgba(34,197,94,0.35);
+        //   animation: sfs-pulse-out 2.8s ease-out infinite;
+        //   pointer-events: none;
+        // }
+        // .sfs-pulse-ring:nth-child(2) {
+        //   animation-delay: 1s;
+        //   inset: -14px;
+        //   border-radius: 29px;
+        // }
+
+        @keyframes sfs-pulse-out {
+          0%   { opacity: 0.75; transform: scale(0.9); }
+          100% { opacity: 0;    transform: scale(1.2); }
+        }
+
+        /* Spinning conic ring — speeds up on hover */
+        .sfs-ring-outer {
           position: absolute;
           inset: 0;
           border-radius: 16px;
@@ -108,9 +128,18 @@ export default function Navbar() {
           transition: border-radius .35s ease;
         }
 
-        .sfs-nav.scrolled .sfs-badge-border {
-          border-radius: 13px;
+        .sfs-nav.scrolled .sfs-ring-outer {
+          border-radius: 15px;
         }
+
+        .sfs-logo:hover .sfs-ring-outer {
+          animation-duration: 1.4s;
+        }
+
+        // @keyframes sfs-spin-ring {
+        //   from { transform: rotate(100deg); }
+        //   to   { transform: rotate(360deg); }
+        // }
 
         /* White face */
         .sfs-badge-face {
@@ -135,7 +164,12 @@ export default function Navbar() {
           height: 92%;
           object-fit: contain;
           mix-blend-mode: multiply;
-          display: block;
+          transition: transform .4s cubic-bezier(.34,1.3,.64,1);
+          border-radius: 6px;
+        }
+
+        .sfs-logo:hover .sfs-badge-img {
+          transform: scale(1.08);
         }
 
         /* ── WORDMARK ── */
@@ -279,8 +313,8 @@ export default function Navbar() {
         }
 
         .sfs-login:hover {
-          background: #f0fdf4;
-          border-color: rgba(22,163,74,.55);
+          background: #e8f8eb;
+          border-color: rgba(46, 189, 58, .65);
           transform: translateY(-1px);
         }
 
@@ -305,7 +339,7 @@ export default function Navbar() {
         }
 
         .sfs-prereg:hover {
-          background: #15803d;
+          background: #1b7a21;
           transform: translateY(-1px);
           box-shadow: 0 1px 0 rgba(0,0,0,.12), 0 8px 24px rgba(22,163,74,.38);
         }
@@ -334,7 +368,7 @@ export default function Navbar() {
           align-items: center;
           justify-content: center;
         }
-
+ 
         .sfs-mobile-overlay {
           position: fixed;
           inset: 0;
@@ -479,7 +513,7 @@ export default function Navbar() {
           </Link>
 
           {/* ── NAV LINKS ── */}
-          <nav className="sfs-links">
+          <nav className="sfs-links" style={{ display: 'flex', alignItems: 'center', gap: '0px' }}>
             {navLinks.map((item) => (
               <Link
                 key={item.label}

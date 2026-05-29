@@ -93,7 +93,7 @@ export default function StatsBar() {
         </div>
 
         {/* STATS CARDS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
 
           {STATS.map(({ value, label, icon }, index) => (
             <div
@@ -101,42 +101,34 @@ export default function StatsBar() {
               className="group relative overflow-hidden rounded-[34px] border-2 border-[#e8f8eb] bg-white p-8 shadow-[0_20px_60px_rgba(0,0,0,0.04)] transition-all duration-500 hover:-translate-y-3 hover:border-[#2ebd3a] active:scale-[0.98] active:border-[#0B2545] cursor-pointer hover:shadow-[0_25px_80px_rgba(46,189,58,0.18)]"
             >
 
-              {/* INNER BORDER */}
               <div className="absolute inset-[1px] rounded-[33px] border border-white/70 pointer-events-none" />
 
-              {/* TOP LIGHT */}
               <div className="absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-[#2ebd3a] to-transparent" />
 
-              {/* FLOAT GLOW */}
               <div className="absolute -top-10 -right-10 w-32 h-32 bg-[#2ebd3a]/10 blur-3xl rounded-full" />
 
-              {/* NUMBER DECORATION */}
               <div className="absolute bottom-2 right-4 text-[85px] font-black text-slate-100 leading-none select-none">
                 0{index + 1}
               </div>
 
-              {/* ICON */}
               <div className="relative z-10 w-16 h-16 rounded-2xl bg-gradient-to-br from-[#2ebd3a] to-[#1b7a21] text-white flex items-center justify-center shadow-lg shadow-[#2ebd3a]/30 mb-6 group-hover:scale-110 transition-transform duration-500">
                 {icon}
               </div>
 
-              {/* VALUE */}
               <h3 className="relative z-10 text-4xl font-black tracking-tight text-[#0B2545] leading-none mb-3">
                 {value}
               </h3>
 
-              {/* LABEL */}
               <p className="relative z-10 text-slate-500 text-base font-medium leading-relaxed">
                 {label}
               </p>
 
-              {/* LINE */}
               <div className="relative z-10 mt-7 h-[4px] w-14 rounded-full bg-gradient-to-r from-[#2ebd3a] to-[#4bd557] group-hover:w-24 transition-all duration-500" />
 
             </div>
           ))}
 
-        </div>
+        </div> */}
 
         {/* TRUST STRIP */}
         <div className="mt-14 relative overflow-hidden rounded-[36px] border border-[#e8f8eb] bg-white shadow-[0_20px_60px_rgba(0,0,0,0.04)]">

@@ -93,7 +93,7 @@ const SEO_TAGS = [
 const css = `
 @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
 
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+.sfs-hero, .sfs-hero *, .sfs-hero *::before, .sfs-hero *::after { margin:0; padding:0; box-sizing:border-box; }
 html { scroll-behavior:smooth; }
 
 :root {
@@ -239,10 +239,31 @@ html { scroll-behavior:smooth; }
   border-radius: 99px; font-size: 10.5px; font-weight: 600;
   color: #1a5a26; letter-spacing: .01em; transition: .22s ease;
 }
-.sfs-tag:hover { background: rgba(46,189,58,0.14); border-color: rgba(46,189,58,0.38); transform: translateY(-1px); }
-.sfs-tag-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+.sfs-feat:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 40px rgba(46,189,58,0.13), 0 0 0 1px rgba(46,189,58,0.20);
+  border-color: rgba(46,189,58,0.26);
+  background: rgba(255,255,255,0.88);
+}
+.sfs-feat:hover::before { transform: scaleX(1); }
+.sfs-feat-ico {
+  width: 42px; height: 42px; border-radius: 13px;
+  background: linear-gradient(135deg, #e8f8eb, #d4f5d8);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 19px; margin-bottom: 11px;
+  transition: .32s cubic-bezier(.34,1.46,.64,1);
+  box-shadow: 0 4px 10px rgba(46,189,58,0.15);
+  border: 1px solid rgba(46,189,58,0.16);
+}
+.sfs-feat:hover .sfs-feat-ico { transform: scale(1.1) rotate(-5deg); }
+.sfs-feat h4 { font-size: 12.5px; font-weight: 700; color: var(--dark); margin-bottom: 5px; }
+.sfs-feat p  { font-size: 10.5px; line-height: 1.6; color: #6a8070; }
+.sfs-feat:nth-child(1) { animation: fadeUp .55s .25s both; }
+.sfs-feat:nth-child(2) { animation: fadeUp .55s .36s both; }
+.sfs-feat:nth-child(3) { animation: fadeUp .55s .47s both; }
 
-.sfs-actions {
+/* ── Buttons ── */
+.sfs-hero-actions {
   display: flex; align-items: center; gap: 12px;
   margin-bottom: 24px; animation: fadeUp .55s .56s both;
 }
@@ -776,7 +797,7 @@ html { scroll-behavior:smooth; }
   50%      { transform: translateY(-7px); }
 }
 .sfs-status-dot   { width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: livePulse 1.8s infinite; flex-shrink: 0; }
-.sfs-status-label { font-size: 11px; font-weight: 800; color: var(--dark); }
+.sfs-hero-status-label { font-size: 11px; font-weight: 800; color: var(--dark); }
 .sfs-status-sub   { font-size: 8.5px; color: var(--mid); margin-top: 1px; }
 
 /* Animations */
@@ -873,36 +894,109 @@ html { scroll-behavior:smooth; }
   .sfs-ring-2, .sfs-ring-3 { display:none; }
 }
 @media(max-width:640px){
-  .sfs-hero { border-radius:20px; border-width:1px; margin-top:12px; }
-  .sfs-grid { grid-template-columns:1fr; padding:36px 18px 24px; gap:28px; }
-  .sfs-h1 { font-size:38px; letter-spacing:-1.8px; line-height:1.0; margin-bottom:8px; }
-  .sfs-sub { font-size:13.5px; line-height:1.78; margin-bottom:14px; }
-  .sfs-badge { font-size:8.5px; margin-bottom:18px; padding:7px 12px 7px 9px; }
-  .sfs-tags { gap:6px; margin-bottom:18px; }
-  .sfs-tag { font-size:9.5px; padding:4px 9px; }
-  .sfs-actions { flex-direction:column; gap:10px; margin-bottom:20px; align-items:stretch; }
-  .sfs-btn-main { padding:15px 20px; font-size:14px; justify-content:center; }
-  .sfs-btn-sec  { padding:14px 20px; font-size:13.5px; justify-content:center; }
-  .sfs-stats { gap:12px; flex-wrap:wrap; }
-  .sfs-stat-num { font-size:18px; }
-  .sfs-right { min-height:680px; overflow:visible; }
-  .sfs-stage { min-height:680px !important; }
-  .sfs-phone { width:300px; }
-  .sfs-phone-frame { border-radius:52px; }
-  .sfs-phone-inner { border-radius:48px; }
-  .sfs-phone-glow-ring { border-radius:64px; }
-  .sfs-phone-glow-ring2 { border-radius:72px; }
-  .sfs-sfsi-screen { border-radius:0 0 44px 44px; }
-  .sfs-popup-screen { border-radius:0 0 44px 44px; }
-  .sfs-popup-overlay { border-radius:48px; }
-  .sfs-popup-sheet { border-radius:22px 22px 44px 44px; }
-  .sfs-asset-img { width:300px; }
-  .sfs-qr-card { right:-6px; bottom:68px; min-width:185px; padding:10px 13px; transform:none; }
-  .sfs-status-pill { top:52px; left:4px; }
-  .sfs-ticker { border-radius:0 0 18px 18px; }
-  .sfs-ticker-label { padding:0 14px; font-size:8px; height:44px; }
-  .sfs-ti { height:44px; }
-  .sfs-left { padding-right:0; }
+  .sfs-hero { border-radius: 20px; border-width: 1px; margin-top: 12px; }
+  .sfs-grid { grid-template-columns: 1fr; padding: 36px 18px 24px; gap: 28px; }
+
+  /* Typography */
+  .sfs-h1 { font-size: 38px; letter-spacing: -1.8px; line-height: 1.0; margin-bottom: 0; }
+  .sfs-h1 .outline { -webkit-text-stroke-width: 1.5px; }
+  .sfs-sub { font-size: 13.5px; line-height: 1.78; margin-bottom: 20px; }
+
+  /* Badge below heading */
+  .sfs-badge {
+    font-size: 8.5px; margin-top: 12px; margin-bottom: 18px;
+    padding: 7px 12px 7px 9px; border-radius: 10px;
+  }
+  .sfs-badge-sep { height: 12px; }
+  .sfs-badge-count { font-size: 8.5px; }
+
+  /* Feature cards — horizontal row on mobile */
+  .sfs-feats { flex-direction: column; gap: 9px; margin-bottom: 20px; }
+  .sfs-feat {
+    padding: 14px 14px; border-radius: 16px;
+    flex-direction: row; align-items: center; gap: 13px;
+  }
+  .sfs-feat-ico { margin-bottom: 0; flex-shrink: 0; width: 40px; height: 40px; border-radius: 12px; }
+  .sfs-feat h4 { font-size: 13px; margin-bottom: 3px; }
+  .sfs-feat p  { font-size: 11px; }
+
+  /* Buttons */
+  .sfs-hero-actions { flex-direction: column; gap: 10px; margin-bottom: 20px; align-items: stretch; }
+  .sfs-btn-main { padding: 15px 20px; font-size: 14px; border-radius: 13px; justify-content: center; }
+  .sfs-btn-sec  { padding: 14px 20px; font-size: 13.5px; border-radius: 13px; justify-content: center; }
+
+  /* Stats */
+  .sfs-stats { gap: 12px; flex-wrap: wrap; }
+  .sfs-stat-num { font-size: 18px; }
+  .sfs-stat-lbl { font-size: 9.5px; }
+  .sfs-stat-div { height: 28px; }
+
+  /* Right section — bigger, more breathing room */
+  .sfs-right { min-height: 540px; overflow: visible; }
+  .sfs-stage { min-height: 540px !important; }
+
+  /* Phone — significantly bigger on mobile */
+  .sfs-phone { width: 265px; }
+  .sfs-phone-frame { border-radius: 50px; }
+  .sfs-phone-inner { border-radius: 47px; }
+  .sfs-screen { border-radius: 0 0 46px 46px; padding: 13px 11px 18px; }
+  .sfs-notch { width: 78px; height: 23px; border-radius: 0 0 18px 18px; }
+  .sfs-notch-cam { width: 9px; height: 9px; }
+  .sfs-notch-row { height: 29px; }
+  .sfs-status-bar { padding: 0 4px 8px; }
+  .sfs-status-time { font-size: 9.5px; }
+  .sfs-avatar { width: 62px; height: 62px; }
+  .sfs-avatar-wrap { margin-bottom: 9px; }
+  .sfs-verified { font-size: 7.5px; margin-bottom: 9px; padding: 4px 10px; }
+  .sfs-owner-name { font-size: 16px; }
+  .sfs-owner-label { font-size: 10px; margin-bottom: 12px; }
+  .sfs-row { padding: 4.5px 0; }
+  .sfs-row-ico { width: 25px; height: 25px; font-size: 10px; border-radius: 8px; }
+  .sfs-row-lbl { font-size: 6.5px; }
+  .sfs-row-val { font-size: 9px; }
+  .sfs-home-ind { margin-top: 12px; width: 80px; }
+
+  /* Right floating elements */
+  .sfs-shield-badge { width: 72px; height: 72px; top: 16px; right: 10px; }
+  .sfs-lock { width: 46px; height: 46px; font-size: 20px; right: -4px; }
+  .sfs-ring-1 { width: 280px; height: 280px; }
+  .sfs-ring-2, .sfs-ring-3 { display: none; }
+
+  /* Floating cards — well positioned, not clipped */
+  .sfs-alert-badge { left: 2px; top: 76px; padding: 8px 11px; border-radius: 13px; transform: none; }
+  .sfs-alert-ico { width: 30px; height: 30px; font-size: 14px; border-radius: 9px; }
+  .sfs-alert-text h5 { font-size: 10.5px; }
+  .sfs-alert-text p  { font-size: 8.5px; }
+
+  .sfs-scan-badge { right: 2px; bottom: 80px; padding: 9px 13px; border-radius: 12px; transform: none; }
+  .sfs-scan-badge-ico { font-size: 15px; }
+  .sfs-scan-badge-text h5 { font-size: 10.5px; }
+  .sfs-scan-badge-text p  { font-size: 8.5px; }
+
+  /* Scan stage */
+  .sfs-asset-img { width: 300px; }
+  .sfs-qr-card {
+    right: -6px; bottom: 68px; min-width: 185px;
+    padding: 10px 13px; border-radius: 17px; transform: none;
+  }
+  .sfs-qr-icon { width: 44px; height: 44px; font-size: 22px; border-radius: 11px; }
+  .sfs-qr-card h4 { font-size: 12px; }
+  .sfs-qr-card p  { font-size: 9px; }
+
+  .sfs-status-pill { top: 52px; left: 4px; padding: 8px 12px; border-radius: 12px; transform: none; }
+  .sfs-status-dot { width: 6px; height: 6px; }
+  .sfs-hero-status-label { font-size: 10.5px; }
+  .sfs-status-sub { font-size: 8.5px; }
+
+  /* Ticker */
+  .sfs-ticker { border-radius: 0 0 18px 18px; }
+  .sfs-ticker-label { padding: 0 12px; font-size: 8px; letter-spacing: 1.5px; height: 42px; }
+  .sfs-ti { font-size: 11px; padding: 0 14px; height: 42px; }
+
+  /* BG */
+  .sfs-globe-wrap { width: 200px; height: 200px; bottom: -60px; left: -50px; }
+  .sfs-mesh { width: 300px; height: 300px; top: -30px; right: -30px; }
+  .sfs-left { padding-right: 0; }
 }
 @media(max-width:380px){
   .sfs-h1 { font-size:31px; letter-spacing:-1.2px; }
@@ -1187,7 +1281,7 @@ function ScanStage({ asset, animClass }) {
       <div className="sfs-status-pill">
         <div className="sfs-status-dot" />
         <div>
-          <div className="sfs-status-label">Scanning…</div>
+          <div className="sfs-hero-status-label">Scanning…</div>
           <div className="sfs-status-sub">SFS Shield Active</div>
         </div>
       </div>
@@ -1290,9 +1384,10 @@ export default function ScanForSafeHero() {
                 </span>
               ))}
             </div>
-            <div className="sfs-actions">
-              <a href="#register" className="sfs-btn-main">🔐 Pre-Register Free</a>
-              <a href="#how" className="sfs-btn-sec">
+
+            <div className="sfs-hero-actions">
+              <button className="sfs-btn-main">🔐 Protect Your Assets</button>
+              <button className="sfs-btn-sec">
                 <div className="sfs-play-ring">▶</div>
                 See How It Works
               </a>
