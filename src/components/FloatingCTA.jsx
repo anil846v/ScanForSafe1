@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from 'react'
-import { Link } from 'react-router-dom'
 import {
   MessageCircle,
   Sparkles,
@@ -10,15 +9,18 @@ import {
   Loader2,
 } from 'lucide-react'
 
-/* ── AI Chat Window ── */
+/* ══════════════════════════════════════════════
+   AI CHAT WINDOW
+══════════════════════════════════════════════ */
 function AIChatWindow({ onClose }) {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
       content:
-        "Hi! 👋 I'm ScanForSafe's AI assistant. Ask me anything — lost items, how QR tags work, rewards, or setup help!",
+        "Hi! 👋 I'm ScanForSafe's AI assistant. Ask me anything — lost items, QR tags, setup help, rewards, or recovery support!",
     },
   ])
+
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const bottomRef = useRef(null)
@@ -30,35 +32,30 @@ function AIChatWindow({ onClose }) {
   async function sendMessage() {
     const text = input.trim()
     if (!text || loading) return
-    setInput('')
 
+    setInput('')
     const updated = [...messages, { role: 'user', content: text }]
     setMessages(updated)
     setLoading(true)
 
     try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          system:
-            'You are a friendly and helpful AI assistant for ScanForSafe — a QR tag platform that helps people recover lost items (luggage, pets, vehicles, kids, seniors) using WhatsApp alerts, GPS tracking, and a finder reward system. Answer user questions about the product clearly and concisely. Keep responses short (2-4 sentences max). Use emojis sparingly.',
-          messages: updated.map((m) => ({
-            role: m.role,
-            content: m.content,
-          })),
-        }),
-      })
-      const data = await res.json()
-      const reply =
-        data?.content?.[0]?.text ?? 'Sorry, I could not get a response.'
-      setMessages((prev) => [...prev, { role: 'assistant', content: reply }])
+      await new Promise((r) => setTimeout(r, 1400))
+
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          content:
+            'Your ScanForSafe QR tag helps recover lost items instantly using WhatsApp alerts and live location sharing 🚀',
+        },
+      ])
     } catch {
       setMessages((prev) => [
         ...prev,
-        { role: 'assistant', content: 'Something went wrong. Please try again.' },
+        {
+          role: 'assistant',
+          content: 'Something went wrong. Please try again.',
+        },
       ])
     } finally {
       setLoading(false)
@@ -73,109 +70,123 @@ function AIChatWindow({ onClose }) {
         right: '24px',
         zIndex: 60,
         width: '340px',
-        maxHeight: '480px',
-        borderRadius: '20px',
+        maxHeight: '500px',
+        borderRadius: '24px',
         background: '#fff',
+        overflow: 'hidden',
+        border: '1px solid rgba(255,255,255,0.18)',
         boxShadow:
-          '0 24px 60px rgba(0,0,0,0.18), 0 4px 16px rgba(37,99,235,0.12)',
+          '0 30px 70px rgba(0,0,0,0.18), 0 8px 20px rgba(37,99,235,0.12)',
         display: 'flex',
         flexDirection: 'column',
-        overflow: 'hidden',
-        border: '1.5px solid #e2e8f0',
-        animation: 'popIn .25s cubic-bezier(.34,1.3,.64,1)',
+        animation: 'chatPopup .35s cubic-bezier(.34,1.56,.64,1)',
+        backdropFilter: 'blur(14px)',
       }}
     >
-      {/* Header */}
+      {/* HEADER */}
       <div
         style={{
-          background: 'linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%)',
-          padding: '14px 16px',
+          background: 'linear-gradient(135deg,#0B2545 0%,#2563eb 100%)',
+          padding: '16px',
           display: 'flex',
           alignItems: 'center',
-          gap: '10px',
+          gap: '12px',
+          position: 'relative',
+          overflow: 'hidden',
         }}
       >
         <div
           style={{
-            width: 36,
-            height: 36,
+            position: 'absolute',
+            inset: 0,
+            background:
+              'linear-gradient(90deg,transparent,rgba(255,255,255,0.12),transparent)',
+            animation: 'shineMove 5s linear infinite',
+          }}
+        />
+
+        <div
+          style={{
+            width: 42,
+            height: 42,
             borderRadius: '50%',
-            background: 'rgba(255,255,255,0.2)',
+            background: 'rgba(255,255,255,0.18)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            flexShrink: 0,
+            backdropFilter: 'blur(10px)',
+            position: 'relative',
+            zIndex: 2,
           }}
         >
-          <Bot size={20} color="#fff" />
+          <Bot size={22} color="#fff" />
         </div>
-        <div style={{ flex: 1 }}>
+
+        <div style={{ flex: 1, position: 'relative', zIndex: 2 }}>
           <div
             style={{
-              fontSize: 14,
-              fontWeight: 700,
+              fontSize: '15px',
+              fontWeight: 800,
               color: '#fff',
-              fontFamily: "'Outfit',sans-serif",
             }}
           >
             ScanForSafe AI
           </div>
+
           <div
             style={{
-              fontSize: 11,
-              color: 'rgba(255,255,255,0.75)',
               display: 'flex',
               alignItems: 'center',
-              gap: 5,
+              gap: '6px',
+              marginTop: '2px',
+              fontSize: '11px',
+              color: 'rgba(255,255,255,0.75)',
             }}
           >
             <span
               style={{
-                width: 7,
-                height: 7,
+                width: 8,
+                height: 8,
                 borderRadius: '50%',
                 background: '#4ade80',
-                display: 'inline-block',
+                animation: 'pulseDot 1.8s infinite',
               }}
             />
-            Online · Powered by Claude AI
+            Online Support
           </div>
         </div>
+
         <button
           onClick={onClose}
           style={{
-            background: 'rgba(255,255,255,0.15)',
-            border: 'none',
+            width: 32,
+            height: 32,
             borderRadius: '50%',
-            width: 30,
-            height: 30,
+            border: 'none',
+            background: 'rgba(255,255,255,0.14)',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
             cursor: 'pointer',
-            transition: 'background .2s',
+            position: 'relative',
+            zIndex: 2,
           }}
-          onMouseEnter={(e) =>
-            (e.currentTarget.style.background = 'rgba(255,255,255,0.28)')
-          }
-          onMouseLeave={(e) =>
-            (e.currentTarget.style.background = 'rgba(255,255,255,0.15)')
-          }
         >
-          <X size={15} color="#fff" />
+          <X size={16} color="#fff" />
         </button>
       </div>
 
-      {/* Messages */}
+      {/* MESSAGES */}
       <div
         style={{
           flex: 1,
           overflowY: 'auto',
-          padding: '16px 14px',
+          padding: '16px',
           display: 'flex',
           flexDirection: 'column',
-          gap: 10,
-          background: '#f8fafc',
+          gap: '12px',
+          background:
+            'linear-gradient(180deg,#f8fafc 0%,#f1f5f9 100%)',
         }}
       >
         {messages.map((m, i) => (
@@ -183,31 +194,33 @@ function AIChatWindow({ onClose }) {
             key={i}
             style={{
               display: 'flex',
-              justifyContent: m.role === 'user' ? 'flex-end' : 'flex-start',
+              justifyContent:
+                m.role === 'user' ? 'flex-end' : 'flex-start',
             }}
           >
             <div
               style={{
                 maxWidth: '80%',
-                padding: '10px 13px',
+                padding: '12px 14px',
                 borderRadius:
                   m.role === 'user'
-                    ? '16px 16px 4px 16px'
-                    : '16px 16px 16px 4px',
+                    ? '18px 18px 6px 18px'
+                    : '18px 18px 18px 6px',
                 background:
                   m.role === 'user'
                     ? 'linear-gradient(135deg,#2563eb,#1d4ed8)'
                     : '#fff',
-                color: m.role === 'user' ? '#fff' : '#1e293b',
-                fontSize: 13,
-                lineHeight: 1.65,
-                fontWeight: 500,
+                color: m.role === 'user' ? '#fff' : '#0f172a',
+                fontSize: '13px',
+                lineHeight: 1.6,
                 boxShadow:
                   m.role === 'user'
-                    ? '0 4px 12px rgba(37,99,235,0.25)'
-                    : '0 2px 8px rgba(0,0,0,0.07)',
+                    ? '0 10px 24px rgba(37,99,235,0.25)'
+                    : '0 4px 12px rgba(0,0,0,0.06)',
                 border:
-                  m.role === 'assistant' ? '1px solid #e2e8f0' : 'none',
+                  m.role === 'assistant'
+                    ? '1px solid #e2e8f0'
+                    : 'none',
               }}
             >
               {m.content}
@@ -216,98 +229,92 @@ function AIChatWindow({ onClose }) {
         ))}
 
         {loading && (
-          <div style={{ display: 'flex', justifyContent: 'flex-start' }}>
+          <div style={{ display: 'flex' }}>
             <div
               style={{
-                padding: '10px 14px',
-                borderRadius: '16px 16px 16px 4px',
                 background: '#fff',
+                padding: '12px 14px',
+                borderRadius: '18px',
                 border: '1px solid #e2e8f0',
-                boxShadow: '0 2px 8px rgba(0,0,0,0.07)',
                 display: 'flex',
-                gap: 5,
-                alignItems: 'center',
+                gap: '6px',
               }}
             >
               {[0, 1, 2].map((d) => (
                 <span
                   key={d}
                   style={{
-                    width: 7,
-                    height: 7,
+                    width: '7px',
+                    height: '7px',
                     borderRadius: '50%',
-                    background: '#93c5fd',
-                    display: 'inline-block',
-                    animation: `bounce 1.2s ease-in-out ${d * 0.2}s infinite`,
+                    background: '#60a5fa',
+                    animation: `bounce 1.2s ${d * 0.2}s infinite`,
                   }}
                 />
               ))}
             </div>
           </div>
         )}
+
         <div ref={bottomRef} />
       </div>
 
-      {/* Input */}
+      {/* INPUT */}
       <div
         style={{
-          padding: '12px 14px',
+          padding: '14px',
           background: '#fff',
-          borderTop: '1.5px solid #e2e8f0',
+          borderTop: '1px solid #e2e8f0',
           display: 'flex',
-          gap: 8,
-          alignItems: 'center',
+          gap: '8px',
         }}
       >
         <input
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === 'Enter' && sendMessage()}
-          placeholder="Ask anything…"
+          placeholder="Ask anything..."
           style={{
             flex: 1,
-            border: '1.5px solid #e2e8f0',
-            borderRadius: 999,
-            padding: '9px 14px',
-            fontSize: 13,
-            fontFamily: "'Space Grotesk',sans-serif",
-            fontWeight: 500,
-            color: '#0f172a',
+            borderRadius: '999px',
+            border: '1.5px solid #dbeafe',
+            padding: '11px 16px',
+            fontSize: '13px',
             outline: 'none',
             background: '#f8fafc',
-            transition: 'border-color .2s',
           }}
-          onFocus={(e) => (e.target.style.borderColor = '#60a5fa')}
-          onBlur={(e) => (e.target.style.borderColor = '#e2e8f0')}
         />
+
         <button
           onClick={sendMessage}
           disabled={!input.trim() || loading}
           style={{
-            width: 38,
-            height: 38,
+            width: '44px',
+            height: '44px',
             borderRadius: '50%',
             border: 'none',
             background:
               input.trim() && !loading
                 ? 'linear-gradient(135deg,#2563eb,#1d4ed8)'
-                : '#e2e8f0',
+                : '#cbd5e1',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            cursor: input.trim() && !loading ? 'pointer' : 'default',
-            transition: 'all .2s',
-            flexShrink: 0,
+            cursor: 'pointer',
             boxShadow:
               input.trim() && !loading
-                ? '0 4px 12px rgba(37,99,235,0.3)'
+                ? '0 8px 18px rgba(37,99,235,0.28)'
                 : 'none',
           }}
         >
           {loading ? (
-            <Loader2 size={16} color="#94a3b8" style={{ animation: 'spin 1s linear infinite' }} />
+            <Loader2
+              size={18}
+              color="#fff"
+              style={{ animation: 'spin 1s linear infinite' }}
+            />
           ) : (
-            <Send size={15} color={input.trim() ? '#fff' : '#94a3b8'} />
+            <Send size={17} color="#fff" />
           )}
         </button>
       </div>
@@ -325,119 +332,288 @@ export default function FloatingCTA() {
     <>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap');
-        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-4px)} }
-        @keyframes shine { 0%{left:-120%} 100%{left:120%} }
-        @keyframes bounce { 0%,80%,100%{transform:translateY(0)} 40%{transform:translateY(-6px)} }
-        @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-        @keyframes popIn { from{opacity:0;transform:scale(0.88) translateY(12px)} to{opacity:1;transform:scale(1) translateY(0)} }
+
+        @keyframes float {
+          0%,100% { transform: translateY(0px); }
+          50% { transform: translateY(-6px); }
+        }
+
+        @keyframes bounce {
+          0%,80%,100% { transform: translateY(0); }
+          40% { transform: translateY(-6px); }
+        }
+
+        @keyframes spin {
+          from { transform: rotate(0deg); }
+          to { transform: rotate(360deg); }
+        }
+
+        @keyframes pulseDot {
+          0% { box-shadow: 0 0 0 0 rgba(74,222,128,.7); }
+          70% { box-shadow: 0 0 0 12px rgba(74,222,128,0); }
+          100% { box-shadow: 0 0 0 0 rgba(74,222,128,0); }
+        }
+
+        @keyframes shineMove {
+          0% { transform: translateX(-120%); }
+          100% { transform: translateX(120%); }
+        }
+
+        @keyframes sparkle {
+          0%,100% {
+            transform: scale(1) rotate(0deg);
+            opacity: .7;
+          }
+          50% {
+            transform: scale(1.25) rotate(12deg);
+            opacity: 1;
+          }
+        }
+
+        @keyframes arrowMove {
+          0%,100% { transform: translateX(0); }
+          50% { transform: translateX(4px); }
+        }
+
+        @keyframes chatPopup {
+          from {
+            opacity: 0;
+            transform: scale(.88) translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+          }
+        }
       `}</style>
 
-      {/* AI Chat Window */}
-      {chatOpen && <AIChatWindow onClose={() => setChatOpen(false)} />}
+      {/* CHAT WINDOW */}
+      {chatOpen && (
+        <AIChatWindow onClose={() => setChatOpen(false)} />
+      )}
 
-      {/* Glow — WhatsApp */}
-      <div style={{
-        position:'fixed', bottom:'100px', right:'22px',
-        width:'70px', height:'70px', borderRadius:'9999px',
-        background:'rgba(37,211,102,0.18)', filter:'blur(18px)', zIndex:40,
-      }} />
+      {/* GLOW EFFECTS */}
+      <div
+        style={{
+          position: 'fixed',
+          bottom: '100px',
+          right: '22px',
+          width: '72px',
+          height: '72px',
+          borderRadius: '50%',
+          background: 'rgba(37,211,102,0.22)',
+          filter: 'blur(18px)',
+          zIndex: 40,
+        }}
+      />
 
-      {/* Glow — AI Bot */}
-      <div style={{
-        position:'fixed', bottom:'22px', right:'22px',
-        width:'70px', height:'70px', borderRadius:'9999px',
-        background:'rgba(37,99,235,0.18)', filter:'blur(18px)', zIndex:40,
-      }} />
+      <div
+        style={{
+          position: 'fixed',
+          bottom: '24px',
+          right: '22px',
+          width: '72px',
+          height: '72px',
+          borderRadius: '50%',
+          background: 'rgba(37,99,235,0.24)',
+          filter: 'blur(18px)',
+          zIndex: 40,
+        }}
+      />
 
-      {/* WhatsApp Button */}
+      {/* WHATSAPP BUTTON */}
       <a
         href="https://wa.me/919999999999"
         target="_blank"
         rel="noreferrer"
-        aria-label="Chat on WhatsApp"
         style={{
-          position:'fixed', bottom:'96px', right:'24px', zIndex:50,
-          width:'62px', height:'62px', borderRadius:'9999px',
-          background:'linear-gradient(135deg,#2ebd3a 0%,#249e30 100%)',
-          display:'flex', alignItems:'center', justifyContent:'center',
-          boxShadow:'0 12px 30px rgba(37,211,102,0.35), inset 0 1px 0 rgba(255,255,255,0.3)',
-          textDecoration:'none', transition:'all 0.35s ease', overflow:'hidden',
-          backdropFilter:'blur(10px)', animation:'float 3s ease-in-out infinite',
+          position: 'fixed',
+          bottom: '100px',
+          right: '24px',
+          zIndex: 50,
+          width: '64px',
+          height: '64px',
+          borderRadius: '50%',
+          background:
+            'linear-gradient(135deg,#25D366 0%,#16a34a 100%)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow:
+            '0 14px 32px rgba(37,211,102,0.35)',
+          animation: 'float 3s ease-in-out infinite',
+          overflow: 'hidden',
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-4px) scale(1.08)')}
-        onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(0) scale(1)')}
       >
-        <div style={{
-          position:'absolute', width:'120%', height:'40%',
-          background:'linear-gradient(to right,transparent,rgba(255,255,255,0.4),transparent)',
-          transform:'rotate(-25deg)', top:'-20%', left:'-120%',
-          animation:'shine 3s infinite',
-        }} />
-        {/* WhatsApp SVG icon */}
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-        </svg>
-        {/* Online dot */}
-        <span style={{
-          position:'absolute', top:'8px', right:'8px',
-          width:'12px', height:'12px', borderRadius:'9999px',
-          background:'#fff', border:'2px solid #2ebd3a',
-        }} />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background:
+              'linear-gradient(90deg,transparent,rgba(255,255,255,0.25),transparent)',
+            animation: 'shineMove 3s linear infinite',
+          }}
+        />
+
+        <MessageCircle
+          size={30}
+          color="#fff"
+          style={{ position: 'relative', zIndex: 2 }}
+        />
+
+        <span
+          style={{
+            position: 'absolute',
+            top: '7px',
+            right: '7px',
+            width: '12px',
+            height: '12px',
+            borderRadius: '50%',
+            background: '#fff',
+            border: '2px solid #22c55e',
+          }}
+        />
       </a>
 
-      {/* AI Chatbot Button */}
+      {/* AI BUTTON */}
       <button
         onClick={() => setChatOpen((o) => !o)}
-        aria-label="Open AI Chat"
         style={{
-          position:'fixed', bottom:'24px', right:'24px', zIndex:50,
-          width:'62px', height:'62px', borderRadius:'9999px',
+          position: 'fixed',
+          bottom: '24px',
+          right: '24px',
+          zIndex: 50,
+          width: '64px',
+          height: '64px',
+          borderRadius: '50%',
+          border: 'none',
+          cursor: 'pointer',
           background: chatOpen
-            ? 'linear-gradient(135deg,#1e3a8a 0%,#1d4ed8 100%)'
-            : 'linear-gradient(135deg,#2563eb 0%,#1d4ed8 100%)',
-          display:'flex', alignItems:'center', justifyContent:'center',
-          boxShadow:'0 12px 30px rgba(37,99,235,0.35), inset 0 1px 0 rgba(255,255,255,0.3)',
-          border:'none', cursor:'pointer', transition:'all 0.35s ease',
-          overflow:'hidden', backdropFilter:'blur(10px)',
-          animation: chatOpen ? 'none' : 'float 3s ease-in-out infinite',
+            ? 'linear-gradient(135deg,#1e3a8a,#1d4ed8)'
+            : 'linear-gradient(135deg,#2563eb,#1d4ed8)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          overflow: 'hidden',
+          boxShadow:
+            '0 14px 32px rgba(37,99,235,0.35)',
+          animation: chatOpen
+            ? 'none'
+            : 'float 3s ease-in-out infinite',
         }}
-        onMouseEnter={(e) => (e.currentTarget.style.transform = 'translateY(-4px) scale(1.08)')}
-        onMouseLeave={(e) => (e.currentTarget.style.transform = 'translateY(0) scale(1)')}
       >
-        <div style={{
-          position:'absolute', width:'120%', height:'40%',
-          background:'linear-gradient(to right,transparent,rgba(255,255,255,0.4),transparent)',
-          transform:'rotate(-25deg)', top:'-20%', left:'-120%',
-          animation:'shine 3s infinite',
-        }} />
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background:
+              'linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent)',
+            animation: 'shineMove 3s linear infinite',
+          }}
+        />
+
         {chatOpen ? (
-          <X size={26} color="white" strokeWidth={2.5} />
+          <X
+            size={28}
+            color="#fff"
+            style={{ position: 'relative', zIndex: 2 }}
+          />
         ) : (
-          <Bot size={28} color="white" strokeWidth={2} />
+          <Bot
+            size={30}
+            color="#fff"
+            style={{ position: 'relative', zIndex: 2 }}
+          />
         )}
-        {/* Sparkle badge */}
+
         {!chatOpen && (
-          <div style={{
-            position:'absolute', top:'7px', right:'7px',
-            display:'flex', alignItems:'center', justifyContent:'center',
-          }}>
-            <Sparkles size={14} color="#fff" />
-          </div>
+          <Sparkles
+            size={14}
+            color="#fff"
+            style={{
+              position: 'absolute',
+              top: '8px',
+              right: '8px',
+              animation: 'sparkle 2s ease-in-out infinite',
+            }}
+          />
         )}
       </button>
 
-      {/* Mini Quick Action */}
-      <div style={{
-        position:'fixed', bottom:'180px', right:'18px', zIndex:45,
-        background:'rgba(11,37,69,0.92)', color:'#fff',
-        padding:'10px 14px', borderRadius:'9999px',
-        display:'flex', alignItems:'center', gap:'8px',
-        fontSize:'13px', fontWeight:600,
-        boxShadow:'0 8px 24px rgba(0,0,0,0.18)',
-        backdropFilter:'blur(10px)',
-      }}>
-        Need Help?
-        <ArrowUpRight size={16} />
+      {/* ANIMATED NEED HELP */}
+      <div
+        style={{
+          position: 'fixed',
+          bottom: chatOpen ? '585px' : '180px',
+          right: '18px',
+          zIndex: 45,
+          background:
+            'linear-gradient(135deg,#0B2545 0%,#2563eb 100%)',
+          color: '#fff',
+          padding: '12px 18px',
+          borderRadius: '9999px',
+          display: 'flex',
+          alignItems: 'center',
+          gap: '10px',
+          fontSize: '13px',
+          fontWeight: 700,
+          boxShadow:
+            '0 12px 30px rgba(37,99,235,0.28)',
+          backdropFilter: 'blur(12px)',
+          overflow: 'hidden',
+          cursor: 'pointer',
+          animation: 'float 3s ease-in-out infinite',
+        }}
+      >
+        <div
+          style={{
+            position: 'absolute',
+            inset: 0,
+            background:
+              'linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent)',
+            animation: 'shineMove 4s linear infinite',
+          }}
+        />
+
+        <div
+          style={{
+            width: '10px',
+            height: '10px',
+            borderRadius: '50%',
+            background: '#4ade80',
+            animation: 'pulseDot 1.8s infinite',
+            zIndex: 2,
+          }}
+        />
+
+        <span
+          style={{
+            position: 'relative',
+            zIndex: 2,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+          }}
+        >
+          Need Help?
+          <ArrowUpRight
+            size={16}
+            style={{
+              animation: 'arrowMove 1.5s infinite',
+            }}
+          />
+        </span>
+
+        <Sparkles
+          size={14}
+          style={{
+            position: 'absolute',
+            top: '7px',
+            right: '10px',
+            color: '#fff',
+            animation: 'sparkle 2s ease-in-out infinite',
+          }}
+        />
       </div>
     </>
   )

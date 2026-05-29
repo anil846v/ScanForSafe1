@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useRef } from 'react'
 
 /* ─────────────────────────────────────────────
    DATA
@@ -28,46 +28,113 @@ const USE_CASES = [
 /* ─────────────────────────────────────────────
    PHONE FRAME WRAPPER
 ───────────────────────────────────────────── */
-function PhoneFrame({ children, screenBg = '#f8fafc', label, labelEmoji, labelTitle }) {
+function PhoneFrame({ children, screenBg = '#f8fafc' }) {
   return (
-    <div style={{ width: 260, flexShrink: 0 }}>
+    <div style={{
+      width: 260,
+      background: '#1e293b',
+      borderRadius: 38,
+      padding: 10,
+      border: '4px solid #334155',
+      boxShadow: '0 24px 60px rgba(0,0,0,0.28)',
+      position: 'relative',
+    }}>
+      {/* notch */}
+      <div style={{ position: 'absolute', top: 15, left: '50%', transform: 'translateX(-50%)', width: 75, height: 18, background: '#000', borderRadius: 12, zIndex: 10 }} />
+      {/* screen */}
       <div style={{
-        width: 260, height: 520,
-        background: '#1e293b',
-        borderRadius: 38, padding: 10,
-        border: '4px solid #334155',
-        boxShadow: '0 24px 60px rgba(0,0,0,0.28)',
-        position: 'relative',
+        width: '100%',
+        height: 480,
+        borderRadius: 30,
+        overflow: 'hidden',
+        background: screenBg,
+        border: '2px solid #000',
+        display: 'flex',
+        flexDirection: 'column',
       }}>
-        {/* notch */}
-        <div style={{ position: 'absolute', top: 15, left: '50%', transform: 'translateX(-50%)', width: 75, height: 18, background: '#000', borderRadius: 12, zIndex: 10 }} />
-        {/* screen */}
-        <div style={{
-          width: '100%', height: '100%',
-          borderRadius: 30, overflow: 'hidden',
-          background: screenBg,
-          border: '2px solid #000',
-          display: 'flex', flexDirection: 'column',
-        }}>
-          {children}
-        </div>
-        {/* side buttons */}
-        <div style={{ position: 'absolute', left: -4, top: 85, width: 3, height: 26, background: '#475569', borderRadius: '3px 0 0 3px' }} />
-        <div style={{ position: 'absolute', left: -4, top: 120, width: 3, height: 36, background: '#475569', borderRadius: '3px 0 0 3px' }} />
-        <div style={{ position: 'absolute', right: -4, top: 110, width: 3, height: 44, background: '#475569', borderRadius: '0 3px 3px 0' }} />
+        {children}
       </div>
-      {/* label */}
-      <div style={{
-        background: '#fff', border: '1.5px solid #e2e8f0',
-        borderRadius: 12, padding: '10px 16px', textAlign: 'center', marginTop: 8,
-      }}>
-        <div style={{ fontSize: 9.5, color: '#94a3b8', fontWeight: 600, letterSpacing: '.07em', textTransform: 'uppercase', marginBottom: 3 }}>
-          {label}
-        </div>
-        <div style={{ fontSize: 13.5, fontWeight: 800, color: '#0B2545' }}>
-          {labelEmoji} {labelTitle}
-        </div>
+      {/* side buttons */}
+      <div style={{ position: 'absolute', left: -4, top: 85, width: 3, height: 26, background: '#475569', borderRadius: '3px 0 0 3px' }} />
+      <div style={{ position: 'absolute', left: -4, top: 120, width: 3, height: 36, background: '#475569', borderRadius: '3px 0 0 3px' }} />
+      <div style={{ position: 'absolute', right: -4, top: 110, width: 3, height: 44, background: '#475569', borderRadius: '0 3px 3px 0' }} />
+    </div>
+  )
+}
+
+/* ─────────────────────────────────────────────
+   EXTERNAL SIM CTA — big attractive button BELOW phone
+───────────────────────────────────────────── */
+function SimCTA({ running, hasData, onRun, onReset, accent, label }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10, marginTop: 18 }}>
+      {/* pulsing ring when idle */}
+      <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'center', justifyContent: 'center' }}>
+        {!running && !hasData && (
+          <>
+            <div style={{
+              position: 'absolute', width: 220, height: 54,
+              borderRadius: 99,
+              border: `2px solid ${accent}`,
+              opacity: 0.35,
+              animation: 'ctaPulse 1.8s ease-out infinite',
+            }} />
+            <div style={{
+              position: 'absolute', width: 220, height: 54,
+              borderRadius: 99,
+              border: `2px solid ${accent}`,
+              opacity: 0.18,
+              animation: 'ctaPulse 1.8s ease-out 0.5s infinite',
+            }} />
+          </>
+        )}
+        <button
+          onClick={onRun}
+          disabled={running}
+          style={{
+            width: 210,
+            padding: '13px 0',
+            background: running
+              ? '#e2e8f0'
+              : `linear-gradient(135deg, ${accent} 0%, ${accent}bb 100%)`,
+            color: running ? '#94a3b8' : '#fff',
+            border: 'none',
+            borderRadius: 99,
+            fontSize: 14,
+            fontWeight: 900,
+            letterSpacing: '.03em',
+            cursor: running ? 'not-allowed' : 'pointer',
+            transition: 'all 0.25s',
+            boxShadow: running ? 'none' : `0 8px 28px ${accent}55`,
+            position: 'relative',
+            zIndex: 1,
+          }}
+        >
+          {running ? '⏳  Running…' : `▶  ${label}`}
+        </button>
       </div>
+
+      {/* reset */}
+      {hasData && !running && (
+        <button
+          onClick={onReset}
+          style={{
+            padding: '6px 22px',
+            background: 'transparent',
+            color: '#94a3b8',
+            border: '1.5px solid #e2e8f0',
+            borderRadius: 99,
+            fontSize: 11,
+            fontWeight: 700,
+            cursor: 'pointer',
+            transition: 'all 0.2s',
+          }}
+          onMouseEnter={e => { e.currentTarget.style.borderColor = '#cbd5e1'; e.currentTarget.style.color = '#64748b' }}
+          onMouseLeave={e => { e.currentTarget.style.borderColor = '#e2e8f0'; e.currentTarget.style.color = '#94a3b8' }}
+        >
+          ↺ Reset
+        </button>
+      )}
     </div>
   )
 }
@@ -76,12 +143,12 @@ function PhoneFrame({ children, screenBg = '#f8fafc', label, labelEmoji, labelTi
    1. WHATSAPP SIMULATOR
 ───────────────────────────────────────────── */
 const WA_STEPS = [
-  { id: 'scan',    delay: 0,    duration: 1000, label: 'QR Scanned',         sub: 'Someone scanned your tag',              icon: '📷', color: '#0ea5e9' },
-  { id: 'gps',     delay: 1200, duration: 1200, label: 'GPS Captured',        sub: 'Location: 13.0827°N, 80.2707°E',        icon: '📍', color: '#f59e0b' },
-  { id: 'send',    delay: 2600, duration: 1000, label: 'Sending WhatsApp…',  sub: 'Routing to +91-98XXX-XXXXX',            icon: '💬', color: '#16a34a' },
-  { id: 'deliver', delay: 3800, duration: 800,  label: 'Delivered ✓✓',        sub: 'Message delivered successfully',         icon: '✅', color: '#16a34a' },
-  { id: 'read',    delay: 4800, duration: 600,  label: 'Read ✓✓',             sub: 'Owner opened the message',               icon: '👁️', color: '#2563eb' },
-  { id: 'call',    delay: 5600, duration: 800,  label: 'Owner Calling Back',  sub: 'Direct call connected to finder',        icon: '📞', color: '#7c3aed' },
+  { id: 'scan',    delay: 0,    duration: 1000, label: 'QR Scanned',         sub: 'Someone scanned your tag',       icon: '📷', color: '#0ea5e9' },
+  { id: 'gps',     delay: 1200, duration: 1200, label: 'GPS Captured',        sub: 'Location: 13.0827°N, 80.2707°E', icon: '📍', color: '#f59e0b' },
+  { id: 'send',    delay: 2600, duration: 1000, label: 'Sending WhatsApp…',  sub: 'Routing to +91-98XXX-XXXXX',     icon: '💬', color: '#16a34a' },
+  { id: 'deliver', delay: 3800, duration: 800,  label: 'Delivered ✓✓',        sub: 'Message delivered successfully', icon: '✅', color: '#16a34a' },
+  { id: 'read',    delay: 4800, duration: 600,  label: 'Read ✓✓',             sub: 'Owner opened the message',       icon: '👁️', color: '#2563eb' },
+  { id: 'call',    delay: 5600, duration: 800,  label: 'Owner Calling Back',  sub: 'Direct call connected to finder',icon: '📞', color: '#7c3aed' },
 ]
 const WA_MESSAGE = {
   header: '🔔 *ScanForSafe Alert*',
@@ -96,42 +163,9 @@ const WA_MESSAGE = {
   ]
 }
 
-function WhatsAppSimulator() {
-  const [running, setRunning] = useState(false)
-  const [completedSteps, setCompletedSteps] = useState([])
-  const [activeStep, setActiveStep] = useState(null)
-  const [showMessage, setShowMessage] = useState(false)
-  const [typedLines, setTypedLines] = useState([])
-  const timersRef = useRef([])
-
-  const reset = () => {
-    timersRef.current.forEach(clearTimeout); timersRef.current = []
-    setRunning(false); setCompletedSteps([]); setActiveStep(null)
-    setShowMessage(false); setTypedLines([])
-  }
-
-  const run = () => {
-    reset(); setRunning(true)
-    WA_STEPS.forEach((step, i) => {
-      const t1 = setTimeout(() => setActiveStep(step.id), step.delay)
-      const t2 = setTimeout(() => {
-        setCompletedSteps(p => [...p, step.id])
-        if (i === WA_STEPS.length - 1) {
-          setActiveStep(null); setShowMessage(true)
-          WA_MESSAGE.lines.forEach((_, li) => {
-            const t3 = setTimeout(() => setTypedLines(p => [...p, WA_MESSAGE.lines[li]]), li * 280)
-            timersRef.current.push(t3)
-          })
-          const tDone = setTimeout(() => setRunning(false), WA_MESSAGE.lines.length * 280 + 500)
-          timersRef.current.push(tDone)
-        }
-      }, step.delay + step.duration)
-      timersRef.current.push(t1, t2)
-    })
-  }
-
+function WhatsAppSimulator({ running, setRunning, completedSteps, setCompletedSteps, activeStep, setActiveStep, showMessage, setShowMessage, typedLines, setTypedLines, timersRef }) {
   return (
-    <PhoneFrame screenBg="#ECE5DD" label="Live Simulation" labelEmoji="💬" labelTitle="WhatsApp Alerts">
+    <PhoneFrame screenBg="#ECE5DD">
       {/* WA header */}
       <div style={{ background: '#075E54', padding: '28px 12px 10px', display: 'flex', alignItems: 'center', gap: 8, flexShrink: 0 }}>
         <div style={{ width: 32, height: 32, borderRadius: '50%', background: '#25D366', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16 }}>🔔</div>
@@ -145,7 +179,7 @@ function WhatsAppSimulator() {
         {!showMessage && !running && completedSteps.length === 0 && (
           <div style={{ textAlign: 'center', marginTop: 60 }}>
             <div style={{ fontSize: 28, marginBottom: 8 }}>💬</div>
-            <div style={{ fontSize: 11, color: '#64748b', fontWeight: 600 }}>Tap "Simulate Alert"</div>
+            <div style={{ fontSize: 11, color: '#64748b', fontWeight: 600 }}>Tap "Simulate Alert" below</div>
             <div style={{ fontSize: 10, color: '#94a3b8' }}>See the real-time flow</div>
           </div>
         )}
@@ -189,14 +223,54 @@ function WhatsAppSimulator() {
           </div>
         )}
       </div>
-      {/* WA input */}
+      {/* WA input bar */}
       <div style={{ background: '#f0f0f0', padding: '6px 8px', display: 'flex', alignItems: 'center', gap: 6, flexShrink: 0 }}>
         <div style={{ flex: 1, background: '#fff', borderRadius: 20, padding: '5px 10px', fontSize: 9, color: '#aaa' }}>Type a message</div>
         <div style={{ width: 24, height: 24, borderRadius: '50%', background: '#25D366', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11 }}>🎤</div>
       </div>
-      {/* controls outside phone handled by parent */}
-      <SimControls running={running} hasData={completedSteps.length > 0 || showMessage} onRun={run} onReset={reset} accent="#16a34a" label="Simulate Alert" />
     </PhoneFrame>
+  )
+}
+
+function WhatsAppSimulatorWrapper() {
+  const [running, setRunning] = useState(false)
+  const [completedSteps, setCompletedSteps] = useState([])
+  const [activeStep, setActiveStep] = useState(null)
+  const [showMessage, setShowMessage] = useState(false)
+  const [typedLines, setTypedLines] = useState([])
+  const timersRef = useRef([])
+
+  const reset = () => {
+    timersRef.current.forEach(clearTimeout); timersRef.current = []
+    setRunning(false); setCompletedSteps([]); setActiveStep(null)
+    setShowMessage(false); setTypedLines([])
+  }
+
+  const run = () => {
+    reset(); setRunning(true)
+    WA_STEPS.forEach((step, i) => {
+      const t1 = setTimeout(() => setActiveStep(step.id), step.delay)
+      const t2 = setTimeout(() => {
+        setCompletedSteps(p => [...p, step.id])
+        if (i === WA_STEPS.length - 1) {
+          setActiveStep(null); setShowMessage(true)
+          WA_MESSAGE.lines.forEach((_, li) => {
+            const t3 = setTimeout(() => setTypedLines(p => [...p, WA_MESSAGE.lines[li]]), li * 280)
+            timersRef.current.push(t3)
+          })
+          const tDone = setTimeout(() => setRunning(false), WA_MESSAGE.lines.length * 280 + 500)
+          timersRef.current.push(tDone)
+        }
+      }, step.delay + step.duration)
+      timersRef.current.push(t1, t2)
+    })
+  }
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <WhatsAppSimulator running={running} setRunning={setRunning} completedSteps={completedSteps} setCompletedSteps={setCompletedSteps} activeStep={activeStep} setActiveStep={setActiveStep} showMessage={showMessage} setShowMessage={setShowMessage} typedLines={typedLines} setTypedLines={setTypedLines} timersRef={timersRef} />
+      <SimCTA running={running} hasData={completedSteps.length > 0 || showMessage} onRun={run} onReset={reset} accent="#16a34a" label="Simulate Alert" />
+    </div>
   )
 }
 
@@ -212,11 +286,11 @@ const CALL_STEPS = [
   { id: 'connect', delay: 5500, duration: 600,  label: 'Connected!',           icon: '🤝', color: '#16a34a' },
 ]
 
-function CallSimulator() {
+function CallSimulatorWrapper() {
   const [running, setRunning] = useState(false)
   const [completedSteps, setCompletedSteps] = useState([])
   const [activeStep, setActiveStep] = useState(null)
-  const [phase, setPhase] = useState('idle') // idle | qr | calling | connected
+  const [phase, setPhase] = useState('idle')
   const [callTime, setCallTime] = useState(0)
   const timersRef = useRef([])
   const callTimerRef = useRef(null)
@@ -302,10 +376,10 @@ function CallSimulator() {
   }
 
   return (
-    <PhoneFrame screenBg="#f0f4ff" label="Live Simulation" labelEmoji="📞" labelTitle="One-Touch Call Connect">
-      {screenContent()}
-      <SimControls running={running} hasData={completedSteps.length > 0} onRun={run} onReset={reset} accent="#4338ca" label="Simulate Call" />
-    </PhoneFrame>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <PhoneFrame screenBg="#f0f4ff">{screenContent()}</PhoneFrame>
+      <SimCTA running={running} hasData={completedSteps.length > 0} onRun={run} onReset={reset} accent="#4338ca" label="Simulate Call" />
+    </div>
   )
 }
 
@@ -313,14 +387,14 @@ function CallSimulator() {
    3. EMERGENCY CONTACTS SIMULATOR
 ───────────────────────────────────────────── */
 const CONTACTS_LIST = [
-  { name: 'Priya (Wife)',    num: '+91-98400-XXXXX', relation: 'Primary', emoji: '👩', status: 'idle' },
-  { name: 'Rajan (Brother)',  num: '+91-99400-XXXXX', relation: 'Fallback 1', emoji: '👨', status: 'idle' },
+  { name: 'Priya (Wife)',    num: '+91-98400-XXXXX', relation: 'Primary',    emoji: '👩', status: 'idle' },
+  { name: 'Rajan (Brother)', num: '+91-99400-XXXXX', relation: 'Fallback 1', emoji: '👨', status: 'idle' },
   { name: 'Dr. Kumar (Vet)', num: '+91-94400-XXXXX', relation: 'Fallback 2', emoji: '🩺', status: 'idle' },
   { name: 'Meena (Neighbor)',num: '+91-90400-XXXXX', relation: 'Fallback 3', emoji: '🏠', status: 'idle' },
   { name: 'Raj (Friend)',    num: '+91-88400-XXXXX', relation: 'Fallback 4', emoji: '🤝', status: 'idle' },
 ]
 
-function ContactsSimulator() {
+function ContactsSimulatorWrapper() {
   const [running, setRunning] = useState(false)
   const [contacts, setContacts] = useState(CONTACTS_LIST.map(c => ({...c})))
   const [log, setLog] = useState([])
@@ -357,52 +431,51 @@ function ContactsSimulator() {
   const statusText  = s => ({ idle: '—', sending: '📤 Alerting', missed: '❌ Missed', answered: '✅ Responded' }[s])
 
   return (
-    <PhoneFrame screenBg="#f5f3ff" label="Live Simulation" labelEmoji="👨‍👩‍👧" labelTitle="5 Emergency Contacts">
-      {/* header */}
-      <div style={{ background: '#7c3aed', padding: '28px 12px 10px', flexShrink: 0 }}>
-        <div style={{ fontSize: 12, fontWeight: 800, color: '#fff' }}>Emergency Contact Chain</div>
-        <div style={{ fontSize: 9, color: '#ddd6fe' }}>Auto-escalates until answered</div>
-      </div>
-      {/* contacts */}
-      <div style={{ flex: 1, overflowY: 'auto', padding: '8px' }}>
-        {contacts.map((c, i) => (
-          <div key={i} style={{
-            display: 'flex', alignItems: 'center', gap: 8,
-            padding: '7px 8px', borderRadius: 10, marginBottom: 4,
-            background: c.status === 'answered' ? '#dcfce7' : c.status === 'missed' ? '#ffe4e6' : c.status === 'sending' ? '#fef9c3' : '#fff',
-            border: `1.5px solid ${statusColor(c.status)}`,
-            transition: 'all 0.4s',
-          }}>
-            <div style={{ fontSize: 20, flexShrink: 0 }}>{c.emoji}</div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <div style={{ fontSize: 10, fontWeight: 800, color: '#1e1b4b', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.name}</div>
-              <div style={{ fontSize: 8.5, color: '#64748b' }}>{c.relation}</div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <PhoneFrame screenBg="#f5f3ff">
+        <div style={{ background: '#7c3aed', padding: '28px 12px 10px', flexShrink: 0 }}>
+          <div style={{ fontSize: 12, fontWeight: 800, color: '#fff' }}>Emergency Contact Chain</div>
+          <div style={{ fontSize: 9, color: '#ddd6fe' }}>Auto-escalates until answered</div>
+        </div>
+        <div style={{ flex: 1, overflowY: 'auto', padding: '8px' }}>
+          {contacts.map((c, i) => (
+            <div key={i} style={{
+              display: 'flex', alignItems: 'center', gap: 8,
+              padding: '7px 8px', borderRadius: 10, marginBottom: 4,
+              background: c.status === 'answered' ? '#dcfce7' : c.status === 'missed' ? '#ffe4e6' : c.status === 'sending' ? '#fef9c3' : '#fff',
+              border: `1.5px solid ${statusColor(c.status)}`,
+              transition: 'all 0.4s',
+            }}>
+              <div style={{ fontSize: 20, flexShrink: 0 }}>{c.emoji}</div>
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <div style={{ fontSize: 10, fontWeight: 800, color: '#1e1b4b', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{c.name}</div>
+                <div style={{ fontSize: 8.5, color: '#64748b' }}>{c.relation}</div>
+              </div>
+              <div style={{ fontSize: 8, fontWeight: 700, color: c.status === 'answered' ? '#15803d' : c.status === 'missed' ? '#b91c1c' : c.status === 'sending' ? '#92400e' : '#94a3b8', flexShrink: 0, textAlign: 'right' }}>
+                {statusText(c.status)}
+                {c.status === 'sending' && <div style={{ display: 'flex', gap: 2, marginTop: 2, justifyContent: 'flex-end' }}>
+                  {[0,1,2].map(d => <div key={d} style={{width:3,height:3,borderRadius:'50%',background:'#d97706',animation:`bounce 0.8s ease ${d*0.15}s infinite`}}/>)}
+                </div>}
+              </div>
             </div>
-            <div style={{ fontSize: 8, fontWeight: 700, color: c.status === 'answered' ? '#15803d' : c.status === 'missed' ? '#b91c1c' : c.status === 'sending' ? '#92400e' : '#94a3b8', flexShrink: 0, textAlign: 'right' }}>
-              {statusText(c.status)}
-              {c.status === 'sending' && <div style={{ display: 'flex', gap: 2, marginTop: 2, justifyContent: 'flex-end' }}>
-                {[0,1,2].map(d => <div key={d} style={{width:3,height:3,borderRadius:'50%',background:'#d97706',animation:`bounce 0.8s ease ${d*0.15}s infinite`}}/>)}
-              </div>}
+          ))}
+          {log.length > 0 && (
+            <div style={{ marginTop: 6, background: '#fff', borderRadius: 8, padding: '6px 8px', border: '1px solid #e9d5ff' }}>
+              {log.map((l, i) => <div key={i} style={{ fontSize: 8.5, color: '#4b5563', lineHeight: 1.7, animation: 'fadeUp 0.3s ease' }}>{l}</div>)}
             </div>
-          </div>
-        ))}
-        {/* log */}
-        {log.length > 0 && (
-          <div style={{ marginTop: 6, background: '#fff', borderRadius: 8, padding: '6px 8px', border: '1px solid #e9d5ff' }}>
-            {log.map((l, i) => <div key={i} style={{ fontSize: 8.5, color: '#4b5563', lineHeight: 1.7, animation: 'fadeUp 0.3s ease' }}>{l}</div>)}
-          </div>
-        )}
-      </div>
-      <SimControls running={running} hasData={log.length > 0} onRun={run} onReset={reset} accent="#7c3aed" label="Simulate Chain" />
-    </PhoneFrame>
+          )}
+        </div>
+      </PhoneFrame>
+      <SimCTA running={running} hasData={log.length > 0} onRun={run} onReset={reset} accent="#7c3aed" label="Simulate Chain" />
+    </div>
   )
 }
 
 /* ─────────────────────────────────────────────
    4. GPS SIMULATOR
 ───────────────────────────────────────────── */
-function GPSSimulator() {
-  const [phase, setPhase] = useState('idle') // idle | scanning | locating | done
+function GPSSimulatorWrapper() {
+  const [phase, setPhase] = useState('idle')
   const [accuracy, setAccuracy] = useState(0)
   const [coords, setCoords] = useState(null)
   const [running, setRunning] = useState(false)
@@ -436,60 +509,61 @@ function GPSSimulator() {
   const dotStr = '.'.repeat(dots)
 
   return (
-    <PhoneFrame screenBg="#f0fdfb" label="Live Simulation" labelEmoji="📍" labelTitle="GPS on Every Scan">
-      {/* header */}
-      <div style={{ background: '#0d9488', padding: '28px 12px 10px', flexShrink: 0 }}>
-        <div style={{ fontSize: 12, fontWeight: 800, color: '#fff' }}>GPS Location Capture</div>
-        <div style={{ fontSize: 9, color: '#99f6e4' }}>Precision coordinates on every scan</div>
-      </div>
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
-        {phase === 'idle' && (
-          <>
-            <div style={{ fontSize: 44, marginBottom: 10 }}>🗺️</div>
-            <div style={{ fontSize: 12, fontWeight: 700, color: '#134e4a', textAlign: 'center' }}>Tap to simulate a scan</div>
-            <div style={{ fontSize: 10, color: '#64748b', textAlign: 'center', marginTop: 4 }}>GPS coordinates will be captured</div>
-          </>
-        )}
-        {phase === 'scanning' && (
-          <>
-            <div style={{ fontSize: 40, animation: 'pulse 0.8s ease infinite' }}>📷</div>
-            <div style={{ fontSize: 12, fontWeight: 700, color: '#0d9488', marginTop: 10 }}>Scanning QR{dotStr}</div>
-          </>
-        )}
-        {phase === 'locating' && (
-          <div style={{ width: '100%', textAlign: 'center' }}>
-            <div style={{ fontSize: 36, animation: 'pulse 0.6s ease infinite' }}>📍</div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#0d9488', margin: '10px 0 8px' }}>Acquiring GPS{dotStr}</div>
-            <div style={{ width: '100%', height: 8, background: '#ccfbf1', borderRadius: 99, overflow: 'hidden' }}>
-              <div style={{ height: '100%', background: 'linear-gradient(90deg,#0d9488,#14b8a6)', width: `${accuracy}%`, transition: 'width 0.06s linear', borderRadius: 99 }} />
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <PhoneFrame screenBg="#f0fdfb">
+        <div style={{ background: '#0d9488', padding: '28px 12px 10px', flexShrink: 0 }}>
+          <div style={{ fontSize: 12, fontWeight: 800, color: '#fff' }}>GPS Location Capture</div>
+          <div style={{ fontSize: 9, color: '#99f6e4' }}>Precision coordinates on every scan</div>
+        </div>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: 16 }}>
+          {phase === 'idle' && (
+            <>
+              <div style={{ fontSize: 44, marginBottom: 10 }}>🗺️</div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: '#134e4a', textAlign: 'center' }}>Tap button below to simulate</div>
+              <div style={{ fontSize: 10, color: '#64748b', textAlign: 'center', marginTop: 4 }}>GPS coordinates will be captured</div>
+            </>
+          )}
+          {phase === 'scanning' && (
+            <>
+              <div style={{ fontSize: 40, animation: 'pulse 0.8s ease infinite' }}>📷</div>
+              <div style={{ fontSize: 12, fontWeight: 700, color: '#0d9488', marginTop: 10 }}>Scanning QR{dotStr}</div>
+            </>
+          )}
+          {phase === 'locating' && (
+            <div style={{ width: '100%', textAlign: 'center' }}>
+              <div style={{ fontSize: 36, animation: 'pulse 0.6s ease infinite' }}>📍</div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: '#0d9488', margin: '10px 0 8px' }}>Acquiring GPS{dotStr}</div>
+              <div style={{ width: '100%', height: 8, background: '#ccfbf1', borderRadius: 99, overflow: 'hidden' }}>
+                <div style={{ height: '100%', background: 'linear-gradient(90deg,#0d9488,#14b8a6)', width: `${accuracy}%`, transition: 'width 0.06s linear', borderRadius: 99 }} />
+              </div>
+              <div style={{ fontSize: 9, color: '#64748b', marginTop: 4 }}>{accuracy}% accuracy</div>
             </div>
-            <div style={{ fontSize: 9, color: '#64748b', marginTop: 4 }}>{accuracy}% accuracy</div>
-          </div>
-        )}
-        {phase === 'done' && coords && (
-          <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 6 }}>
-            <div style={{ background: '#fff', borderRadius: 12, padding: '10px 12px', border: '1.5px solid #99f6e4' }}>
-              <div style={{ fontSize: 9, fontWeight: 700, color: '#64748b', marginBottom: 2, textTransform: 'uppercase', letterSpacing: '.05em' }}>📍 Location Captured</div>
-              <div style={{ fontSize: 11, fontWeight: 800, color: '#134e4a' }}>{coords.area}</div>
-              <div style={{ fontSize: 9, color: '#0d9488', fontFamily: 'monospace', marginTop: 2 }}>{coords.lat} · {coords.lng}</div>
+          )}
+          {phase === 'done' && coords && (
+            <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 6 }}>
+              <div style={{ background: '#fff', borderRadius: 12, padding: '10px 12px', border: '1.5px solid #99f6e4' }}>
+                <div style={{ fontSize: 9, fontWeight: 700, color: '#64748b', marginBottom: 2, textTransform: 'uppercase', letterSpacing: '.05em' }}>📍 Location Captured</div>
+                <div style={{ fontSize: 11, fontWeight: 800, color: '#134e4a' }}>{coords.area}</div>
+                <div style={{ fontSize: 9, color: '#0d9488', fontFamily: 'monospace', marginTop: 2 }}>{coords.lat} · {coords.lng}</div>
+              </div>
+              <div style={{ background: '#fff', borderRadius: 12, padding: '10px 12px', border: '1.5px solid #99f6e4' }}>
+                <div style={{ fontSize: 9, fontWeight: 700, color: '#64748b', marginBottom: 4, textTransform: 'uppercase', letterSpacing: '.05em' }}>📊 Scan Details</div>
+                {[['⏰ Time', coords.time], ['📱 Device', coords.device]].map(([k,v]) => (
+                  <div key={k} style={{ display:'flex', justifyContent:'space-between', fontSize:9, lineHeight:1.8 }}>
+                    <span style={{color:'#94a3b8'}}>{k}</span>
+                    <span style={{fontWeight:700, color:'#134e4a'}}>{v}</span>
+                  </div>
+                ))}
+              </div>
+              <div style={{ background: '#0d9488', borderRadius: 10, padding: '8px 12px', textAlign: 'center', fontSize: 9.5, fontWeight: 800, color: '#fff' }}>
+                🗺️ Open in Google Maps →
+              </div>
             </div>
-            <div style={{ background: '#fff', borderRadius: 12, padding: '10px 12px', border: '1.5px solid #99f6e4' }}>
-              <div style={{ fontSize: 9, fontWeight: 700, color: '#64748b', marginBottom: 4, textTransform: 'uppercase', letterSpacing: '.05em' }}>📊 Scan Details</div>
-              {[['⏰ Time', coords.time], ['📱 Device', coords.device]].map(([k,v]) => (
-                <div key={k} style={{ display:'flex', justifyContent:'space-between', fontSize:9, lineHeight:1.8 }}>
-                  <span style={{color:'#94a3b8'}}>{k}</span>
-                  <span style={{fontWeight:700, color:'#134e4a'}}>{v}</span>
-                </div>
-              ))}
-            </div>
-            <div style={{ background: '#0d9488', borderRadius: 10, padding: '8px 12px', textAlign: 'center', fontSize: 9.5, fontWeight: 800, color: '#fff' }}>
-              🗺️ Open in Google Maps →
-            </div>
-          </div>
-        )}
-      </div>
-      <SimControls running={running} hasData={phase !== 'idle'} onRun={run} onReset={reset} accent="#0d9488" label="Simulate GPS Scan" />
-    </PhoneFrame>
+          )}
+        </div>
+      </PhoneFrame>
+      <SimCTA running={running} hasData={phase !== 'idle'} onRun={run} onReset={reset} accent="#0d9488" label="Simulate GPS Scan" />
+    </div>
   )
 }
 
@@ -497,22 +571,20 @@ function GPSSimulator() {
    5. INSTANT ACTIVATION SIMULATOR
 ───────────────────────────────────────────── */
 const SETUP_STEPS = [
-  { label: 'Peel & Stick Tag',     sub: 'Attach to your item',           icon: '🏷️', duration: 900  },
-  { label: 'Open Setup Link',      sub: 'scanforsafe.com/activate',       icon: '🌐', duration: 700  },
-  { label: 'Enter Your Number',    sub: '+91 • Verified instantly',       icon: '📱', duration: 1000 },
-  { label: 'Add Emergency Contacts',sub: 'Up to 5 contacts',             icon: '👨‍👩‍👧', duration: 800  },
-  { label: 'Tag Goes Live! ✅',    sub: 'Your item is now protected',     icon: '🎉', duration: 600  },
+  { label: 'Peel & Stick Tag',      sub: 'Attach to your item',       icon: '🏷️', duration: 900  },
+  { label: 'Open Setup Link',       sub: 'scanforsafe.com/activate',  icon: '🌐', duration: 700  },
+  { label: 'Enter Your Number',     sub: '+91 • Verified instantly',  icon: '📱', duration: 1000 },
+  { label: 'Add Emergency Contacts',sub: 'Up to 5 contacts',          icon: '👨‍👩‍👧', duration: 800  },
+  { label: 'Tag Goes Live! ✅',     sub: 'Your item is now protected',icon: '🎉', duration: 600  },
 ]
 
-function SetupSimulator() {
+function SetupSimulatorWrapper() {
   const [running, setRunning] = useState(false)
   const [done, setDone] = useState([])
   const [active, setActive] = useState(-1)
-  const [totalMs, setTotalMs] = useState(0)
   const [elapsed, setElapsed] = useState(0)
   const timersRef = useRef([])
   const elapsedRef = useRef(null)
-
   const total = SETUP_STEPS.reduce((a, s) => a + s.duration + 400, 0)
 
   const reset = () => {
@@ -521,7 +593,7 @@ function SetupSimulator() {
   }
 
   const run = () => {
-    reset(); setRunning(true); setTotalMs(total)
+    reset(); setRunning(true)
     let t = 0
     SETUP_STEPS.forEach((step, i) => {
       const tStart = setTimeout(() => setActive(i), t)
@@ -539,67 +611,68 @@ function SetupSimulator() {
   const pct = Math.min(100, Math.round((elapsed / total) * 100))
 
   return (
-    <PhoneFrame screenBg="#fffbeb" label="Live Simulation" labelEmoji="⚡" labelTitle="Instant Activation">
-      <div style={{ background: '#d97706', padding: '28px 12px 10px', flexShrink: 0 }}>
-        <div style={{ fontSize: 12, fontWeight: 800, color: '#fff' }}>Activation Wizard</div>
-        <div style={{ fontSize: 9, color: '#fde68a' }}>Under 3 minutes • Zero tech needed</div>
-      </div>
-      <div style={{ flex: 1, overflowY: 'auto', padding: '10px 10px 0' }}>
-        {/* timer bar */}
-        {(running || done.length > 0) && (
-          <div style={{ marginBottom: 10 }}>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 9, color: '#64748b', marginBottom: 3 }}>
-              <span>Progress</span><span>{pct}%</span>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <PhoneFrame screenBg="#fffbeb">
+        <div style={{ background: '#d97706', padding: '28px 12px 10px', flexShrink: 0 }}>
+          <div style={{ fontSize: 12, fontWeight: 800, color: '#fff' }}>Activation Wizard</div>
+          <div style={{ fontSize: 9, color: '#fde68a' }}>Under 3 minutes • Zero tech needed</div>
+        </div>
+        <div style={{ flex: 1, overflowY: 'auto', padding: '10px 10px 0' }}>
+          {(running || done.length > 0) && (
+            <div style={{ marginBottom: 10 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 9, color: '#64748b', marginBottom: 3 }}>
+                <span>Progress</span><span>{pct}%</span>
+              </div>
+              <div style={{ height: 6, background: '#fde68a', borderRadius: 99, overflow: 'hidden' }}>
+                <div style={{ height: '100%', width: `${pct}%`, background: 'linear-gradient(90deg,#d97706,#f59e0b)', borderRadius: 99, transition: 'width 0.1s linear' }} />
+              </div>
             </div>
-            <div style={{ height: 6, background: '#fde68a', borderRadius: 99, overflow: 'hidden' }}>
-              <div style={{ height: '100%', width: `${pct}%`, background: 'linear-gradient(90deg,#d97706,#f59e0b)', borderRadius: 99, transition: 'width 0.1s linear' }} />
-            </div>
-          </div>
-        )}
-        {SETUP_STEPS.map((step, i) => {
-          const isDone = done.includes(i)
-          const isActive = active === i
-          return (
-            <div key={i} style={{
-              display: 'flex', alignItems: 'flex-start', gap: 10, padding: '8px 10px', borderRadius: 10, marginBottom: 5,
-              background: isDone ? '#fff7ed' : isActive ? '#fff' : 'rgba(255,255,255,0.4)',
-              border: `1.5px solid ${isDone ? '#fbbf24' : isActive ? '#d97706' : '#e5e7eb'}`,
-              transition: 'all 0.3s',
-            }}>
-              <div style={{
-                width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
-                background: isDone ? '#d97706' : isActive ? '#fef3c7' : '#f1f5f9',
-                display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14,
+          )}
+          {SETUP_STEPS.map((step, i) => {
+            const isDone = done.includes(i)
+            const isActive = active === i
+            return (
+              <div key={i} style={{
+                display: 'flex', alignItems: 'flex-start', gap: 10, padding: '8px 10px', borderRadius: 10, marginBottom: 5,
+                background: isDone ? '#fff7ed' : isActive ? '#fff' : 'rgba(255,255,255,0.4)',
+                border: `1.5px solid ${isDone ? '#fbbf24' : isActive ? '#d97706' : '#e5e7eb'}`,
+                transition: 'all 0.3s',
               }}>
-                {isDone ? '✓' : step.icon}
+                <div style={{
+                  width: 28, height: 28, borderRadius: '50%', flexShrink: 0,
+                  background: isDone ? '#d97706' : isActive ? '#fef3c7' : '#f1f5f9',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 14,
+                }}>
+                  {isDone ? '✓' : step.icon}
+                </div>
+                <div>
+                  <div style={{ fontSize: 10.5, fontWeight: 800, color: isDone ? '#92400e' : isActive ? '#d97706' : '#94a3b8' }}>{step.label}</div>
+                  {(isDone || isActive) && <div style={{ fontSize: 9, color: '#64748b', marginTop: 1 }}>{step.sub}</div>}
+                  {isActive && <div style={{ display: 'flex', gap: 2, marginTop: 4 }}>
+                    {[0,1,2].map(d => <div key={d} style={{width:4,height:4,borderRadius:'50%',background:'#d97706',animation:`bounce 0.8s ease ${d*0.15}s infinite`}}/>)}
+                  </div>}
+                </div>
               </div>
-              <div>
-                <div style={{ fontSize: 10.5, fontWeight: 800, color: isDone ? '#92400e' : isActive ? '#d97706' : '#94a3b8' }}>{step.label}</div>
-                {(isDone || isActive) && <div style={{ fontSize: 9, color: '#64748b', marginTop: 1 }}>{step.sub}</div>}
-                {isActive && <div style={{ display: 'flex', gap: 2, marginTop: 4 }}>
-                  {[0,1,2].map(d => <div key={d} style={{width:4,height:4,borderRadius:'50%',background:'#d97706',animation:`bounce 0.8s ease ${d*0.15}s infinite`}}/>)}
-                </div>}
-              </div>
+            )
+          })}
+          {done.length === SETUP_STEPS.length && (
+            <div style={{ textAlign: 'center', padding: '10px 0', animation: 'fadeUp 0.4s ease' }}>
+              <div style={{ fontSize: 28 }}>🎉</div>
+              <div style={{ fontSize: 11, fontWeight: 800, color: '#92400e' }}>Protected in {(elapsed/1000).toFixed(1)}s!</div>
             </div>
-          )
-        })}
-        {done.length === SETUP_STEPS.length && (
-          <div style={{ textAlign: 'center', padding: '10px 0', animation: 'fadeUp 0.4s ease' }}>
-            <div style={{ fontSize: 28 }}>🎉</div>
-            <div style={{ fontSize: 11, fontWeight: 800, color: '#92400e' }}>Protected in {(elapsed/1000).toFixed(1)}s!</div>
-          </div>
-        )}
-      </div>
-      <SimControls running={running} hasData={done.length > 0} onRun={run} onReset={reset} accent="#d97706" label="Start Setup Demo" />
-    </PhoneFrame>
+          )}
+        </div>
+      </PhoneFrame>
+      <SimCTA running={running} hasData={done.length > 0} onRun={run} onReset={reset} accent="#d97706" label="Start Setup Demo" />
+    </div>
   )
 }
 
 /* ─────────────────────────────────────────────
    6. PRIVACY SIMULATOR
 ───────────────────────────────────────────── */
-function PrivacySimulator() {
-  const [phase, setPhase] = useState('idle') // idle | scanning | proxy | reveal
+function PrivacySimulatorWrapper() {
+  const [phase, setPhase] = useState('idle')
   const [running, setRunning] = useState(false)
   const [visibleItems, setVisibleItems] = useState([])
   const timersRef = useRef([])
@@ -626,68 +699,70 @@ function PrivacySimulator() {
   const HIDDEN = ['📱 +91-98400-XXXXX', '🏠 12, MG Road, Chennai', '📧 owner@email.com', '💳 Bank Details', '🆔 Aadhaar Number']
 
   return (
-    <PhoneFrame screenBg="#fff1f2" label="Live Simulation" labelEmoji="🔒" labelTitle="Your Info Stays Hidden">
-      <div style={{ background: '#e11d48', padding: '28px 12px 10px', flexShrink: 0 }}>
-        <div style={{ fontSize: 12, fontWeight: 800, color: '#fff' }}>Privacy Shield</div>
-        <div style={{ fontSize: 9, color: '#fecdd3' }}>Your data never touches the QR code</div>
-      </div>
-      <div style={{ flex: 1, overflowY: 'auto', padding: 12 }}>
-        {phase === 'idle' && (
-          <div style={{ textAlign: 'center', paddingTop: 30 }}>
-            <div style={{ fontSize: 40, marginBottom: 10 }}>🔒</div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#881337' }}>Tap to see what the finder sees</div>
-            <div style={{ fontSize: 9, color: '#64748b', marginTop: 4 }}>vs. what your QR actually contains</div>
-          </div>
-        )}
-        {phase === 'scanning' && (
-          <div style={{ textAlign: 'center', paddingTop: 40 }}>
-            <div style={{ fontSize: 36, animation: 'pulse 0.6s ease infinite' }}>📷</div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#e11d48', marginTop: 10 }}>Finder scans QR…</div>
-          </div>
-        )}
-        {phase === 'proxy' && (
-          <div style={{ textAlign: 'center', paddingTop: 20 }}>
-            <div style={{ fontSize: 28 }}>🔐</div>
-            <div style={{ fontSize: 10, fontWeight: 700, color: '#e11d48', margin: '8px 0 12px' }}>Secure proxy intercepts</div>
-            <div style={{ fontSize: 9, color: '#64748b', marginBottom: 10, lineHeight: 1.6 }}>Your real info is BLOCKED</div>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-              {HIDDEN.map((h, i) => (
-                <div key={i} style={{ background: '#ffe4e6', border: '1px solid #fecdd3', borderRadius: 8, padding: '5px 10px', fontSize: 9, fontWeight: 700, color: '#b91c1c', display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <span>🚫</span><span style={{ filter: 'blur(3px)' }}>{h}</span>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <PhoneFrame screenBg="#fff1f2">
+        <div style={{ background: '#e11d48', padding: '28px 12px 10px', flexShrink: 0 }}>
+          <div style={{ fontSize: 12, fontWeight: 800, color: '#fff' }}>Privacy Shield</div>
+          <div style={{ fontSize: 9, color: '#fecdd3' }}>Your data never touches the QR code</div>
+        </div>
+        <div style={{ flex: 1, overflowY: 'auto', padding: 12 }}>
+          {phase === 'idle' && (
+            <div style={{ textAlign: 'center', paddingTop: 30 }}>
+              <div style={{ fontSize: 40, marginBottom: 10 }}>🔒</div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: '#881337' }}>Tap button below to see what the finder sees</div>
+              <div style={{ fontSize: 9, color: '#64748b', marginTop: 4 }}>vs. what your QR actually contains</div>
+            </div>
+          )}
+          {phase === 'scanning' && (
+            <div style={{ textAlign: 'center', paddingTop: 40 }}>
+              <div style={{ fontSize: 36, animation: 'pulse 0.6s ease infinite' }}>📷</div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: '#e11d48', marginTop: 10 }}>Finder scans QR…</div>
+            </div>
+          )}
+          {phase === 'proxy' && (
+            <div style={{ textAlign: 'center', paddingTop: 20 }}>
+              <div style={{ fontSize: 28 }}>🔐</div>
+              <div style={{ fontSize: 10, fontWeight: 700, color: '#e11d48', margin: '8px 0 12px' }}>Secure proxy intercepts</div>
+              <div style={{ fontSize: 9, color: '#64748b', marginBottom: 10, lineHeight: 1.6 }}>Your real info is BLOCKED</div>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
+                {HIDDEN.map((h, i) => (
+                  <div key={i} style={{ background: '#ffe4e6', border: '1px solid #fecdd3', borderRadius: 8, padding: '5px 10px', fontSize: 9, fontWeight: 700, color: '#b91c1c', display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <span>🚫</span><span style={{ filter: 'blur(3px)' }}>{h}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          {phase === 'reveal' && (
+            <div>
+              <div style={{ fontSize: 9, fontWeight: 700, color: '#15803d', background: '#dcfce7', borderRadius: 8, padding: '6px 10px', marginBottom: 8, textAlign: 'center' }}>
+                ✅ What the finder actually sees:
+              </div>
+              {visibleItems.includes('name') && (
+                <div style={{ background: '#fff', border: '1.5px solid #fecdd3', borderRadius: 10, padding: '8px 12px', marginBottom: 6, animation: 'fadeUp 0.3s ease' }}>
+                  <div style={{ fontSize: 9, color: '#94a3b8', marginBottom: 2 }}>Item Owner</div>
+                  <div style={{ fontSize: 11, fontWeight: 800, color: '#881337' }}>Verified ScanForSafe User</div>
+                  <div style={{ fontSize: 9, color: '#64748b' }}>No name. No address. Just trust.</div>
                 </div>
-              ))}
+              )}
+              {visibleItems.includes('location') && (
+                <div style={{ background: '#fff', border: '1.5px solid #fecdd3', borderRadius: 10, padding: '8px 12px', marginBottom: 6, animation: 'fadeUp 0.3s ease' }}>
+                  <div style={{ fontSize: 9, color: '#94a3b8', marginBottom: 2 }}>Item Name</div>
+                  <div style={{ fontSize: 11, fontWeight: 800, color: '#881337' }}>"Black Laptop Bag"</div>
+                </div>
+              )}
+              {visibleItems.includes('callBtn') && (
+                <div style={{ background: '#e11d48', borderRadius: 10, padding: '8px 12px', textAlign: 'center', animation: 'fadeUp 0.3s ease' }}>
+                  <div style={{ fontSize: 10, fontWeight: 800, color: '#fff' }}>📞 Call Owner (Proxied)</div>
+                  <div style={{ fontSize: 8, color: '#fecdd3', marginTop: 2 }}>Real number never revealed</div>
+                </div>
+              )}
             </div>
-          </div>
-        )}
-        {phase === 'reveal' && (
-          <div>
-            <div style={{ fontSize: 9, fontWeight: 700, color: '#15803d', background: '#dcfce7', borderRadius: 8, padding: '6px 10px', marginBottom: 8, textAlign: 'center' }}>
-              ✅ What the finder actually sees:
-            </div>
-            {visibleItems.includes('name') && (
-              <div style={{ background: '#fff', border: '1.5px solid #fecdd3', borderRadius: 10, padding: '8px 12px', marginBottom: 6, animation: 'fadeUp 0.3s ease' }}>
-                <div style={{ fontSize: 9, color: '#94a3b8', marginBottom: 2 }}>Item Owner</div>
-                <div style={{ fontSize: 11, fontWeight: 800, color: '#881337' }}>Verified ScanForSafe User</div>
-                <div style={{ fontSize: 9, color: '#64748b' }}>No name. No address. Just trust.</div>
-              </div>
-            )}
-            {visibleItems.includes('location') && (
-              <div style={{ background: '#fff', border: '1.5px solid #fecdd3', borderRadius: 10, padding: '8px 12px', marginBottom: 6, animation: 'fadeUp 0.3s ease' }}>
-                <div style={{ fontSize: 9, color: '#94a3b8', marginBottom: 2 }}>Item Name</div>
-                <div style={{ fontSize: 11, fontWeight: 800, color: '#881337' }}>"Black Laptop Bag"</div>
-              </div>
-            )}
-            {visibleItems.includes('callBtn') && (
-              <div style={{ background: '#e11d48', borderRadius: 10, padding: '8px 12px', textAlign: 'center', animation: 'fadeUp 0.3s ease' }}>
-                <div style={{ fontSize: 10, fontWeight: 800, color: '#fff' }}>📞 Call Owner (Proxied)</div>
-                <div style={{ fontSize: 8, color: '#fecdd3', marginTop: 2 }}>Real number never revealed</div>
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-      <SimControls running={running} hasData={phase !== 'idle'} onRun={run} onReset={reset} accent="#e11d48" label="Simulate Privacy" />
-    </PhoneFrame>
+          )}
+        </div>
+      </PhoneFrame>
+      <SimCTA running={running} hasData={phase !== 'idle'} onRun={run} onReset={reset} accent="#e11d48" label="Simulate Privacy" />
+    </div>
   )
 }
 
@@ -695,13 +770,13 @@ function PrivacySimulator() {
    7. SCAN HISTORY SIMULATOR
 ───────────────────────────────────────────── */
 const HISTORY_EVENTS = [
-  { time: 'Today, 2:41 PM',     loc: 'Egmore, Chennai',       device: 'Android · Chrome',   type: 'new', icon: '🆕' },
-  { time: 'Yesterday, 8:12 AM', loc: 'Chennai Airport, T2',   device: 'iPhone · Safari',    type: 'safe', icon: '✈️' },
-  { time: 'Dec 18, 3:55 PM',    loc: 'Anna Nagar, Chennai',   device: 'Android · Firefox',  type: 'safe', icon: '📍' },
-  { time: 'Dec 15, 11:20 AM',   loc: 'T. Nagar, Chennai',     device: 'Android · Chrome',   type: 'safe', icon: '🏬' },
+  { time: 'Today, 2:41 PM',     loc: 'Egmore, Chennai',     device: 'Android · Chrome',  type: 'new',  icon: '🆕' },
+  { time: 'Yesterday, 8:12 AM', loc: 'Chennai Airport, T2', device: 'iPhone · Safari',   type: 'safe', icon: '✈️' },
+  { time: 'Dec 18, 3:55 PM',    loc: 'Anna Nagar, Chennai', device: 'Android · Firefox', type: 'safe', icon: '📍' },
+  { time: 'Dec 15, 11:20 AM',   loc: 'T. Nagar, Chennai',   device: 'Android · Chrome',  type: 'safe', icon: '🏬' },
 ]
 
-function HistorySimulator() {
+function HistorySimulatorWrapper() {
   const [running, setRunning] = useState(false)
   const [visible, setVisible] = useState([])
   const [active, setActive] = useState(null)
@@ -728,71 +803,71 @@ function HistorySimulator() {
   }
 
   return (
-    <PhoneFrame screenBg="#eff6ff" label="Live Simulation" labelEmoji="🔔" labelTitle="Scan History & Logs">
-      <div style={{ background: '#2563eb', padding: '28px 12px 10px', flexShrink: 0 }}>
-        <div style={{ fontSize: 12, fontWeight: 800, color: '#fff' }}>Scan Timeline</div>
-        <div style={{ fontSize: 9, color: '#bfdbfe' }}>Every scan logged • Exportable anytime</div>
-      </div>
-      <div style={{ flex: 1, overflowY: 'auto', padding: '8px 10px' }}>
-        {visible.length === 0 && !running && (
-          <div style={{ textAlign: 'center', paddingTop: 50 }}>
-            <div style={{ fontSize: 36, marginBottom: 8 }}>🔔</div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#1e3a8a' }}>Tap to load scan history</div>
-          </div>
-        )}
-        {HISTORY_EVENTS.map((ev, i) => {
-          const isVis = visible.includes(i)
-          const isAct = active === i
-          if (!isVis && !isAct) return null
-          return (
-            <div key={i} style={{
-              background: ev.type === 'new' ? '#dbeafe' : '#fff',
-              border: `1.5px solid ${ev.type === 'new' ? '#60a5fa' : '#e2e8f0'}`,
-              borderRadius: 12, padding: '8px 10px', marginBottom: 6,
-              animation: 'fadeUp 0.4s ease',
-              opacity: isAct ? 0.5 : 1, transition: 'opacity 0.3s',
-            }}>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <span style={{ fontSize: 16 }}>{ev.icon}</span>
-                  <div style={{ fontSize: 10, fontWeight: 800, color: ev.type === 'new' ? '#1d4ed8' : '#0f172a' }}>{ev.loc}</div>
-                </div>
-                {ev.type === 'new' && <span style={{ fontSize: 8, fontWeight: 700, background: '#2563eb', color: '#fff', padding: '2px 6px', borderRadius: 99 }}>NEW</span>}
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 8.5, color: '#64748b' }}>
-                <span>⏰ {ev.time}</span>
-                <span>📱 {ev.device}</span>
-              </div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <PhoneFrame screenBg="#eff6ff">
+        <div style={{ background: '#2563eb', padding: '28px 12px 10px', flexShrink: 0 }}>
+          <div style={{ fontSize: 12, fontWeight: 800, color: '#fff' }}>Scan Timeline</div>
+          <div style={{ fontSize: 9, color: '#bfdbfe' }}>Every scan logged • Exportable anytime</div>
+        </div>
+        <div style={{ flex: 1, overflowY: 'auto', padding: '8px 10px' }}>
+          {visible.length === 0 && !running && (
+            <div style={{ textAlign: 'center', paddingTop: 50 }}>
+              <div style={{ fontSize: 36, marginBottom: 8 }}>🔔</div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: '#1e3a8a' }}>Tap button below to load history</div>
             </div>
-          )
-        })}
-        {visible.length === HISTORY_EVENTS.length && (
-          <div style={{ background: '#2563eb', borderRadius: 10, padding: '7px 12px', textAlign: 'center', animation: 'fadeUp 0.3s ease', marginTop: 4 }}>
-            <div style={{ fontSize: 9, fontWeight: 800, color: '#fff' }}>📥 Export as CSV / PDF</div>
-          </div>
-        )}
-      </div>
-      <SimControls running={running} hasData={visible.length > 0} onRun={run} onReset={reset} accent="#2563eb" label="Load History" />
-    </PhoneFrame>
+          )}
+          {HISTORY_EVENTS.map((ev, i) => {
+            const isVis = visible.includes(i)
+            const isAct = active === i
+            if (!isVis && !isAct) return null
+            return (
+              <div key={i} style={{
+                background: ev.type === 'new' ? '#dbeafe' : '#fff',
+                border: `1.5px solid ${ev.type === 'new' ? '#60a5fa' : '#e2e8f0'}`,
+                borderRadius: 12, padding: '8px 10px', marginBottom: 6,
+                animation: 'fadeUp 0.4s ease',
+                opacity: isAct ? 0.5 : 1, transition: 'opacity 0.3s',
+              }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 4 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+                    <span style={{ fontSize: 16 }}>{ev.icon}</span>
+                    <div style={{ fontSize: 10, fontWeight: 800, color: ev.type === 'new' ? '#1d4ed8' : '#0f172a' }}>{ev.loc}</div>
+                  </div>
+                  {ev.type === 'new' && <span style={{ fontSize: 8, fontWeight: 700, background: '#2563eb', color: '#fff', padding: '2px 6px', borderRadius: 99 }}>NEW</span>}
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 8.5, color: '#64748b' }}>
+                  <span>⏰ {ev.time}</span>
+                  <span>📱 {ev.device}</span>
+                </div>
+              </div>
+            )
+          })}
+          {visible.length === HISTORY_EVENTS.length && (
+            <div style={{ background: '#2563eb', borderRadius: 10, padding: '7px 12px', textAlign: 'center', animation: 'fadeUp 0.3s ease', marginTop: 4 }}>
+              <div style={{ fontSize: 9, fontWeight: 800, color: '#fff' }}>📥 Export as CSV / PDF</div>
+            </div>
+          )}
+        </div>
+      </PhoneFrame>
+      <SimCTA running={running} hasData={visible.length > 0} onRun={run} onReset={reset} accent="#2563eb" label="Load History" />
+    </div>
   )
 }
 
 /* ─────────────────────────────────────────────
    8. UPDATE INFO SIMULATOR
 ───────────────────────────────────────────── */
-function UpdateSimulator() {
-  const [phase, setPhase] = useState('idle') // idle | form | saving | done
+function UpdateSimulatorWrapper() {
+  const [phase, setPhase] = useState('idle')
   const [running, setRunning] = useState(false)
   const [typedNum, setTypedNum] = useState('')
-  const [saved, setSaved] = useState(false)
   const timersRef = useRef([])
   const typeRef = useRef(null)
-
   const NEW_NUM = '+91-77000-12345'
 
   const reset = () => {
     timersRef.current.forEach(clearTimeout); clearInterval(typeRef.current)
-    setPhase('idle'); setRunning(false); setTypedNum(''); setSaved(false)
+    setPhase('idle'); setRunning(false); setTypedNum('')
   }
 
   const run = () => {
@@ -804,7 +879,7 @@ function UpdateSimulator() {
         timersRef.current.push(setTimeout(() => {
           setPhase('saving')
           timersRef.current.push(setTimeout(() => {
-            setPhase('done'); setSaved(true); setRunning(false)
+            setPhase('done'); setRunning(false)
           }, 1600))
         }, 600))
         return
@@ -814,96 +889,59 @@ function UpdateSimulator() {
   }
 
   return (
-    <PhoneFrame screenBg="#fff7ed" label="Live Simulation" labelEmoji="🔄" labelTitle="Update Info Anytime">
-      <div style={{ background: '#ea580c', padding: '28px 12px 10px', flexShrink: 0 }}>
-        <div style={{ fontSize: 12, fontWeight: 800, color: '#fff' }}>Update Dashboard</div>
-        <div style={{ fontSize: 9, color: '#fed7aa' }}>Change anytime • No new tag needed</div>
-      </div>
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 14 }}>
-        {phase === 'idle' && (
-          <div style={{ textAlign: 'center' }}>
-            <div style={{ fontSize: 40, marginBottom: 10 }}>🔄</div>
-            <div style={{ fontSize: 11, fontWeight: 700, color: '#7c2d12' }}>Changed your number?</div>
-            <div style={{ fontSize: 9, color: '#64748b', marginTop: 4 }}>Update in 30 seconds — tag stays same</div>
-          </div>
-        )}
-        {(phase === 'form' || phase === 'saving') && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <div style={{ background: '#fff', borderRadius: 10, padding: '10px 12px', border: '1.5px solid #fed7aa' }}>
-              <div style={{ fontSize: 8.5, color: '#94a3b8', marginBottom: 3 }}>CURRENT NUMBER</div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#7c2d12', textDecoration: 'line-through', opacity: 0.6 }}>+91-98400-XXXXX</div>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+      <PhoneFrame screenBg="#fff7ed">
+        <div style={{ background: '#ea580c', padding: '28px 12px 10px', flexShrink: 0 }}>
+          <div style={{ fontSize: 12, fontWeight: 800, color: '#fff' }}>Update Dashboard</div>
+          <div style={{ fontSize: 9, color: '#fed7aa' }}>Change anytime • No new tag needed</div>
+        </div>
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: 14 }}>
+          {phase === 'idle' && (
+            <div style={{ textAlign: 'center' }}>
+              <div style={{ fontSize: 40, marginBottom: 10 }}>🔄</div>
+              <div style={{ fontSize: 11, fontWeight: 700, color: '#7c2d12' }}>Changed your number?</div>
+              <div style={{ fontSize: 9, color: '#64748b', marginTop: 4 }}>Update in 30 seconds — tag stays same</div>
             </div>
-            <div style={{ textAlign: 'center', fontSize: 16 }}>↓</div>
-            <div style={{ background: '#fff', borderRadius: 10, padding: '10px 12px', border: `1.5px solid ${phase === 'saving' ? '#fb923c' : '#e2e8f0'}`, boxShadow: phase === 'saving' ? '0 0 0 3px rgba(234,88,12,0.15)' : 'none', transition: 'all 0.3s' }}>
-              <div style={{ fontSize: 8.5, color: '#94a3b8', marginBottom: 3 }}>NEW NUMBER</div>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#ea580c', fontFamily: 'monospace' }}>
-                {typedNum}<span style={{ animation: 'blink 0.8s step-end infinite', opacity: phase === 'form' ? 1 : 0 }}>|</span>
+          )}
+          {(phase === 'form' || phase === 'saving') && (
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+              <div style={{ background: '#fff', borderRadius: 10, padding: '10px 12px', border: '1.5px solid #fed7aa' }}>
+                <div style={{ fontSize: 8.5, color: '#94a3b8', marginBottom: 3 }}>CURRENT NUMBER</div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: '#7c2d12', textDecoration: 'line-through', opacity: 0.6 }}>+91-98400-XXXXX</div>
               </div>
-            </div>
-            {phase === 'saving' && (
-              <div style={{ background: '#ea580c', borderRadius: 10, padding: '8px 0', textAlign: 'center' }}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
-                  <div style={{ display: 'flex', gap: 3 }}>
-                    {[0,1,2].map(d => <div key={d} style={{ width: 5, height: 5, borderRadius: '50%', background: '#fff', animation: `bounce 0.8s ease ${d*0.15}s infinite` }} />)}
-                  </div>
-                  <span style={{ fontSize: 10, fontWeight: 800, color: '#fff' }}>Saving…</span>
+              <div style={{ textAlign: 'center', fontSize: 16 }}>↓</div>
+              <div style={{ background: '#fff', borderRadius: 10, padding: '10px 12px', border: `1.5px solid ${phase === 'saving' ? '#fb923c' : '#e2e8f0'}`, transition: 'all 0.3s' }}>
+                <div style={{ fontSize: 8.5, color: '#94a3b8', marginBottom: 3 }}>NEW NUMBER</div>
+                <div style={{ fontSize: 11, fontWeight: 700, color: '#ea580c', fontFamily: 'monospace' }}>
+                  {typedNum}<span style={{ animation: 'blink 0.8s step-end infinite', opacity: phase === 'form' ? 1 : 0 }}>|</span>
                 </div>
               </div>
-            )}
-          </div>
-        )}
-        {phase === 'done' && (
-          <div style={{ textAlign: 'center', animation: 'fadeUp 0.4s ease' }}>
-            <div style={{ fontSize: 44, marginBottom: 8 }}>✅</div>
-            <div style={{ fontSize: 13, fontWeight: 900, color: '#7c2d12', marginBottom: 4 }}>Updated!</div>
-            <div style={{ background: '#fff', borderRadius: 10, padding: '8px 12px', border: '1.5px solid #fb923c', marginBottom: 8 }}>
-              <div style={{ fontSize: 9, color: '#94a3b8', marginBottom: 2 }}>Now active</div>
-              <div style={{ fontSize: 12, fontWeight: 800, color: '#ea580c', fontFamily: 'monospace' }}>{NEW_NUM}</div>
+              {phase === 'saving' && (
+                <div style={{ background: '#ea580c', borderRadius: 10, padding: '8px 0', textAlign: 'center' }}>
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+                    <div style={{ display: 'flex', gap: 3 }}>
+                      {[0,1,2].map(d => <div key={d} style={{ width: 5, height: 5, borderRadius: '50%', background: '#fff', animation: `bounce 0.8s ease ${d*0.15}s infinite` }} />)}
+                    </div>
+                    <span style={{ fontSize: 10, fontWeight: 800, color: '#fff' }}>Saving…</span>
+                  </div>
+                </div>
+              )}
             </div>
-            <div style={{ fontSize: 9, color: '#64748b', lineHeight: 1.6 }}>Physical tag unchanged.<br/>All future scans use new number.</div>
-          </div>
-        )}
-      </div>
-      <SimControls running={running} hasData={phase !== 'idle'} onRun={run} onReset={reset} accent="#ea580c" label="Demo Update" />
-    </PhoneFrame>
-  )
-}
-
-/* ─────────────────────────────────────────────
-   SIM CONTROLS — rendered inside PhoneFrame children
-   Actually needs to be OUTSIDE the phone frame overflow
-   So we render controls as separate sibling of PhoneFrame
-───────────────────────────────────────────── */
-// Controls are embedded in a bottom bar inside the screen
-function SimControls({ running, hasData, onRun, onReset, accent, label }) {
-  return (
-    <div style={{ padding: '6px 8px 8px', background: 'rgba(255,255,255,0.9)', borderTop: '1px solid rgba(0,0,0,0.06)', flexShrink: 0, display: 'flex', gap: 6 }}>
-      <button
-        onClick={onRun}
-        disabled={running}
-        style={{
-          flex: 1, padding: '7px 0',
-          background: running ? '#f1f5f9' : `linear-gradient(135deg,${accent},${accent}cc)`,
-          color: running ? '#94a3b8' : '#fff',
-          border: 'none', borderRadius: 8,
-          fontSize: 10, fontWeight: 800, cursor: running ? 'not-allowed' : 'pointer',
-          transition: 'all 0.2s',
-          boxShadow: running ? 'none' : `0 3px 10px ${accent}40`,
-        }}
-      >
-        {running ? '⏳ Running…' : `▶ ${label}`}
-      </button>
-      {hasData && (
-        <button
-          onClick={onReset}
-          style={{
-            padding: '7px 10px',
-            background: '#f1f5f9', color: '#64748b',
-            border: '1.5px solid #e2e8f0', borderRadius: 8,
-            fontSize: 10, fontWeight: 700, cursor: 'pointer',
-          }}
-        >↺</button>
-      )}
+          )}
+          {phase === 'done' && (
+            <div style={{ textAlign: 'center', animation: 'fadeUp 0.4s ease' }}>
+              <div style={{ fontSize: 44, marginBottom: 8 }}>✅</div>
+              <div style={{ fontSize: 13, fontWeight: 900, color: '#7c2d12', marginBottom: 4 }}>Updated!</div>
+              <div style={{ background: '#fff', borderRadius: 10, padding: '8px 12px', border: '1.5px solid #fb923c', marginBottom: 8 }}>
+                <div style={{ fontSize: 9, color: '#94a3b8', marginBottom: 2 }}>Now active</div>
+                <div style={{ fontSize: 12, fontWeight: 800, color: '#ea580c', fontFamily: 'monospace' }}>{NEW_NUM}</div>
+              </div>
+              <div style={{ fontSize: 9, color: '#64748b', lineHeight: 1.6 }}>Physical tag unchanged.<br/>All future scans use new number.</div>
+            </div>
+          )}
+        </div>
+      </PhoneFrame>
+      <SimCTA running={running} hasData={phase !== 'idle'} onRun={run} onReset={reset} accent="#ea580c" label="Demo Update" />
     </div>
   )
 }
@@ -913,14 +951,14 @@ function SimControls({ running, hasData, onRun, onReset, accent, label }) {
 ───────────────────────────────────────────── */
 function FeatureSimulator({ featureId }) {
   switch (featureId) {
-    case 'whatsapp': return <WhatsAppSimulator />
-    case 'call':     return <CallSimulator />
-    case 'contacts': return <ContactsSimulator />
-    case 'gps':      return <GPSSimulator />
-    case 'setup':    return <SetupSimulator />
-    case 'privacy':  return <PrivacySimulator />
-    case 'history':  return <HistorySimulator />
-    case 'update':   return <UpdateSimulator />
+    case 'whatsapp': return <WhatsAppSimulatorWrapper />
+    case 'call':     return <CallSimulatorWrapper />
+    case 'contacts': return <ContactsSimulatorWrapper />
+    case 'gps':      return <GPSSimulatorWrapper />
+    case 'setup':    return <SetupSimulatorWrapper />
+    case 'privacy':  return <PrivacySimulatorWrapper />
+    case 'history':  return <HistorySimulatorWrapper />
+    case 'update':   return <UpdateSimulatorWrapper />
     default:         return null
   }
 }
@@ -1047,10 +1085,10 @@ export default function Features() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&display=swap');
         * { box-sizing: border-box; }
-        .feat-layout { display: grid; grid-template-columns: 1fr 280px; gap: 36px; align-items: start; }
+        .feat-layout { display: grid; grid-template-columns: 1fr 300px; gap: 36px; align-items: start; }
         .feat-grid   { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
         .uc-grid     { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-        .phone-sticky { position: sticky; top: 90px; display: flex; flex-direction: column; align-items: center; }
+        .phone-sticky { position: sticky; top: 80px; display: flex; flex-direction: column; align-items: center; }
         @media (max-width: 1024px) {
           .feat-layout { grid-template-columns: 1fr; }
           .phone-sticky { position: relative; top: 0; margin: 0 auto 32px; }
@@ -1076,6 +1114,10 @@ export default function Features() {
           0%,100% { opacity: 1; }
           50%      { opacity: 0; }
         }
+        @keyframes ctaPulse {
+          0%   { transform: scale(1);    opacity: 0.5; }
+          100% { transform: scale(1.35); opacity: 0; }
+        }
       `}</style>
 
       <div style={{ maxWidth: 1140, margin: '0 auto' }}>
@@ -1087,7 +1129,7 @@ export default function Features() {
           title="Powerful Features for"
           highlight="Peace of Mind"
           highlightGradient="linear-gradient(130deg,#16a34a,#059669)"
-          desc="Every feature has a live simulation — click any card to see it in action."
+          desc="Every feature has a live simulation — click any card, then hit the button to see it in action."
         />
 
         <div className="feat-layout" style={{ marginBottom: 88 }}>
@@ -1102,7 +1144,7 @@ export default function Features() {
             ))}
           </div>
 
-          {/* sticky simulator */}
+          {/* sticky simulator — phone + big CTA below */}
           <div className="phone-sticky">
             <FeatureSimulator featureId={activeFeature} />
           </div>
