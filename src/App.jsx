@@ -16,6 +16,8 @@ import UseCasesPage from './pages/UseCasesPage'
 import HowItWorksPage from './pages/HowItWorksPage'
 import TestimonialsPage from './pages/TestimonialsPage'
 import LoginPage from './pages/LoginPage'
+import PreRegistrationForm from './components/PreRegistrationForm'
+import Franchise from './pages/Franchise'
 
 export default function App() {
   const location = useLocation()
@@ -46,6 +48,8 @@ export default function App() {
           <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="/terms" element={<TermsConditions />} />
           <Route path="/qr-form" element={<QrCodeForm />} />
+          <Route path="/preregister" element={<PreRegistrationForm />} />
+          <Route path="/franchise" element={<Franchise />} />
         </Routes>
       </main>
       {!isLoginPage && <Footer />}

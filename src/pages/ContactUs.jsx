@@ -216,6 +216,32 @@ export default function ContactUs() {
           50%      { opacity: .3; }
         }
 
+        /* ── Responsive Stats Counter (Matches B2B guidelines) ── */
+        .cu-stats-counter {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 48px;
+          padding-top: 28px;
+          border-top: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .cu-stats-divider {
+          width: 1px;
+          height: 32px;
+          background: rgba(255,255,255,0.1);
+        }
+
+        @media (max-width: 768px) {
+          .cu-stats-counter {
+            flex-direction: column;
+            gap: 24px;
+          }
+          .cu-stats-divider {
+            display: none;
+          }
+        }
+
         /* ── Field styles ── */
         .cf-field { position: relative; }
         .cf-field label {
@@ -285,6 +311,34 @@ export default function ContactUs() {
         }
         .cf-submit:not(:disabled):hover::after { background-position: 200% center; }
         .cf-submit:disabled { opacity: .65; cursor: not-allowed; }
+
+        /* ── Responsive Layout Grid ── */
+        .cu-layout-grid {
+          display: grid;
+          grid-template-columns: 1fr 1.65fr;
+          gap: 36px;
+          align-items: start;
+        }
+
+        .cf-fields-row {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 16px;
+        }
+
+        @media (max-width: 900px) {
+          .cu-layout-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+          }
+        }
+
+        @media (max-width: 600px) {
+          .cf-fields-row {
+            grid-template-columns: 1fr;
+            gap: 16px;
+          }
+        }
       `}</style>
 
       {/* ══════════════════════════════
@@ -413,18 +467,11 @@ export default function ContactUs() {
           </p>
 
           {/* Stats */}
-          <div
-            ref={statsRef}
-            style={{
-              display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 48,
-              paddingTop: 28,
-              borderTop: '1px solid rgba(255,255,255,0.08)',
-            }}
-          >
+          <div ref={statsRef} className="cu-stats-counter">
             <StatItem num={10} suffix=" min" label="WhatsApp reply" active={statsInView} delay={0} />
-            <div style={{ width: 1, height: 32, background: 'rgba(255,255,255,0.1)' }} />
+            <div className="cu-stats-divider" />
             <StatItem num={2} suffix=" hrs" label="Email response" active={statsInView} delay={0.15} />
-            <div style={{ width: 1, height: 32, background: 'rgba(255,255,255,0.1)' }} />
+            <div className="cu-stats-divider" />
             <StatItem num={10000} suffix="+" label="Happy users" active={statsInView} delay={0.3} />
           </div>
         </div>
@@ -442,8 +489,7 @@ export default function ContactUs() {
       ══════════════════════════════ */}
       <section style={{ background: '#f1f5f9', padding: '68px 24px 88px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.65fr', gap: 36, alignItems: 'start' }}>
-
+          <div className="cu-layout-grid">
             {/* ── LEFT: contact cards ── */}
             <div ref={infoRef}>
               {/* Section label */}
@@ -626,7 +672,7 @@ export default function ContactUs() {
                   </div>
 
                   <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+                    <div className="cf-fields-row">
                       <div className="cf-field">
                         <label>Full Name *</label>
                         <input type="text" name="name" required value={form.name} onChange={handleChange}

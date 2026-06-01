@@ -1,12 +1,24 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import carImg    from "../../assets/car.png";
-import luggageImg from "../../assets/luggage1.png";
-import dogimg    from "../../assets/dog.png";
-import seniorimg from "../../assets/senior.png";
-import kidImg    from "../../assets/kid.png";
-import qrImg     from "../../assets/qr.png";
+import carImg from "../../assets/car.png";
+import bikeImg from "../../assets/bike.png";
+import luggageImg from "../../assets/luggage.png";
+import qrImg from "../../assets/qr.png";
+// import logoImg from "/public/logo.png";
 
+const TICKER = [
+  "🛡️  10,000+ Assets Protected",
+  "📡  Live QR & NFC Scanning",
+  "🚨  Instant Owner Alerts",
+  "🔐  End-to-End Encrypted",
+  "⚡  Scan in Under 2 Seconds",
+  "🌍  Available in 50+ Countries",
+  "✅  4.9 / 5 User Rating",
+  "📲  15,000+ Scans Today",
+  "🏆  #1 Asset Protection Platform",
+  "🔔  8,000+ Alerts Sent Today",
+];
 
 const ASSETS = [
   {
@@ -133,7 +145,7 @@ const css = `
   color: var(--dark);
   border: 1.5px solid rgba(46,189,58,0.22);
   border-radius: 32px;
-  /* No margin-top — sfs-page padding handles the gap */
+  margin-top: 104px;
   box-shadow:
     0 0 0 1px rgba(46,189,58,0.08),
     0 8px 64px rgba(46,189,58,0.12),
@@ -158,10 +170,10 @@ const css = `
 .sfs-grid {
   flex: 1;
   max-width: 1440px; width: 100%; margin: 0 auto;
-  display: grid;
-  grid-template-columns: 46% 54%;
-  align-items: stretch;          /* both cols same height */
-  padding: 40px 56px 40px;       /* was 72px top/bottom — reduced */
+  display: grid; grid-template-columns: 44% 56%;
+  align-items: center;
+  padding: 74px 72px 24px;
+  position: relative; z-index: 2;
   gap: 0;
   position: relative; z-index: 2;
 }
@@ -177,11 +189,15 @@ const css = `
 .sfs-badge {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--glass);
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(46,189,58,0.26);
-  border-radius: 12px; padding: 8px 14px 8px 10px;
-  margin-bottom: 18px;
-  font-size: 10px; font-weight: 700; letter-spacing: .08em; color: #1a4a1e;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(46,189,58,0.24);
+  border-radius: 12px;
+  padding: 8px 14px 8px 10px;
+  margin-top: 12px;
+  margin-bottom: 12px;
+  font-size: 10px; font-weight: 700;
+  letter-spacing: .08em; color: #1a4a1e;
   text-transform: uppercase;
   box-shadow: 0 2px 16px rgba(46,189,58,0.12), 0 1px 0 rgba(255,255,255,0.9) inset;
   animation: fadeUp .6s .10s cubic-bezier(.22,1,.36,1) both;
@@ -202,8 +218,9 @@ const css = `
 
 .sfs-h1 {
   font-family: 'Sora', sans-serif;
-  font-size: 62px; line-height: .91; letter-spacing: -3.5px; font-weight: 900;
-  color: var(--dark); margin-bottom: 18px;
+  font-size: 54px; line-height: .92;
+  letter-spacing: -3.0px; font-weight: 900;
+  color: var(--dark); margin-bottom: 0;
   animation: slideInLeft .8s .04s cubic-bezier(.22,1,.36,1) both;
 }
 .sfs-h1 .green {
@@ -211,16 +228,21 @@ const css = `
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
 .sfs-sub {
-  font-size: 14.5px; line-height: 1.75; color: var(--mid);
-  max-width: 460px; margin-bottom: 24px; font-weight: 400;
+  font-size: 14px; line-height: 1.76; color: var(--mid);
+  max-width: 480px; margin-top: 10px; margin-bottom: 16px;
+  font-weight: 400;
   animation: slideInLeft .85s .14s cubic-bezier(.22,1,.36,1) both;
 }
 
-.sfs-feats { display: flex; gap: 9px; margin-bottom: 24px; }
+/* ── Feature cards ── */
+.sfs-feats { display: flex; gap: 10px; margin-bottom: 16px; }
 .sfs-feat {
-  flex: 1; background: var(--card-bg);
-  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(46,189,58,0.14); border-radius: 18px; padding: 16px 12px 14px;
+  flex: 1;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(46,189,58,0.14);
+  border-radius: 16px; padding: 12px 14px 10px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.04), 0 0 0 1px rgba(255,255,255,0.7) inset;
   position: relative; overflow: hidden; transition: .32s cubic-bezier(.34,1.46,.64,1); cursor: default;
 }
@@ -246,6 +268,7 @@ const css = `
 
 .sfs-hero-actions {
   display: flex; align-items: center; gap: 12px;
+  margin-bottom: 14px;
   animation: fadeUp .55s .56s both;
 }
 .sfs-btn-main {
@@ -283,19 +306,88 @@ const css = `
 /* ══ RIGHT col ══ */
 .sfs-right {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* No fixed min-height — grows with content naturally */
-  padding: 24px 0 24px 16px;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 450px;
 }
+
+/* Floating badges */
+.sfs-shield-badge {
+  position: absolute; top: 32px; right: 24px;
+  width: 100px; height: 100px; z-index: 10;
+  animation: shieldFloat 5s ease-in-out infinite;
+  filter: drop-shadow(0 12px 28px rgba(46,189,58,0.28));
+}
+@keyframes shieldFloat {
+  0%,100% { transform: translateY(0) rotate(2deg); }
+  50%      { transform: translateY(-12px) rotate(-1deg); }
+}
+
+.sfs-lock {
+  position: absolute; right: 0; top: 50%;
+  transform: translateY(-50%);
+  width: 52px; height: 52px;
+  background: var(--glass);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.10), 0 0 0 1px rgba(46,189,58,0.16);
+  border: 1px solid rgba(255,255,255,0.70);
+  z-index: 10;
+  animation: lockFloat 5s ease-in-out infinite 1s;
+}
+@keyframes lockFloat {
+  0%,100% { transform: translateY(-50%) scale(1); }
+  50%      { transform: translateY(calc(-50% - 10px)) scale(1.05); }
+}
+
+/* Alert + Scan floating cards */
+.sfs-alert-badge {
+  position: absolute; left: 4px; top: 90px;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-radius: 16px; padding: 10px 13px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.08), 0 0 0 1px rgba(255,255,255,0.8) inset;
+  border: 1px solid rgba(46,189,58,0.14);
+  z-index: 10; display: flex; align-items: center; gap: 8px;
+  animation: alertFloat 6s ease-in-out infinite .8s;
+}
+@keyframes alertFloat {
+  0%,100% { transform: translateY(0) rotate(-0.5deg); }
+  50%      { transform: translateY(-8px) rotate(0deg); }
+}
+.sfs-alert-ico {
+  width: 32px; height: 32px; border-radius: 10px;
+  background: linear-gradient(135deg, #e8f8eb, #d4f5d8);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 15px; flex-shrink: 0;
+  border: 1px solid rgba(46,189,58,0.18);
+}
+.sfs-alert-text h5 { font-size: 11px; font-weight: 700; color: var(--dark); }
+.sfs-alert-text p  { font-size: 9px; color: var(--mid); margin-top: 1.5px; }
+
+.sfs-scan-badge {
+  position: absolute; right: 12px; bottom: 110px;
+  background: linear-gradient(135deg, #2ebd3a, #1c9926);
+  border-radius: 14px; padding: 9px 14px;
+  z-index: 10;
+  box-shadow: 0 10px 26px rgba(46,189,58,0.36);
+  border: 1px solid rgba(255,255,255,0.18);
+  animation: scanBadgeFloat 4.5s ease-in-out infinite 1.5s;
+  color: white; display: flex; align-items: center; gap: 7px;
+}
+@keyframes scanBadgeFloat {
+  0%,100% { transform: translateY(0) rotate(.5deg); }
+  50%      { transform: translateY(-7px) rotate(-.5deg); }
+}
+.sfs-scan-badge-ico { font-size: 16px; }
+.sfs-scan-badge-text h5 { font-size: 11px; font-weight: 800; }
+.sfs-scan-badge-text p  { font-size: 8.5px; opacity: .85; margin-top: 1px; }
 
 .sfs-stage {
   position: relative;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  min-height: 450px;
 }
 
 /* ══════════════════════════════════════
@@ -335,32 +427,22 @@ const css = `
   50%      { transform: translateY(-10px) rotateY(-0.5deg) rotateX(0deg); }
 }
 
-/* Corner accent ticks — all 4 corners */
-.sfs-img-frame::before {
-  content: "";
+/* ══ HOW-IT-WORKS STYLE iPHONE MOCKUP ══ */
+.sfs-hiw-phone-wrap {
   position: absolute;
-  top: -2px; left: -2px;
-  width: 26px; height: 26px;
-  border-color: rgba(125,237,136,0.95);
-  border-style: solid;
-  border-width: 3.5px 0 0 3.5px;
-  border-radius: 10px 0 0 0;
-  z-index: 8; pointer-events: none;
+  width: 280px;
+  flex-shrink: 0;
+  z-index: 5;
+  animation: phoneRock 9s ease-in-out infinite;
+  scale: 0.78;
 }
-.sfs-img-frame::after {
-  content: "";
-  position: absolute;
-  bottom: -2px; right: -2px;
-  width: 26px; height: 26px;
-  border-color: rgba(125,237,136,0.95);
-  border-style: solid;
-  border-width: 0 3.5px 3.5px 0;
-  border-radius: 0 0 10px 0;
-  z-index: 8; pointer-events: none;
+@keyframes phoneRock {
+  0%,100% { transform: perspective(1100px) rotateY(-8deg) rotateX(3deg) translateY(0); }
+  33%      { transform: perspective(1100px) rotateY(-6deg) rotateX(2deg) translateY(-7px); }
+  66%      { transform: perspective(1100px) rotateY(-9deg) rotateX(4.5deg) translateY(-4px); }
 }
 
-/* Inner frame container */
-.sfs-img-frame-inner {
+.sfs-hiw-frame {
   position: relative;
   border-radius: 24px;
   overflow: hidden;
@@ -473,36 +555,53 @@ const css = `
 .sfs-ring-2 { width:720px; height:720px; animation:ringPulse 4s ease-in-out infinite .9s; }
 @keyframes ringPulse { 0%,100%{opacity:.30;transform:scale(.97);}50%{opacity:.70;transform:scale(1.03);} }
 
-/* ══ QR float card ══ */
-.sfs-qr-float {
-  position: absolute; right: -14px; top: 60px;
-  background: var(--card-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border-radius: 18px; padding: 12px 14px;
-  box-shadow: 0 16px 52px rgba(0,0,0,0.10), 0 0 0 1px rgba(255,255,255,0.85) inset;
-  border: 1px solid rgba(46,189,58,0.16); z-index: 12;
-  display: flex; align-items: center; gap: 10px;
-  animation: qrFloat 5.5s ease-in-out infinite .8s;
-  transform: perspective(600px) rotateY(-6deg);
+/* protection bar */
+.sfs-hiw-protection-bar {
+  margin: 0 10px 8px;
+  background: linear-gradient(135deg, #0B2545 0%, #2ebd3a 100%);
+  border-radius: 12px; padding: 10px 12px;
+  display: flex; align-items: center; gap: 8px; flex-shrink: 0;
 }
-@keyframes qrFloat {
-  0%,100%{transform:perspective(600px) rotateY(-6deg) translateY(0);}
-  50%{transform:perspective(600px) rotateY(-9deg) translateY(-10px);}
+.sfs-hiw-protection-ico {
+  width: 28px; height: 28px; border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
-.sfs-qr-float-inner { background:white;border-radius:8px;padding:5px;border:1px solid #e0e0e0;flex-shrink:0; }
-.sfs-qr-float-title { font-size:11.5px;font-weight:800;color:var(--dark);margin-bottom:2px; }
-.sfs-qr-float-sub   { font-size:8.5px;color:#5a7060;line-height:1.4; }
-.sfs-qr-live { display:flex;align-items:center;gap:4px;margin-top:4px;font-size:8px;font-weight:700;color:#2ebd3a;letter-spacing:.04em; }
-.sfs-qr-live-dot { width:5px;height:5px;border-radius:50%;background:#2ebd3a;animation:livePulse 1.8s infinite; }
+.sfs-hiw-protection-title { font-size: 11px; font-weight: 800; color: white; }
+.sfs-hiw-protection-sub   { font-size: 8.5px; color: rgba(255,255,255,0.7); }
 
-/* ══ ALERT float ══ */
-.sfs-alert-float {
-  position: absolute; right: 6px; bottom: 70px;
-  background: var(--card-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-  border-radius: 14px; padding: 9px 13px;
-  box-shadow: 0 8px 28px rgba(0,0,0,0.08), 0 0 0 1px rgba(255,255,255,0.82) inset;
-  border: 1px solid rgba(46,189,58,0.14); z-index: 12;
-  display: flex; align-items: center; gap: 9px;
-  animation: alertFloat 6s ease-in-out infinite 1.2s;
+/* ── phase transitions ── */
+.sfs-hiw-fade-in  { animation: hiwFadeIn  .5s cubic-bezier(.22,1,.36,1) both; }
+.sfs-hiw-fade-out { animation: hiwFadeOut .3s ease forwards; }
+@keyframes hiwFadeIn  { from { opacity:0; transform:scale(.95) translateY(10px); } to { opacity:1; transform:none; } }
+@keyframes hiwFadeOut { from { opacity:1; } to { opacity:0; transform:scale(.95) translateY(-10px); } }
+
+/* ══ SCAN STAGE (car/bike/luggage) ══ */
+.sfs-scan-stage {
+  position: absolute; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.sfs-asset-img {
+  width: 390px; max-width: none;
+  position: relative; z-index: 3; object-fit: contain;
+  filter: drop-shadow(0 28px 56px rgba(0,0,0,0.16)) drop-shadow(0 0 36px rgba(46,189,58,0.22));
+  animation: assetHover 4.5s ease-in-out infinite;
+}
+@keyframes assetHover {
+  0%,100% { transform: translateY(0) scale(1.02) rotateY(-4deg); }
+  50%      { transform: translateY(-12px) scale(1.04) rotateY(-2deg); }
+}
+.sfs-qr-card {
+  position: absolute; right: -20px; bottom: 80px;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-radius: 20px; padding: 13px 16px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.10), 0 0 0 1px rgba(255,255,255,0.80) inset;
+  border: 1px solid rgba(46,189,58,0.16);
+  z-index: 10; display: flex; align-items: center; gap: 10px;
+  min-width: 210px;
+  transform: perspective(600px) rotateY(-8deg);
+  animation: cardBob 5s ease-in-out infinite;
 }
 @keyframes alertFloat { 0%,100%{transform:translateY(0);}50%{transform:translateY(-8px);} }
 .sfs-alert-ico {
@@ -514,14 +613,15 @@ const css = `
 .sfs-alert-h { font-size:10.5px;font-weight:700;color:var(--dark); }
 .sfs-alert-p { font-size:8.5px;color:var(--mid);margin-top:1px; }
 
-/* ══ ASSET LABEL pill ══ */
-.sfs-asset-label {
-  position: absolute; top: 12px; left: -8px;
-  background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border-radius: 11px; padding: 7px 11px; border: 1px solid rgba(46,189,58,0.14); z-index: 12;
-  display: flex; align-items: center; gap: 7px;
-  animation: pillFloat 6s ease-in-out infinite .4s;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.07);
+.sfs-status-pill {
+  position: absolute; top: 48px; left: 6px;
+  background: var(--card-bg);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-radius: 14px; padding: 9px 13px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08), 0 0 0 1px rgba(255,255,255,0.80) inset;
+  border: 1px solid rgba(46,189,58,0.14);
+  z-index: 10; display: flex; align-items: center; gap: 7px;
+  animation: pillFloat 6s ease-in-out infinite .5s;
 }
 @keyframes pillFloat { 0%,100%{transform:translateY(0);}50%{transform:translateY(-7px);} }
 .sfs-alabel-dot { width:6px;height:6px;border-radius:50%;background:#2ebd3a;animation:livePulse 1.9s infinite;flex-shrink:0; }
@@ -534,18 +634,44 @@ const css = `
   animation:shieldFloat 5s ease-in-out infinite;
   filter:drop-shadow(0 12px 28px rgba(46,189,58,0.32));
 }
-@keyframes shieldFloat { 0%,100%{transform:translateY(0) rotate(2deg);}50%{transform:translateY(-13px) rotate(-1deg);} }
+@keyframes exitScene {
+  from { opacity:1; transform: none; }
+  to   { opacity:0; transform: scale(.88) translateY(-40px); filter:blur(5px); }
+}
+@keyframes scanIn  { from { opacity:0; transform:scale(.93) translateY(18px); } to { opacity:1; transform:none; } }
+@keyframes scanOut { from { opacity:1; } to { opacity:0; transform:scale(.91) translateY(-18px); } }
+@keyframes slideInLeft { from { opacity:0; transform: translateX(-32px); } to { opacity:1; transform: none; } }
+@keyframes fadeUp      { from { opacity:0; transform: translateY(20px);  } to { opacity:1; transform: none; } }
 
-/* ══ NAV DOTS ══ */
-.sfs-asset-nav {
-  position:absolute; bottom:10px; left:50%; transform:translateX(-50%);
-  display:flex; align-items:center; gap:7px; z-index:12;
+/* ══ TICKER ══ */
+.sfs-ticker {
+  width:100%; position:relative; z-index:10; overflow:hidden;
+  background: linear-gradient(90deg, #061A0A 0%, #2ebd3a 40%, #061A0A 70%, #2ebd3a 100%);
+  border-top: 1px solid rgba(46,189,58,0.22);
+  border-radius: 0 0 30px 30px;
 }
-.sfs-nav-dot {
-  width:7px; height:7px; border-radius:50%; background:rgba(46,189,58,0.25); cursor:pointer;
-  transition:.3s cubic-bezier(.34,1.46,.64,1); border:1px solid rgba(46,189,58,0.20);
+.::before {
+  content: "";
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(91, 19, 19, 0.18) 0%,  rgba(173, 31, 31, 0.18) 100%);
+  z-index: 2; pointer-events: none;
 }
-.sfs-nav-dot.active { background:#2ebd3a; width:20px; border-radius:4px; box-shadow:0 2px 8px rgba(46,189,58,0.40); }
+.sfs-ticker-inner { display:flex; position: relative; z-index: 1; }
+.sfs-ticker-label {
+  flex-shrink:0; display:flex; align-items:center; padding:0 20px;
+  background: rgba(0,0,0,0.20); border-right: 1px solid rgba(255,255,255,0.18);
+  font-size:8.5px; font-weight:900; color:white; letter-spacing:2.5px;
+  text-transform:uppercase; height:44px; white-space: nowrap;
+}
+.sfs-ticker-track { display:flex; animation: tickMove 36s linear infinite; }
+.sfs-ticker-track:hover { animation-play-state: paused; }
+@keyframes tickMove { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+.sfs-ti {
+  display:flex; align-items:center; height:44px;
+  padding:0 20px; font-size:11.5px; font-weight:600;
+  color:rgba(255,255,255,0.90); white-space:nowrap; gap:16px;
+}
+.sfs-td { width:3px; height:3px; border-radius:50%; background:rgba(255,255,255,0.28); flex-shrink: 0; }
 
 /* ══ BG DECORATION ══ */
 .sfs-mesh {
@@ -566,31 +692,132 @@ const css = `
 
 /* ══ RESPONSIVE ══ */
 @media(max-width:1200px){
-  .sfs-hero{border-radius:22px;}
-  .sfs-grid{grid-template-columns:1fr;padding:36px 32px 32px;gap:28px;}
-  .sfs-h1{font-size:48px;letter-spacing:-2.2px;}
-  .sfs-right{padding:0;}
-  .sfs-img-frame{max-width:480px;}
+  .sfs-hero { border-radius: 22px; margin-top: 84px; }
+  .sfs-grid { grid-template-columns:1fr; padding:48px 32px 28px; gap:28px; }
+  .sfs-h1 { font-size:50px; letter-spacing:-2.5px; }
+  .sfs-right { min-height:450px; }
+  .sfs-asset-img { width:340px; }
+  .sfs-shield-badge { width:80px; height:80px; top:20px; right:10px; }
+  .sfs-ring-2, .sfs-ring-3 { display:none; }
 }
+
 @media(max-width:640px){
-  .sfs-hero{border-radius:18px;border-width:1px;}
-  .sfs-grid{grid-template-columns:1fr;padding:24px 16px 20px;gap:20px;}
-  .sfs-h1{font-size:34px;letter-spacing:-1.6px;}
-  .sfs-sub{font-size:13px;margin-bottom:16px;}
-  .sfs-feats{flex-direction:column;gap:8px;margin-bottom:18px;}
-  .sfs-feat{flex-direction:row;align-items:center;gap:12px;padding:12px;border-radius:14px;}
-  .sfs-feat-ico{margin-bottom:0;flex-shrink:0;}
-  .sfs-hero-actions{flex-direction:column;gap:9px;align-items:stretch;}
-  .sfs-btn-main,.sfs-btn-sec{justify-content:center;border-radius:12px;}
-  .sfs-right{padding:0;}
-  .sfs-img-frame{max-width:100%;}
-  .sfs-shield-badge{width:60px;height:60px;top:8px;right:4px;}
-  .sfs-ring-1{width:380px;height:380px;}
-  .sfs-ring-2{display:none;}
-  .sfs-qr-float{right:-2px;top:50px;}
-  .sfs-left{padding-right:0;}
-  .sfs-asset-label{left:-4px;}
+  .sfs-hero { border-radius: 20px; border-width: 1px; margin-top: 80px; }
+  .sfs-grid { display: flex !important; flex-direction: column !important; padding: 36px 18px 24px; gap: 16px !important; }
+  .sfs-left { display: contents !important; }
+  
+  .sfs-h1 { order: 1 !important; font-size: 38px; letter-spacing: -1.8px; line-height: 1.0; margin-bottom: 0; text-align: center; }
+  .sfs-h1 .outline { -webkit-text-stroke-width: 1.5px; }
+  .sfs-sub { order: 2 !important; font-size: 13.5px; line-height: 1.78; margin-top: 14px; margin-bottom: 12px; text-align: center; }
+  
+  /* 3 Feature cards hidden in mobile Layout 1 */
+  .sfs-feats { display: none !important; }
+  
+  /* Phone Mockup ordered 3rd (under subtitle) */
+  .sfs-right { 
+    order: 3 !important; 
+    min-height: 480px !important; 
+    overflow: visible; 
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-top: 24px !important;
+    margin-bottom: 24px !important;
+  }
+  .sfs-stage { min-height: 480px !important; }
+  
+  /* Phone sizes and frames */
+  .sfs-hiw-phone-wrap { width: 220px !important; }
+  .sfs-hiw-frame { width: 220px !important; height: 440px !important; border-radius: 36px !important; }
+  .sfs-hiw-inner { border-radius: 31px !important; }
+  .sfs-hiw-screen { border-radius: 28px !important; }
+  
+  /* Float Badge 1: Owner Alerted Card (Centered directly above phone notch) */
+  .sfs-alert-badge { 
+    position: absolute !important;
+    left: 50% !important; 
+    top: -24px !important; 
+    transform: translateX(-50%) !important; 
+    padding: 8px 12px !important; 
+    border-radius: 12px !important; 
+    z-index: 20 !important;
+    width: fit-content !important;
+    white-space: nowrap !important;
+    animation: alertFloat 6s ease-in-out infinite !important;
+  }
+  .sfs-alert-ico { width: 28px; height: 28px; font-size: 13px; border-radius: 8px; }
+  
+  /* Float Badge 2: Green Shield Check (Middle Left overlaying phone frame) */
+  .sfs-shield-badge { 
+    position: absolute !important;
+    width: 62px !important; height: 62px !important; 
+    left: -20px !important; 
+    top: 50% !important; 
+    transform: translateY(-50%) !important; 
+    right: auto !important;
+    z-index: 20 !important;
+    animation: shieldFloat 5s ease-in-out infinite !important;
+  }
+  
+  /* Float Badge 3: Yellow Lock (Middle Right overlaying phone frame) */
+  .sfs-lock { 
+    position: absolute !important;
+    width: 44px !important; height: 44px !important; 
+    font-size: 18px !important; 
+    right: -20px !important; 
+    top: 40% !important;
+    transform: translateY(-50%) !important;
+    left: auto !important;
+    z-index: 20 !important;
+    display: flex !important; 
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  /* Float Badge 4: 15,234 Scans Card (Bottom Right overlaying phone frame) */
+  .sfs-scan-badge { 
+    position: absolute !important;
+    right: -32px !important; 
+    bottom: 104px !important; 
+    padding: 8px 12px !important; 
+    border-radius: 11px !important; 
+    z-index: 20 !important;
+    animation: scanBadgeFloat 4.5s ease-in-out infinite !important;
+  }
+  
+  /* CTA Buttons ordered 4th (at the very bottom) */
+  .sfs-hero-actions { 
+    order: 4 !important; 
+    display: flex !important;
+    flex-direction: column !important; 
+    gap: 12px !important; 
+    margin-bottom: 24px !important; 
+    align-items: stretch !important; 
+    width: 100% !important;
+  }
+  .sfs-btn-main { padding: 15px 20px; font-size: 14px; border-radius: 13px; justify-content: center; }
+  .sfs-btn-sec  { padding: 14px 20px; font-size: 13.5px; border-radius: 13px; justify-content: center; color: #2ebd3a !important; border-color: rgba(46,189,58,0.4) !important; background: white !important; }
+  
+  .sfs-stats { gap: 12px; flex-wrap: wrap; }
+  .sfs-stat-num { font-size: 18px; }
+  .sfs-stat-lbl { font-size: 10px; }
+  .sfs-stat-div { height: 28px; }
+  
+  .sfs-ring-1 { width: 260px; height: 260px; }
+  .sfs-ring-2, .sfs-ring-3 { display: none; }
+  .sfs-asset-img { width: 260px; }
+  .sfs-qr-card { right: -6px; bottom: 68px; min-width: 185px; padding: 10px 13px; border-radius: 17px; transform: none; }
+  .sfs-qr-icon { width: 44px; height: 44px; font-size: 22px; border-radius: 11px; }
+  .sfs-status-pill { top: 52px; left: 4px; padding: 8px 12px; border-radius: 12px; }
+  .sfs-ticker { border-radius: 0 0 18px 18px; }
+  .sfs-ticker-label { padding: 0 12px; font-size: 8px; letter-spacing: 1.5px; height: 42px; }
+  .sfs-ti { font-size: 11px; padding: 0 14px; height: 42px; }
+  .sfs-globe-wrap { width: 200px; height: 200px; bottom: -60px; left: -50px; }
+  .sfs-mesh { width: 300px; height: 300px; top: -30px; right: -30px; }
+  .sfs-left { padding-right: 0; }
 }
+
 @media(max-width:380px){
   .sfs-h1{font-size:28px;letter-spacing:-1.1px;}
   .sfs-grid{padding:16px 12px 14px;}
@@ -796,8 +1023,9 @@ function AssetScene({ asset, imgClass }) {
 
 /* ─── MAIN ─── */
 export default function ScanForSafeHero() {
-  const [active, setActive]     = useState(0);
-  const [imgClass, setImgClass] = useState("sfs-asset-entering");
+  const navigate = useNavigate();
+  const [active, setActive] = useState(0);
+  const [phase,  setPhase]  = useState("scan");
 
   useEffect(() => {
     const t0 = setTimeout(() => setImgClass("sfs-asset-idle"), 700);
@@ -840,26 +1068,21 @@ export default function ScanForSafeHero() {
         <div className="sfs-hero">
           <div className="sfs-bg"><MeshLines /><Globe /><Particles /></div>
 
-          <div className="sfs-grid">
-            {/* LEFT */}
-            <div className="sfs-left">
-              <div className="sfs-badge">
-                <div className="sfs-badge-dot" />
-                Live Protection Active
-                <span className="sfs-badge-sep" />
-                <span className="sfs-badge-count">10,000+ Secured</span>
-              </div>
+        {/* GRID */}
+        <div className="sfs-grid">
 
-              <h1 className="sfs-h1">
-                Smart Protection<br />
-                That <span className="green">Connects</span><br />
-                <span className="green">Your World</span>
-              </h1>
+          {/* LEFT */}
+          <div className="sfs-left">
 
-              <p className="sfs-sub">
-                Protect vehicles, bikes, luggage, pets and loved ones with next-generation
-                QR + NFC verification. Instant owner alerts and live smart protection — all with a single scan.
-              </p>
+            <h1 className="sfs-h1">
+              Smart Protection<br />
+              That <span className="green">Connects</span><br />
+              <span className="green">Your World</span>
+            </h1>
+            <p className="sfs-sub">
+              Protect vehicles, bikes, luggage and valuables with next-generation QR + NFC
+              verification. Instant owner alerts and live smart protection — all with a single scan.
+            </p>
 
               <div className="sfs-feats">
                 {features.map((f, i) => (
@@ -870,19 +1093,16 @@ export default function ScanForSafeHero() {
                 ))}
               </div>
 
-              <div className="sfs-hero-actions">
-                <button className="sfs-btn-main">
-                  Pre-Registration
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
-                  </svg>
-                </button>
-                <button className="sfs-btn-sec">
-                  <div className="sfs-play-ring">▶</div>
-                  See How It Works
-                </button>
-              </div>
+            <div className="sfs-hero-actions">
+              <button className="sfs-btn-main" onClick={() => navigate("/preregister")}>Pre-Registration</button>
+              <button className="sfs-btn-sec">
+                <div className="sfs-play-ring">▶</div>
+                See How It Works
+              </button>
             </div>
+
+         
+          </div>
 
             {/* RIGHT */}
             <div className="sfs-right">
@@ -890,19 +1110,40 @@ export default function ScanForSafeHero() {
               <div className="sfs-stage">
                 <AssetScene asset={c} imgClass={imgClass} />
               </div>
-              <div className="sfs-asset-nav">
-                {ASSETS.map((a, i) => (
-                  <div
-                    key={i}
-                    className={`sfs-nav-dot${i===active?" active":""}`}
-                    onClick={() => switchTo(i)}
-                    title={a.label}
-                  />
-                ))}
+            </div>
+
+            <div className="sfs-scan-badge">
+              <div className="sfs-scan-badge-ico">📲</div>
+              <div className="sfs-scan-badge-text">
+                <h5>15,234 Scans</h5>
+                <p>Today worldwide</p>
               </div>
+            </div>
+
+            <div className="sfs-stage">
+              {phase === "scan"      && <ScanStage asset={c} animClass="sfs-scan-in"  />}
+              {phase === "scan-out"  && <ScanStage asset={c} animClass="sfs-scan-out" />}
+              {phase === "phone"     && <HIWPhone  asset={c} animClass="sfs-entering" />}
+              {phase === "phone-out" && <HIWPhone  asset={c} animClass="sfs-exiting"  />}
             </div>
           </div>
         </div>
+
+        {/* TICKER */}
+        <div className="sfs-ticker">
+          <div className="sfs-ticker-inner">
+            <div className="sfs-ticker-label">Live Updates</div>
+            <div className="sfs-ticker-track">
+              {tickerAll.map((item, i) => (
+                <div key={i} className="sfs-ti">
+                  {item}
+                  {i < tickerAll.length - 1 && <div className="sfs-td" />}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
       </div>
     </>
   );

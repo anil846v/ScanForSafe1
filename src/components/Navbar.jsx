@@ -28,7 +28,8 @@ export default function Navbar() {
     { label: "Features",     to: "/features" },
     { label: "Use Cases",    to: "/use-cases" },
     { label: "How It Works", to: "/how-it-works" },
-    { label: "Contact",      to: "/contact" },
+    { label: "Franchise", to: "/franchise" },
+    { label: "Contact", to: "/contact" },
   ];
 
   const isActive = (to) =>
@@ -210,7 +211,32 @@ export default function Navbar() {
 
         .sfs-nav.scrolled .sfs-badge-wrap { width: 44px; height: 44px; }
 
-        .sfs-badge-shell {
+        .sfs-logo:hover .sfs-badge-wrap {
+          transform: scale(1.05);
+        }
+
+        /* Dual pulse rings
+        .sfs-pulse-ring {
+          position: absolute;
+          inset: -7px;
+          border-radius: 24px;
+          border: 1.5px solid rgba(34,197,94,0.35);
+          animation: sfs-pulse-out 2.8s ease-out infinite;
+          pointer-events: none;
+        }
+        .sfs-pulse-ring:nth-child(2) {
+          animation-delay: 1s;
+          inset: -14px;
+          border-radius: 29px;
+        } */
+
+        @keyframes sfs-pulse-out {
+          0%   { opacity: 0.75; transform: scale(0.9); }
+          100% { opacity: 0;    transform: scale(1.2); }
+        }
+
+        /* Spinning conic ring — speeds up on hover */
+        .sfs-ring-outer {
           position: absolute;
           inset: 0;
           border-radius: 14px;
@@ -220,9 +246,21 @@ export default function Navbar() {
           overflow: hidden;
         }
 
-        .sfs-nav.scrolled .sfs-badge-shell { border-radius: 12px; }
+        .sfs-nav.scrolled .sfs-ring-outer {
+          border-radius: 15px;
+        }
+
+        .sfs-logo:hover .sfs-ring-outer {
+          animation-duration: 1.4s;
+        }
+
+        /* @keyframes sfs-spin-ring {
+          from { transform: rotate(100deg); }
+          to   { transform: rotate(360deg); }
+        } */
 
         .sfs-badge-face {
+          position: relative;
           width: 100%;
           height: 100%;
           border-radius: 11px;
@@ -235,80 +273,106 @@ export default function Navbar() {
           transition: border-radius .35s ease;
         }
 
-        .sfs-nav.scrolled .sfs-badge-face { border-radius: 9px; }
-
-        .sfs-scan-laser {
+        /* ── Logo Scanning Laser ── */
+        .sfs-logo-laser {
           position: absolute;
-          left: 0; right: 0;
-          height: 2px;
-          background: linear-gradient(90deg,
-            transparent 0%,
-            rgba(34,197,94,.0) 10%,
-            rgba(34,197,94,.85) 40%,
-            #4ade80 50%,
-            rgba(34,197,94,.85) 60%,
-            rgba(34,197,94,.0) 90%,
-            transparent 100%
-          );
-          box-shadow: 0 0 8px 2px rgba(74,222,128,.6);
-          animation: sfs-laser-scan 2.4s cubic-bezier(.4,0,.6,1) infinite;
+          left: 0;
+          right: 0;
+          height: 3px;
+          background: linear-gradient(90deg, transparent 10%, #16a34a 40%, #4ade80 50%, #16a34a 60%, transparent 90%);
+          box-shadow: 0 0 6px #16a34a, 0 0 10px #4ade80;
+          z-index: 5;
           pointer-events: none;
-          z-index: 3;
+          animation: sfs-logo-scan 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+
+          /* Clip strictly to the transparent shield shape */
+          mask-image: url('/logo.png');
+          -webkit-mask-image: url('/logo.png');
+          mask-size: 92% 92%;
+          -webkit-mask-size: 92% 92%;
+          mask-repeat: no-repeat;
+          -webkit-mask-repeat: no-repeat;
+          mask-position: center;
+          -webkit-mask-position: center;
         }
 
-        @keyframes sfs-laser-scan {
-          0%   { top: 8%;  opacity: 0; }
-          8%   { opacity: 1; }
-          50%  { top: 88%; opacity: 1; }
-          58%  { top: 88%; opacity: 0; }
-          100% { top: 8%;  opacity: 0; }
+        .sfs-logo:hover .sfs-logo-laser {
+          animation-duration: 1.4s;
+          background: linear-gradient(90deg, transparent 10%, #22c55e 40%, #86efac 50%, #22c55e 60%, transparent 90%);
+          box-shadow: 0 0 10px #22c55e, 0 0 14px #86efac;
         }
 
-        .sfs-badge-wrap::before, .sfs-badge-wrap::after {
-          content: "";
+        @keyframes sfs-logo-scan {
+          0% {
+            top: -6%;
+            opacity: 0;
+          }
+          8%, 92% {
+            opacity: 1;
+          }
+          100% {
+            top: 106%;
+            opacity: 0;
+          }
+        }
+
+        /* ── QR Scanner Viewfinder Corners ── */
+        .sfs-logo-corner {
           position: absolute;
-          width: 10px; height: 10px;
-          z-index: 4;
+          width: 9px;
+          height: 9px;
+          border-color: #2ebd3a;
+          border-style: solid;
+          border-width: 0;
+          z-index: 10;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
           pointer-events: none;
-          opacity: 0;
-          animation: sfs-corners-appear 2.4s ease-in-out infinite;
         }
 
-        .sfs-badge-wrap::before {
-          top: -3px; left: -3px;
-          border-top: 2px solid #4ade80;
-          border-left: 2px solid #4ade80;
-          border-radius: 2px 0 0 0;
+        .sfs-logo-corner-tl {
+          top: 1px;
+          left: 1.5px;
+          border-top-width: 2.2px;
+          border-left-width: 2.2px;
+          border-top-left-radius: 3.5px;
         }
 
-        .sfs-badge-wrap::after {
-          bottom: -3px; right: -3px;
-          border-bottom: 2px solid #4ade80;
-          border-right: 2px solid #4ade80;
-          border-radius: 0 0 2px 0;
+        .sfs-logo-corner-tr {
+          top: 1px;
+          right: 0.5px;
+          border-top-width: 2.2px;
+          border-right-width: 2.2px;
+          border-top-right-radius: 3.5px;
         }
 
-        @keyframes sfs-corners-appear {
-          0%,8%    { opacity: 0; }
-          12%,55%  { opacity: 1; }
-          60%,100% { opacity: 0; }
+        .sfs-logo-corner-bl {
+          bottom: 6px;
+          left: 2px;
+          border-bottom-width: 2.2px;
+          border-left-width: 2.2px;
+          border-bottom-left-radius: 3.5px;
         }
 
-        .sfs-scan-corner-tr, .sfs-scan-corner-bl {
-          position: absolute;
-          width: 10px; height: 10px;
-          z-index: 4;
-          pointer-events: none;
-          opacity: 0;
-          animation: sfs-corners-appear 2.4s ease-in-out infinite;
+        .sfs-logo-corner-br {
+          bottom: 6px;
+          right: 2px;
+          border-bottom-width: 2.2px;
+          border-right-width: 2.2px;
+          border-bottom-right-radius: 3.5px;
         }
 
-        .sfs-scan-corner-tr { top: -3px; right: -3px; border-top: 2px solid #4ade80; border-right: 2px solid #4ade80; border-radius: 0 2px 0 0; }
-        .sfs-scan-corner-bl { bottom: -3px; left: -3px; border-bottom: 2px solid #4ade80; border-left: 2px solid #4ade80; border-radius: 0 0 0 2px; }
+        /* Hover animation - make them pulse or expand slightly! */
+        .sfs-logo:hover .sfs-logo-corner {
+          border-color: #4ade80;
+          filter: drop-shadow(0 0 3px #2ebd3a);
+        }
+        
+        .sfs-logo:hover .sfs-logo-corner-tl { top: -4.5px; left: -4.5px; }
+        .sfs-logo:hover .sfs-logo-corner-tr { top: -4.5px; right: -4.5px; }
+        .sfs-logo:hover .sfs-logo-corner-bl { bottom: -4.5px; left: -4.5px; }
+        .sfs-logo:hover .sfs-logo-corner-br { bottom: -4.5px; right: -4.5px; }
 
-        .sfs-scan-glow {
-          position: absolute;
-          inset: 0;
+        .sfs-nav.scrolled .sfs-badge-face {
           border-radius: 11px;
           background: radial-gradient(circle at 50% 50%, rgba(74,222,128,.15) 0%, transparent 70%);
           animation: sfs-glow-pulse 2.4s ease-in-out infinite;
@@ -651,14 +715,20 @@ export default function Navbar() {
           {/* LOGO */}
           <Link to="/" className="sfs-logo">
             <div className="sfs-badge-wrap">
-              <div className="sfs-ping-ring" />
-              <div className="sfs-scan-corner-tr" />
-              <div className="sfs-scan-corner-bl" />
-              <div className="sfs-badge-shell">
+              {/* QR scanner corner brackets */}
+              <div className="sfs-logo-corner sfs-logo-corner-tl" />
+              <div className="sfs-logo-corner sfs-logo-corner-tr" />
+              <div className="sfs-logo-corner sfs-logo-corner-bl" />
+              <div className="sfs-logo-corner sfs-logo-corner-br" />
+
+              <div className="sfs-badge-border">
                 <div className="sfs-badge-face">
-                  <div className="sfs-scan-laser" />
-                  <div className="sfs-scan-glow" />
-                  <img src="/logo.png" alt="ScanForSafe" className="sfs-badge-img" />
+                  <img
+                    src="/logo.png"
+                    alt="ScanForSafe"
+                    className="sfs-badge-img"
+                  />
+                  <div className="sfs-logo-laser" />
                 </div>
               </div>
             </div>
@@ -677,7 +747,7 @@ export default function Navbar() {
             </div>
           </Link>
 
-          {/* NAV LINKS */}
+          {/* ── NAV LINKS ── */}
           <nav className="sfs-links">
             {navLinks.map((item) => (
               <Link
