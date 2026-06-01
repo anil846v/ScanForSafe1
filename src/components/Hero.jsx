@@ -335,32 +335,22 @@ const css = `
   50%      { transform: translateY(-10px) rotateY(-0.5deg) rotateX(0deg); }
 }
 
-/* Corner accent ticks — all 4 corners */
-.sfs-img-frame::before {
-  content: "";
+/* ══ HOW-IT-WORKS STYLE iPHONE MOCKUP ══ */
+.sfs-hiw-phone-wrap {
   position: absolute;
-  top: -2px; left: -2px;
-  width: 26px; height: 26px;
-  border-color: rgba(125,237,136,0.95);
-  border-style: solid;
-  border-width: 3.5px 0 0 3.5px;
-  border-radius: 10px 0 0 0;
-  z-index: 8; pointer-events: none;
+  width: 280px;
+  flex-shrink: 0;
+  z-index: 5;
+  animation: phoneRock 9s ease-in-out infinite;
+  scale: 0.78;
 }
-.sfs-img-frame::after {
-  content: "";
-  position: absolute;
-  bottom: -2px; right: -2px;
-  width: 26px; height: 26px;
-  border-color: rgba(125,237,136,0.95);
-  border-style: solid;
-  border-width: 0 3.5px 3.5px 0;
-  border-radius: 0 0 10px 0;
-  z-index: 8; pointer-events: none;
+@keyframes phoneRock {
+  0%,100% { transform: perspective(1100px) rotateY(-8deg) rotateX(3deg) translateY(0); }
+  33%      { transform: perspective(1100px) rotateY(-6deg) rotateX(2deg) translateY(-7px); }
+  66%      { transform: perspective(1100px) rotateY(-9deg) rotateX(4.5deg) translateY(-4px); }
 }
 
-/* Inner frame container */
-.sfs-img-frame-inner {
+.sfs-hiw-frame {
   position: relative;
   border-radius: 24px;
   overflow: hidden;
@@ -545,7 +535,7 @@ const css = `
   width:7px; height:7px; border-radius:50%; background:rgba(46,189,58,0.25); cursor:pointer;
   transition:.3s cubic-bezier(.34,1.46,.64,1); border:1px solid rgba(46,189,58,0.20);
 }
-.sfs-nav-dot.active { background:#2ebd3a; width:20px; border-radius:4px; box-shadow:0 2px 8px rgba(46,189,58,0.40); }
+.sfs-td { width:3px; height:3px; border-radius:50%; background:rgba(255,255,255,0.28); flex-shrink: 0; }
 
 /* ══ BG DECORATION ══ */
 .sfs-mesh {
@@ -903,6 +893,22 @@ export default function ScanForSafeHero() {
             </div>
           </div>
         </div>
+
+        {/* TICKER */}
+        <div className="sfs-ticker">
+          <div className="sfs-ticker-inner">
+            <div className="sfs-ticker-label">Live Updates</div>
+            <div className="sfs-ticker-track">
+              {tickerAll.map((item, i) => (
+                <div key={i} className="sfs-ti">
+                  {item}
+                  {i < tickerAll.length - 1 && <div className="sfs-td" />}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
       </div>
     </>
   );
