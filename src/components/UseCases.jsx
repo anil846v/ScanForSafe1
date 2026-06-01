@@ -1,28 +1,17 @@
 import {
-  Bike,
-  PawPrint,
-  Laptop,
-  Baby,
-  UserCheck,
-  ArrowUpRight,
-  ShieldCheck,
-  Zap,
-  MapPin,
-  Bell,
-  Clock,
-  ScanLine,
-  CreditCard,
+  Bike, PawPrint, Laptop, Baby,
+  UserCheck, ArrowUpRight, ShieldCheck,
+  Zap, MapPin, Bell, Clock, ScanLine, CreditCard,
 } from 'lucide-react'
 
-import bike1img from '../../assets/bike1.png'
-import petimg from '../../assets/dog.png'
-import seniorimg from '../../assets/senior.png'
-import kidimg from '../../assets/kid.png'
-import luggage from '../../assets/luggage1.png'
+import bike1img   from '../../assets/bike.png'
+import petimg     from '../../assets/dog.png'
+import seniorimg  from '../../assets/senior.png'
+import kidimg     from '../../assets/kid.png'
+import luggage    from '../../assets/luggage1.png'
+import idimg      from '../../assets/id.png'
 
-/* ─────────────────────────────────────────────
-   DATA
-───────────────────────────────────────────── */
+/* ─────────────────────────── DATA ─────────────────────────── */
 const USE_CASES = [
   {
     icon: Bike,
@@ -30,23 +19,15 @@ const USE_CASES = [
     category: 'VEHICLE',
     qrSize: '3.5 cm QR Sticker',
     description: 'Smart QR recovery sticker for bikes with instant owner GPS alerts.',
-    cardBg: '#EAF3DE',
-    accentColor: '#2ebd3a',
-    iconBg: '#2ebd3a',
-    tag: 'QR Sticker',
-    tagBg: '#C0DD97',
-    tagColor: '#27500A',
-    titleColor: '#27500A',
-    subColor: '#3B6D11',
-    descColor: '#3B6D11',
-    image: bike1img,
-    badge: '🏍️',
-    qrPosition: 'Fuel tank / handlebar',
+    cardBg: '#EAF3DE', accentColor: '#2ebd3a', iconBg: '#27500A', borderColor: '#92cc5a',
+    tag: 'QR Sticker', tagBg: '#C0DD97', tagColor: '#27500A',
+    titleColor: '#1a3d06', subColor: '#3B6D11', descColor: '#3B6D11',
+    image: bike1img, badge: '🏍️', qrPosition: 'Fuel tank / handlebar',
     features: ['Waterproof', 'Tamper-proof', 'UV-resistant'],
     stats: [
-      { icon: Clock, value: '< 3s', label: 'Alert' },
-      { icon: MapPin, value: 'Live', label: 'GPS' },
-      { icon: Bell, value: '24/7', label: 'Active' },
+      { icon: Clock,  value: '< 3s', label: 'Alert'  },
+      { icon: MapPin, value: 'Live',  label: 'GPS'    },
+      { icon: Bell,   value: '24/7',  label: 'Active' },
     ],
   },
   {
@@ -55,23 +36,15 @@ const USE_CASES = [
     category: 'TECH',
     qrSize: '3.5 cm QR Sticker',
     description: 'Discreet sticker for laptops & cameras. Lost device? Finder scans → instant location.',
-    cardBg: '#E6F1FB',
-    accentColor: '#1a6fbe',
-    iconBg: '#0B2545',
-    tag: 'QR Sticker',
-    tagBg: '#B5D4F4',
-    tagColor: '#0C447C',
-    titleColor: '#0C447C',
-    subColor: '#185FA5',
-    descColor: '#185FA5',
-    image: luggage,
-    badge: '💻',
-    qrPosition: 'On device / back cover',
+    cardBg: '#E6F1FB', accentColor: '#1a6fbe', iconBg: '#0B2545', borderColor: '#6aaae8',
+    tag: 'QR Sticker', tagBg: '#B5D4F4', tagColor: '#0C447C',
+    titleColor: '#062040', subColor: '#185FA5', descColor: '#185FA5',
+    image: luggage, badge: '💻', qrPosition: 'On device / back cover',
     features: ['Discreet', 'Strong adhesive', 'Device-safe'],
     stats: [
-      { icon: MapPin, value: 'Live', label: 'Location' },
-      { icon: Bell, value: 'Instant', label: 'Alert' },
-      { icon: Zap, value: '24/7', label: 'Secure' },
+      { icon: MapPin, value: 'Live',    label: 'Location' },
+      { icon: Bell,   value: 'Instant', label: 'Alert'    },
+      { icon: Zap,    value: '24/7',    label: 'Secure'   },
     ],
   },
   {
@@ -80,23 +53,15 @@ const USE_CASES = [
     category: 'PETS',
     qrSize: 'Collar QR Tag',
     description: 'Lightweight QR collar tag. Anyone scans → instant owner notification with GPS.',
-    cardBg: '#EAF3DE',
-    accentColor: '#2ebd3a',
-    iconBg: '#2ebd3a',
-    tag: 'Collar Tag',
-    tagBg: '#C0DD97',
-    tagColor: '#27500A',
-    titleColor: '#27500A',
-    subColor: '#3B6D11',
-    descColor: '#3B6D11',
-    image: petimg,
-    badge: '🐕',
-    qrPosition: 'On pet collar',
+    cardBg: '#EAF3DE', accentColor: '#2ebd3a', iconBg: '#27500A', borderColor: '#92cc5a',
+    tag: 'Collar Tag', tagBg: '#C0DD97', tagColor: '#27500A',
+    titleColor: '#1a3d06', subColor: '#3B6D11', descColor: '#3B6D11',
+    image: petimg, badge: '🐕', qrPosition: 'On pet collar',
     features: ['Lightweight', 'Weatherproof', 'Easy scan'],
     stats: [
-      { icon: MapPin, value: 'GPS', label: 'Per scan' },
-      { icon: Bell, value: 'Auto', label: 'Alert' },
-      { icon: Zap, value: '5+', label: 'Contacts' },
+      { icon: MapPin, value: 'GPS',  label: 'Per scan'  },
+      { icon: Bell,   value: 'Auto', label: 'Alert'     },
+      { icon: Zap,    value: '5+',   label: 'Contacts'  },
     ],
   },
   {
@@ -105,49 +70,32 @@ const USE_CASES = [
     category: 'SAFETY',
     qrSize: 'Hand Band / Shoulder',
     description: 'QR wristband for kids. Scan in crowds → parents alerted instantly with live GPS.',
-    cardBg: '#EEEDFE',
-    accentColor: '#534AB7',
-    iconBg: '#534AB7',
-    tag: 'Hand Band',
-    tagBg: '#CECBF6',
-    tagColor: '#26215C',
-    titleColor: '#26215C',
-    subColor: '#534AB7',
-    descColor: '#534AB7',
-    image: kidimg,
-    badge: '🧒',
-    qrPosition: 'Hand band / shoulder',
+    cardBg: '#EEEDFE', accentColor: '#534AB7', iconBg: '#3C3489', borderColor: '#9b93e8',
+    tag: 'Hand Band', tagBg: '#CECBF6', tagColor: '#26215C',
+    titleColor: '#1a1644', subColor: '#534AB7', descColor: '#534AB7',
+    image: kidimg, badge: '🧒', qrPosition: 'Hand band / shoulder',
     features: ['Soft band', 'No app needed', 'Instant alert'],
     stats: [
-      { icon: Bell, value: 'Instant', label: 'Parent' },
-      { icon: MapPin, value: 'Live', label: 'GPS' },
-      { icon: Zap, value: 'Quick', label: 'Scan' },
+      { icon: Bell,   value: 'Instant', label: 'Parent' },
+      { icon: MapPin, value: 'Live',    label: 'GPS'    },
+      { icon: Zap,    value: 'Quick',   label: 'Scan'   },
     ],
   },
   {
     icon: ScanLine,
-    title: 'Tags, Scanners & Cards',
+    title: 'Tags & ID Cards',
     category: 'OFFICE',
     qrSize: 'QR Identity Tag',
-    description: 'NFC cards & QR tags for employee IDs, student cards, and visitor badges.',
-    cardBg: '#E1F5EE',
-    accentColor: '#2ebd3a',
-    iconBg: '#2ebd3a',
-    tag: 'Smart Tag',
-    tagBg: '#9FE1CB',
-    tagColor: '#085041',
-    titleColor: '#085041',
-    subColor: '#0F6E56',
-    descColor: '#0F6E56',
-    imagePlaceholder: true,
-    placeholderIcon: '🏷️',
-    badge: '🏷️',
-    qrPosition: 'Tag / Card / Scanner',
-    features: ['NFC-ready', 'Multi-format', 'Instant scan'],
+    description: 'QR tags for employee IDs, student cards, and visitor badges — scan and identify instantly.',
+    cardBg: '#E1F5EE', accentColor: '#0F6E56', iconBg: '#085041', borderColor: '#3dba96',
+    tag: 'Smart Tag', tagBg: '#9FE1CB', tagColor: '#085041',
+    titleColor: '#043328', subColor: '#0F6E56', descColor: '#0F6E56',
+    image: idimg, badge: '🏷️', qrPosition: 'Tag / Card',
+    features: ['Multi-format', 'Instant scan', 'Reusable'],
     stats: [
-      { icon: ScanLine, value: 'NFC', label: 'Enabled' },
-      { icon: CreditCard, value: 'Card', label: 'Format' },
-      { icon: Zap, value: 'Fast', label: 'Access' },
+      { icon: ScanLine,   value: 'QR',   label: 'Enabled' },
+      { icon: CreditCard, value: 'Card',  label: 'Format'  },
+      { icon: Zap,        value: 'Fast',  label: 'Access'  },
     ],
   },
   {
@@ -156,365 +104,284 @@ const USE_CASES = [
     category: 'CARE',
     qrSize: 'Emergency QR ID',
     description: 'Emergency profile with medical info & family contacts — critical help at one scan.',
-    cardBg: '#EEEDFE',
-    accentColor: '#7F77DD',
-    iconBg: '#7F77DD',
-    tag: 'Senior Care',
-    tagBg: '#7F77DD',
-    tagColor: '#fff',
-    titleColor: '#26215C',
-    subColor: '#534AB7',
-    descColor: '#534AB7',
-    image: seniorimg,
-    badge: '👴',
-    qrPosition: 'Wristband / wallet card',
+    cardBg: '#EEEDFE', accentColor: '#7F77DD', iconBg: '#534AB7', borderColor: '#9b93e8',
+    tag: 'Senior Care', tagBg: '#534AB7', tagColor: '#fff',
+    titleColor: '#1a1644', subColor: '#534AB7', descColor: '#534AB7',
+    image: seniorimg, badge: '👴', qrPosition: 'Wristband / wallet card',
     isNew: true,
     features: ['Medical ID', 'Blood group', 'SOS alert'],
     stats: [
-      { icon: Zap, value: 'SOS', label: 'Support' },
-      { icon: Bell, value: '5', label: 'Family' },
-      { icon: MapPin, value: 'Quick', label: 'Access' },
+      { icon: Zap,    value: 'SOS',   label: 'Support' },
+      { icon: Bell,   value: '5',     label: 'Family'  },
+      { icon: MapPin, value: 'Quick', label: 'Access'  },
     ],
   },
 ]
 
-/* ─────────────────────────────────────────────
-   MAIN SECTION
-───────────────────────────────────────────── */
+/* ─────────────────────────── SECTION ─────────────────────────── */
 export default function UseCases() {
   return (
-    <section id="use-cases" style={{ background: '#f4f6f9', padding: '72px 0 80px' }}>
+    <section
+      id="use-cases"
+      style={{ background: '#f0f6f1', padding: '52px 0 60px' }}
+    >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=DM+Sans:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap');
 
-        /* ── Grid: always 3 columns ── */
+        /* ── Grid ── */
         .uc-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
           gap: 20px;
         }
-        @media (max-width: 900px) {
-          .uc-grid { grid-template-columns: repeat(2, 1fr); }
-        }
+        @media (max-width: 940px) { .uc-grid { grid-template-columns: repeat(2,1fr); } }
         @media (max-width: 580px) {
           .uc-grid {
-            display: flex;
-            overflow-x: auto;
-            scroll-snap-type: x mandatory;
-            -webkit-overflow-scrolling: touch;
-            gap: 14px;
-            padding-bottom: 10px;
-            scrollbar-width: none;
+            display: flex; overflow-x: auto;
+            scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+            gap: 14px; padding-bottom: 10px; scrollbar-width: none;
           }
           .uc-grid::-webkit-scrollbar { display: none; }
         }
 
         /* ── Card ── */
         .uc-card {
-          position: relative;
-          border-radius: 20px;
-          overflow: hidden;
-          border: 1px solid rgba(0,0,0,0.055);
-          box-shadow: 0 2px 6px rgba(0,0,0,0.04), 0 8px 22px rgba(0,0,0,0.06);
-          transition: transform 0.32s cubic-bezier(.22,.68,0,1.2),
-                      box-shadow 0.32s cubic-bezier(.22,.68,0,1.2);
-          display: flex;
-          flex-direction: column;
-          animation: fadeUp 0.55s ease both;
+          position: relative; border-radius: 20px; overflow: hidden;
+          display: flex; flex-direction: column;
+          border: 2px solid var(--uc-border);
+          outline: 1px solid rgba(255,255,255,0.55);
+          outline-offset: -3px;
+          box-shadow: 0 2px 4px rgba(0,0,0,0.05), 0 8px 24px rgba(0,0,0,0.08);
+          transition: transform 0.3s cubic-bezier(.22,.68,0,1.2),
+                      box-shadow 0.3s ease, border-color 0.25s ease;
+          animation: ucUp 0.5s ease both;
         }
         @media (max-width: 580px) {
           .uc-card { min-width: 268px; max-width: 268px; scroll-snap-align: start; flex-shrink: 0; }
         }
         .uc-card:hover {
-          transform: translateY(-8px) scale(1.014);
-          box-shadow: 0 4px 14px rgba(0,0,0,0.05), 0 24px 48px rgba(0,0,0,0.13);
+          transform: translateY(-8px) scale(1.013);
+          border-color: var(--uc-accent);
+          box-shadow: 0 4px 8px rgba(0,0,0,0.06), 0 20px 48px rgba(0,0,0,0.14);
         }
-        .uc-card:nth-child(1) { animation-delay: 0.04s; }
-        .uc-card:nth-child(2) { animation-delay: 0.10s; }
-        .uc-card:nth-child(3) { animation-delay: 0.16s; }
-        .uc-card:nth-child(4) { animation-delay: 0.22s; }
-        .uc-card:nth-child(5) { animation-delay: 0.28s; }
-        .uc-card:nth-child(6) { animation-delay: 0.34s; }
-        @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
+        .uc-card:nth-child(1){animation-delay:.04s} .uc-card:nth-child(2){animation-delay:.10s}
+        .uc-card:nth-child(3){animation-delay:.16s} .uc-card:nth-child(4){animation-delay:.22s}
+        .uc-card:nth-child(5){animation-delay:.28s} .uc-card:nth-child(6){animation-delay:.34s}
+        @keyframes ucUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
 
-        /* ── Accent bar ── */
-        .uc-accent-bar { height: 4px; width: 100%; flex-shrink: 0; }
-
-        /* ── Image ── */
+        /* ── Image block ── */
         .uc-img-wrap {
           position: relative;
-          height: 175px;
-          overflow: hidden;
-          flex-shrink: 0;
+          height: 210px;
+          overflow: hidden; flex-shrink: 0;
+          border-bottom: 2px solid var(--uc-border);
         }
         .uc-img {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          transition: transform 0.55s cubic-bezier(.25,.46,.45,.94);
+          width: 100%; height: 100%; object-fit: cover; display: block;
+          transition: transform 0.5s cubic-bezier(.25,.46,.45,.94);
         }
-        .uc-card:hover .uc-img { transform: scale(1.09); }
+        .uc-card:hover .uc-img { transform: scale(1.07); }
+        .uc-img-overlay { position: absolute; inset: 0; pointer-events: none; }
 
-        /* rich gradient overlay: darken bottom + subtle color tint */
-        .uc-overlay {
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
+        /* category chip on image */
+        .uc-cat-chip {
+          position: absolute; top: 11px; left: 11px;
+          background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
+          border: 1.5px solid rgba(0,0,0,0.09);
+          border-radius: 8px; padding: 4px 9px;
+          font-size: 8.5px; font-weight: 900; letter-spacing: 0.13em;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          text-transform: uppercase;
         }
 
-        .uc-placeholder {
-          width: 100%;
-          height: 100%;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 8px;
-          transition: transform 0.55s cubic-bezier(.25,.46,.45,.94);
-        }
-        .uc-card:hover .uc-placeholder { transform: scale(1.06); }
-
-        /* ── QR badge (pulsing) ── */
+        /* QR scan badge */
         .uc-qr-badge {
-          position: absolute;
-          bottom: 10px;
-          left: 10px;
-          background: rgba(255,255,255,0.94);
-          backdrop-filter: blur(10px);
-          -webkit-backdrop-filter: blur(10px);
-          border-radius: 10px;
-          padding: 5px 10px;
-          font-size: 9.5px;
-          font-weight: 700;
-          color: #2ebd3a;
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          border: 1px solid rgba(46,189,58,0.15);
-          box-shadow: 0 2px 10px rgba(0,0,0,0.12);
-          font-family: 'DM Sans', sans-serif;
-          animation: qrPulse 2.6s ease-in-out infinite;
+          position: absolute; bottom: 10px; left: 10px;
+          background: rgba(255,255,255,0.95);
+          border: 1.5px solid rgba(46,189,58,0.35);
+          border-radius: 8px; padding: 5px 10px;
+          display: flex; align-items: center; gap: 5px;
+          font-size: 9.5px; font-weight: 700; color: #157a24;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.13);
+          animation: ucQrPulse 2.8s ease-in-out infinite;
         }
-        @keyframes qrPulse {
-          0%,100% { box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
-          50%      { box-shadow: 0 3px 16px rgba(46,189,58,0.28); }
+        @keyframes ucQrPulse {
+          0%,100%{ box-shadow: 0 2px 10px rgba(0,0,0,0.13); }
+          50%    { box-shadow: 0 3px 16px rgba(46,189,58,0.32); }
         }
 
-        /* ── NEW badge ── */
+        /* NEW badge */
         .uc-new-badge {
-          position: absolute;
-          top: 10px;
-          right: 10px;
-          background: linear-gradient(135deg, #534AB7, #7F77DD);
-          color: #fff;
-          font-size: 8.5px;
-          font-weight: 800;
-          padding: 4px 10px;
-          border-radius: 100px;
-          letter-spacing: 0.07em;
-          font-family: 'Outfit', sans-serif;
-          box-shadow: 0 2px 8px rgba(83,74,183,0.4);
+          position: absolute; top: 11px; right: 11px;
+          background: linear-gradient(135deg,#4a41aa,#8b85e8);
+          color: #fff; font-size: 8px; font-weight: 900;
+          padding: 4px 10px; border-radius: 100px; letter-spacing: 0.1em;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          border: 1.5px solid rgba(255,255,255,0.28);
+          box-shadow: 0 3px 10px rgba(74,65,170,0.42);
         }
 
         /* ── Body ── */
         .uc-body {
-          padding: 13px 15px 15px;
-          display: flex;
-          flex-direction: column;
-          gap: 9px;
-          flex: 1;
+          padding: 12px 14px 14px;
+          display: flex; flex-direction: column; gap: 8px; flex: 1;
         }
 
-        .uc-category {
-          font-size: 8.5px;
-          font-weight: 800;
-          letter-spacing: 0.12em;
-          font-family: 'Outfit', sans-serif;
-          opacity: 0.6;
+        /* title row */
+        .uc-title-row {
+          display: flex; align-items: flex-start;
+          justify-content: space-between; gap: 8px;
+        }
+        .uc-title-left {
+          display: flex; gap: 9px; align-items: center; min-width: 0; flex: 1;
+        }
+        .uc-icon-box {
+          width: 36px; height: 36px; border-radius: 10px; flex-shrink: 0;
+          display: flex; align-items: center; justify-content: center;
+          border: 1.5px solid rgba(255,255,255,0.22);
+          box-shadow: 0 3px 8px rgba(0,0,0,0.22), 0 1px 0 rgba(255,255,255,0.12) inset;
+          transition: transform 0.28s cubic-bezier(.22,.68,0,1.5);
+        }
+        .uc-card:hover .uc-icon-box { transform: translateY(-3px) scale(1.1); }
+
+        .uc-name {
+          margin: 0; font-size: 15px; font-weight: 800; line-height: 1.15;
+          letter-spacing: -0.02em;
+          font-family: 'Instrument Serif', serif;
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+        }
+        .uc-sub {
+          font-size: 10px; font-weight: 600; margin-top: 2px;
+          font-family: 'Plus Jakarta Sans', sans-serif; opacity: 0.75;
         }
 
-        .uc-top-row {
-          display: flex;
-          align-items: flex-start;
-          justify-content: space-between;
-          gap: 6px;
+        .uc-tag-pill {
+          font-size: 9px; font-weight: 800; padding: 4px 10px;
+          border-radius: 100px; white-space: nowrap; flex-shrink: 0;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          letter-spacing: 0.04em;
+          border: 2px solid transparent;
         }
 
-        /* ── Icon (float on hover) ── */
-        .uc-icon-wrap {
-          width: 35px;
-          height: 35px;
-          border-radius: 10px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          flex-shrink: 0;
-          box-shadow: 0 3px 10px rgba(0,0,0,0.18);
-          transition: transform 0.3s cubic-bezier(.22,.68,0,1.5);
-        }
-        .uc-card:hover .uc-icon-wrap {
-          transform: translateY(-4px) scale(1.1);
-        }
+        /* thin rule */
+        .uc-rule { height: 1px; border: none; opacity: 0.2; flex-shrink: 0; }
 
-        .uc-title-block { flex: 1; min-width: 0; }
-
+        /* description */
         .uc-desc {
-          margin: 0;
-          font-size: 12px;
-          line-height: 1.62;
-          letter-spacing: -0.01em;
-          font-family: 'DM Sans', sans-serif;
+          margin: 0; font-size: 12px; line-height: 1.65; font-weight: 500;
+          font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        .uc-pills {
-          display: flex;
-          flex-wrap: wrap;
-          gap: 4px;
-        }
+        /* pills */
+        .uc-pills { display: flex; flex-wrap: wrap; gap: 4px; }
         .uc-pill {
-          font-size: 9.5px;
-          font-weight: 700;
-          padding: 3px 8px;
-          border-radius: 999px;
-          font-family: 'DM Sans', sans-serif;
+          font-size: 9px; font-weight: 700; padding: 3px 9px; border-radius: 999px;
+          font-family: 'Plus Jakarta Sans', sans-serif;
+          border: 1.5px solid transparent;
         }
 
-        /* ── Glass stats ── */
+        /* stats */
         .uc-stats {
-          display: flex;
-          gap: 2px;
-          border-radius: 12px;
-          padding: 8px 5px;
-          backdrop-filter: blur(12px);
-          -webkit-backdrop-filter: blur(12px);
-          background: rgba(255,255,255,0.65);
-          border: 1px solid rgba(255,255,255,0.85);
+          display: flex; border-radius: 12px;
+          background: rgba(255,255,255,0.7);
+          border: 2px solid rgba(255,255,255,0.88);
+          box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+          overflow: hidden;
         }
-        .uc-stat-cell {
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 2px;
+        .uc-stat {
+          flex: 1; display: flex; flex-direction: column;
+          align-items: center; justify-content: center;
+          gap: 1px; padding: 8px 4px;
         }
-        .uc-stat-divider {
-          width: 1px;
-          background: rgba(0,0,0,0.06);
-          border-radius: 1px;
-          align-self: stretch;
-          margin: 2px 0;
+        .uc-stat + .uc-stat { border-left: 1.5px solid rgba(0,0,0,0.08); }
+        .uc-stat-val {
+          font-size: 13px; font-weight: 900; line-height: 1;
+          font-family: 'Instrument Serif', serif;
+        }
+        .uc-stat-lbl {
+          font-size: 7px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em;
+          font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
-        /* ── Footer ── */
+        /* footer */
         .uc-footer {
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 6px;
-          margin-top: auto;
+          display: flex; align-items: center;
+          justify-content: space-between; gap: 6px; margin-top: auto;
         }
-
-        .uc-finder {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          font-size: 10.5px;
-          font-weight: 700;
-          font-family: 'DM Sans', sans-serif;
+        .uc-live {
+          display: flex; align-items: center; gap: 5px;
+          font-size: 10px; font-weight: 700;
+          font-family: 'Plus Jakarta Sans', sans-serif;
         }
-
         .uc-dot {
-          width: 6px;
-          height: 6px;
-          border-radius: 50%;
-          background: #2ebd3a;
-          flex-shrink: 0;
-          box-shadow: 0 0 0 2px rgba(46,189,58,0.2);
+          width: 6px; height: 6px; border-radius: 50%; background: #2ebd3a;
+          box-shadow: 0 0 0 2.5px rgba(46,189,58,0.22), 0 0 0 4.5px rgba(46,189,58,0.08);
         }
+        .uc-btn {
+          display: inline-flex; align-items: center; gap: 4px;
+          font-size: 10.5px; font-weight: 800; padding: 6px 13px; border-radius: 999px;
+          cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+          letter-spacing: 0.02em;
+          border: 2px solid rgba(0,0,0,0.12);
+          background: rgba(255,255,255,0.82);
+          box-shadow: 0 2px 5px rgba(0,0,0,0.07);
+          transition: all 0.2s ease;
+        }
+        .uc-btn:hover { background:#fff; gap:7px; box-shadow:0 4px 12px rgba(0,0,0,0.12); border-color:rgba(0,0,0,0.2); }
 
-        /* ── Learn btn (pill glass) ── */
-        .uc-learn-btn {
-          display: inline-flex;
-          align-items: center;
-          gap: 4px;
-          font-size: 11px;
-          font-weight: 800;
-          background: rgba(255,255,255,0.72);
-          border: 1px solid rgba(0,0,0,0.08);
-          padding: 6px 13px;
-          border-radius: 999px;
-          cursor: pointer;
-          transition: all 0.22s ease;
-          font-family: 'Outfit', sans-serif;
-          backdrop-filter: blur(6px);
-          -webkit-backdrop-filter: blur(6px);
-        }
-        .uc-learn-btn:hover {
-          gap: 7px;
-          background: rgba(255,255,255,0.95);
-          box-shadow: 0 3px 12px rgba(0,0,0,0.1);
-        }
-
-        /* ── Mobile hint ── */
-        .uc-scroll-hint {
-          display: none;
-          align-items: center;
-          gap: 5px;
-          font-size: 11px;
-          color: #999;
-          font-family: 'DM Sans', sans-serif;
-          margin-bottom: 10px;
-        }
-        @media (max-width: 580px) { .uc-scroll-hint { display: flex; } }
+        /* mobile hint */
+        .uc-swipe { display:none; align-items:center; gap:5px; font-size:11px; color:#999; margin-bottom:10px; font-family:'Plus Jakarta Sans',sans-serif; }
+        @media (max-width:580px){ .uc-swipe{ display:flex; } }
       `}</style>
 
-      <div style={{ maxWidth: 1160, margin: '0 auto', padding: '0 24px' }}>
+      <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 20px' }}>
 
-        {/* ── Header ── */}
-        <div style={{ textAlign: 'center', marginBottom: 42 }}>
+        {/* Header */}
+        <div style={{ textAlign: 'center', marginBottom: 36 }}>
           <div style={{
             display: 'inline-flex', alignItems: 'center', gap: 7,
             padding: '5px 16px', borderRadius: 100,
-            background: '#e8f8eb', border: '1px solid #c6edd0', marginBottom: 14,
+            background: '#daf2e1', border: '1.5px solid #82cc96', marginBottom: 14,
+            boxShadow: '0 2px 8px rgba(46,189,58,0.1)',
           }}>
-            <ShieldCheck size={13} color="#2ebd3a" />
+            <ShieldCheck size={13} color="#157a24" />
             <span style={{
-              fontSize: 11.5, fontWeight: 700, color: '#2ebd3a',
-              fontFamily: "'Outfit', sans-serif", letterSpacing: '0.03em',
+              fontSize: 11, fontWeight: 800, color: '#157a24',
+              fontFamily: "'Plus Jakarta Sans', sans-serif", letterSpacing: '0.07em',
             }}>
               Real-World Use Cases
             </span>
           </div>
 
           <h2 style={{
-            fontSize: 'clamp(24px, 3.2vw, 38px)', fontWeight: 900, color: '#0B2545',
-            margin: '0 0 10px', lineHeight: 1.12,
-            fontFamily: "'Outfit', sans-serif", letterSpacing: '-0.025em',
+            fontSize: 'clamp(26px, 3.5vw, 44px)', fontWeight: 400, color: '#0B2545',
+            margin: '0 0 10px', lineHeight: 1.1,
+            fontFamily: "'Instrument Serif', serif", letterSpacing: '-0.01em',
+            fontStyle: 'italic',
           }}>
             Protect Everything You Love
           </h2>
 
           <p style={{
-            color: '#4b7a62', fontSize: 14.5, maxWidth: 500, margin: '0 auto',
-            lineHeight: 1.72, fontFamily: "'DM Sans', sans-serif",
+            color: '#3a6b50', fontSize: 14.5, maxWidth: 480, margin: '0 auto',
+            lineHeight: 1.72, fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 500,
           }}>
-            Smart QR safety tags for bikes, laptops, pets, children,
-            tags &amp; scanners, and senior citizens.
+            Smart QR safety tags for bikes, laptops, pets, children, ID cards, and senior citizens.
           </p>
         </div>
 
-        {/* ── Mobile swipe hint ── */}
-        <div className="uc-scroll-hint">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#aaa" strokeWidth="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        {/* Swipe hint */}
+        <div className="uc-swipe">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#aaa" strokeWidth="2">
+            <path d="M5 12h14M12 5l7 7-7 7" />
+          </svg>
           Swipe to explore
         </div>
 
-        {/* ── 3-column Grid ── */}
+        {/* Grid */}
         <div className="uc-grid">
-          {USE_CASES.map((uc) => <UseCard key={uc.title} {...uc} />)}
+          {USE_CASES.map(uc => <UCCard key={uc.title} {...uc} />)}
         </div>
 
       </div>
@@ -522,146 +389,108 @@ export default function UseCases() {
   )
 }
 
-/* ─────────────────────────────────────────────
-   CARD
-───────────────────────────────────────────── */
-function UseCard({
+/* ─────────────────────────── CARD ─────────────────────────── */
+function UCCard({
   icon: Icon, title, category, qrSize, description,
-  cardBg, accentColor, iconBg, tag, tagBg, tagColor,
-  titleColor, subColor, descColor,
-  image, imagePlaceholder, placeholderIcon,
-  badge, qrPosition, isNew, features, stats,
+  cardBg, accentColor, iconBg, borderColor,
+  tag, tagBg, tagColor, titleColor, subColor, descColor,
+  image, badge, qrPosition, isNew, features, stats,
 }) {
   return (
-    <div className="uc-card" style={{ background: cardBg }}>
-
-      {/* Accent bar */}
-      <div className="uc-accent-bar" style={{ background: accentColor }} />
-
-      {/* Image */}
+    <div
+      className="uc-card"
+      style={{
+        background: cardBg,
+        '--uc-border': borderColor,
+        '--uc-accent': accentColor,
+      }}
+    >
+      {/* ── Image ── */}
       <div className="uc-img-wrap">
-        {imagePlaceholder ? (
-          <div
-            className="uc-placeholder"
-            style={{
-              background: `linear-gradient(145deg, ${cardBg} 0%, ${iconBg}30 100%)`,
-            }}
-          >
-            <span style={{ fontSize: 52, lineHeight: 1, filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.15))' }}>
-              {placeholderIcon}
-            </span>
-            <span style={{
-              fontSize: 10, fontWeight: 700, color: subColor,
-              fontFamily: "'Outfit', sans-serif", opacity: 0.5,
-            }}>
-              {title}
-            </span>
-          </div>
-        ) : (
-          <img src={image} alt={title} className="uc-img" />
-        )}
-
-        {/* Rich overlay: dark gradient at bottom + accent color tint at top */}
+        <img src={image} alt={title} className="uc-img" />
         <div
-          className="uc-overlay"
+          className="uc-img-overlay"
           style={{
-            background: `linear-gradient(
-              to bottom,
-              ${accentColor}18 0%,
-              transparent 38%,
-              rgba(0,0,0,0.08) 65%,
-              rgba(0,0,0,0.32) 100%
-            )`,
+            background: `linear-gradient(to bottom,
+              ${accentColor}10 0%,
+              transparent 30%,
+              rgba(0,0,0,0.04) 60%,
+              rgba(0,0,0,0.22) 100%)`,
           }}
         />
-
-        {isNew && <div className="uc-new-badge">NEW</div>}
-        <div className="uc-qr-badge"><QRIcon />{qrPosition}</div>
+        {/* category chip top-left */}
+        <div className="uc-cat-chip" style={{ color: accentColor }}>
+          {category}
+        </div>
+        {isNew && <div className="uc-new-badge">✦ NEW</div>}
+        <div className="uc-qr-badge">
+          <QRIcon />
+          {qrPosition}
+        </div>
       </div>
 
-      {/* Body */}
+      {/* ── Body ── */}
       <div className="uc-body">
 
-        {/* Category */}
-        <div className="uc-category" style={{ color: accentColor }}>{category}</div>
-
-        {/* Icon + Title + Tag */}
-        <div className="uc-top-row">
-          <div style={{ display: 'flex', gap: 8, alignItems: 'flex-start', minWidth: 0 }}>
-            <div className="uc-icon-wrap" style={{ background: iconBg }}>
+        {/* Title row */}
+        <div className="uc-title-row">
+          <div className="uc-title-left">
+            <div className="uc-icon-box" style={{ background: iconBg }}>
               <Icon size={16} color="#fff" />
             </div>
-            <div className="uc-title-block">
-              <h3 style={{
-                margin: 0, fontSize: 13.5, fontWeight: 800, color: titleColor,
-                fontFamily: "'Outfit', sans-serif", lineHeight: 1.2,
-                letterSpacing: '-0.02em', whiteSpace: 'nowrap',
-                overflow: 'hidden', textOverflow: 'ellipsis',
-              }}>
-                {title}
-              </h3>
-              <div style={{
-                fontSize: 10, color: subColor, marginTop: 2,
-                fontWeight: 600, fontFamily: "'DM Sans', sans-serif",
-              }}>
-                {badge} {qrSize}
-              </div>
+            <div style={{ minWidth: 0, flex: 1 }}>
+              <h3 className="uc-name" style={{ color: titleColor }}>{title}</h3>
+              <div className="uc-sub" style={{ color: subColor }}>{badge} {qrSize}</div>
             </div>
           </div>
-          <span style={{
-            fontSize: 9.5, fontWeight: 800, padding: '3px 9px', borderRadius: 100,
-            background: tagBg, color: tagColor, whiteSpace: 'nowrap',
-            fontFamily: "'Outfit', sans-serif", flexShrink: 0,
-          }}>
+          <span
+            className="uc-tag-pill"
+            style={{ background: tagBg, color: tagColor, borderColor: `${tagColor}50` }}
+          >
             {tag}
           </span>
         </div>
 
+        {/* Rule */}
+        <hr className="uc-rule" style={{ background: accentColor }} />
+
         {/* Description */}
         <p className="uc-desc" style={{ color: descColor }}>{description}</p>
 
-        {/* Pills */}
+        {/* Feature pills */}
         <div className="uc-pills">
-          {features.map((f) => (
-            <span key={f} className="uc-pill" style={{ background: tagBg, color: tagColor }}>{f}</span>
+          {features.map(f => (
+            <span
+              key={f}
+              className="uc-pill"
+              style={{ background: tagBg, color: tagColor, borderColor: `${tagColor}40` }}
+            >
+              {f}
+            </span>
           ))}
         </div>
 
-        {/* Glass stats with dividers */}
+        {/* Stats */}
         <div className="uc-stats">
-          {stats.map((s, i) => {
+          {stats.map(s => {
             const SI = s.icon
             return (
-              <>
-                {i > 0 && <div key={`div-${i}`} className="uc-stat-divider" />}
-                <div key={i} className="uc-stat-cell">
-                  <SI size={10} color={iconBg} />
-                  <span style={{
-                    fontSize: 12, fontWeight: 900, color: titleColor,
-                    fontFamily: "'Outfit', sans-serif", letterSpacing: '-0.02em',
-                  }}>
-                    {s.value}
-                  </span>
-                  <span style={{
-                    fontSize: 7.5, color: subColor, fontWeight: 700,
-                    textTransform: 'uppercase', letterSpacing: '0.06em',
-                    fontFamily: "'DM Sans', sans-serif",
-                  }}>
-                    {s.label}
-                  </span>
-                </div>
-              </>
+              <div key={s.label} className="uc-stat">
+                <SI size={10} color={iconBg} />
+                <span className="uc-stat-val" style={{ color: titleColor }}>{s.value}</span>
+                <span className="uc-stat-lbl" style={{ color: subColor }}>{s.label}</span>
+              </div>
             )
           })}
         </div>
 
         {/* Footer */}
         <div className="uc-footer">
-          <div className="uc-finder" style={{ color: subColor }}>
+          <div className="uc-live" style={{ color: subColor }}>
             <span className="uc-dot" />
             Finder-friendly
           </div>
-          <button type="button" className="uc-learn-btn" style={{ color: titleColor }}>
+          <button type="button" className="uc-btn" style={{ color: titleColor }}>
             Learn more <ArrowUpRight size={11} />
           </button>
         </div>
@@ -671,13 +500,11 @@ function UseCard({
   )
 }
 
-/* ─────────────────────────────────────────────
-   QR ICON
-───────────────────────────────────────────── */
+/* ─────────────────────────── QR ICON ─────────────────────────── */
 function QRIcon() {
   return (
-    <svg width="10" height="10" viewBox="0 0 24 24" fill="none"
-      stroke="#2ebd3a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <svg width="11" height="11" viewBox="0 0 24 24" fill="none"
+      stroke="#157a24" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
       <rect x="3" y="3" width="7" height="7" rx="1" />
       <rect x="14" y="3" width="7" height="7" rx="1" />
       <rect x="3" y="14" width="7" height="7" rx="1" />

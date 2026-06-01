@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function QRCodeCard() {
+  const navigate = useNavigate();
   const [hovered, setHovered] = useState(false);
 
   const formUrl =
@@ -311,10 +313,10 @@ export default function QRCodeCard() {
           </div>
 
           {/* CTA */}
-          <a href={formUrl} target="_blank" rel="noopener noreferrer" className="qr-cta">
+          <button onClick={() => navigate("/preregister")} className="qr-cta" style={{ border: "none", cursor: "pointer" }}>
             Open Verification Form
             <span className="qr-cta-arrow">→</span>
-          </a>
+          </button>
 
           {/* Footer */}
           <div className="qr-footer">

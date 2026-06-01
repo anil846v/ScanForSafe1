@@ -62,6 +62,7 @@ export default function Footer() {
     { label: "Features", to: "/features" },
     { label: "Use Cases", to: "/use-cases" },
     { label: "How It Works", to: "/how-it-works" },
+    { label: "Franchise", to: "/franchise" },
     { label: "Contact", to: "/contact" }
   ];
 
