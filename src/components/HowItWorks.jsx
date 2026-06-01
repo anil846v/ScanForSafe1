@@ -694,6 +694,6 @@ export default function HowItWorks() {
         @keyframes waveBar      { from{transform:scaleY(0.3)} to{transform:scaleY(1)} }
       `}</style>
     </div>
-    </>
+ 
   );
 }
