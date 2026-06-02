@@ -1036,6 +1036,22 @@ export default function ScanForSafeHero() {
 
           </div>
         </div>
+
+        {/* TICKER */}
+        <div className="sfs-ticker">
+          <div className="sfs-ticker-inner">
+            <div className="sfs-ticker-label">Live Updates</div>
+            <div className="sfs-ticker-track">
+              {tickerAll.map((item, i) => (
+                <div key={i} className="sfs-ti">
+                  {item}
+                  {i < tickerAll.length - 1 && <div className="sfs-td" />}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
       </div>
     </>
   );
