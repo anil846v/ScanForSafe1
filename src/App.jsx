@@ -24,6 +24,11 @@ export default function App() {
   const isLoginPage = location.pathname === '/login'
   const [showPopup, setShowPopup] = useState(false)
 
+  // Scroll to top of page on route change
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [location.pathname])
+
   useEffect(() => {
     // Show popup every time the website initially opens or loads
     const timer = setTimeout(() => {

@@ -8,6 +8,7 @@ export default function ReferralSection() {
       step: "01",
       title: "Share Your Link",
       desc: "Get your unique referral link from your customer dashboard and share it with friends or family.",
+      mobileDesc: "Get your unique referral link and share it with your loved ones.",
       color: "#0088ff",
       lightColor: "rgba(0,136,255,0.06)",
       hoverBg: "rgba(0,136,255,0.12)",
@@ -26,6 +27,7 @@ export default function ReferralSection() {
       step: "02",
       title: "Friends Activate Tags",
       desc: "Your friends purchase and activate any ScanForSafe smart decal, key tag, or safety wristband.",
+      mobileDesc: "They purchase and activate any ScanForSafe product.",
       color: "#9d00ff",
       lightColor: "rgba(157,0,255,0.06)",
       hoverBg: "rgba(157,0,255,0.12)",
@@ -46,6 +48,7 @@ export default function ReferralSection() {
       step: "03",
       title: "Earn Protection Cash",
       desc: "Get ₹250 cash commission or premium subscription extensions credited directly to your wallet.",
+      mobileDesc: "You earn cashback or premium benefits credited directly to your wallet.",
       color: "#00c853",
       lightColor: "rgba(0,200,83,0.06)",
       hoverBg: "rgba(0,200,83,0.12)",
@@ -244,8 +247,63 @@ export default function ReferralSection() {
           gap: 6px;
         }
 
+        .ref-desktop-subtext { display: block; }
+        .ref-mobile-subtext { display: none; }
+        .ref-desktop-desc { display: block; }
+        .ref-mobile-desc { display: none; }
+
         @media (max-width: 760px) {
-          .ref-grid { grid-template-columns: 1fr; max-width: 420px; }
+          .ref-desktop-subtext { display: none !important; }
+          .ref-mobile-subtext { display: block !important; margin: 0 auto 24px !important; max-width: 460px; padding: 0 16px; }
+          .ref-desktop-desc { display: none !important; }
+          .ref-mobile-desc { display: block !important; }
+          .ref-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+            padding: 0 16px !important;
+            max-width: 500px !important;
+            margin-bottom: 24px !important;
+          }
+          .ref-card {
+            padding: 20px 14px 22px !important;
+            border-radius: 18px !important;
+          }
+          .ref-card:nth-child(3) {
+            grid-column: span 2 !important;
+            max-width: 100% !important;
+          }
+          .ref-icon-ring {
+            width: 44px !important;
+            height: 44px !important;
+            margin-bottom: 12px !important;
+          }
+          .ref-icon-ring svg {
+            width: 22px !important;
+            height: 22px !important;
+          }
+          .ref-card-title {
+            font-size: 13px !important;
+            margin-bottom: 6px !important;
+          }
+          .ref-card-desc {
+            font-size: 10.5px !important;
+            line-height: 1.45 !important;
+          }
+          .ref-step-num {
+            top: 10px !important;
+            right: 12px !important;
+            font-size: 9px !important;
+          }
+          .ref-cta-btn {
+            width: 100% !important;
+            justify-content: center !important;
+            background: #2ebd3a !important;
+            box-shadow: 0 4px 14px rgba(46, 189, 58, 0.25) !important;
+            border-radius: 12px !important;
+          }
+          .ref-cta-btn:hover {
+            background: #27a231 !important;
+          }
         }
         @media (max-width: 480px) {
           .ref-cta-btn { width: 100%; justify-content: center; }
@@ -274,11 +332,17 @@ export default function ReferralSection() {
           <span className="ref-green">Protect Lives</span>
         </h2>
 
-        {/* Subtext */}
-        <p className="ref-subtext">
+        {/* Subtext - Desktop */}
+        <p className="ref-subtext ref-desktop-subtext">
           Share your unique ScanForSafe referral link with friends and family. Help them secure their vehicles,
           bikes, senior citizens, and valuables with smart emergency protection tags, while earning direct
           commissions credited instantly to your wallet.
+        </p>
+
+        {/* Subtext - Mobile */}
+        <p className="ref-subtext ref-mobile-subtext">
+          Share your unique ScanForSafe referral link with friends and family. Help them secure their vehicles,
+          bikes, senior citizens, and valuables.
         </p>
 
         {/* Step cards */}
@@ -297,7 +361,8 @@ export default function ReferralSection() {
               </div>
 
               <h3 className="ref-card-title">{s.title}</h3>
-              <p className="ref-card-desc">{s.desc}</p>
+              <p className="ref-card-desc ref-desktop-desc">{s.desc}</p>
+              <p className="ref-card-desc ref-mobile-desc">{s.mobileDesc}</p>
 
               <div style={{
                 position: 'absolute',
@@ -311,7 +376,7 @@ export default function ReferralSection() {
         </div>
 
         {/* CTA */}
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, maxWidth: 460, margin: '0 auto' }}>
           <button className="ref-cta-btn" onClick={() => navigate('/qr-form')}>
             Get Your Referral Code
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">

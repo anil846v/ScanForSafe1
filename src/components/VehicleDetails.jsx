@@ -31,6 +31,17 @@ function AnimatedItem({ children, delay = 0, visible, style = {} }) {
 export default function VehicleDetails() {
   const [sectionRef, visible] = useInView(0.1)
 
+  const mobileFeatures = [
+    { icon: Zap,          label: 'Instant Scan',  desc: 'Under 2 seconds',      color: '#f97316', bg: '#fff7ed' },
+    { icon: Wifi,         label: 'Always Online', desc: '99.9% uptime',         color: '#0891b2', bg: '#ecfeff' },
+    { icon: Lock,         label: 'Encrypted',     desc: 'Bank-level security',  color: '#7c3aed', bg: '#f5f3ff' },
+    { icon: Phone,        label: 'Multi-channel', desc: 'App · SMS · WhatsApp', color: '#2ebd3a', bg: '#e8f8eb' },
+    { icon: Car,          label: 'Vehicle Info',  desc: 'All details in one scan', color: '#2ebd3a', bg: '#e8f8eb' },
+    { icon: Navigation,   label: 'GPS Tracking',  desc: 'Real-time location',   color: '#0891b2', bg: '#ecfeff' },
+    { icon: Bell,         label: 'Alert System',  desc: 'Instant notifications', color: '#f97316', bg: '#fff7ed' },
+    { icon: ShieldCheck,  label: 'Security',      desc: 'Enterprise grade',     color: '#7c3aed', bg: '#f5f3ff' },
+  ]
+
   const highlights = [
     { icon: Zap,   label: 'Instant Scan',  desc: 'Under 2 seconds',      color: '#f97316', bg: '#fff7ed' },
     { icon: Wifi,  label: 'Always Online', desc: '99.9% uptime',         color: '#0891b2', bg: '#ecfeff' },
@@ -82,6 +93,48 @@ export default function VehicleDetails() {
         }
         .highlight-card:hover { transform: translateY(-5px) !important; }
         .feature-card:hover .card-top-line { width: 100% !important; }
+
+        .vd-mobile-grid {
+          display: none;
+        }
+        .vd-mobile-btn {
+          display: none;
+        }
+
+        @media (max-width: 768px) {
+          .vd-desktop-highlights, .vd-desktop-cards {
+            display: none !important;
+          }
+          .vd-mobile-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+            margin-bottom: 24px !important;
+          }
+          .vd-mobile-btn {
+            display: flex !important;
+            width: 100% !important;
+            background: #2ebd3a !important;
+            color: #ffffff !important;
+            font-family: 'DM Sans', sans-serif !important;
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            padding: 14px 20px !important;
+            border-radius: 12px !important;
+            border: none !important;
+            cursor: pointer !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            box-shadow: 0 4px 14px rgba(46, 189, 58, 0.25) !important;
+            transition: all 0.2s ease !important;
+            text-decoration: none !important;
+          }
+          .vd-mobile-btn:hover {
+            background: #27a231 !important;
+            box-shadow: 0 6px 18px rgba(46, 189, 58, 0.35) !important;
+          }
+        }
       `}</style>
 
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
@@ -115,7 +168,7 @@ export default function VehicleDetails() {
         </div>
 
         {/* ── HIGHLIGHT STRIP ── */}
-        <div style={{
+        <div className="vd-desktop-highlights" style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))',
           gap: 14,
@@ -159,7 +212,7 @@ export default function VehicleDetails() {
         </div>
 
         {/* ── 4 FEATURE CARDS ── */}
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(265px,1fr))', gap: 20 }}>
+        <div className="vd-desktop-cards" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(265px,1fr))', gap: 20 }}>
           {cards.map(({ icon: Icon, title, color, bg, badge, badgeColor, badgeBg, items }, i) => (
             <AnimatedItem key={title} visible={visible} delay={560 + i * 100}>
               <div
@@ -247,6 +300,48 @@ export default function VehicleDetails() {
             </AnimatedItem>
           ))}
         </div>
+
+        {/* ── MOBILE GRID & CTA (MOBILE ONLY) ── */}
+        <div className="vd-mobile-grid">
+          {mobileFeatures.map(({ icon: Icon, label, desc, color, bg }) => (
+            <div
+              key={label}
+              className="vd-mobile-card"
+              style={{
+                background: '#ffffff',
+                border: '1.5px solid #e5e7eb',
+                borderRadius: 16,
+                padding: '16px 14px',
+                display: 'flex',
+                flexDirection: 'column',
+                gap: 8,
+                position: 'relative',
+                overflow: 'hidden',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.02)',
+              }}
+            >
+              <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 3, background: color, borderRadius: '16px 0 0 16px' }} />
+              <div style={{
+                width: 36, height: 36, borderRadius: 10, background: bg,
+                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                boxShadow: `0 2px 6px ${color}15`,
+              }}>
+                <Icon size={18} color={color} />
+              </div>
+              <div>
+                <h4 style={{ margin: '0 0 2px', fontSize: 13, fontWeight: 800, color: '#0B2545', fontFamily: "'Sora', sans-serif" }}>{label}</h4>
+                <p style={{ margin: 0, fontSize: 11, color: '#64748b', fontWeight: 500, lineHeight: 1.3, fontFamily: "'DM Sans', sans-serif" }}>{desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <button type="button" className="vd-mobile-btn">
+          View Vehicle Details
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </button>
 
       </div>
     </section>

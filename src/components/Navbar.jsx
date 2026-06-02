@@ -572,6 +572,182 @@ export default function Navbar() {
         @media (max-width: 380px) {
           .sfs-wordmark-secondary { display: none; }
         }
+
+        /* ═══════════════════════════════════════
+           MOBILE MENU DRAWER
+        ═══════════════════════════════════════ */
+        .sfs-drawer-overlay {
+          position: fixed;
+          inset: 0;
+          z-index: 100000;
+          background: rgba(11, 37, 69, 0);
+          backdrop-filter: blur(0px);
+          -webkit-backdrop-filter: blur(0px);
+          pointer-events: none;
+          transition: background 0.35s ease, backdrop-filter 0.35s ease;
+        }
+
+        .sfs-drawer-overlay.open {
+          background: rgba(11, 37, 69, 0.45);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
+          pointer-events: auto;
+        }
+
+        .sfs-drawer {
+          position: absolute;
+          top: 0;
+          right: 0;
+          bottom: 0;
+          width: min(80vw, 320px);
+          background: rgba(255, 255, 255, 0.98);
+          box-shadow: -10px 0 40px rgba(6, 78, 59, 0.15);
+          display: flex;
+          flex-direction: column;
+          padding: 24px;
+          transform: translateX(100%);
+          transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .sfs-drawer-overlay.open .sfs-drawer {
+          transform: translateX(0);
+        }
+
+        .sfs-drawer-header {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          margin-bottom: 32px;
+          padding-bottom: 16px;
+          border-bottom: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .sfs-drawer-logo {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        .sfs-drawer-logo-img {
+          width: 32px;
+          height: 32px;
+          object-fit: contain;
+        }
+
+        .sfs-drawer-brand {
+          font-family: 'Outfit', sans-serif;
+          font-size: 1.1rem;
+          font-weight: 900;
+          color: #0f172a;
+          letter-spacing: -.03em;
+        }
+
+        .sfs-drawer-brand .accent {
+          color: #16a34a;
+        }
+
+        .sfs-drawer-close {
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          background: #f1f5f9;
+          border: 1px solid #e2e8f0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 14px;
+          color: #64748b;
+          cursor: pointer;
+          transition: all 0.2s ease;
+        }
+
+        .sfs-drawer-close:hover {
+          background: #fee2e2;
+          border-color: #fca5a5;
+          color: #dc2626;
+          transform: rotate(90deg);
+        }
+
+        .sfs-drawer-links {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          margin-bottom: auto;
+        }
+
+        .sfs-drawer-link {
+          font-size: 15px;
+          font-weight: 600;
+          color: #475569;
+          text-decoration: none;
+          padding: 12px 16px;
+          border-radius: 10px;
+          transition: all 0.2s ease;
+          display: block;
+        }
+
+        .sfs-drawer-link:hover {
+          color: #15803d;
+          background: #e8f8eb;
+          padding-left: 20px;
+        }
+
+        .sfs-drawer-link.active {
+          color: #15803d;
+          background: #e8f8eb;
+          font-weight: 700;
+        }
+
+        .sfs-drawer-actions {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          margin-top: 32px;
+          padding-top: 20px;
+          border-top: 1px solid rgba(226, 232, 240, 0.8);
+        }
+
+        .sfs-drawer-login {
+          height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 10px;
+          text-decoration: none;
+          font-size: 14px;
+          font-weight: 700;
+          color: #15803d;
+          border: 1.5px solid rgba(22, 163, 74, 0.3);
+          background: transparent;
+          transition: all 0.22s ease;
+        }
+
+        .sfs-drawer-login:hover {
+          background: #e8f8eb;
+        }
+
+        .sfs-drawer-prereg {
+          height: 44px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+          border-radius: 10px;
+          background: #16a34a;
+          color: #fff;
+          border: none;
+          cursor: pointer;
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 14px;
+          font-weight: 700;
+          box-shadow: 0 4px 16px rgba(22, 163, 74, 0.25);
+          transition: all 0.22s ease;
+          width: 100%;
+        }
+
+        .sfs-drawer-prereg:hover {
+          background: #15803d;
+        }
       `}</style>
 
       <header className={`sfs-nav ${scrolled ? "scrolled" : ""}`}>
@@ -685,6 +861,42 @@ export default function Navbar() {
           </button>
         </div>
       </header>
+
+      {/* ── MOBILE MENU DRAWER ── */}
+      <div className={`sfs-drawer-overlay ${mobileOpen ? "open" : ""}`} onClick={() => setMobileOpen(false)}>
+        <div className="sfs-drawer" onClick={(e) => e.stopPropagation()}>
+          <div className="sfs-drawer-header">
+            <div className="sfs-drawer-logo">
+              <img src="/logo.png" alt="ScanForSafe" className="sfs-drawer-logo-img" />
+              <div className="sfs-drawer-brand">
+                <span className="accent">ScanFor</span>Safe
+              </div>
+            </div>
+            <button className="sfs-drawer-close" onClick={() => setMobileOpen(false)} aria-label="Close menu">✕</button>
+          </div>
+          
+          <nav className="sfs-drawer-links">
+            {navLinks.map((item) => (
+              <Link
+                key={item.label}
+                to={item.to}
+                className={`sfs-drawer-link ${isActive(item.to) ? "active" : ""}`}
+                onClick={() => setMobileOpen(false)}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="sfs-drawer-actions">
+            <Link to="/login" className="sfs-drawer-login" onClick={() => setMobileOpen(false)}>Login</Link>
+            <button className="sfs-drawer-prereg" onClick={handlePreRegistration}>
+              <span className="prereg-dot" />
+              Pre Registration
+            </button>
+          </div>
+        </div>
+      </div>
     </>
   );
 }

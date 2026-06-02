@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, cloneElement } from "react";
 import { useNavigate } from "react-router-dom";
 import { CheckCircle, Shield, Award, Landmark, TrendingUp, HelpCircle, MapPin, Send, DollarSign } from "lucide-react";
 
@@ -54,7 +54,7 @@ function StatItem({ num, suffix, label, active, delay }) {
 }
 
 /* ── BENEFIT CARD COMPONENT ── */
-function BenefitCard({ icon, title, description, accentColor, gradientFrom, gradientTo, index }) {
+function BenefitCard({ icon, title, description, color, bg, borderColor, index }) {
   const [hovered, setHovered] = useState(false);
   const [clicked, setClicked] = useState(false);
 
@@ -69,46 +69,46 @@ function BenefitCard({ icon, title, description, accentColor, gradientFrom, grad
         position: 'relative',
         borderRadius: 16,
         border: active
-          ? `2px solid #22c55e`
-          : `2px solid #bbf7d0`,
+          ? `2px solid ${color}`
+          : `2px solid ${borderColor}`,
         background:  '#ffffff',
         padding: '22px 20px 28px',
         overflow: 'hidden',
         transition: 'border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease, transform 0.25s cubic-bezier(0.34,1.3,0.64,1)',
         transform: active ? 'translateY(-4px)' : 'translateY(0)',
         boxShadow: active
-          ? '0 8px 24px rgba(34,197,94,0.13), 0 2px 8px rgba(0,0,0,0.06)'
+          ? `0 8px 24px ${color}20, 0 2px 8px rgba(0,0,0,0.06)`
           : '0 1px 4px rgba(0,0,0,0.04)',
         cursor: 'pointer',
       }}
     >
-      {/* bottom green accent line */}
+      {/* bottom accent line */}
       <div style={{
         position: 'absolute',
         bottom: 0, left: 20, right: 20,
         height: 3,
         borderRadius: '3px 3px 0 0',
-        background: '#22c55e',
+        background: color,
         opacity: active ? 1 : 0.35,
         transition: 'opacity 0.22s ease',
       }} />
 
-      <div style={{
+      <div className="fr-benefit-icon-box" style={{
         width: 48, height: 48,
         borderRadius: 12,
-        background: '#dcfce7',
-        color: '#16a34a',
+        background: bg,
+        color: color,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         marginBottom: 16,
       }}>
-        {icon}
+        {cloneElement(icon, { color: color })}
       </div>
 
       <h3 style={{
-        fontFamily: "'Outfit', sans-serif",
+        fontFamily: "'Sora', sans-serif",
         fontSize: 16,
-        fontWeight: 700,
-        color: '#111827',
+        fontWeight: 800,
+        color: '#0B2545',
         marginBottom: 8,
         letterSpacing: '-0.01em',
         lineHeight: 1.25,
@@ -117,8 +117,10 @@ function BenefitCard({ icon, title, description, accentColor, gradientFrom, grad
       </h3>
 
       <p style={{
+        fontFamily: "'DM Sans', sans-serif",
         fontSize: 12.5,
-        color: '#64748b',
+        fontWeight: 500,
+        color: '#374151',
         lineHeight: 1.65,
       }}>
         {description}
@@ -232,34 +234,34 @@ export default function Franchise() {
     {
       icon: <TrendingUp size={20} />,
       title: "High ROI Model",
-      description: "Earn up to 10%–30% profit margin on physical QR visual safety tags & smart NFC cards distributed in your region.",
-      accentColor: "#16a34a",
-      gradientFrom: "#16a34a",
-      gradientTo: "#4ade80",
+      description: "Earn up to 10% - 30% profit margin on physical QR visual safety tags & smart NFC cards distributed in your region.",
+      color: "#16a34a",
+      bg: "#e8f8eb",
+      borderColor: "#bbf7d0",
     },
     {
       icon: <Shield size={20} />,
       title: "Exclusive Territory",
       description: "Secure exclusive ownership rights for dedicated pincodes. Zero local brand competition.",
-      accentColor: "#0284c7",
-      gradientFrom: "#0284c7",
-      gradientTo: "#38bdf8",
+      color: "#0891b2",
+      bg: "#ecfeff",
+      borderColor: "#bae6fd",
     },
     {
       icon: <Landmark size={20} />,
       title: "Innovative Tech",
-      description: "India's leading cloud network mapping QR-codes for vehicle safety, senior citizens, children, and pets.",
-      accentColor: "#7c3aed",
-      gradientFrom: "#7c3aed",
-      gradientTo: "#a78bfa",
+      description: "India's leading cloud network mapping QR codes for vehicle safety, senior citizens, children, and pets.",
+      color: "#7c3aed",
+      bg: "#f5f3ff",
+      borderColor: "#ddd6fe",
     },
     {
       icon: <Award size={20} />,
       title: "Marketing Support",
       description: "Receive complete physical branding collaterals, digital flyers, and targeted local ad campaign execution.",
-      accentColor: "#ea580c",
-      gradientFrom: "#ea580c",
-      gradientTo: "#fb923c",
+      color: "#f97316",
+      bg: "#fff7ed",
+      borderColor: "#fed7aa",
     },
   ];
 
@@ -601,11 +603,41 @@ export default function Franchise() {
           .fr-grid-split { grid-template-columns: 1fr; gap: 30px; }
         }
         @media (max-width: 768px) {
-          .fr-stats-counter { flex-direction: column; gap: 24px; }
-          .fr-stats-divider { display: none; }
+          .fr-stats-counter {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 20px !important;
+            justify-items: center;
+          }
+          .fr-stats-divider { display: none !important; }
         }
         @media (max-width: 580px) {
-          .fr-benefits-grid { grid-template-columns: 1fr; }
+          .fr-benefits-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+          }
+          .fr-benefits-grid > div {
+            padding: 14px 10px 18px !important;
+            border-radius: 12px !important;
+          }
+          .fr-benefits-grid h3 {
+            font-size: 13.5px !important;
+            margin-bottom: 4px !important;
+          }
+          .fr-benefits-grid p {
+            font-size: 10.5px !important;
+            line-height: 1.4 !important;
+          }
+          .fr-benefits-grid svg {
+            width: 18px !important;
+            height: 18px !important;
+          }
+          .fr-benefit-icon-box {
+            width: 36px !important;
+            height: 36px !important;
+            border-radius: 8px !important;
+            margin-bottom: 10px !important;
+          }
           .fr-form-card { padding: 24px 18px; }
         }
       `}</style>
@@ -709,6 +741,8 @@ export default function Franchise() {
               <StatItem num={12} suffix=" hrs" label="Approval turnaround" active={statsInView} delay={0.15} />
               <div className="fr-stats-divider" />
               <StatItem num={90000} suffix="+" label="Est. Monthly ROI (₹)" active={statsInView} delay={0.3} />
+              <div className="fr-stats-divider" />
+              <StatItem num={100} suffix="%" label="Exclusive Territory" active={statsInView} delay={0.45} />
             </div>
           </div>
 

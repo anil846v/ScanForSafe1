@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 /* ─────────────────────────────────────────────
    SVG ICON COMPONENTS
@@ -339,6 +339,11 @@ function WhatsAppSimulatorWrapper() {
     })
   }
 
+  useEffect(() => {
+    run()
+    return () => reset()
+  }, [])
+
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
       <AndroidPhoneFrame screenBg="#1a1a1a" accentColor="#16a34a">
@@ -441,6 +446,11 @@ function CallSimulatorWrapper() {
       timersRef.current.push(t1, t2)
     })
   }
+
+  useEffect(() => {
+    run()
+    return () => reset()
+  }, [])
   const fmtTime = s => `${String(Math.floor(s/60)).padStart(2,'0')}:${String(s%60).padStart(2,'0')}`
 
   const screenContent = () => {
@@ -553,6 +563,11 @@ function ContactsSimulatorWrapper() {
     })
   }
 
+  useEffect(() => {
+    run()
+    return () => reset()
+  }, [])
+
   const statusConfig = {
     idle:     { bg: 'rgba(255,255,255,0.04)', border: 'rgba(255,255,255,0.08)', color: '#4a4a7a', label: '—' },
     sending:  { bg: 'rgba(251,191,36,0.12)', border: 'rgba(251,191,36,0.35)', color: '#fbbf24', label: 'Alerting…' },
@@ -659,6 +674,11 @@ function GPSSimulatorWrapper() {
       }, 2000))
     }, 1500))
   }
+
+  useEffect(() => {
+    run()
+    return () => reset()
+  }, [])
   const dotStr = '.'.repeat(dots)
 
   return (
@@ -767,6 +787,11 @@ function SetupSimulatorWrapper() {
     })
     elapsedRef.current = setInterval(() => setElapsed(p => p+100), 100)
   }
+
+  useEffect(() => {
+    run()
+    return () => reset()
+  }, [])
   const pct = Math.min(100, Math.round((elapsed/total)*100))
 
   return (
@@ -844,6 +869,11 @@ function PrivacySimulatorWrapper() {
       setTimeout(()=>setRunning(false), items.length*500+400)
     }, 2800))
   }
+
+  useEffect(() => {
+    run()
+    return () => reset()
+  }, [])
   const HIDDEN = ['+91-98400-XXXXX', '12, MG Road, Chennai', 'owner@email.com', 'Bank Details', 'Aadhaar Number']
   const HIDDEN_ICONS = [Icons.Phone, Icons.MapPin, Icons.Bell, Icons.Shield, Icons.Lock]
 
@@ -964,6 +994,11 @@ function HistorySimulatorWrapper() {
     })
   }
 
+  useEffect(() => {
+    run()
+    return () => reset()
+  }, [])
+
   return (
     <div style={{ display:'flex', flexDirection:'column', alignItems:'center' }}>
       <AndroidPhoneFrame screenBg="#00061a" accentColor="#2563eb">
@@ -1044,6 +1079,11 @@ function UpdateSimulatorWrapper() {
       setTypedNum(NEW_NUM.slice(0,i+1)); i++
     }, 80)
   }
+
+  useEffect(() => {
+    run()
+    return () => reset()
+  }, [])
 
   return (
     <div style={{ display:'flex', flexDirection:'column', alignItems:'center' }}>
@@ -1272,11 +1312,14 @@ export default function Features() {
           gap: 14px;
         }
         .phone-sticky {
+          position: -webkit-sticky;
           position: sticky;
-          top: 80px;
+          top: 100px;
+          align-self: start;
           display: flex;
           flex-direction: column;
           align-items: center;
+          z-index: 10;
         }
 
         @media (max-width: 1024px) {
