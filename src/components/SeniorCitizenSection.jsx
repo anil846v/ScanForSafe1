@@ -1,6 +1,13 @@
-import { Heart, Phone, AlertTriangle, Wifi, QrCode, ShieldCheck, User, Droplets } from 'lucide-react'
+import { Heart, Phone, AlertTriangle, Wifi, QrCode, ShieldCheck, User, Droplets, Watch } from 'lucide-react'
 
 export default function SeniorCitizenSection() {
+  const mobileSeniorFeatures = [
+    { icon: Heart,          color: '#ef4444', bg: '#fef2f2', title: 'Medical Profile',     desc: 'Blood group, conditions, medications & more' },
+    { icon: AlertTriangle,  color: '#f97316', bg: '#fff7ed', title: 'Emergency Alerts',    desc: 'Instant SMS & WhatsApp alerts to family' },
+    { icon: QrCode,         color: '#2ebd3a', bg: '#f0fdf4', title: 'NFC + QR Support',    desc: 'Works with NFC tap or QR code scan' },
+    { icon: Watch,          color: '#0891b2', bg: '#ecfeff', title: 'Smart Band Support',  desc: 'Wearable ID band for 24/7 safety' },
+  ]
+
   return (
     <section style={{ background: 'linear-gradient(180deg,#f8fafc 0%,#e8f8eb 100%)', padding: '48px 0 56px' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
@@ -14,17 +21,18 @@ export default function SeniorCitizenSection() {
             boxShadow: '0 2px 8px rgba(22,101,52,0.08)',
           }}>
             <Heart size={14} color="#2ebd3a" fill="#2ebd3a" />
-            <span style={{ fontSize: 13, fontWeight: 700, color: '#2ebd3a' }}>🆕 Senior Citizen Care</span>
+            <span style={{ fontSize: 13, fontWeight: 700, color: '#2ebd3a', fontFamily: "'Sora', sans-serif" }}>Senior Citizen Protection</span>
           </div>
-          <h2 style={{ fontSize: 'clamp(26px,4vw,42px)', fontWeight: 900, color: '#0B2545', margin: '0 0 12px' }}>
+          <h2 style={{ fontSize: 'clamp(26px,4vw,42px)', fontWeight: 900, color: '#0B2545', margin: '0 0 12px', fontFamily: "'Sora', sans-serif" }}>
             Emergency Protection for
             <span style={{ color: '#2ebd3a' }}> Senior Citizens</span>
           </h2>
-          <p style={{ color: '#4b7a62', fontSize: 15, maxWidth: 520, margin: '0 auto', lineHeight: 1.7 }}>
+          <p style={{ color: '#4b7a62', fontSize: 15, maxWidth: 520, margin: '0 auto', lineHeight: 1.7, fontFamily: "'DM Sans', sans-serif" }}>
             One scan gives responders instant access to medical details, blood group, and emergency contacts — no smartphone needed
           </p>
         </div>
 
+        {/* DESKTOP VIEW GRID */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 40, alignItems: 'center' }}
           className="senior-grid">
 
@@ -172,11 +180,149 @@ export default function SeniorCitizenSection() {
             </div>
           </div>
         </div>
+
+        {/* PREMIUM MOBILE-ONLY VIEW */}
+        <div className="sc-mobile-layout">
+          {/* Mobile Profile Card */}
+          <div className="sc-mobile-profile" style={{
+            background: '#fff', borderRadius: 20, padding: 18,
+            border: '1.5px solid #e8f8eb',
+            boxShadow: '0 8px 24px rgba(6,78,59,0.06)',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+            width: '100%', marginBottom: 20
+          }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+              <img
+                src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                alt="Ramesh Nair"
+                style={{ width: 56, height: 56, borderRadius: '50%', objectFit: 'cover', border: '2px solid #2ebd3a' }}
+              />
+              <div style={{ textAlign: 'left' }}>
+                <div style={{ fontWeight: 800, fontSize: 15, color: '#0B2545', fontFamily: "'Sora', sans-serif" }}>Ramesh Nair</div>
+                <div style={{ fontSize: 11, color: '#6b7280', margin: '2px 0 4px', fontFamily: "'DM Sans', sans-serif" }}>Age: 72 • Nellore, AP</div>
+                <div style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 4,
+                  background: '#e8f8eb', borderRadius: 6, padding: '2px 8px',
+                  fontSize: 10, fontWeight: 700, color: '#2ebd3a', fontFamily: "'DM Sans', sans-serif"
+                }}>
+                  <ShieldCheck size={10} /> Protected
+                </div>
+              </div>
+            </div>
+            
+            <div style={{
+              display: 'flex', flexDirection: 'column', alignItems: 'center',
+              background: '#f9fafb', border: '1.5px solid #e2e8f0', borderRadius: 12,
+              padding: '8px 12px', minWidth: 72
+            }}>
+              <QrCode size={18} color="#2ebd3a" style={{ marginBottom: 4 }} />
+              <span style={{ fontSize: 9, fontWeight: 800, color: '#0B2545', lineHeight: 1, fontFamily: "'Sora', sans-serif" }}>SFSI-1123</span>
+              <span style={{ fontSize: 8, color: '#9ca3af', fontWeight: 600, marginTop: 2, fontFamily: "'DM Sans', sans-serif" }}>Scan ID</span>
+            </div>
+          </div>
+
+          {/* Feature Grid */}
+          <div className="sc-mobile-grid">
+            {mobileSeniorFeatures.map(({ icon: Icon, color, bg, title, desc }) => (
+              <div
+                key={title}
+                className="sc-mobile-card"
+                style={{
+                  background: '#ffffff',
+                  border: '1.5px solid #e8f8eb',
+                  borderRadius: 16,
+                  padding: '16px 14px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 8,
+                  position: 'relative',
+                  overflow: 'hidden',
+                  boxShadow: '0 2px 8px rgba(22,101,52,0.03)',
+                  textAlign: 'left'
+                }}
+              >
+                <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 3, background: color, borderRadius: '16px 0 0 16px' }} />
+                <div style={{
+                  width: 36, height: 36, borderRadius: 10, background: bg,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  boxShadow: `0 2px 6px ${color}15`,
+                }}>
+                  <Icon size={18} color={color} />
+                </div>
+                <div>
+                  <h4 style={{ margin: '0 0 2px', fontSize: 13, fontWeight: 800, color: '#0B2545', fontFamily: "'Sora', sans-serif" }}>{title}</h4>
+                  <p style={{ margin: 0, fontSize: 11, color: '#64748b', fontWeight: 500, lineHeight: 1.3, fontFamily: "'DM Sans', sans-serif" }}>{desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <button type="button" className="sc-mobile-btn">
+            View Full Profile
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+
       </div>
 
       <style>{`
+        .sc-mobile-layout {
+          display: none;
+        }
+
         @media (max-width: 768px) {
-          .senior-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
+          .senior-grid {
+            display: none !important;
+          }
+          .sc-mobile-layout {
+            display: flex !important;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+          }
+          .sc-mobile-grid {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+            width: 100%;
+            margin-bottom: 24px !important;
+          }
+          .sc-mobile-card {
+            background: #ffffff;
+            border: 1.5px solid #e8f8eb;
+            border-radius: 16px;
+            padding: 16px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(22,101,52,0.03);
+          }
+          .sc-mobile-btn {
+            display: flex !important;
+            width: 100% !important;
+            background: #2ebd3a !important;
+            color: #ffffff !important;
+            font-family: 'DM Sans', sans-serif !important;
+            font-size: 14px !important;
+            font-weight: 700 !important;
+            padding: 14px 20px !important;
+            border-radius: 12px !important;
+            border: none !important;
+            cursor: pointer !important;
+            align-items: center !important;
+            justify-content: center !important;
+            gap: 8px !important;
+            box-shadow: 0 4px 14px rgba(46, 189, 58, 0.25) !important;
+            transition: all 0.2s ease !important;
+            text-decoration: none !important;
+          }
+          .sc-mobile-btn:hover {
+            background: #27a231 !important;
+            box-shadow: 0 6px 18px rgba(46, 189, 58, 0.35) !important;
+          }
         }
       `}</style>
     </section>

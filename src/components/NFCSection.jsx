@@ -216,6 +216,7 @@ export default function NFCSection() {
             </p>
 
             <div
+              className="nfc-features-grid"
               style={{
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',
@@ -355,6 +356,11 @@ export default function NFCSection() {
           .nfc-grid {
             grid-template-columns: 1fr !important;
             gap: 40px !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .nfc-features-grid {
+            grid-template-columns: 1fr !important;
           }
         }
       `}</style>

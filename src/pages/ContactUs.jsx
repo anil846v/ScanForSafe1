@@ -11,7 +11,7 @@ const CONTACT_INFO = [
     bg: 'linear-gradient(135deg,#eff6ff,#dbeafe)',
     border: '#bfdbfe',
     emoji: '📞',
-    desc: 'Mon–Sat, 9am to 7pm',
+    desc: 'Mon - Sat, 9am to 7pm',
   },
   {
     icon: MessageCircle,
@@ -22,7 +22,7 @@ const CONTACT_INFO = [
     bg: 'linear-gradient(135deg,#f8fafc,#e8f8eb)',
     border: '#e8f8eb',
     emoji: '💬',
-    desc: 'Fastest — reply under 10 min',
+    desc: 'Fastest - reply under 10 min',
   },
   {
     icon: Mail,
@@ -38,7 +38,7 @@ const CONTACT_INFO = [
   {
     icon: MapPin,
     label: 'Office',
-    value: 'Your City, State – 000000',
+    value: 'Your City, State - 000000',
     href: null,
     color: '#e11d48',
     bg: 'linear-gradient(135deg,#fff1f2,#ffe4e6)',
@@ -232,13 +232,60 @@ export default function ContactUs() {
           background: rgba(255,255,255,0.1);
         }
 
+        .cu-cards-container {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+        }
+
         @media (max-width: 768px) {
           .cu-stats-counter {
-            flex-direction: column;
-            gap: 24px;
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 20px !important;
+            justify-items: center;
           }
           .cu-stats-divider {
-            display: none;
+            display: none !important;
+          }
+        }
+
+        @media (max-width: 900px) {
+          .cu-cards-container {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+            margin-bottom: 16px !important;
+          }
+        }
+
+        @media (max-width: 580px) {
+          .cu-cards-container {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+          }
+          .cf-info-card {
+            padding: 14px 10px 16px !important;
+            border-radius: 14px !important;
+            gap: 8px !important;
+          }
+          .cf-info-card > div:first-child {
+            width: 36px !important;
+            height: 36px !important;
+            border-radius: 10px !important;
+            font-size: 16px !important;
+          }
+          .cf-info-card label {
+            font-size: 8.5px !important;
+            margin-bottom: 2px !important;
+          }
+          .cf-info-card a, .cf-info-card div {
+            font-size: 11.5px !important;
+            margin-bottom: 2px !important;
+          }
+          .cf-info-card div[style*="94a3b8"] {
+            font-size: 9.5px !important;
+            line-height: 1.3 !important;
           }
         }
 
@@ -473,6 +520,8 @@ export default function ContactUs() {
             <StatItem num={2} suffix=" hrs" label="Email response" active={statsInView} delay={0.15} />
             <div className="cu-stats-divider" />
             <StatItem num={10000} suffix="+" label="Happy users" active={statsInView} delay={0.3} />
+            <div className="cu-stats-divider" />
+            <StatItem num={24} suffix="/7" label="SOS Active" active={statsInView} delay={0.45} />
           </div>
         </div>
 
@@ -521,7 +570,7 @@ export default function ContactUs() {
               </div>
 
               {/* Cards */}
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+              <div className="cu-cards-container">
                 {CONTACT_INFO.map(({ icon: Icon, label, value, href, color, bg, border, emoji, desc }, i) => (
                   <div
                     key={label}
@@ -590,7 +639,7 @@ export default function ContactUs() {
                   fontFamily: "'Instrument Sans', sans-serif",
                   fontSize: 12.5, fontWeight: 600, color: '#0B2545',
                 }}>
-                  We always reply within 2 business hours — guaranteed.
+                  We always reply within 2 business hours - guaranteed.
                 </span>
               </div>
             </div>

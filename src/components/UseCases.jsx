@@ -137,11 +137,9 @@ export default function UseCases() {
         @media (max-width: 940px) { .uc-grid { grid-template-columns: repeat(2,1fr); } }
         @media (max-width: 580px) {
           .uc-grid {
-            display: flex; overflow-x: auto;
-            scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
-            gap: 14px; padding-bottom: 10px; scrollbar-width: none;
+            grid-template-columns: 1fr;
+            gap: 20px;
           }
-          .uc-grid::-webkit-scrollbar { display: none; }
         }
 
         /* ── Card ── */
@@ -157,7 +155,10 @@ export default function UseCases() {
           animation: ucUp 0.5s ease both;
         }
         @media (max-width: 580px) {
-          .uc-card { min-width: 268px; max-width: 268px; scroll-snap-align: start; flex-shrink: 0; }
+          .uc-card {
+            min-width: 0;
+            max-width: 100%;
+          }
         }
         .uc-card:hover {
           transform: translateY(-8px) scale(1.013);
@@ -338,7 +339,6 @@ export default function UseCases() {
           font-size: 11px; color: #999; margin-bottom: 10px;
           font-family: 'DM Sans', sans-serif;
         }
-        @media (max-width:580px){ .uc-swipe{ display:flex; } }
 
         /* ── Section header badge ── */
         .uc-header-badge {

@@ -109,11 +109,10 @@ export default function StatsBar() {
             {TRUST.map((item, i) => (
               <div
                 key={item.title}
-                className={`group relative px-5 py-7 text-center transition-all duration-300 hover:bg-[#e8f8eb]/40 cursor-pointer ${
-                  i !== TRUST.length - 1
-                    ? 'border-b md:border-b-0 md:border-r border-[#e8f8eb]'
-                    : ''
-                }`}
+                className={`group relative px-5 py-7 text-center transition-all duration-300 hover:bg-[#e8f8eb]/40 cursor-pointer 
+                  ${i < 2 ? 'border-b border-[#e8f8eb]' : ''} 
+                  ${i % 2 === 0 ? 'border-r border-[#e8f8eb]' : ''} 
+                  md:border-b-0 md:border-r md:last:border-r-0`}
               >
 
                 {/* ICON */}

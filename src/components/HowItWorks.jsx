@@ -558,7 +558,7 @@ function StepCard({ icon:Icon, title, description, badge, badgeIcon:BadgeIcon, t
   const [active, setActive] = useState(false);
   const T = STEP_THEMES[themeIndex]||STEP_THEMES[0];
   return (
-    <div onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>{setHovered(false);setActive(false);}} onMouseDown={()=>setActive(true)} onMouseUp={()=>setActive(false)} onTouchStart={()=>setActive(true)} onTouchEnd={()=>setActive(false)}
+    <div className="hiw-step-card" onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>{setHovered(false);setActive(false);}} onMouseDown={()=>setActive(true)} onMouseUp={()=>setActive(false)} onTouchStart={()=>setActive(true)} onTouchEnd={()=>setActive(false)}
       style={{ background:active?T.accentLight:hovered?T.accentLight:"white", borderRadius:22, padding:"0 0 20px", flex:1, minWidth:0, position:"relative", overflow:"hidden", boxShadow:hovered?`0 20px 56px ${T.shadowColor}`:"0 4px 20px rgba(0,0,0,0.05)", transform:active?"translateY(-2px) scale(0.98)":hovered?"translateY(-8px) scale(1.02)":"none", transition:"all 0.28s cubic-bezier(0.4,0,0.2,1)", border:hovered||active?`2px solid ${T.accentBorder}`:"2px solid #f0f4f8", cursor:"pointer", display:"flex", flexDirection:"column" }}>
       <div style={{ height:6, background:T.iconBg, borderRadius:"20px 20px 0 0", flexShrink:0 }}/>
       <div style={{ position:"absolute", top:18, left:16, display:"inline-flex", alignItems:"center", gap:4, background:T.numberBg, borderRadius:20, padding:"3px 10px", fontSize:9, fontWeight:800, color:"white", letterSpacing:"0.04em", textTransform:"uppercase", fontFamily:"'Sora',sans-serif" }}>{T.pill}</div>
@@ -615,6 +615,14 @@ export default function HowItWorks() {
   const [visible, setVisible] = useState(false);
   const cardsColRef = useRef(null);
   const [cardsHeight, setCardsHeight] = useState(520);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth <= 960);
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
 
   useEffect(()=>{ setTimeout(()=>setVisible(true),80); },[]);
 
@@ -660,15 +668,15 @@ export default function HowItWorks() {
               <span style={{ background:"linear-gradient(125deg,#0a2e10 0%,#2ebd3a 52%,#4bd557 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>3 Easy Steps</span>
             </h1>
             <p style={{ fontSize:13.5, color:BRAND.textMain, marginBottom:28, lineHeight:1.7, maxWidth:500, opacity:0.7 }}>No complicated setup. No technical knowledge needed.<br/>Just order, activate, and relax.</p>
-            <div style={{ position:"relative", display:"flex", gap:12, flexWrap:"wrap", alignItems:"stretch" }}>
-              <div style={{ position:"absolute", top:"30%", left:"calc(33.33% - 8px)", right:"calc(33.33% - 8px)", height:0, borderTop:`2px dashed ${BRAND.borderGreen}`, zIndex:0, pointerEvents:"none" }}/>
+            <div className="hiw-steps-container" style={{ position:"relative", display:"flex", gap:12, flexWrap:"wrap", alignItems:"stretch" }}>
+              <div className="hiw-steps-line" style={{ position:"absolute", top:"30%", left:"calc(33.33% - 8px)", right:"calc(33.33% - 8px)", height:0, borderTop:`2px dashed ${BRAND.borderGreen}`, zIndex:0, pointerEvents:"none" }}/>
               {steps.map((s,i)=><StepCard key={i} {...s}/>)}
             </div>
           </div>
 
           {/* RIGHT — phone */}
           <div className="hiw-phone" style={{ flex:"0 0 auto", opacity:visible?1:0, transition:"opacity 0.6s ease 0.15s", display:"flex", alignItems:"center", justifyContent:"center", paddingTop:130, paddingBottom:0 }}>
-            <IPhoneMockup targetHeight={cardsHeight}/>
+            <IPhoneMockup targetHeight={isMobile ? 460 : cardsHeight}/>
           </div>
         </div>
 
@@ -697,11 +705,48 @@ export default function HowItWorks() {
           .hiw-left { flex:none!important; width:100%!important; }
           .hiw-phone { flex:none!important; width:100%!important; padding-top:0!important; padding-bottom:52px!important; }
         }
+        @media (max-width: 640px) {
+          .hiw-left h1 {
+            text-align: center !important;
+            font-size: 28px !important;
+            line-height: 1.2 !important;
+          }
+          .hiw-left p {
+            text-align: center !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
+            margin-bottom: 24px !important;
+            font-size: 13.5px !important;
+          }
+          .hiw-steps-container {
+            flex-direction: column !important;
+            gap: 16px !important;
+          }
+          .hiw-steps-line {
+            display: none !important;
+          }
+          .hiw-step-card {
+            flex: none !important;
+            width: 100% !important;
+            min-width: 0 !important;
+          }
+          .hiw-stat-row {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+          }
+          .hiw-stat-row > div {
+            flex: none !important;
+            width: 100% !important;
+            min-width: 0 !important;
+          }
+          .hiw-stat-row > div:nth-child(5) {
+            grid-column: span 2 !important;
+          }
+        }
         @media (max-width: 540px) {
           .hiw-row { gap:32px!important; }
           .hiw-phone { padding-bottom:48px!important; }
-          .hiw-stat-row { flex-direction:column!important; }
-          .hiw-stat-row > div { flex:none!important; width:100%!important; min-width:0!important; }
         }
       `}</style>
     </div>
