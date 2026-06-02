@@ -1,13 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import carImg    from "../../assets/car.png";
+import carImg     from "../../assets/car.png";
 import luggageImg from "../../assets/luggage1.png";
-import dogimg    from "../../assets/dog.png";
-import seniorimg from "../../assets/senior.png";
-import kidImg    from "../../assets/kid.png";
-import qrImg     from "../../assets/qr.png";
+import dogimg     from "../../assets/dog.png";
+import seniorimg  from "../../assets/senior.png";
+import kidimg     from "../../assets/kid.png";
+import idImg      from "../../assets/id.png";
 
-
+// ── Bike entry REMOVED — was incorrectly using carImg ──
 const ASSETS = [
   {
     label: "Vehicle",
@@ -20,26 +21,9 @@ const ASSETS = [
     emergency: "Protected",
     registered: "12 May 2024",
     img: carImg,
-    qrImg: qrImg,
     tagline: "QR tag on windshield",
     accentColor: "#2ebd3a",
     type: "Vehicle",
-  },
-  {
-    label: "Bike",
-    verified: "Bike Verified",
-    owner: "Aarav Sharma",
-    phone: "+91 98345 XXXXX",
-    email: "a***@mail.com",
-    address: "Andheri West, Mumbai",
-    asset: "SFS-BIKE-7712",
-    emergency: "Protected",
-    registered: "15 May 2024",
-    img: carImg,
-    qrImg: qrImg,
-    tagline: "NFC chip embedded",
-    accentColor: "#4bd557",
-    type: "Bike",
   },
   {
     label: "Luggage",
@@ -52,7 +36,6 @@ const ASSETS = [
     emergency: "Protected",
     registered: "28 Mar 2024",
     img: luggageImg,
-    qrImg: qrImg,
     tagline: "Tag inside handle",
     accentColor: "#7ded88",
     type: "Luggage",
@@ -68,7 +51,6 @@ const ASSETS = [
     emergency: "Protected",
     registered: "02 Apr 2024",
     img: dogimg,
-    qrImg: qrImg,
     tagline: "Collar tag protected",
     accentColor: "#2ebd3a",
     type: "Pet",
@@ -84,10 +66,39 @@ const ASSETS = [
     emergency: "Protected",
     registered: "18 Jun 2024",
     img: seniorimg,
-    qrImg: qrImg,
     tagline: "Wearable ID band",
     accentColor: "#4bd557",
     type: "Senior",
+  },
+  {
+    label: "Kid",
+    verified: "Kid Verified",
+    owner: "Anjali Singh",
+    phone: "+91 97890 XXXXX",
+    email: "an***@mail.com",
+    address: "Banjara Hills, Hyderabad",
+    asset: "SFS-KID-3301",
+    emergency: "Protected",
+    registered: "22 Jul 2024",
+    img: kidimg,
+    tagline: "Smart wristband tag",
+    accentColor: "#2ebd3a",
+    type: "Kid",
+  },
+  {
+    label: "ID / Document",
+    verified: "ID Verified",
+    owner: "Vikram Patel",
+    phone: "+91 99123 XXXXX",
+    email: "v***@mail.com",
+    address: "Satellite, Ahmedabad",
+    asset: "SFS-ID-6650",
+    emergency: "Protected",
+    registered: "05 Aug 2024",
+    img: idImg,
+    tagline: "Document tag secured",
+    accentColor: "#7ded88",
+    type: "ID",
   },
 ];
 
@@ -112,32 +123,17 @@ const css = `
   --navbar-height-mobile: 98px;
 }
 
-/* ── Page wrapper: only clears the fixed navbar, zero extra gap ── */
-.sfs-page {
-  padding-top: var(--navbar-height);
-}
-@media (max-width: 1060px) {
-  .sfs-page { padding-top: var(--navbar-height-mobile); }
-}
+.sfs-page { padding-top: var(--navbar-height); }
+@media (max-width: 1060px) { .sfs-page { padding-top: var(--navbar-height-mobile); } }
 
-/* ══════════════════════════════════════
-   HERO CARD  — tight, no dead air
-══════════════════════════════════════ */
 .sfs-hero {
   font-family: 'DM Sans', sans-serif;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  background: var(--bg);
-  color: var(--dark);
+  position: relative; overflow: hidden;
+  display: flex; flex-direction: column;
+  background: var(--bg); color: var(--dark);
   border: 1.5px solid rgba(46,189,58,0.22);
   border-radius: 32px;
-  /* No margin-top — sfs-page padding handles the gap */
-  box-shadow:
-    0 0 0 1px rgba(46,189,58,0.08),
-    0 8px 64px rgba(46,189,58,0.12),
-    inset 0 1px 0 rgba(255,255,255,0.9);
+  box-shadow: 0 0 0 1px rgba(46,189,58,0.08), 0 8px 64px rgba(46,189,58,0.12), inset 0 1px 0 rgba(255,255,255,0.9);
 }
 
 .sfs-bg {
@@ -146,41 +142,34 @@ const css = `
   border-radius: 30px; overflow: hidden;
 }
 .sfs-bg::before {
-  content: "";
-  position: absolute; inset: 0;
+  content: ""; position: absolute; inset: 0;
   background:
     radial-gradient(ellipse 900px 600px at 110% 0%, rgba(46,189,58,0.13) 0%, transparent 58%),
     radial-gradient(ellipse 600px 500px at -10% 100%, rgba(46,189,58,0.09) 0%, transparent 55%),
     linear-gradient(160deg, #f5f9f5 0%, #f5f9f5 40%, #f0fdf2 100%);
 }
 
-/* ── Grid: tighter vertical padding, columns stretch to match ── */
+/* ── DESKTOP GRID ── */
 .sfs-grid {
-  flex: 1;
-  max-width: 1440px; width: 100%; margin: 0 auto;
-  display: grid;
-  grid-template-columns: 46% 54%;
-  align-items: stretch;          /* both cols same height */
-  padding: 40px 56px 40px;       /* was 72px top/bottom — reduced */
-  gap: 0;
+  flex: 1; max-width: 1440px; width: 100%; margin: 0 auto;
+  display: grid; grid-template-columns: 46% 54%;
+  align-items: stretch;
+  padding: 40px 56px 40px; gap: 0;
   position: relative; z-index: 2;
 }
 
-/* ══ LEFT col ══ */
+/* ── LEFT ── */
 .sfs-left {
   padding-right: 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  display: flex; flex-direction: column; justify-content: center;
 }
 
 .sfs-badge {
   display: inline-flex; align-items: center; gap: 8px;
   background: var(--glass);
   backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(46,189,58,0.26);
-  border-radius: 12px; padding: 8px 14px 8px 10px;
-  margin-bottom: 18px;
+  border: 1px solid rgba(46,189,58,0.26); border-radius: 12px;
+  padding: 8px 14px 8px 10px; margin-bottom: 18px;
   font-size: 10px; font-weight: 700; letter-spacing: .08em; color: #1a4a1e;
   text-transform: uppercase;
   box-shadow: 0 2px 16px rgba(46,189,58,0.12), 0 1px 0 rgba(255,255,255,0.9) inset;
@@ -222,7 +211,8 @@ const css = `
   backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(46,189,58,0.14); border-radius: 18px; padding: 16px 12px 14px;
   box-shadow: 0 2px 16px rgba(0,0,0,0.04), 0 0 0 1px rgba(255,255,255,0.7) inset;
-  position: relative; overflow: hidden; transition: .32s cubic-bezier(.34,1.46,.64,1); cursor: default;
+  position: relative; overflow: hidden;
+  transition: .32s cubic-bezier(.34,1.46,.64,1); cursor: default;
 }
 .sfs-feat::before {
   content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px;
@@ -244,10 +234,7 @@ const css = `
 .sfs-feat:nth-child(2) { animation: fadeUp .55s .36s both; }
 .sfs-feat:nth-child(3) { animation: fadeUp .55s .47s both; }
 
-.sfs-hero-actions {
-  display: flex; align-items: center; gap: 12px;
-  animation: fadeUp .55s .56s both;
-}
+.sfs-hero-actions { display: flex; align-items: center; gap: 12px; animation: fadeUp .55s .56s both; }
 .sfs-btn-main {
   border: none;
   background: linear-gradient(135deg, #1fa82a 0%, #2ebd3a 50%, #0B2545 100%);
@@ -280,125 +267,65 @@ const css = `
 }
 .sfs-btn-sec:hover .sfs-play-ring { transform: scale(1.1) rotate(8deg); }
 
-/* ══ RIGHT col ══ */
+/* ── RIGHT ── */
 .sfs-right {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* No fixed min-height — grows with content naturally */
+  position: relative; display: flex;
+  align-items: center; justify-content: center;
   padding: 24px 0 24px 16px;
 }
-
 .sfs-stage {
-  position: relative;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  position: relative; width: 100%;
+  display: flex; align-items: center; justify-content: center;
 }
 
-/* ══════════════════════════════════════
-   IMAGE FRAME  — large, fills the column
-══════════════════════════════════════ */
 .sfs-img-frame {
-  position: relative;
-  z-index: 3;
-  width: 100%;               /* fills the right column */
-  max-width: 560px;
-  border-radius: 28px;
-  padding: 5px;
-  background: linear-gradient(145deg,
-    rgba(46,189,58,0.60) 0%,
-    rgba(125,237,136,0.35) 35%,
-    rgba(46,189,58,0.20) 65%,
-    rgba(11,37,69,0.55) 100%);
-  box-shadow:
-    0 0 0 1px rgba(46,189,58,0.18),
-    0 0 40px rgba(46,189,58,0.32),
-    0 0 90px rgba(46,189,58,0.16),
-    0 28px 70px rgba(0,0,0,0.26),
-    inset 0 1px 0 rgba(255,255,255,0.35);
+  position: relative; z-index: 3;
+  width: 100%; max-width: 560px;
+  border-radius: 28px; padding: 5px;
+  background: linear-gradient(145deg, rgba(46,189,58,0.60) 0%, rgba(125,237,136,0.35) 35%, rgba(46,189,58,0.20) 65%, rgba(11,37,69,0.55) 100%);
+  box-shadow: 0 0 0 1px rgba(46,189,58,0.18), 0 0 40px rgba(46,189,58,0.32), 0 0 90px rgba(46,189,58,0.16), 0 28px 70px rgba(0,0,0,0.26), inset 0 1px 0 rgba(255,255,255,0.35);
   animation: frameFloat 5s ease-in-out infinite;
   transition: box-shadow .4s ease;
 }
 .sfs-img-frame:hover {
-  box-shadow:
-    0 0 0 1px rgba(46,189,58,0.35),
-    0 0 56px rgba(46,189,58,0.48),
-    0 0 110px rgba(46,189,58,0.22),
-    0 34px 80px rgba(0,0,0,0.30),
-    inset 0 1px 0 rgba(255,255,255,0.45);
+  box-shadow: 0 0 0 1px rgba(46,189,58,0.35), 0 0 56px rgba(46,189,58,0.48), 0 0 110px rgba(46,189,58,0.22), 0 34px 80px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.45);
 }
 @keyframes frameFloat {
   0%,100% { transform: translateY(0) rotateY(-2deg) rotateX(0.5deg); }
   50%      { transform: translateY(-10px) rotateY(-0.5deg) rotateX(0deg); }
 }
-
-/* ══ HOW-IT-WORKS STYLE iPHONE MOCKUP ══ */
-.sfs-hiw-phone-wrap {
-  position: absolute;
-  width: 280px;
-  flex-shrink: 0;
-  z-index: 5;
-  animation: phoneRock 9s ease-in-out infinite;
-  scale: 0.78;
+.sfs-img-frame::before {
+  content: ""; position: absolute; top: -2px; left: -2px; width: 26px; height: 26px;
+  border-color: rgba(125,237,136,0.95); border-style: solid; border-width: 3.5px 0 0 3.5px;
+  border-radius: 10px 0 0 0; z-index: 8; pointer-events: none;
 }
-@keyframes phoneRock {
-  0%,100% { transform: perspective(1100px) rotateY(-8deg) rotateX(3deg) translateY(0); }
-  33%      { transform: perspective(1100px) rotateY(-6deg) rotateX(2deg) translateY(-7px); }
-  66%      { transform: perspective(1100px) rotateY(-9deg) rotateX(4.5deg) translateY(-4px); }
+.sfs-img-frame::after {
+  content: ""; position: absolute; bottom: -2px; right: -2px; width: 26px; height: 26px;
+  border-color: rgba(125,237,136,0.95); border-style: solid; border-width: 0 3.5px 3.5px 0;
+  border-radius: 0 0 10px 0; z-index: 8; pointer-events: none;
 }
-
-.sfs-hiw-frame {
-  position: relative;
-  border-radius: 24px;
-  overflow: hidden;
+.sfs-img-frame-inner {
+  position: relative; border-radius: 24px; overflow: hidden;
   background: linear-gradient(160deg, #0c1e0f 0%, #091508 100%);
-  box-shadow:
-    inset 0 0 0 1px rgba(46,189,58,0.28),
-    inset 0 0 30px rgba(46,189,58,0.10);
+  box-shadow: inset 0 0 0 1px rgba(46,189,58,0.28), inset 0 0 30px rgba(46,189,58,0.10);
 }
-
-/* Other 2 corner ticks (top-right, bottom-left) */
 .sfs-img-frame-inner::before {
-  content: "";
-  position: absolute;
-  top: 8px; right: 8px;
-  width: 20px; height: 20px;
-  border-color: rgba(75,213,87,0.75);
-  border-style: solid;
-  border-width: 2.5px 2.5px 0 0;
-  border-radius: 0 6px 0 0;
-  z-index: 8; pointer-events: none;
+  content: ""; position: absolute; top: 8px; right: 8px; width: 20px; height: 20px;
+  border-color: rgba(75,213,87,0.75); border-style: solid; border-width: 2.5px 2.5px 0 0;
+  border-radius: 0 6px 0 0; z-index: 8; pointer-events: none;
 }
 .sfs-img-frame-inner::after {
-  content: "";
-  position: absolute;
-  bottom: 8px; left: 8px;
-  width: 20px; height: 20px;
-  border-color: rgba(75,213,87,0.75);
-  border-style: solid;
-  border-width: 0 0 2.5px 2.5px;
-  border-radius: 0 0 6px 0;
-  z-index: 8; pointer-events: none;
+  content: ""; position: absolute; bottom: 8px; left: 8px; width: 20px; height: 20px;
+  border-color: rgba(75,213,87,0.75); border-style: solid; border-width: 0 0 2.5px 2.5px;
+  border-radius: 0 0 6px 0; z-index: 8; pointer-events: none;
 }
 
-/* Scan beam inside frame */
 .sfs-frame-scanline {
-  position: absolute;
-  inset: 0; z-index: 6; pointer-events: none; border-radius: 24px; overflow: hidden;
+  position: absolute; inset: 0; z-index: 6; pointer-events: none; border-radius: 24px; overflow: hidden;
 }
 .sfs-frame-scanline::after {
-  content: "";
-  position: absolute;
-  left: 0; right: 0; height: 2px;
-  background: linear-gradient(90deg,
-    transparent 0%,
-    rgba(46,189,58,0.4) 20%,
-    rgba(125,237,136,0.98) 50%,
-    rgba(46,189,58,0.4) 80%,
-    transparent 100%);
+  content: ""; position: absolute; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent 0%, rgba(46,189,58,0.4) 20%, rgba(125,237,136,0.98) 50%, rgba(46,189,58,0.4) 80%, transparent 100%);
   box-shadow: 0 0 14px rgba(46,189,58,0.8), 0 0 36px rgba(46,189,58,0.35);
   animation: inFrameScan 2.6s ease-in-out infinite;
 }
@@ -409,10 +336,8 @@ const css = `
   100% { top: 88%; opacity: 0; }
 }
 
-/* Status bar at bottom of frame */
 .sfs-frame-status {
-  position: absolute;
-  bottom: 0; left: 0; right: 0; z-index: 7;
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 7;
   background: linear-gradient(180deg, transparent 0%, rgba(6,22,10,0.92) 100%);
   padding: 36px 16px 14px;
   display: flex; align-items: center; justify-content: space-between;
@@ -426,15 +351,9 @@ const css = `
 .sfs-frame-status-txt { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.92); letter-spacing: .06em; }
 .sfs-frame-status-id  { font-size: 10px; font-weight: 600; color: rgba(125,237,136,0.85); letter-spacing: .05em; }
 
-/* The asset image — fills the frame width */
 .sfs-asset-img {
-  width: 100%;
-  max-width: none;
-  display: block;
-  object-fit: cover;
-  position: relative;
-  z-index: 4;
-  aspect-ratio: 4/3;
+  width: 100%; max-width: none; display: block;
+  object-fit: cover; position: relative; z-index: 4; aspect-ratio: 4/3;
 }
 .sfs-asset-entering { animation: assetEnter .65s cubic-bezier(.22,1,.36,1) both; }
 .sfs-asset-exiting  { animation: assetExit .25s ease forwards; }
@@ -448,7 +367,6 @@ const css = `
   to   { opacity:0; transform:scale(.90) translateY(-18px); filter:blur(3px); }
 }
 
-/* Ambient glow rings behind the frame */
 .sfs-glow {
   position: absolute; width: 500px; height: 500px; border-radius: 50%;
   background: radial-gradient(circle, rgba(46,189,58,0.14) 0%, rgba(46,189,58,0.05) 40%, transparent 70%);
@@ -459,11 +377,10 @@ const css = `
   position: absolute; border-radius: 50%; border: 1px solid rgba(46,189,58,0.07);
   pointer-events: none; z-index: 1;
 }
-.sfs-ring-1 { width:560px; height:560px; animation:ringPulse 4s ease-in-out infinite; }
-.sfs-ring-2 { width:720px; height:720px; animation:ringPulse 4s ease-in-out infinite .9s; }
+.sfs-ring-1 { width:560px;height:560px;animation:ringPulse 4s ease-in-out infinite; }
+.sfs-ring-2 { width:720px;height:720px;animation:ringPulse 4s ease-in-out infinite .9s; }
 @keyframes ringPulse { 0%,100%{opacity:.30;transform:scale(.97);}50%{opacity:.70;transform:scale(1.03);} }
 
-/* ══ QR float card ══ */
 .sfs-qr-float {
   position: absolute; right: -14px; top: 60px;
   background: var(--card-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -484,7 +401,6 @@ const css = `
 .sfs-qr-live { display:flex;align-items:center;gap:4px;margin-top:4px;font-size:8px;font-weight:700;color:#2ebd3a;letter-spacing:.04em; }
 .sfs-qr-live-dot { width:5px;height:5px;border-radius:50%;background:#2ebd3a;animation:livePulse 1.8s infinite; }
 
-/* ══ ALERT float ══ */
 .sfs-alert-float {
   position: absolute; right: 6px; bottom: 70px;
   background: var(--card-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
@@ -504,7 +420,6 @@ const css = `
 .sfs-alert-h { font-size:10.5px;font-weight:700;color:var(--dark); }
 .sfs-alert-p { font-size:8.5px;color:var(--mid);margin-top:1px; }
 
-/* ══ ASSET LABEL pill ══ */
 .sfs-asset-label {
   position: absolute; top: 12px; left: -8px;
   background: var(--card-bg); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
@@ -518,7 +433,6 @@ const css = `
 .sfs-alabel-text { font-size:11px;font-weight:700;color:var(--dark); }
 .sfs-alabel-sub  { font-size:9px;color:var(--mid); }
 
-/* ══ SHIELD ══ */
 .sfs-shield-badge {
   position:absolute; top:14px; right:8px; width:82px; height:82px; z-index:12;
   animation:shieldFloat 5s ease-in-out infinite;
@@ -526,35 +440,83 @@ const css = `
 }
 @keyframes shieldFloat { 0%,100%{transform:translateY(0) rotate(2deg);}50%{transform:translateY(-13px) rotate(-1deg);} }
 
-/* ══ NAV DOTS ══ */
 .sfs-asset-nav {
   position:absolute; bottom:10px; left:50%; transform:translateX(-50%);
   display:flex; align-items:center; gap:7px; z-index:12;
 }
 .sfs-nav-dot {
-  width:7px; height:7px; border-radius:50%; background:rgba(46,189,58,0.25); cursor:pointer;
-  transition:.3s cubic-bezier(.34,1.46,.64,1); border:1px solid rgba(46,189,58,0.20);
+  width:7px;height:7px;border-radius:50%;background:rgba(46,189,58,0.25);cursor:pointer;
+  transition:.3s cubic-bezier(.34,1.46,.64,1);border:1px solid rgba(46,189,58,0.20);
 }
-.sfs-td { width:3px; height:3px; border-radius:50%; background:rgba(255,255,255,0.28); flex-shrink: 0; }
+.sfs-nav-dot.active { background:#2ebd3a;width:20px;border-radius:4px;box-shadow:0 2px 8px rgba(46,189,58,0.40); }
 
-/* ══ BG DECORATION ══ */
 .sfs-mesh {
-  position:absolute; top:-60px; right:-60px; width:520px; height:520px; opacity:.28;
-  animation:meshRotate 40s linear infinite; pointer-events:none; z-index:0;
+  position:absolute;top:-60px;right:-60px;width:520px;height:520px;opacity:.28;
+  animation:meshRotate 40s linear infinite;pointer-events:none;z-index:0;
 }
 @keyframes meshRotate{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
 .sfs-globe-wrap {
-  position:absolute; bottom:-80px; left:-70px; width:300px; height:300px;
-  animation:globePulse 7s ease-in-out infinite; z-index:1; pointer-events:none;
+  position:absolute;bottom:-80px;left:-70px;width:300px;height:300px;
+  animation:globePulse 7s ease-in-out infinite;z-index:1;pointer-events:none;
 }
 @keyframes globePulse{0%,100%{transform:scale(1) rotate(-5deg);opacity:.45;}50%{transform:scale(1.04) rotate(-2deg);opacity:.62;}}
-.sfs-particle { position:absolute; border-radius:50%; background:rgba(46,189,58,0.28); pointer-events:none; }
+.sfs-particle{position:absolute;border-radius:50%;background:rgba(46,189,58,0.28);pointer-events:none;}
 
-/* ══ KEYFRAMES ══ */
 @keyframes slideInLeft{from{opacity:0;transform:translateX(-32px);}to{opacity:1;transform:none;}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:none;}}
 
-/* ══ RESPONSIVE ══ */
+/* ── VIDEO MODAL ── */
+body.sfs-modal-open{overflow:hidden;}
+.sfs-video-overlay {
+  position:fixed;inset:0;z-index:99999;
+  display:flex;align-items:center;justify-content:center;
+  animation:vmFadeIn .28s ease both;
+}
+@keyframes vmFadeIn{from{opacity:0;}to{opacity:1;}}
+@keyframes vmFadeOut{from{opacity:1;}to{opacity:0;}}
+.sfs-video-overlay.sfs-closing{animation:vmFadeOut .22s ease forwards;}
+.sfs-vm-backdrop {
+  position:absolute;inset:0;
+  background:rgba(0,0,0,0.94);
+  backdrop-filter:blur(20px) saturate(0.2);
+  -webkit-backdrop-filter:blur(20px) saturate(0.2);
+  cursor:pointer;
+}
+.sfs-vm-wrap { position:relative;z-index:2;width:min(90vw,1100px);animation:vmSlideUp .36s cubic-bezier(.22,1,.36,1) both; }
+@keyframes vmSlideUp{from{opacity:0;transform:scale(.94) translateY(36px);}to{opacity:1;transform:none;}}
+@keyframes vmSlideDown{from{opacity:1;transform:none;}to{opacity:0;transform:scale(.93) translateY(28px);}}
+.sfs-video-overlay.sfs-closing .sfs-vm-wrap{animation:vmSlideDown .2s ease forwards;}
+.sfs-vm-bar { display:flex;align-items:center;justify-content:space-between;padding:0 4px 12px; }
+.sfs-vm-bar-left { display:flex;align-items:center;gap:8px; }
+.sfs-vm-bar-dot { width:6px;height:6px;border-radius:50%;background:#2ebd3a;animation:livePulse 2s infinite;flex-shrink:0; }
+.sfs-vm-bar-label { font-family:'DM Sans',sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,0.55);letter-spacing:.08em;text-transform:uppercase; }
+.sfs-vm-close {
+  width:34px;height:34px;border-radius:8px;
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .18s ease;color:rgba(255,255,255,0.60);
+  font-size:16px;line-height:1;font-family:sans-serif;flex-shrink:0;
+}
+.sfs-vm-close:hover{background:rgba(255,255,255,0.14);border-color:rgba(255,255,255,0.26);color:#fff;transform:scale(1.08);}
+.sfs-vm-player-shell {
+  position:relative;border-radius:14px;overflow:hidden;background:#000;
+  box-shadow:0 0 0 1px rgba(46,189,58,0.20),0 40px 100px rgba(0,0,0,0.80),0 0 60px rgba(46,189,58,0.10);
+  line-height:0;
+}
+.sfs-vm-loading {
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;
+  background:#060e07;border-radius:14px;transition:opacity .35s ease;z-index:10;
+}
+.sfs-vm-loading.sfs-vm-ready{opacity:0;pointer-events:none;}
+.sfs-vm-spinner { width:40px;height:40px;border-radius:50%;border:3px solid rgba(46,189,58,0.15);border-top-color:#2ebd3a;animation:sfsSpinIt .75s linear infinite; }
+@keyframes sfsSpinIt{to{transform:rotate(360deg);}}
+.sfs-vm-loading-label{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;color:rgba(125,237,136,0.65);letter-spacing:.04em;}
+.sfs-vm-video{width:100%;display:block;max-height:76vh;object-fit:contain;background:#000;vertical-align:bottom;border:none;outline:none;}
+.sfs-vm-hint{padding:10px 4px 0;text-align:right;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;color:rgba(255,255,255,0.20);letter-spacing:.04em;}
+
+/* ════════════════════════════════════════
+   TABLET  ≤ 1200px
+════════════════════════════════════════ */
 @media(max-width:1200px){
   .sfs-hero{border-radius:22px;}
   .sfs-grid{grid-template-columns:1fr;padding:36px 32px 32px;gap:28px;}
@@ -562,28 +524,144 @@ const css = `
   .sfs-right{padding:0;}
   .sfs-img-frame{max-width:480px;}
 }
+
+/* ════════════════════════════════════════
+   MOBILE  ≤ 640px  — full redesign
+════════════════════════════════════════ */
 @media(max-width:640px){
+
+  /* container */
   .sfs-hero{border-radius:18px;border-width:1px;}
-  .sfs-grid{grid-template-columns:1fr;padding:24px 16px 20px;gap:20px;}
-  .sfs-h1{font-size:34px;letter-spacing:-1.6px;}
-  .sfs-sub{font-size:13px;margin-bottom:16px;}
-  .sfs-feats{flex-direction:column;gap:8px;margin-bottom:18px;}
-  .sfs-feat{flex-direction:row;align-items:center;gap:12px;padding:12px;border-radius:14px;}
-  .sfs-feat-ico{margin-bottom:0;flex-shrink:0;}
-  .sfs-hero-actions{flex-direction:column;gap:9px;align-items:stretch;}
-  .sfs-btn-main,.sfs-btn-sec{justify-content:center;border-radius:12px;}
-  .sfs-right{padding:0;}
-  .sfs-img-frame{max-width:100%;}
-  .sfs-shield-badge{width:60px;height:60px;top:8px;right:4px;}
-  .sfs-ring-1{width:380px;height:380px;}
+  .sfs-grid{
+    grid-template-columns:1fr;
+    /* IMAGE FIRST on mobile, then text */
+    display:flex; flex-direction:column;
+    padding:16px 14px 24px;
+    gap:0;
+  }
+
+  /* push the right col (image) to top */
+  .sfs-right { order:-1; padding:0; margin-bottom:20px; }
+  .sfs-left  { order:1;  padding-right:0; }
+
+  /* ── IMAGE FRAME ── */
+  .sfs-img-frame{
+    max-width:100%;
+    border-radius:18px;
+    padding:4px;
+  }
+  .sfs-img-frame-inner{ border-radius:14px; }
+  .sfs-asset-img{
+    aspect-ratio:16/9;
+    object-position:center;
+  }
+  /* tighter scanline animation */
+  .sfs-frame-status{
+    padding:24px 12px 10px;
+    border-radius:0 0 14px 14px;
+  }
+  .sfs-frame-status-txt{font-size:10px;}
+  .sfs-frame-status-id{font-size:9px;}
+
+  /* ── FLOATING CHIPS — repositioned ── */
+  .sfs-shield-badge{ width:50px;height:50px;top:-8px;right:2px; }
+
+  .sfs-asset-label{
+    left:4px; top:8px;
+    padding:5px 9px; border-radius:9px;
+  }
+  .sfs-alabel-text{font-size:9.5px;}
+  .sfs-alabel-sub{font-size:7.5px;}
+
+  .sfs-qr-float{
+    right:2px; top:40px;
+    padding:8px 10px; border-radius:12px; gap:7px;
+  }
+  .sfs-qr-float-title{font-size:9.5px;}
+  .sfs-qr-float-sub{font-size:7px;}
+  .sfs-qr-live{font-size:6.5px;}
+
+  .sfs-alert-float{
+    right:4px; bottom:44px;
+    padding:7px 10px; gap:7px; border-radius:11px;
+  }
+  .sfs-alert-ico{width:26px;height:26px;font-size:12px;border-radius:8px;}
+  .sfs-alert-h{font-size:9px;}
+  .sfs-alert-p{font-size:7px;}
+
+  /* nav dots */
+  .sfs-asset-nav{bottom:4px;gap:5px;}
+  .sfs-nav-dot{width:6px;height:6px;}
+  .sfs-nav-dot.active{width:18px;}
+
+  /* ambient rings — hide large one */
+  .sfs-ring-1{width:280px;height:280px;}
   .sfs-ring-2{display:none;}
-  .sfs-qr-float{right:-2px;top:50px;}
-  .sfs-left{padding-right:0;}
-  .sfs-asset-label{left:-4px;}
+
+  /* ── LEFT — TEXT SECTION ── */
+  .sfs-badge{
+    margin-bottom:12px;
+    font-size:9px;padding:6px 11px 6px 9px;border-radius:9px;
+  }
+  .sfs-h1{
+    font-size:32px; line-height:.93;
+    letter-spacing:-1.8px; margin-bottom:12px;
+  }
+  .sfs-sub{
+    font-size:13px;line-height:1.62;
+    margin-bottom:16px;max-width:100%;
+  }
+
+  /* ── FEATURE CARDS — horizontal scroll ── */
+  .sfs-feats{
+    display:flex; flex-direction:row;
+    gap:10px; margin-bottom:16px;
+    overflow-x:auto;-webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    /* bleed edge for scroll feel */
+    margin-left:-14px; margin-right:-14px;
+    padding-left:14px; padding-right:14px;
+    padding-bottom:6px;
+  }
+  .sfs-feats::-webkit-scrollbar{display:none;}
+  .sfs-feat{
+    flex:0 0 150px; min-width:150px;
+    flex-direction:column; align-items:flex-start;
+    padding:13px 11px 11px; border-radius:14px;
+  }
+  .sfs-feat-ico{width:36px;height:36px;margin-bottom:8px;border-radius:10px;}
+  .sfs-feat h4{font-size:11.5px;}
+  .sfs-feat p{font-size:10px;}
+
+  /* ── BUTTONS — stacked full width ── */
+  .sfs-hero-actions{
+    flex-direction:column; gap:10px;
+    width:100%;
+  }
+  .sfs-btn-main{
+    width:100%; justify-content:center;
+    padding:15px 20px; border-radius:13px;
+    font-size:14.5px;
+  }
+  .sfs-btn-sec{
+    width:100%; justify-content:center;
+    padding:13px 20px; border-radius:13px;
+    font-size:13px;
+  }
+
+  /* video modal */
+  .sfs-vm-wrap{width:calc(100vw - 16px);padding:0;}
+  .sfs-vm-player-shell{border-radius:10px;}
+  .sfs-vm-video{max-height:52vh;}
 }
+
+/* ════════════════════════════════════════
+   EXTRA SMALL  ≤ 380px
+════════════════════════════════════════ */
 @media(max-width:380px){
-  .sfs-h1{font-size:28px;letter-spacing:-1.1px;}
-  .sfs-grid{padding:16px 12px 14px;}
+  .sfs-h1{font-size:27px;letter-spacing:-1.3px;}
+  .sfs-grid{padding:12px 12px 20px;}
+  .sfs-feat{flex:0 0 138px;min-width:138px;}
 }
 `;
 
@@ -629,7 +707,7 @@ function QRCodeSVG({ size = 48 }) {
 
 /* ─── PARTICLES ─── */
 const PDATA = Array.from({ length: 18 }, (_, i) => ({
-  id: i, x:`${(i*37+11)%100}%`, y:`${(i*53+7)%100}%`,
+  id:i, x:`${(i*37+11)%100}%`, y:`${(i*53+7)%100}%`,
   size:`${(i%3)+2}px`, delay:`${(i*.7)%6}s`, dur:`${8+(i%5)}s`, op:0.09+(i%4)*.07,
 }));
 function Particles() {
@@ -700,7 +778,6 @@ function ShieldBadge() {
   );
 }
 
-/* ─── FEATURE SVGs ─── */
 function SVGSecureQR() {
   return (
     <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -730,6 +807,68 @@ function SVGEmergency() {
   );
 }
 
+/* ─── VIDEO MODAL ─── */
+function VideoModal({ onClose }) {
+  const videoRef  = useRef(null);
+  const [closing, setClosing] = useState(false);
+  const [ready,   setReady]   = useState(false);
+
+  useEffect(() => {
+    document.body.classList.add("sfs-modal-open");
+    return () => document.body.classList.remove("sfs-modal-open");
+  }, []);
+
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === "Escape") handleClose(); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  });
+
+  const handleVideoReady = () => {
+    setReady(true);
+    videoRef.current?.play().catch(() => {});
+  };
+
+  const handleClose = () => {
+    if (closing) return;
+    setClosing(true);
+    videoRef.current?.pause();
+    setTimeout(onClose, 220);
+  };
+
+  return (
+    <div className={`sfs-video-overlay${closing ? " sfs-closing" : ""}`}>
+      <div className="sfs-vm-backdrop" onClick={handleClose} />
+      <div className="sfs-vm-wrap">
+        <div className="sfs-vm-bar">
+          <div className="sfs-vm-bar-left">
+            <div className="sfs-vm-bar-dot" />
+            <span className="sfs-vm-bar-label">How ScanForSafe Works</span>
+          </div>
+          <button className="sfs-vm-close" onClick={handleClose} aria-label="Close video">✕</button>
+        </div>
+        <div className="sfs-vm-player-shell">
+          <div className={`sfs-vm-loading${ready ? " sfs-vm-ready" : ""}`}>
+            <div className="sfs-vm-spinner" />
+            <span className="sfs-vm-loading-label">Loading video…</span>
+          </div>
+          <video
+            ref={videoRef}
+            className="sfs-vm-video"
+            src="/hero.mp4"
+            preload="auto"
+            playsInline
+            controls
+            onCanPlay={handleVideoReady}
+            onLoadedData={handleVideoReady}
+          />
+        </div>
+        <div className="sfs-vm-hint">Press ESC to close</div>
+      </div>
+    </div>
+  );
+}
+
 /* ─── ASSET SCENE ─── */
 function AssetScene({ asset, imgClass }) {
   return (
@@ -737,8 +876,6 @@ function AssetScene({ asset, imgClass }) {
       <div className="sfs-glow" />
       <div className="sfs-ring sfs-ring-1" />
       <div className="sfs-ring sfs-ring-2" />
-
-      {/* Large bordered image frame */}
       <div className="sfs-img-frame">
         <div className="sfs-img-frame-inner">
           <img src={asset.img} alt={asset.label} className={`sfs-asset-img ${imgClass}`} />
@@ -752,7 +889,6 @@ function AssetScene({ asset, imgClass }) {
           </div>
         </div>
       </div>
-
       <div className="sfs-asset-label">
         <div className="sfs-alabel-dot" />
         <div>
@@ -760,7 +896,6 @@ function AssetScene({ asset, imgClass }) {
           <div className="sfs-alabel-sub">{asset.tagline}</div>
         </div>
       </div>
-
       <div className="sfs-qr-float">
         <div className="sfs-qr-float-inner"><QRCodeSVG size={40} /></div>
         <div>
@@ -772,7 +907,6 @@ function AssetScene({ asset, imgClass }) {
           </div>
         </div>
       </div>
-
       <div className="sfs-alert-float">
         <div className="sfs-alert-ico">🔔</div>
         <div>
@@ -784,17 +918,21 @@ function AssetScene({ asset, imgClass }) {
   );
 }
 
-/* ─── MAIN ─── */
+/* ─── MAIN COMPONENT ─── */
 export default function ScanForSafeHero() {
-  const [active, setActive]     = useState(0);
-  const [imgClass, setImgClass] = useState("sfs-asset-entering");
+  const navigate = useNavigate();
+
+  const [active,    setActive]    = useState(0);
+  const [imgClass,  setImgClass]  = useState("sfs-asset-entering");
+  const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
-    const t0 = setTimeout(() => setImgClass("sfs-asset-idle"), 700);
-    return () => clearTimeout(t0);
+    const t = setTimeout(() => setImgClass("sfs-asset-idle"), 700);
+    return () => clearTimeout(t);
   }, []);
 
   useEffect(() => {
+    if (showVideo) return;
     const iv = setInterval(() => {
       setImgClass("sfs-asset-exiting");
       setTimeout(() => {
@@ -804,15 +942,7 @@ export default function ScanForSafeHero() {
       }, 300);
     }, 5500);
     return () => clearInterval(iv);
-  }, []);
-
-  const c = ASSETS[active];
-
-  const features = [
-    { ico:<SVGSecureQR/>, bg:"linear-gradient(135deg,#e8eef8,#d0dcf0)", border:"rgba(11,37,69,0.18)", h:"Secure QR & NFC", p:"Military-grade encrypted ID protection" },
-    { ico:<SVGTracking/>, bg:"linear-gradient(135deg,#e0f5f7,#c0eaed)", border:"rgba(13,122,138,0.18)", h:"Live Tracking",    p:"Real-time alerts & continuous monitoring" },
-    { ico:<SVGEmergency/>, bg:"linear-gradient(135deg,#fdecea,#f9d0cc)", border:"rgba(192,57,43,0.18)", h:"Emergency Access", p:"Instant verified owner identification" },
-  ];
+  }, [showVideo]);
 
   const switchTo = (i) => {
     setImgClass("sfs-asset-exiting");
@@ -823,15 +953,27 @@ export default function ScanForSafeHero() {
     }, 300);
   };
 
+  const c = ASSETS[active];
+
+  const features = [
+    { ico:<SVGSecureQR/>,  bg:"linear-gradient(135deg,#e8eef8,#d0dcf0)", border:"rgba(11,37,69,0.18)",   h:"Secure QR & NFC",  p:"Military-grade encrypted ID protection" },
+    { ico:<SVGTracking/>,  bg:"linear-gradient(135deg,#e0f5f7,#c0eaed)", border:"rgba(13,122,138,0.18)", h:"Live Tracking",    p:"Real-time alerts & continuous monitoring" },
+    { ico:<SVGEmergency/>, bg:"linear-gradient(135deg,#fdecea,#f9d0cc)", border:"rgba(192,57,43,0.18)",  h:"Emergency Access", p:"Instant verified owner identification" },
+  ];
+
   return (
     <>
       <style>{css}</style>
+
+      {showVideo && <VideoModal onClose={() => setShowVideo(false)} />}
+
       <div className="sfs-page">
         <div className="sfs-hero">
           <div className="sfs-bg"><MeshLines /><Globe /><Particles /></div>
 
           <div className="sfs-grid">
-            {/* LEFT */}
+
+            {/* ── LEFT ── */}
             <div className="sfs-left">
               <div className="sfs-badge">
                 <div className="sfs-badge-dot" />
@@ -861,20 +1003,20 @@ export default function ScanForSafeHero() {
               </div>
 
               <div className="sfs-hero-actions">
-                <button className="sfs-btn-main">
+                <button className="sfs-btn-main" onClick={() => navigate("/qr-form")}>
                   Pre-Registration
                   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
                   </svg>
                 </button>
-                <button className="sfs-btn-sec">
+                <button className="sfs-btn-sec" onClick={() => setShowVideo(true)}>
                   <div className="sfs-play-ring">▶</div>
                   See How It Works
                 </button>
               </div>
             </div>
 
-            {/* RIGHT */}
+            {/* ── RIGHT ── */}
             <div className="sfs-right">
               <ShieldBadge />
               <div className="sfs-stage">
@@ -884,31 +1026,16 @@ export default function ScanForSafeHero() {
                 {ASSETS.map((a, i) => (
                   <div
                     key={i}
-                    className={`sfs-nav-dot${i===active?" active":""}`}
+                    className={`sfs-nav-dot${i === active ? " active" : ""}`}
                     onClick={() => switchTo(i)}
                     title={a.label}
                   />
                 ))}
               </div>
             </div>
+
           </div>
         </div>
-
-        {/* TICKER */}
-        <div className="sfs-ticker">
-          <div className="sfs-ticker-inner">
-            <div className="sfs-ticker-label">Live Updates</div>
-            <div className="sfs-ticker-track">
-              {tickerAll.map((item, i) => (
-                <div key={i} className="sfs-ti">
-                  {item}
-                  {i < tickerAll.length - 1 && <div className="sfs-td" />}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-
       </div>
     </>
   );

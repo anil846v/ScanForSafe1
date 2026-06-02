@@ -53,6 +53,80 @@ function StatItem({ num, suffix, label, active, delay }) {
   );
 }
 
+/* ── BENEFIT CARD COMPONENT ── */
+function BenefitCard({ icon, title, description, accentColor, gradientFrom, gradientTo, index }) {
+  const [hovered, setHovered] = useState(false);
+  const [clicked, setClicked] = useState(false);
+
+  const active = clicked || hovered;
+
+  return (
+    <div
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      onClick={() => setClicked((prev) => !prev)}
+      style={{
+        position: 'relative',
+        borderRadius: 16,
+        border: active
+          ? `2px solid #22c55e`
+          : `2px solid #bbf7d0`,
+        background:  '#ffffff',
+        padding: '22px 20px 28px',
+        overflow: 'hidden',
+        transition: 'border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease, transform 0.25s cubic-bezier(0.34,1.3,0.64,1)',
+        transform: active ? 'translateY(-4px)' : 'translateY(0)',
+        boxShadow: active
+          ? '0 8px 24px rgba(34,197,94,0.13), 0 2px 8px rgba(0,0,0,0.06)'
+          : '0 1px 4px rgba(0,0,0,0.04)',
+        cursor: 'pointer',
+      }}
+    >
+      {/* bottom green accent line */}
+      <div style={{
+        position: 'absolute',
+        bottom: 0, left: 20, right: 20,
+        height: 3,
+        borderRadius: '3px 3px 0 0',
+        background: '#22c55e',
+        opacity: active ? 1 : 0.35,
+        transition: 'opacity 0.22s ease',
+      }} />
+
+      <div style={{
+        width: 48, height: 48,
+        borderRadius: 12,
+        background: '#dcfce7',
+        color: '#16a34a',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        marginBottom: 16,
+      }}>
+        {icon}
+      </div>
+
+      <h3 style={{
+        fontFamily: "'Outfit', sans-serif",
+        fontSize: 16,
+        fontWeight: 700,
+        color: '#111827',
+        marginBottom: 8,
+        letterSpacing: '-0.01em',
+        lineHeight: 1.25,
+      }}>
+        {title}
+      </h3>
+
+      <p style={{
+        fontSize: 12.5,
+        color: '#64748b',
+        lineHeight: 1.65,
+      }}>
+        {description}
+      </p>
+    </div>
+  );
+}
+
 export default function Franchise() {
   const navigate = useNavigate();
   const [submitted, setSubmitted] = useState(false);
@@ -73,40 +147,39 @@ export default function Franchise() {
     mobile: "",
     city: "",
     state: "",
-    investment: "100000", // Default: ₹1,00,000
+    investment: "100000",
     experience: "None",
     shopAvailable: "No",
     message: "",
   });
 
-  // State-driven investment benefits calculator data
   const investmentTiers = {
     "50000": {
       tierName: "Silver Partner",
       minInvestment: "₹50,000",
-      margins: "5%",
-      pincodes: "1 Pincode",
-      inventory: "150 Safety Tags",
-      marketingSupport: "Basic Digital Flyers",
-      potentialRoi: "₹25,000 - ₹35,000 / month",
+      margins: "10%",
+      pincodes: "2 Pincodes",
+      inventory: "200 Safety Tags",
+      marketingSupport: "Basic Digital Flyers & Social Media Kit",
+      potentialRoi: "₹5000 / month",
     },
     "100000": {
       tierName: "Gold Partner",
       minInvestment: "₹1,00,000",
-      margins: "10%",
-      pincodes: "2 Pincodes (Exclusive)",
-      inventory: "350 Safety Tags",
+      margins: "20%",
+      pincodes: "4 Pincodes (Exclusive)",
+      inventory: "500 Safety Tags",
       marketingSupport: "Brochures, Banners, Digital Ads Support",
-      potentialRoi: "₹60,000 - ₹80,000 / month",
+      potentialRoi: "₹20,000 / month",
     },
     "300000": {
       tierName: "Platinum Master Franchise",
       minInvestment: "₹3,00,000+",
-      margins: "20%",
+      margins: "30%",
       pincodes: "Entire City / District",
-      inventory: "1200 Safety Tags + NFC Cards",
-      marketingSupport: "Full Local Ad Campaigns, Store Signage, dedicated account manager",
-      potentialRoi: "₹1,80,000 - ₹2,50,000 / month",
+      inventory: "1500 Safety Tags + NFC Cards",
+      marketingSupport: "Full Local Ad Campaigns, Store Signage, Dedicated Account Manager",
+      potentialRoi: "₹90,000 / month",
     },
   };
 
@@ -136,7 +209,6 @@ export default function Franchise() {
     }
     if (!formData.city.trim()) errs.city = "City is required";
     if (!formData.state.trim()) errs.state = "State is required";
-
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -144,12 +216,8 @@ export default function Franchise() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-
     setIsSubmitting(true);
-
-    // Simulate secure API/lead generation dispatch
     setTimeout(() => {
-      // Generate a mock unique franchise ticket ID
       const randomId = "SFS-FRANCHISE-" + Math.floor(1000 + Math.random() * 9000);
       setTicketId(randomId);
       setIsSubmitting(false);
@@ -160,9 +228,43 @@ export default function Franchise() {
 
   const currentTier = investmentTiers[formData.investment] || investmentTiers["100000"];
 
+  const benefitCards = [
+    {
+      icon: <TrendingUp size={20} />,
+      title: "High ROI Model",
+      description: "Earn up to 10%–30% profit margin on physical QR visual safety tags & smart NFC cards distributed in your region.",
+      accentColor: "#16a34a",
+      gradientFrom: "#16a34a",
+      gradientTo: "#4ade80",
+    },
+    {
+      icon: <Shield size={20} />,
+      title: "Exclusive Territory",
+      description: "Secure exclusive ownership rights for dedicated pincodes. Zero local brand competition.",
+      accentColor: "#0284c7",
+      gradientFrom: "#0284c7",
+      gradientTo: "#38bdf8",
+    },
+    {
+      icon: <Landmark size={20} />,
+      title: "Innovative Tech",
+      description: "India's leading cloud network mapping QR-codes for vehicle safety, senior citizens, children, and pets.",
+      accentColor: "#7c3aed",
+      gradientFrom: "#7c3aed",
+      gradientTo: "#a78bfa",
+    },
+    {
+      icon: <Award size={20} />,
+      title: "Marketing Support",
+      description: "Receive complete physical branding collaterals, digital flyers, and targeted local ad campaign execution.",
+      accentColor: "#ea580c",
+      gradientFrom: "#ea580c",
+      gradientTo: "#fb923c",
+    },
+  ];
+
   return (
     <>
-      {/* ── FONTS ── */}
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Fira+Code:wght@400;500&family=Outfit:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
@@ -170,12 +272,16 @@ export default function Franchise() {
         .fr-page {
           font-family: 'Space Grotesk', sans-serif;
           min-height: 100vh;
-          background: #f8fafc;
-          padding-top: 80px; /* Space for fixed Navbar */
+          background: #f1f5f9;
+          padding-top: 80px;
           overflow-x: hidden;
         }
 
-        /* ── Hero Keyframe Animations (Matches ContactUs.jsx) ── */
+        @keyframes cardReveal {
+          from { opacity: 0; transform: translateY(18px) scale(0.97); }
+          to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
         @keyframes morphBlob {
           0%,100% { border-radius: 60% 40% 70% 30% / 50% 60% 40% 70%; }
           25%      { border-radius: 40% 60% 30% 70% / 60% 40% 70% 50%; }
@@ -200,10 +306,6 @@ export default function Franchise() {
           0%,100% { opacity: .5; transform: scale(1); }
           50%      { opacity: 1; transform: scale(1.08); }
         }
-        @keyframes ripple {
-          0%   { transform: scale(1); opacity: .6; }
-          100% { transform: scale(2.8); opacity: 0; }
-        }
         @keyframes orbMove1 {
           0%,100% { transform: translate(0,0) scale(1); }
           33%      { transform: translate(60px,-40px) scale(1.1); }
@@ -215,9 +317,8 @@ export default function Franchise() {
           66%      { transform: translate(40px,-50px) scale(1.1); }
         }
 
-        /* ── SECTION CARDS ── */
         .fr-section {
-          padding: 20px 0px;
+          padding: 20px 24px;
           max-width: 1240px;
           margin: 0 auto;
         }
@@ -229,66 +330,31 @@ export default function Franchise() {
           align-items: start;
         }
 
-        /* Benefits cards layout */
         .fr-benefits-title {
           font-family: 'Outfit', sans-serif;
           font-size: 24px;
           font-weight: 800;
           color: #0f172a;
-          margin-bottom: 24px;
+          margin-bottom: 6px;
           display: flex;
           align-items: center;
           gap: 10px;
         }
 
-        .fr-benefits-grid {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          gap: 16px;
-        }
-
-        .fr-benefit-card {
-          background: white;
-          border: 1px solid #e2e8f0;
-          border-radius: 18px;
-          padding: 20px;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.01);
-        }
-
-        .fr-benefit-card:hover {
-          transform: translateY(-4px);
-          border-color: rgba(22, 163, 74, 0.3);
-          box-shadow: 0 10px 20px rgba(6, 78, 59, 0.05);
-        }
-
-        .fr-benefit-icon {
-          width: 44px;
-          height: 44px;
-          border-radius: 10px;
-          background: rgba(22, 163, 74, 0.08);
-          color: #16a34a;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin-bottom: 14px;
-        }
-
-        .fr-benefit-h {
-          font-family: 'Outfit', sans-serif;
-          font-size: 15px;
-          font-weight: 700;
-          color: #0f172a;
-          margin-bottom: 6px;
-        }
-
-        .fr-benefit-p {
-          font-size: 12.5px;
+        .fr-benefits-subtitle {
+          font-size: 13px;
           color: #64748b;
+          margin-bottom: 22px;
+          font-weight: 500;
           line-height: 1.5;
         }
 
-        /* ── INTERACTIVE CALCULATOR ── */
+        .fr-benefits-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 14px;
+        }
+
         .fr-calc-box {
           background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
           border-radius: 20px;
@@ -362,17 +428,8 @@ export default function Franchise() {
           padding-bottom: 0;
         }
 
-        .fr-calc-label {
-          color: #94a3b8;
-          font-weight: 500;
-        }
-
-        .fr-calc-value {
-          color: #e2e8f0;
-          font-weight: 700;
-          text-align: right;
-        }
-
+        .fr-calc-label { color: #94a3b8; font-weight: 500; }
+        .fr-calc-value { color: #e2e8f0; font-weight: 700; text-align: right; }
         .fr-roi-badge {
           background: rgba(34, 197, 94, 0.12);
           color: #4ade80;
@@ -381,7 +438,6 @@ export default function Franchise() {
           font-weight: 800;
         }
 
-        /* ── APPLICATION FORM ── */
         .fr-form-card {
           background: white;
           border: 1px solid #e8edf3;
@@ -390,9 +446,7 @@ export default function Franchise() {
           box-shadow: 0 10px 30px rgba(0, 20, 60, 0.02), 0 30px 60px rgba(0, 20, 60, 0.04);
         }
 
-        .fr-form-head {
-          margin-bottom: 24px;
-        }
+        .fr-form-head { margin-bottom: 24px; }
 
         .fr-form-title {
           font-family: 'Outfit', sans-serif;
@@ -444,10 +498,7 @@ export default function Franchise() {
           box-shadow: 0 0 10px rgba(22, 163, 74, 0.1);
         }
 
-        .fr-textarea {
-          resize: none;
-          height: 60px;
-        }
+        .fr-textarea { resize: none; height: 60px; }
 
         .fr-error {
           font-size: 10px;
@@ -483,26 +534,16 @@ export default function Franchise() {
           box-shadow: 0 8px 18px rgba(46, 189, 58, 0.25);
         }
 
-        .fr-btn-submit:disabled {
-          opacity: 0.7;
-          cursor: not-allowed;
-        }
+        .fr-btn-submit:disabled { opacity: 0.7; cursor: not-allowed; }
 
-        /* ── SUCCESS SCREEN ── */
-        .fr-success {
-          text-align: center;
-          padding: 30px 10px;
-        }
+        .fr-success { text-align: center; padding: 30px 10px; }
 
         .fr-success-icon {
-          width: 72px;
-          height: 72px;
+          width: 72px; height: 72px;
           border-radius: 50%;
           background: #dcfce7;
           border: 3px solid #16a34a;
-          display: flex;
-          align-items: center;
-          justify-content: center;
+          display: flex; align-items: center; justify-content: center;
           color: #16a34a;
           margin: 0 auto 20px;
           box-shadow: 0 0 24px rgba(22, 163, 74, 0.2);
@@ -516,101 +557,61 @@ export default function Franchise() {
 
         .fr-success h2 {
           font-family: 'Outfit', sans-serif;
-          font-size: 26px;
-          font-weight: 900;
-          color: #0f172a;
-          margin-bottom: 8px;
+          font-size: 26px; font-weight: 900;
+          color: #0f172a; margin-bottom: 8px;
         }
 
-        .fr-success p {
-          font-size: 13.5px;
-          color: #4b5563;
-          line-height: 1.6;
-          margin-bottom: 24px;
-        }
+        .fr-success p { font-size: 13.5px; color: #4b5563; line-height: 1.6; margin-bottom: 24px; }
 
         .fr-success-ticket {
           background: linear-gradient(135deg, rgba(22, 163, 74, 0.08) 0%, rgba(0, 136, 255, 0.04) 100%);
           border: 1.5px dashed #16a34a;
           border-radius: 14px;
-          padding: 18px;
-          margin-bottom: 24px;
+          padding: 18px; margin-bottom: 24px;
           max-width: 440px;
-          margin-left: auto;
-          margin-right: auto;
+          margin-left: auto; margin-right: auto;
         }
 
         .fr-ticket-code {
           font-family: 'Fira Code', monospace;
-          font-size: 20px;
-          font-weight: 700;
-          color: #0f172a;
-          margin-top: 4px;
+          font-size: 20px; font-weight: 700;
+          color: #0f172a; margin-top: 4px;
           letter-spacing: 1px;
         }
 
         .fr-btn-home {
-          padding: 12px 24px;
-          border-radius: 8px;
-          border: none;
-          background: #0f172a;
-          color: white;
+          padding: 12px 24px; border-radius: 8px; border: none;
+          background: #0f172a; color: white;
           font-family: 'Space Grotesk', sans-serif;
-          font-size: 13.5px;
-          font-weight: 700;
-          cursor: pointer;
-          transition: all 0.22s ease;
+          font-size: 13.5px; font-weight: 700;
+          cursor: pointer; transition: all 0.22s ease;
         }
 
-        .fr-btn-home:hover {
-          background: #1e293b;
-          transform: translateY(-1px);
-        }
+        .fr-btn-home:hover { background: #1e293b; transform: translateY(-1px); }
 
-        /* ── Responsive Stats Counter (Matches ContactUs.jsx) ── */
         .fr-stats-counter {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 48px;
-          padding-top: 28px;
+          display: flex; align-items: center; justify-content: center;
+          gap: 48px; padding-top: 28px;
           border-top: 1px solid rgba(255,255,255,0.08);
         }
 
-        .fr-stats-divider {
-          width: 1px;
-          height: 32px;
-          background: rgba(255,255,255,0.1);
-        }
+        .fr-stats-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.1); }
 
-        /* ── RESPONSIVE ── */
         @media (max-width: 900px) {
-          .fr-grid-split {
-            grid-template-columns: 1fr;
-            gap: 30px;
-          }
+          .fr-grid-split { grid-template-columns: 1fr; gap: 30px; }
         }
         @media (max-width: 768px) {
-          .fr-stats-counter {
-            flex-direction: column;
-            gap: 24px;
-          }
-          .fr-stats-divider {
-            display: none;
-          }
+          .fr-stats-counter { flex-direction: column; gap: 24px; }
+          .fr-stats-divider { display: none; }
         }
         @media (max-width: 580px) {
-          .fr-benefits-grid {
-            grid-template-columns: 1fr;
-          }
-          .fr-form-card {
-            padding: 24px 18px;
-          }
+          .fr-benefits-grid { grid-template-columns: 1fr; }
+          .fr-form-card { padding: 24px 18px; }
         }
       `}</style>
 
       <div className="fr-page">
-        {/* ── B2B HERO BANNER (Matches ContactUs.jsx) ── */}
+        {/* ── HERO ── */}
         <section style={{
           position: 'relative', overflow: 'hidden',
           minHeight: 520, paddingTop: 10, paddingBottom: 40,
@@ -618,8 +619,6 @@ export default function Franchise() {
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           textAlign: 'center'
         }}>
-
-          {/* Animated orbs */}
           <div style={{
             position: 'absolute', width: 560, height: 560, borderRadius: '50%',
             background: 'radial-gradient(circle, rgba(34, 197, 94, 0.18) 0%, transparent 65%)',
@@ -634,15 +633,11 @@ export default function Franchise() {
             animation: 'orbMove2 18s ease-in-out infinite',
             pointerEvents: 'none',
           }} />
-
-          {/* Dot grid */}
           <div style={{
             position: 'absolute', inset: 0, pointerEvents: 'none',
             backgroundImage: 'radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px)',
             backgroundSize: '32px 32px',
           }} />
-
-          {/* Scan beam */}
           <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
             <div style={{
               position: 'absolute', left: 0, right: 0, height: 3,
@@ -651,8 +646,6 @@ export default function Franchise() {
               filter: 'blur(1px)',
             }} />
           </div>
-
-          {/* Floating shapes */}
           <div style={{
             position: 'absolute', top: 70, left: '7%',
             width: 64, height: 64, border: '2px solid rgba(74,222,128,0.25)',
@@ -676,11 +669,7 @@ export default function Franchise() {
             pointerEvents: 'none',
           }} />
 
-          {/* Hero text */}
           <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '0 24px', maxWidth: 720 }}>
-
-         
-            {/* Main heading */}
             <h1 style={{
               fontFamily: "'Bricolage Grotesque', sans-serif",
               fontSize: 'clamp(2.2rem, 5vw, 3.8rem)',
@@ -703,7 +692,6 @@ export default function Franchise() {
               </span>
             </h1>
 
-            {/* Subtitle */}
             <p style={{
               fontFamily: "'Instrument Sans', sans-serif",
               fontSize: 16, color: 'rgba(186,230,253,0.85)',
@@ -715,76 +703,41 @@ export default function Franchise() {
               Partner with India's smartest QR-based safety brand. Scale a high-yielding technology business with exclusive territories, high margins, and 100% advertising support.
             </p>
 
-            {/* Stats */}
             <div ref={statsRef} className="fr-stats-counter">
-              <StatItem num={40} suffix="%" label="Profit Margin" active={statsInView} delay={0} />
+              <StatItem num={30} suffix="%" label="Max Profit Margin" active={statsInView} delay={0} />
               <div className="fr-stats-divider" />
               <StatItem num={12} suffix=" hrs" label="Approval turnaround" active={statsInView} delay={0.15} />
               <div className="fr-stats-divider" />
-              <StatItem num={50000} suffix="+" label="Est. Monthly ROI (₹)" active={statsInView} delay={0.3} />
+              <StatItem num={90000} suffix="+" label="Est. Monthly ROI (₹)" active={statsInView} delay={0.3} />
             </div>
           </div>
 
-          {/* Bottom wave */}
           <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, pointerEvents: 'none' }}>
             <svg viewBox="0 0 1440 72" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
-              <path d="M0,48 C240,80 480,16 720,40 C960,64 1200,24 1440,48 L1440,72 L0,72 Z" fill="#f8fafc" />
+              <path d="M0,48 C240,80 480,16 720,40 C960,64 1200,24 1440,48 L1440,72 L0,72 Z" fill="#f1f5f9" />
             </svg>
           </div>
         </section>
 
-        {/* ── MAIN CONTENT SECTION ── */}
+        {/* ── MAIN CONTENT ── */}
         <section className="fr-section">
           <div className="fr-grid-split">
-            {/* LEFT: Benefits & Interactive Calculator */}
+            {/* LEFT */}
             <div>
               <h2 className="fr-benefits-title">
                 <Award style={{ color: "#16a34a" }} /> Why Partner With Us?
               </h2>
+              <p className="fr-benefits-subtitle">
+                Choose ScanForSafe and unlock a proven safety-tech business model with real territorial advantage.
+              </p>
 
               <div className="fr-benefits-grid">
-                <div className="fr-benefit-card">
-                  <div className="fr-benefit-icon">
-                    <TrendingUp />
-                  </div>
-                  <h3 className="fr-benefit-h">High ROI Model</h3>
-                  <p className="fr-benefit-p">
-                    Earn up to 10%–20% profit margin on physical QR visual safety tags & smart NFC cards distributed in your region.
-                  </p>
-                </div>
-
-                <div className="fr-benefit-card">
-                  <div className="fr-benefit-icon">
-                    <Shield />
-                  </div>
-                  <h3 className="fr-benefit-h">Exclusive Territory</h3>
-                  <p className="fr-benefit-p">
-                    Secure exclusive ownership rights for dedicated pincodes. Zero local brand competition.
-                  </p>
-                </div>
-
-                <div className="fr-benefit-card">
-                  <div className="fr-benefit-icon">
-                    <Landmark />
-                  </div>
-                  <h3 className="fr-benefit-h">Innovative Tech</h3>
-                  <p className="fr-benefit-p">
-                    India's leading cloud network mapping QR-codes for vehicle safety, senior citizens, children, and pets.
-                  </p>
-                </div>
-
-                <div className="fr-benefit-card">
-                  <div className="fr-benefit-icon">
-                    <Shield style={{ transform: "rotate(45deg)" }} />
-                  </div>
-                  <h3 className="fr-benefit-h">Marketing Support</h3>
-                  <p className="fr-benefit-p">
-                    Receive complete physical branding collaterals, digital flyers, and targeted local ad campaign execution.
-                  </p>
-                </div>
+                {benefitCards.map((card, i) => (
+                  <BenefitCard key={card.title} {...card} index={i} />
+                ))}
               </div>
 
-              {/* INTERACTIVE CALCULATOR */}
+              {/* CALCULATOR */}
               <div className="fr-calc-box">
                 <div className="fr-calc-title">
                   <DollarSign style={{ color: "#4ade80", width: 18, height: 18 }} /> Investment &amp; ROI Calculator
@@ -794,27 +747,16 @@ export default function Franchise() {
                 </p>
 
                 <div className="fr-calc-selector">
-                  <button
-                    type="button"
-                    className={`fr-calc-btn ${formData.investment === "50000" ? "active" : ""}`}
-                    onClick={() => handleInputChange("investment", "50000")}
-                  >
-                    ₹50K (Silver)
-                  </button>
-                  <button
-                    type="button"
-                    className={`fr-calc-btn ${formData.investment === "100000" ? "active" : ""}`}
-                    onClick={() => handleInputChange("investment", "100000")}
-                  >
-                    ₹1L (Gold)
-                  </button>
-                  <button
-                    type="button"
-                    className={`fr-calc-btn ${formData.investment === "300000" ? "active" : ""}`}
-                    onClick={() => handleInputChange("investment", "300000")}
-                  >
-                    ₹3L+ (Platinum)
-                  </button>
+                  {[["50000", "₹50K (Silver)"], ["100000", "₹1L (Gold)"], ["300000", "₹3L+ (Platinum)"]].map(([val, label]) => (
+                    <button
+                      key={val}
+                      type="button"
+                      className={`fr-calc-btn ${formData.investment === val ? "active" : ""}`}
+                      onClick={() => handleInputChange("investment", val)}
+                    >
+                      {label}
+                    </button>
+                  ))}
                 </div>
 
                 <div className="fr-calc-results">
@@ -846,7 +788,7 @@ export default function Franchise() {
               </div>
             </div>
 
-            {/* RIGHT: Dynamic Application Form / Success Screen */}
+            {/* RIGHT: Form */}
             <div className="fr-form-card">
               {!submitted ? (
                 <>
@@ -860,68 +802,36 @@ export default function Franchise() {
                   <form onSubmit={handleSubmit}>
                     <div className="fr-group">
                       <label className="fr-label">Full Name *</label>
-                      <input
-                        type="text"
-                        className="fr-input"
-                        placeholder="e.g. Rahul Sharma"
-                        value={formData.name}
-                        onChange={(e) => handleInputChange("name", e.target.value)}
-                        required
-                      />
+                      <input type="text" className="fr-input" placeholder="e.g. Rahul Sharma"
+                        value={formData.name} onChange={(e) => handleInputChange("name", e.target.value)} required />
                       {errors.name && <span className="fr-error">⚠️ {errors.name}</span>}
                     </div>
 
                     <div className="fr-group">
                       <label className="fr-label">WhatsApp Number *</label>
-                      <input
-                        type="tel"
-                        className="fr-input"
-                        placeholder="10-digit WhatsApp number"
-                        value={formData.mobile}
-                        onChange={(e) => handleInputChange("mobile", e.target.value)}
-                        maxLength={10}
-                        required
-                      />
+                      <input type="tel" className="fr-input" placeholder="10-digit WhatsApp number"
+                        value={formData.mobile} onChange={(e) => handleInputChange("mobile", e.target.value)} maxLength={10} required />
                       {errors.mobile && <span className="fr-error">⚠️ {errors.mobile}</span>}
                     </div>
 
                     <div className="fr-group">
                       <label className="fr-label">Email Address *</label>
-                      <input
-                        type="email"
-                        className="fr-input"
-                        placeholder="yourname@example.com"
-                        value={formData.email}
-                        onChange={(e) => handleInputChange("email", e.target.value)}
-                        required
-                      />
+                      <input type="email" className="fr-input" placeholder="yourname@example.com"
+                        value={formData.email} onChange={(e) => handleInputChange("email", e.target.value)} required />
                       {errors.email && <span className="fr-error">⚠️ {errors.email}</span>}
                     </div>
 
                     <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "10px" }}>
                       <div className="fr-group">
                         <label className="fr-label">City *</label>
-                        <input
-                          type="text"
-                          className="fr-input"
-                          placeholder="e.g. Hyderabad"
-                          value={formData.city}
-                          onChange={(e) => handleInputChange("city", e.target.value)}
-                          required
-                        />
+                        <input type="text" className="fr-input" placeholder="e.g. Hyderabad"
+                          value={formData.city} onChange={(e) => handleInputChange("city", e.target.value)} required />
                         {errors.city && <span className="fr-error">⚠️ {errors.city}</span>}
                       </div>
-
                       <div className="fr-group">
                         <label className="fr-label">State *</label>
-                        <input
-                          type="text"
-                          className="fr-input"
-                          placeholder="e.g. Telangana"
-                          value={formData.state}
-                          onChange={(e) => handleInputChange("state", e.target.value)}
-                          required
-                        />
+                        <input type="text" className="fr-input" placeholder="e.g. Telangana"
+                          value={formData.state} onChange={(e) => handleInputChange("state", e.target.value)} required />
                         {errors.state && <span className="fr-error">⚠️ {errors.state}</span>}
                       </div>
                     </div>
@@ -929,26 +839,17 @@ export default function Franchise() {
                     <div style={{ display: "grid", gridTemplateColumns: "1.1fr 0.9fr", gap: "10px" }}>
                       <div className="fr-group">
                         <label className="fr-label">Business Experience</label>
-                        <select
-                          className="fr-input"
-                          value={formData.experience}
-                          onChange={(e) => handleInputChange("experience", e.target.value)}
-                          style={{ height: "40px" }}
-                        >
+                        <select className="fr-input" value={formData.experience}
+                          onChange={(e) => handleInputChange("experience", e.target.value)} style={{ height: "40px" }}>
                           <option value="None">No prior business</option>
                           <option value="1-3 Years">1 - 3 Years</option>
                           <option value="3+ Years">3+ Years</option>
                         </select>
                       </div>
-
                       <div className="fr-group">
                         <label className="fr-label">Shop/Office Available?</label>
-                        <select
-                          className="fr-input"
-                          value={formData.shopAvailable}
-                          onChange={(e) => handleInputChange("shopAvailable", e.target.value)}
-                          style={{ height: "40px" }}
-                        >
+                        <select className="fr-input" value={formData.shopAvailable}
+                          onChange={(e) => handleInputChange("shopAvailable", e.target.value)} style={{ height: "40px" }}>
                           <option value="No">No Space Yet</option>
                           <option value="Yes">Yes, I have</option>
                         </select>
@@ -957,12 +858,8 @@ export default function Franchise() {
 
                     <div className="fr-group">
                       <label className="fr-label">Investment Interest Level (₹)</label>
-                      <select
-                        className="fr-input"
-                        value={formData.investment}
-                        onChange={(e) => handleInputChange("investment", e.target.value)}
-                        style={{ height: "40px" }}
-                      >
+                      <select className="fr-input" value={formData.investment}
+                        onChange={(e) => handleInputChange("investment", e.target.value)} style={{ height: "40px" }}>
                         <option value="50000">₹50,000 (Silver Partner)</option>
                         <option value="100000">₹1,00,000 (Gold Partner)</option>
                         <option value="300000">₹3,00,000+ (Platinum Master)</option>
@@ -971,31 +868,18 @@ export default function Franchise() {
 
                     <div className="fr-group">
                       <label className="fr-label">Message / Territory Details</label>
-                      <textarea
-                        className="fr-input fr-textarea"
-                        placeholder="Mention proposed pincodes or query..."
-                        value={formData.message}
-                        onChange={(e) => handleInputChange("message", e.target.value)}
-                      />
+                      <textarea className="fr-input fr-textarea" placeholder="Mention proposed pincodes or query..."
+                        value={formData.message} onChange={(e) => handleInputChange("message", e.target.value)} />
                     </div>
 
-                    <button
-                      type="submit"
-                      className="fr-btn-submit"
-                      disabled={isSubmitting}
-                    >
-                      {isSubmitting ? (
-                        "Registering Application..."
-                      ) : (
-                        <>
-                          <Send style={{ width: 14, height: 14 }} /> Apply for Franchise ✔
-                        </>
+                    <button type="submit" className="fr-btn-submit" disabled={isSubmitting}>
+                      {isSubmitting ? "Registering Application..." : (
+                        <><Send style={{ width: 14, height: 14 }} /> Apply for Franchise ✔</>
                       )}
                     </button>
                   </form>
                 </>
               ) : (
-                /* SUCCESS SCREEN */
                 <div className="fr-success">
                   <div className="fr-success-icon">
                     <CheckCircle style={{ width: 34, height: 34 }} />
@@ -1005,24 +889,17 @@ export default function Franchise() {
                     Thank you, <strong>{formData.name}</strong>, for your interest in ScanForSafe! <br />
                     Your franchise application for <strong>{formData.city}, {formData.state}</strong> has been securely logged.
                   </p>
-
                   <div className="fr-success-ticket">
-                    <div style={{ fontSize: 10, color: "#64748b", fontWeight: 700, textTransform: "uppercase" }}>
-                      🎟️ Application Ticket ID
-                    </div>
+                    <div style={{ fontSize: 10, color: "#64748b", fontWeight: 700, textTransform: "uppercase" }}>🎟️ Application Ticket ID</div>
                     <div className="fr-ticket-code">{ticketId}</div>
                     <div style={{ fontSize: 11, color: "#16a34a", fontWeight: 700, marginTop: 6 }}>
                       Our Franchise Manager will reach out on {formData.mobile}
                     </div>
                   </div>
-
                   <p style={{ fontSize: 11.5, color: "#64748b", lineHeight: 1.5 }}>
                     📞 WhatsApp Support: +91 86393 22479 &nbsp;|&nbsp; ✉ partners@scanforsafe.com
                   </p>
-
-                  <button className="fr-btn-home" onClick={() => navigate("/")}>
-                    Back to Homepage
-                  </button>
+                  <button className="fr-btn-home" onClick={() => navigate("/")}>Back to Homepage</button>
                 </div>
               )}
             </div>

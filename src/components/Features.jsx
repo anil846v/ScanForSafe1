@@ -50,75 +50,6 @@ const Icons = {
       <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
     </svg>
   ),
-  Car: ({ size = 20, color = 'currentColor' }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M14 2H6a2 2 0 00-2 2v4M4 8H2a1 1 0 00-1 1v5a1 1 0 001 1h1v2a1 1 0 001 1h1a1 1 0 001-1v-2h10v2a1 1 0 001 1h1a1 1 0 001-1v-2h1a1 1 0 001-1V9a1 1 0 00-1-1h-2M4 8h16M6.5 13.5a1 1 0 100-2 1 1 0 000 2zM17.5 13.5a1 1 0 100-2 1 1 0 000 2z"/>
-      <path d="M6 8l2-4h8l2 4"/>
-    </svg>
-  ),
-  Luggage: ({ size = 20, color = 'currentColor' }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="5" y="7" width="14" height="14" rx="2"/><path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2"/><line x1="12" y1="11" x2="12" y2="17"/><line x1="9" y1="14" x2="15" y2="14"/>
-    </svg>
-  ),
-  Paw: ({ size = 20, color = 'currentColor' }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="11" cy="4" r="2"/><circle cx="18" cy="8" r="2"/><circle cx="20" cy="16" r="2"/>
-      <path d="M9 10a5 5 0 015 5v3.5a3.5 3.5 0 01-6.84 1.045Q6.52 17.48 4.46 16.84A3.5 3.5 0 018 11.5"/>
-      <circle cx="4" cy="8" r="2"/>
-    </svg>
-  ),
-  Backpack: ({ size = 20, color = 'currentColor' }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 10a4 4 0 014-4h8a4 4 0 014 4v10H4V10z"/>
-      <path d="M9 6V5a3 3 0 016 0v1"/>
-      <line x1="4" y1="15" x2="20" y2="15"/>
-      <path d="M10 19v-4h4v4"/>
-    </svg>
-  ),
-  PersonCane: ({ size = 20, color = 'currentColor' }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="9" cy="4" r="2"/>
-      <path d="M6 9h6l-1 5H7L6 9z"/>
-      <path d="M7 14l-2 7"/>
-      <path d="M11 14l1 4"/>
-      <path d="M14 11l4 8"/>
-      <circle cx="18" cy="20" r="1" fill={color}/>
-    </svg>
-  ),
-  Accessibility: ({ size = 20, color = 'currentColor' }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="12" cy="4" r="2"/>
-      <path d="M6 8h12M10 8v8l-3 4M14 8v4l3 6M8 20h8"/>
-    </svg>
-  ),
-  SearchCar: ({ size = 20, color = 'currentColor' }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="10" cy="10" r="7"/>
-      <line x1="15.5" y1="15.5" x2="21" y2="21"/>
-      <path d="M7 10h6M8 8l1-2h4l1 2"/>
-      <circle cx="8.5" cy="11.5" r=".5" fill={color}/><circle cx="11.5" cy="11.5" r=".5" fill={color}/>
-    </svg>
-  ),
-  FamilyHome: ({ size = 20, color = 'currentColor' }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/>
-      <path d="M9 21V12h6v9"/>
-      <circle cx="8" cy="7" r="1.2" fill={color} opacity="0.7"/>
-      <circle cx="12" cy="6" r="1.2" fill={color} opacity="0.7"/>
-      <circle cx="16" cy="7" r="1.2" fill={color} opacity="0.7"/>
-    </svg>
-  ),
-  Heart: ({ size = 20, color = 'currentColor' }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
-    </svg>
-  ),
-  Star: ({ size = 20, color = 'currentColor' }) => (
-    <svg width={size} height={size} viewBox="0 0 24 24" fill={color} stroke={color} strokeWidth="1">
-      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-    </svg>
-  ),
   CheckCircle: ({ size = 20, color = 'currentColor' }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/>
@@ -143,6 +74,16 @@ const Icons = {
   Bell: ({ size = 20, color = 'currentColor' }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0"/>
+    </svg>
+  ),
+  Heart: ({ size = 20, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+    </svg>
+  ),
+  Star: ({ size = 20, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill={color} stroke={color} strokeWidth="1">
+      <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
     </svg>
   ),
   Wifi: ({ size = 16, color = 'currentColor' }) => (
@@ -171,6 +112,16 @@ const Icons = {
       <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14M15.54 8.46a5 5 0 010 7.07"/>
     </svg>
   ),
+  ArrowRight: ({ size = 16, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>
+    </svg>
+  ),
+  Sparkles: ({ size = 20, color = 'currentColor' }) => (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M12 3l1.5 4.5L18 9l-4.5 1.5L12 15l-1.5-4.5L6 9l4.5-1.5L12 3z"/><path d="M5 3l.75 2.25L8 6l-2.25.75L5 9l-.75-2.25L2 6l2.25-.75L5 3z"/><path d="M19 15l.75 2.25L22 18l-2.25.75L19 21l-.75-2.25L16 18l2.25-.75L19 15z"/>
+    </svg>
+  ),
 }
 
 const FEATURE_ICONS = {
@@ -185,32 +136,93 @@ const FEATURE_ICONS = {
 }
 
 /* ─────────────────────────────────────────────
-   DATA
+   DATA — 3 contacts cap everywhere
 ───────────────────────────────────────────── */
 const FEATURES = [
-  { id: 'whatsapp', bg: '#dcfce7', accent: '#16a34a', tagBg: '#bbf7d0', tagColor: '#14532d', tag: 'Most Loved',     title: 'WhatsApp Alerts',        desc: 'Instant WhatsApp notification the moment anyone scans your QR — GPS location and direct call included.',      pills: ['Instant Alert', 'GPS Included', 'No App'] },
-  { id: 'call',     bg: '#e0e7ff', accent: '#4338ca', tagBg: '#c7d2fe', tagColor: '#1e1b4b', tag: 'Zero Friction',  title: 'One-Touch Call Connect',  desc: 'Finders call you in one tap — no app, no sign-up. Works even from a basic feature phone anywhere.',           pills: ['One Tap', 'No Sign-up', 'Any Phone'] },
-  { id: 'contacts', bg: '#ede9fe', accent: '#7c3aed', tagBg: '#ddd6fe', tagColor: '#3b0764', tag: 'Family Ready',  title: '5 Emergency Contacts',   desc: 'Add family, friends or your vet. If the first contact misses it, the next is notified automatically.',        pills: ['5 Contacts', 'Auto Fallback', '5-Min Retry'] },
-  { id: 'gps',      bg: '#ccfbf1', accent: '#0d9488', tagBg: '#99f6e4', tagColor: '#134e4a', tag: 'Smart',          title: 'GPS on Every Scan',       desc: 'Each scan captures precise GPS coordinates and sends a live Maps link so you can locate your item fast.',      pills: ['Live GPS', 'Maps Link', 'Real-Time'] },
-  { id: 'setup',    bg: '#fef3c7', accent: '#d97706', tagBg: '#fde68a', tagColor: '#78350f', tag: '3 Minutes',      title: 'Instant Activation',      desc: 'Peel, stick and protected. Register your tag in under 3 minutes — zero technical knowledge required.',        pills: ['Under 3 Min', 'Guided Setup', 'Instant Live'] },
-  { id: 'privacy',  bg: '#ffe4e6', accent: '#e11d48', tagBg: '#fecdd3', tagColor: '#881337', tag: 'Privacy First',  title: 'Your Info Stays Hidden',  desc: 'Your phone number is never on the tag. The QR links to a secure proxy — finders see only what you allow.',    pills: ['Encrypted', 'No Personal Data', 'GDPR Safe'] },
-  { id: 'history',  bg: '#dbeafe', accent: '#2563eb', tagBg: '#bfdbfe', tagColor: '#1e3a8a', tag: 'Full Visibility',title: 'Scan History & Logs',     desc: 'Dashboard logs every scan — time, location, device. Know exactly when and where your item was found.',        pills: ['Full Timeline', 'Device Info', 'Exportable'] },
-  { id: 'update',   bg: '#ffedd5', accent: '#ea580c', tagBg: '#fed7aa', tagColor: '#7c2d12', tag: 'Always Current', title: 'Update Info Anytime',     desc: 'Changed your number? Update in 30 seconds from any device. The physical tag never needs replacing.',          pills: ['Instant Update', 'Any Device', 'Reassignable'] },
-]
-
-const USE_CASES = [
-  { Icon: Icons.Car,          label: 'Vehicles',        sub: 'Road accidents & emergencies', bg: '#dcfce7', accent: '#16a34a', textColor: '#14532d', border: '#4ade80', stat: '2yr QR validity' },
-  { Icon: Icons.Luggage,      label: 'Luggage',         sub: 'Airport & travel recovery',    bg: '#dbeafe', accent: '#2563eb', textColor: '#1e3a8a', border: '#60a5fa', stat: 'Scan anywhere' },
-  { Icon: Icons.Paw,          label: 'Pets',            sub: 'Lost pet QR tag recovery',     bg: '#fef3c7', accent: '#d97706', textColor: '#78350f', border: '#fbbf24', stat: '24/7 alerts' },
-  { Icon: Icons.Backpack,     label: 'School Kids',     sub: 'Bus transit child safety',     bg: '#ede9fe', accent: '#7c3aed', textColor: '#3b0764', border: '#a78bfa', stat: 'Parent notified' },
-  { Icon: Icons.PersonCane,   label: 'Senior Citizens', sub: 'Medical emergency response',   bg: '#ffe4e6', accent: '#e11d48', textColor: '#881337', border: '#fca5a5', stat: 'SOS workflow' },
-  { Icon: Icons.Accessibility,label: 'Special Needs',   sub: 'Community assisted return',    bg: '#ccfbf1', accent: '#0d9488', textColor: '#134e4a', border: '#5eead4', stat: 'Care team alerts' },
-  { Icon: Icons.SearchCar,    label: 'Missing Vehicle', sub: 'Community alert & recovery',   bg: '#ffedd5', accent: '#ea580c', textColor: '#7c2d12', border: '#fb923c', stat: 'Anti-fraud verified' },
-  { Icon: Icons.FamilyHome,   label: 'Family Safety',   sub: 'Daily peace of mind',          bg: '#e0e7ff', accent: '#4338ca', textColor: '#1e1b4b', border: '#818cf8', stat: 'Up to 5 members' },
+  {
+    id: 'whatsapp',
+    bg: '#dcfce7', accent: '#16a34a', tagBg: '#bbf7d0', tagColor: '#14532d',
+    tag: 'Most Loved',
+    title: 'Instant WhatsApp Alerts',
+    desc: 'The moment your tag is scanned, you get a WhatsApp message with the finder\'s GPS location, a live Maps link, and a one-tap call button — all within seconds.',
+    pills: ['Instant Alert', 'GPS Included', 'No App Needed'],
+    stat: '< 3 sec delivery',
+    statColor: '#16a34a',
+  },
+  {
+    id: 'call',
+    bg: '#e0e7ff', accent: '#4338ca', tagBg: '#c7d2fe', tagColor: '#1e1b4b',
+    tag: 'Zero Friction',
+    title: 'One-Touch Call Connect',
+    desc: 'Finders call you directly in one tap — no app download, no sign-up required. Works from any basic phone, feature phone, or smartphone worldwide.',
+    pills: ['One Tap', 'No Sign-up', 'Any Phone'],
+    stat: 'Works globally',
+    statColor: '#4338ca',
+  },
+  {
+    id: 'contacts',
+    bg: '#ede9fe', accent: '#7c3aed', tagBg: '#ddd6fe', tagColor: '#3b0764',
+    tag: 'Family Ready',
+    title: '3 Emergency Contacts',
+    desc: 'Add up to 3 trusted contacts — family, friends, or a caretaker. If the first person misses the alert, the system automatically escalates to the next contact.',
+    pills: ['3 Contacts', 'Auto Fallback', '5-Min Retry'],
+    stat: 'Auto-escalation',
+    statColor: '#7c3aed',
+  },
+  {
+    id: 'gps',
+    bg: '#ccfbf1', accent: '#0d9488', tagBg: '#99f6e4', tagColor: '#134e4a',
+    tag: 'Smart Tracking',
+    title: 'Precision GPS on Every Scan',
+    desc: 'Every scan captures the finder\'s exact GPS coordinates in real time and sends you a live Google Maps link so you can navigate directly to your item.',
+    pills: ['Live GPS', 'Maps Link', 'Real-Time'],
+    stat: 'Sub-10m accuracy',
+    statColor: '#0d9488',
+  },
+  {
+    id: 'setup',
+    bg: '#fef3c7', accent: '#d97706', tagBg: '#fde68a', tagColor: '#78350f',
+    tag: '3 Minutes',
+    title: 'Instant Activation',
+    desc: 'Peel, stick, and you\'re protected. Register your tag in under 3 minutes with a guided setup wizard — zero technical knowledge, no instructions manual needed.',
+    pills: ['Under 3 Min', 'Guided Setup', 'Instant Live'],
+    stat: 'Live in 3 steps',
+    statColor: '#d97706',
+  },
+  {
+    id: 'privacy',
+    bg: '#ffe4e6', accent: '#e11d48', tagBg: '#fecdd3', tagColor: '#881337',
+    tag: 'Privacy First',
+    title: 'Your Number Stays Hidden',
+    desc: 'Your phone number, address, and identity are never stored on the tag. A secure encrypted proxy handles all communication — finders see only what you allow.',
+    pills: ['Encrypted', 'No Personal Data', 'GDPR Safe'],
+    stat: 'Zero data on tag',
+    statColor: '#e11d48',
+  },
+  {
+    id: 'history',
+    bg: '#dbeafe', accent: '#2563eb', tagBg: '#bfdbfe', tagColor: '#1e3a8a',
+    tag: 'Full Visibility',
+    title: 'Scan History & Audit Logs',
+    desc: 'Your dashboard logs every scan with precise timestamp, GPS location, and device info. Export a full timeline as CSV or PDF for insurance or records.',
+    pills: ['Full Timeline', 'Device Info', 'Exportable'],
+    stat: 'Unlimited history',
+    statColor: '#2563eb',
+  },
+  {
+    id: 'update',
+    bg: '#ffedd5', accent: '#ea580c', tagBg: '#fed7aa', tagColor: '#7c2d12',
+    tag: 'Always Current',
+    title: 'Update Info in 30 Seconds',
+    desc: 'Changed your number? Switched phones? Update your contact details in 30 seconds from any device, anywhere. The physical tag never needs replacing.',
+    pills: ['Instant Update', 'Any Device', 'Reassignable'],
+    stat: 'No new tag ever',
+    statColor: '#ea580c',
+  },
 ]
 
 /* ─────────────────────────────────────────────
-   ANDROID PHONE FRAME (OnePlus/Redmi style)
+   ANDROID PHONE FRAME
 ───────────────────────────────────────────── */
 function AndroidPhoneFrame({ children, screenBg = '#0a0a0a', accentColor = '#16a34a' }) {
   const now = new Date()
@@ -218,148 +230,37 @@ function AndroidPhoneFrame({ children, screenBg = '#0a0a0a', accentColor = '#16a
 
   return (
     <div style={{ position: 'relative', width: 272 }}>
-      {/* Outer shell — aluminium frame */}
       <div style={{
         width: 272,
         background: 'linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 40%, #242424 70%, #1c1c1c 100%)',
-        borderRadius: 46,
-        padding: '0',
-        position: 'relative',
-        boxShadow: `
-          0 0 0 1px rgba(255,255,255,0.08),
-          0 0 0 2px #111,
-          0 2px 0 3px rgba(255,255,255,0.04),
-          4px 0 0 2px #0d0d0d,
-          -4px 0 0 2px #0d0d0d,
-          0 32px 64px rgba(0,0,0,0.6),
-          0 8px 24px rgba(0,0,0,0.4),
-          inset 0 1px 0 rgba(255,255,255,0.12),
-          inset 0 -1px 0 rgba(0,0,0,0.3)
-        `,
+        borderRadius: 46, padding: '0', position: 'relative',
+        boxShadow: `0 0 0 1px rgba(255,255,255,0.08), 0 0 0 2px #111, 0 2px 0 3px rgba(255,255,255,0.04), 4px 0 0 2px #0d0d0d, -4px 0 0 2px #0d0d0d, 0 32px 64px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.3)`,
       }}>
-        {/* Screen glass with inner bezel */}
-        <div style={{
-          margin: '10px 8px',
-          borderRadius: 38,
-          overflow: 'hidden',
-          position: 'relative',
-          background: screenBg,
-          border: '1px solid rgba(255,255,255,0.06)',
-          boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.8)',
-        }}>
-          {/* Status bar */}
-          <div style={{
-            background: 'rgba(0,0,0,0.85)',
-            backdropFilter: 'blur(8px)',
-            padding: '8px 16px 6px',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            position: 'relative',
-            zIndex: 10,
-            flexShrink: 0,
-          }}>
-            {/* Punch-hole camera left */}
+        <div style={{ margin: '10px 8px', borderRadius: 38, overflow: 'hidden', position: 'relative', background: screenBg, border: '1px solid rgba(255,255,255,0.06)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.8)' }}>
+          <div style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', padding: '8px 16px 6px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative', zIndex: 10, flexShrink: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-              <div style={{
-                width: 11, height: 11,
-                borderRadius: '50%',
-                background: '#0a0a0a',
-                border: '1.5px solid rgba(255,255,255,0.08)',
-                boxShadow: 'inset 0 0 4px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.04)',
-              }} />
+              <div style={{ width: 11, height: 11, borderRadius: '50%', background: '#0a0a0a', border: '1.5px solid rgba(255,255,255,0.08)', boxShadow: 'inset 0 0 4px rgba(0,0,0,0.9)' }} />
               <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: 10, fontWeight: 600, letterSpacing: '.02em', marginLeft: 4 }}>{timeStr}</span>
             </div>
-            {/* Status icons right */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
               <Icons.Signal size={13} color="rgba(255,255,255,0.8)" />
               <Icons.Wifi size={13} color="rgba(255,255,255,0.8)" />
               <Icons.Battery size={14} color="rgba(255,255,255,0.8)" />
             </div>
           </div>
-
-          {/* Screen content */}
-          <div style={{
-            height: 478,
-            display: 'flex',
-            flexDirection: 'column',
-            overflow: 'hidden',
-            background: screenBg,
-          }}>
+          <div style={{ height: 478, display: 'flex', flexDirection: 'column', overflow: 'hidden', background: screenBg }}>
             {children}
           </div>
-
-          {/* Home indicator */}
-          <div style={{
-            background: 'rgba(0,0,0,0.9)',
-            padding: '5px 0 7px',
-            display: 'flex',
-            justifyContent: 'center',
-            flexShrink: 0,
-          }}>
-            <div style={{
-              width: 90,
-              height: 4,
-              borderRadius: 99,
-              background: `linear-gradient(90deg, rgba(255,255,255,0.15), ${accentColor}90, rgba(255,255,255,0.15))`,
-              boxShadow: `0 0 8px ${accentColor}40`,
-            }} />
+          <div style={{ background: 'rgba(0,0,0,0.9)', padding: '5px 0 7px', display: 'flex', justifyContent: 'center', flexShrink: 0 }}>
+            <div style={{ width: 90, height: 4, borderRadius: 99, background: `linear-gradient(90deg, rgba(255,255,255,0.15), ${accentColor}90, rgba(255,255,255,0.15))`, boxShadow: `0 0 8px ${accentColor}40` }} />
           </div>
         </div>
-
-        {/* Physical side buttons */}
-        {/* Power button right */}
-        <div style={{
-          position: 'absolute', right: -3, top: 130,
-          width: 4, height: 58,
-          background: 'linear-gradient(180deg, #3a3a3a, #1a1a1a, #3a3a3a)',
-          borderRadius: '0 4px 4px 0',
-          boxShadow: '2px 0 4px rgba(0,0,0,0.4), inset 1px 0 0 rgba(255,255,255,0.06)',
-        }} />
-        {/* Alert slider top-right (OnePlus signature) */}
-        <div style={{
-          position: 'absolute', right: -3, top: 88,
-          width: 4, height: 30,
-          background: 'linear-gradient(180deg, #3a3a3a, #1a1a1a, #3a3a3a)',
-          borderRadius: '0 4px 4px 0',
-          boxShadow: '2px 0 4px rgba(0,0,0,0.4)',
-        }} />
-        {/* Vol up left */}
-        <div style={{
-          position: 'absolute', left: -3, top: 100,
-          width: 4, height: 46,
-          background: 'linear-gradient(180deg, #3a3a3a, #1a1a1a, #3a3a3a)',
-          borderRadius: '4px 0 0 4px',
-          boxShadow: '-2px 0 4px rgba(0,0,0,0.4), inset -1px 0 0 rgba(255,255,255,0.06)',
-        }} />
-        {/* Vol down left */}
-        <div style={{
-          position: 'absolute', left: -3, top: 156,
-          width: 4, height: 46,
-          background: 'linear-gradient(180deg, #3a3a3a, #1a1a1a, #3a3a3a)',
-          borderRadius: '4px 0 0 4px',
-          boxShadow: '-2px 0 4px rgba(0,0,0,0.4)',
-        }} />
-
-        {/* Camera module top-right back (subtle bump visible from front — reflection) */}
-        <div style={{
-          position: 'absolute', top: 16, right: 20,
-          width: 28, height: 8,
-          background: 'rgba(255,255,255,0.03)',
-          borderRadius: 4,
-          border: '1px solid rgba(255,255,255,0.05)',
-        }} />
+        <div style={{ position: 'absolute', right: -3, top: 130, width: 4, height: 58, background: 'linear-gradient(180deg, #3a3a3a, #1a1a1a, #3a3a3a)', borderRadius: '0 4px 4px 0', boxShadow: '2px 0 4px rgba(0,0,0,0.4)' }} />
+        <div style={{ position: 'absolute', right: -3, top: 88, width: 4, height: 30, background: 'linear-gradient(180deg, #3a3a3a, #1a1a1a, #3a3a3a)', borderRadius: '0 4px 4px 0' }} />
+        <div style={{ position: 'absolute', left: -3, top: 100, width: 4, height: 46, background: 'linear-gradient(180deg, #3a3a3a, #1a1a1a, #3a3a3a)', borderRadius: '4px 0 0 4px', boxShadow: '-2px 0 4px rgba(0,0,0,0.4)' }} />
+        <div style={{ position: 'absolute', left: -3, top: 156, width: 4, height: 46, background: 'linear-gradient(180deg, #3a3a3a, #1a1a1a, #3a3a3a)', borderRadius: '4px 0 0 4px' }} />
       </div>
-
-      {/* Accent glow under phone */}
-      <div style={{
-        position: 'absolute',
-        bottom: -12, left: '50%', transform: 'translateX(-50%)',
-        width: 160, height: 20,
-        background: `radial-gradient(ellipse, ${accentColor}35 0%, transparent 70%)`,
-        filter: 'blur(6px)',
-        pointerEvents: 'none',
-      }} />
+      <div style={{ position: 'absolute', bottom: -12, left: '50%', transform: 'translateX(-50%)', width: 160, height: 20, background: `radial-gradient(ellipse, ${accentColor}35 0%, transparent 70%)`, filter: 'blur(6px)', pointerEvents: 'none' }} />
     </div>
   )
 }
@@ -377,26 +278,8 @@ function SimCTA({ running, hasData, onRun, onReset, accent, label }) {
             <div style={{ position: 'absolute', width: 224, height: 52, borderRadius: 99, border: `2px solid ${accent}`, opacity: 0.15, animation: 'ctaPulse 1.8s ease-out 0.5s infinite' }} />
           </>
         )}
-        <button
-          onClick={onRun}
-          disabled={running}
-          style={{
-            width: 214, padding: '12px 0',
-            background: running ? '#e2e8f0' : `linear-gradient(135deg, ${accent} 0%, ${accent}cc 100%)`,
-            color: running ? '#94a3b8' : '#fff',
-            border: 'none', borderRadius: 99,
-            fontSize: 13, fontWeight: 800, letterSpacing: '.04em',
-            cursor: running ? 'not-allowed' : 'pointer',
-            transition: 'all 0.25s',
-            boxShadow: running ? 'none' : `0 8px 24px ${accent}45, 0 2px 8px ${accent}30`,
-            position: 'relative', zIndex: 1,
-            display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8,
-          }}
-        >
-          {running
-            ? <><span style={{ display: 'inline-block', animation: 'spin 1s linear infinite' }}>⟳</span> Running…</>
-            : <><span>▶</span> {label}</>
-          }
+        <button onClick={onRun} disabled={running} style={{ width: 214, padding: '12px 0', background: running ? '#e2e8f0' : `linear-gradient(135deg, ${accent} 0%, ${accent}cc 100%)`, color: running ? '#94a3b8' : '#fff', border: 'none', borderRadius: 99, fontSize: 13, fontWeight: 800, letterSpacing: '.04em', cursor: running ? 'not-allowed' : 'pointer', transition: 'all 0.25s', boxShadow: running ? 'none' : `0 8px 24px ${accent}45, 0 2px 8px ${accent}30`, position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}>
+          {running ? <><span style={{ display: 'inline-block', animation: 'spin 1s linear infinite' }}>⟳</span> Running…</> : <><span>▶</span> {label}</>}
         </button>
       </div>
       {hasData && !running && (
@@ -464,7 +347,7 @@ function WhatsAppSimulatorWrapper() {
             <Icons.Bell size={16} color="#fff" />
           </div>
           <div>
-            <div style={{ fontSize: 12, fontWeight: 800, color: '#fff', letterSpacing: '.01em' }}>ScanForSafe Bot</div>
+            <div style={{ fontSize: 12, fontWeight: 800, color: '#fff' }}>ScanForSafe Bot</div>
             <div style={{ fontSize: 9, color: running ? '#a7f3d0' : '#86efac', display: 'flex', alignItems: 'center', gap: 3 }}>
               <div style={{ width: 5, height: 5, borderRadius: '50%', background: '#25D366', boxShadow: '0 0 4px #25D366' }} />
               {running ? 'typing...' : 'online'}
@@ -482,16 +365,10 @@ function WhatsAppSimulatorWrapper() {
             </div>
           )}
           {(running || completedSteps.length > 0) && !showMessage && WA_STEPS.map(step => {
-            const done = completedSteps.includes(step.id)
-            const active = activeStep === step.id
+            const done = completedSteps.includes(step.id); const active = activeStep === step.id
             const StepIcon = STEP_ICONS[step.id] || Icons.CheckCircle
             return (
-              <div key={step.id} style={{
-                display: 'flex', alignItems: 'center', gap: 8, padding: '6px 10px', borderRadius: 10,
-                background: done ? 'rgba(37,211,102,0.12)' : active ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.02)',
-                border: `1px solid ${done ? 'rgba(37,211,102,0.3)' : active ? step.color + '60' : 'rgba(255,255,255,0.05)'}`,
-                transition: 'all 0.3s',
-              }}>
+              <div key={step.id} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '6px 10px', borderRadius: 10, background: done ? 'rgba(37,211,102,0.12)' : active ? 'rgba(255,255,255,0.06)' : 'rgba(255,255,255,0.02)', border: `1px solid ${done ? 'rgba(37,211,102,0.3)' : active ? step.color + '60' : 'rgba(255,255,255,0.05)'}`, transition: 'all 0.3s' }}>
                 <div style={{ width: 24, height: 24, borderRadius: '50%', background: done ? '#16a34a' : active ? step.color + '25' : 'rgba(255,255,255,0.05)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, transition: 'all 0.3s' }}>
                   {done ? <Icons.CheckCircle size={12} color="#fff" /> : <StepIcon size={12} color={active ? step.color : '#4a7c59'} />}
                 </div>
@@ -641,14 +518,12 @@ function CallSimulatorWrapper() {
 }
 
 /* ─────────────────────────────────────────────
-   EMERGENCY CONTACTS SIMULATOR
+   EMERGENCY CONTACTS SIMULATOR — 3 contacts
 ───────────────────────────────────────────── */
 const CONTACTS_LIST = [
   { name: 'Priya (Wife)',     num: '+91-98400-XXXXX', relation: 'Primary',    status: 'idle' },
   { name: 'Rajan (Brother)',  num: '+91-99400-XXXXX', relation: 'Fallback 1', status: 'idle' },
   { name: 'Dr. Kumar (Vet)',  num: '+91-94400-XXXXX', relation: 'Fallback 2', status: 'idle' },
-  { name: 'Meena (Neighbor)', num: '+91-90400-XXXXX', relation: 'Fallback 3', status: 'idle' },
-  { name: 'Raj (Friend)',     num: '+91-88400-XXXXX', relation: 'Fallback 4', status: 'idle' },
 ]
 
 function ContactsSimulatorWrapper() {
@@ -678,8 +553,13 @@ function ContactsSimulatorWrapper() {
     })
   }
 
-  const statusConfig = { idle: { bg: 'rgba(255,255,255,0.04)', border: 'rgba(255,255,255,0.08)', color: '#4a4a7a', label: '—' }, sending: { bg: 'rgba(251,191,36,0.12)', border: 'rgba(251,191,36,0.35)', color: '#fbbf24', label: 'Alerting…' }, missed: { bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.3)', color: '#ef4444', label: 'Missed' }, answered: { bg: 'rgba(34,197,94,0.12)', border: 'rgba(34,197,94,0.35)', color: '#22c55e', label: 'Responded ✓' } }
-  const contactIcons = [Icons.Heart, Icons.Users, Icons.Shield, Icons.Star, Icons.Users]
+  const statusConfig = {
+    idle:     { bg: 'rgba(255,255,255,0.04)', border: 'rgba(255,255,255,0.08)', color: '#4a4a7a', label: '—' },
+    sending:  { bg: 'rgba(251,191,36,0.12)', border: 'rgba(251,191,36,0.35)', color: '#fbbf24', label: 'Alerting…' },
+    missed:   { bg: 'rgba(239,68,68,0.1)', border: 'rgba(239,68,68,0.3)', color: '#ef4444', label: 'Missed' },
+    answered: { bg: 'rgba(34,197,94,0.12)', border: 'rgba(34,197,94,0.35)', color: '#22c55e', label: 'Responded ✓' }
+  }
+  const contactIcons = [Icons.Heart, Icons.Users, Icons.Shield]
 
   return (
     <div style={{ display:'flex', flexDirection:'column', alignItems:'center' }}>
@@ -695,17 +575,37 @@ function ContactsSimulatorWrapper() {
             </div>
           </div>
         </div>
-        <div style={{ flex:1, overflowY:'auto', padding:'10px 10px', background:'#0d0720' }}>
+        <div style={{ flex:1, overflowY:'auto', padding:'12px 10px', background:'#0d0720', display:'flex', flexDirection:'column', gap: 6 }}>
+          {/* 3-contact chain visual header */}
+          <div style={{ display:'flex', alignItems:'center', justifyContent:'center', gap:0, marginBottom:8 }}>
+            {contacts.map((c, i) => {
+              const cfg = statusConfig[c.status]
+              const ContactIcon = contactIcons[i]
+              return (
+                <div key={i} style={{ display:'flex', alignItems:'center' }}>
+                  <div style={{ display:'flex', flexDirection:'column', alignItems:'center', gap:3 }}>
+                    <div style={{ width:36, height:36, borderRadius:'50%', background:cfg.bg, border:`2px solid ${cfg.border}`, display:'flex', alignItems:'center', justifyContent:'center', transition:'all 0.4s', boxShadow: c.status==='answered'?'0 0 12px rgba(34,197,94,0.5)':c.status==='sending'?'0 0 12px rgba(251,191,36,0.4)':'' }}>
+                      <ContactIcon size={16} color={c.status==='answered'?'#22c55e':c.status==='missed'?'#ef4444':c.status==='sending'?'#fbbf24':'#7c3aed'} />
+                    </div>
+                    <div style={{fontSize:7.5, fontWeight:700, color:'#a78bfa', textAlign:'center', maxWidth:48, overflow:'hidden', textOverflow:'ellipsis', whiteSpace:'nowrap'}}>{c.name.split('(')[0].trim()}</div>
+                  </div>
+                  {i < contacts.length - 1 && (
+                    <div style={{ width:24, height:2, margin:'0 2px', marginBottom:12, background: contacts[i].status==='missed'?'#ef4444':'rgba(124,58,237,0.3)', borderRadius:2, transition:'background 0.4s' }} />
+                  )}
+                </div>
+              )
+            })}
+          </div>
           {contacts.map((c, i) => {
             const cfg = statusConfig[c.status]
             const ContactIcon = contactIcons[i]
             return (
-              <div key={i} style={{ display:'flex', alignItems:'center', gap:10, padding:'8px 10px', borderRadius:12, marginBottom:5, background:cfg.bg, border:`1.5px solid ${cfg.border}`, transition:'all 0.4s' }}>
+              <div key={i} style={{ display:'flex', alignItems:'center', gap:10, padding:'9px 12px', borderRadius:12, background:cfg.bg, border:`1.5px solid ${cfg.border}`, transition:'all 0.4s' }}>
                 <div style={{ width:32, height:32, borderRadius:'50%', background:'rgba(124,58,237,0.2)', border:`1px solid rgba(124,58,237,0.3)`, display:'flex', alignItems:'center', justifyContent:'center', flexShrink:0 }}>
                   <ContactIcon size={14} color={c.status==='answered'?'#22c55e':c.status==='missed'?'#ef4444':c.status==='sending'?'#fbbf24':'#7c3aed'} />
                 </div>
                 <div style={{ flex:1, minWidth:0 }}>
-                  <div style={{fontSize:10, fontWeight:800, color:'#e9d5ff', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>{c.name}</div>
+                  <div style={{fontSize:10.5, fontWeight:800, color:'#e9d5ff', whiteSpace:'nowrap', overflow:'hidden', textOverflow:'ellipsis'}}>{c.name}</div>
                   <div style={{fontSize:8.5, color:'#7c3aed'}}>{c.relation}</div>
                 </div>
                 <div style={{ fontSize:8.5, fontWeight:700, color:cfg.color, flexShrink:0, display:'flex', alignItems:'center', gap:4 }}>
@@ -716,8 +616,13 @@ function ContactsSimulatorWrapper() {
             )
           })}
           {log.length > 0 && (
-            <div style={{ marginTop:6, background:'rgba(124,58,237,0.08)', borderRadius:10, padding:'8px 10px', border:'1px solid rgba(124,58,237,0.2)' }}>
+            <div style={{ marginTop:4, background:'rgba(124,58,237,0.08)', borderRadius:10, padding:'8px 10px', border:'1px solid rgba(124,58,237,0.2)' }}>
               {log.map((l,i)=><div key={i} style={{fontSize:8.5, color:'#c4b5fd', lineHeight:1.8, animation:'fadeUp 0.3s ease'}}>{l}</div>)}
+            </div>
+          )}
+          {!running && log.length === 0 && (
+            <div style={{ textAlign:'center', paddingTop:10, color:'#4a4a7a', fontSize:9 }}>
+              Tap below to watch auto-escalation
             </div>
           )}
         </div>
@@ -835,11 +740,11 @@ function GPSSimulatorWrapper() {
    SETUP SIMULATOR
 ───────────────────────────────────────────── */
 const SETUP_STEPS = [
-  { label: 'Peel & Stick Tag',       sub: 'Attach to your item',      icon: Icons.Star,      duration: 900  },
-  { label: 'Open Setup Link',        sub: 'scanforsafe.com/activate', icon: Icons.Wifi,      duration: 700  },
-  { label: 'Enter Your Number',      sub: '+91 • Verified instantly', icon: Icons.Phone,     duration: 1000 },
-  { label: 'Add Emergency Contacts', sub: 'Up to 5 contacts',         icon: Icons.Users,     duration: 800  },
-  { label: 'Tag Goes Live!',         sub: 'Your item is now protected',icon: Icons.CheckCircle, duration: 600  },
+  { label: 'Peel & Stick Tag',       sub: 'Attach to your item',       icon: Icons.Star,        duration: 900  },
+  { label: 'Open Setup Link',        sub: 'scanforsafe.com/activate',  icon: Icons.Wifi,        duration: 700  },
+  { label: 'Enter Your Number',      sub: '+91 • Verified instantly',  icon: Icons.Phone,       duration: 1000 },
+  { label: 'Add Emergency Contacts', sub: 'Up to 3 contacts',          icon: Icons.Users,       duration: 800  },
+  { label: 'Tag Goes Live!',         sub: 'Your item is now protected', icon: Icons.CheckCircle, duration: 600  },
 ]
 
 function SetupSimulatorWrapper() {
@@ -1227,123 +1132,116 @@ function FeatureSimulator({ featureId }) {
 }
 
 /* ─────────────────────────────────────────────
-   FEATURE CARD
+   ENHANCED FEATURE CARD
 ───────────────────────────────────────────── */
-function FeatureCard({ f, active, onClick }) {
+function FeatureCard({ f, active, onClick, index }) {
   const IconComp = FEATURE_ICONS[f.id]
   return (
-    <div onClick={onClick} style={{
-      borderRadius: 18, padding: '18px 16px',
-      background: active
-        ? `linear-gradient(135deg, ${f.accent} 0%, ${f.accent}dd 100%)`
-        : '#fff',
-      border: `2px solid ${active ? f.accent : f.bg}`,
-      cursor: 'pointer', transition: 'all 0.3s ease',
-      transform: active ? 'translateY(-5px) scale(1.01)' : 'none',
-      boxShadow: active
-        ? `0 16px 40px ${f.accent}35, 0 4px 12px ${f.accent}20, inset 0 1px 0 rgba(255,255,255,0.2)`
-        : `0 2px 8px rgba(0,0,0,0.04), 0 0 0 0 transparent`,
-      position: 'relative', overflow: 'hidden',
-    }}>
-      {/* Subtle shimmer on active */}
-      {active && <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 60%)', pointerEvents:'none' }} />}
+    <div
+      onClick={onClick}
+      style={{
+        borderRadius: 20,
+        padding: '20px 18px',
+        background: active
+          ? `linear-gradient(145deg, ${f.accent} 0%, ${f.accent}e0 60%, ${f.accent}bb 100%)`
+          : '#ffffff',
+        border: `2px solid ${active ? f.accent : '#f1f5f9'}`,
+        cursor: 'pointer',
+        transition: 'all 0.35s cubic-bezier(0.34,1.56,0.64,1)',
+        transform: active ? 'translateY(-6px) scale(1.02)' : 'translateY(0) scale(1)',
+        boxShadow: active
+          ? `0 20px 48px ${f.accent}40, 0 6px 16px ${f.accent}25, inset 0 1px 0 rgba(255,255,255,0.25)`
+          : '0 2px 12px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.03)',
+        position: 'relative',
+        overflow: 'hidden',
+      }}
+    >
+      {/* Active shimmer */}
+      {active && (
+        <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 50%)', pointerEvents:'none' }} />
+      )}
 
-      <span style={{
-        display:'inline-flex', alignItems:'center', gap:5,
-        background: active ? 'rgba(255,255,255,0.2)' : f.tagBg,
-        color: active ? '#fff' : f.tagColor,
-        fontSize: 9.5, fontWeight: 800, padding: '3px 10px', borderRadius: 99,
-        letterSpacing:'.07em', textTransform:'uppercase', marginBottom: 12,
-        border: `1px solid ${active ? 'rgba(255,255,255,0.25)' : f.tagBg}`,
-      }}>
-        {f.tag}
-      </span>
+      {/* Inactive hover glow trace */}
+      {!active && (
+        <div style={{ position:'absolute', top:0, left:0, right:0, height:2, background:`linear-gradient(90deg, transparent, ${f.accent}60, transparent)`, opacity:0, transition:'opacity 0.3s' }} />
+      )}
 
-      <div style={{ width:40, height:40, borderRadius:12, background: active ? 'rgba(255,255,255,0.18)' : f.bg, border: `1.5px solid ${active ? 'rgba(255,255,255,0.25)' : f.tagBg}`, display:'flex', alignItems:'center', justifyContent:'center', marginBottom:10 }}>
-        <IconComp size={20} color={active ? '#fff' : f.accent} />
+      {/* Top row: tag + icon */}
+      <div style={{ display:'flex', alignItems:'flex-start', justifyContent:'space-between', marginBottom:12 }}>
+        <span style={{
+          display:'inline-flex', alignItems:'center', gap:4,
+          background: active ? 'rgba(255,255,255,0.22)' : f.tagBg,
+          color: active ? '#fff' : f.tagColor,
+          fontSize: 9, fontWeight: 900, padding: '3px 10px', borderRadius: 99,
+          letterSpacing:'.08em', textTransform:'uppercase',
+          border: `1px solid ${active ? 'rgba(255,255,255,0.3)' : f.tagBg}`,
+        }}>
+          {f.tag}
+        </span>
+
+        <div style={{
+          width:42, height:42, borderRadius:13,
+          background: active ? 'rgba(255,255,255,0.2)' : f.bg,
+          border: `1.5px solid ${active ? 'rgba(255,255,255,0.3)' : f.tagBg}`,
+          display:'flex', alignItems:'center', justifyContent:'center',
+          transition: 'all 0.3s',
+          flexShrink:0,
+        }}>
+          <IconComp size={20} color={active ? '#fff' : f.accent} />
+        </div>
       </div>
 
-      <h3 style={{ fontSize: 14, fontWeight: 800, margin: '0 0 6px', color: active ? '#fff' : '#0B2545', letterSpacing:'-.01em', lineHeight:1.2 }}>{f.title}</h3>
-      <p style={{ fontSize: 12, lineHeight: 1.65, margin: '0 0 12px', color: active ? 'rgba(255,255,255,0.85)' : '#64748b' }}>{f.desc}</p>
-      <div style={{ display:'flex', flexWrap:'wrap', gap:5 }}>
+      {/* Title */}
+      <h3 style={{
+        fontSize: 14.5, fontWeight: 900, margin: '0 0 7px',
+        color: active ? '#fff' : '#0f172a',
+        letterSpacing:'-.025em', lineHeight:1.2,
+        fontFamily:"'Outfit', sans-serif",
+      }}>
+        {f.title}
+      </h3>
+
+      {/* Description */}
+      <p style={{
+        fontSize: 12, lineHeight: 1.7, margin: '0 0 14px',
+        color: active ? 'rgba(255,255,255,0.88)' : '#64748b',
+      }}>
+        {f.desc}
+      </p>
+
+      {/* Pills row */}
+      <div style={{ display:'flex', flexWrap:'wrap', gap:5, marginBottom:12 }}>
         {f.pills.map(p => (
           <span key={p} style={{
             fontSize: 9.5, fontWeight: 700, padding: '3px 9px', borderRadius: 99,
-            background: active ? 'rgba(255,255,255,0.15)' : f.bg,
+            background: active ? 'rgba(255,255,255,0.16)' : f.bg,
             color: active ? '#fff' : f.tagColor,
-            border: `1px solid ${active ? 'rgba(255,255,255,0.22)' : f.tagBg}`,
+            border: `1px solid ${active ? 'rgba(255,255,255,0.25)' : f.tagBg}`,
           }}>{p}</span>
         ))}
       </div>
-    </div>
-  )
-}
 
-/* ─────────────────────────────────────────────
-   USE CASE CARD
-───────────────────────────────────────────── */
-function UseCaseCard({ uc, active, onClick }) {
-  const { Icon } = uc
-  return (
-    <div onClick={onClick} style={{
-      borderRadius: 18, padding: '22px 14px 18px',
-      background: active ? `linear-gradient(135deg, ${uc.accent} 0%, ${uc.accent}cc 100%)` : uc.bg,
-      border: `2.5px solid ${active ? uc.accent : uc.border}`,
-      textAlign:'center', cursor:'pointer',
-      transition:'all 0.3s ease',
-      transform: active ? 'translateY(-6px) scale(1.02)' : 'none',
-      boxShadow: active ? `0 18px 40px ${uc.accent}40, 0 6px 16px ${uc.accent}25` : `0 3px 12px ${uc.accent}18`,
-      position:'relative', overflow:'hidden',
-    }}>
-      {/* shimmer overlay when active */}
-      {active && <div style={{ position:'absolute', inset:0, background:'linear-gradient(135deg, rgba(255,255,255,0.12) 0%, transparent 55%)', pointerEvents:'none' }} />}
-
-      {/* SVG icon circle */}
+      {/* Stat line */}
       <div style={{
-        width: 56, height: 56, borderRadius: '50%',
-        background: active ? 'rgba(255,255,255,0.2)' : '#fff',
-        border: `2px solid ${active ? 'rgba(255,255,255,0.35)' : uc.border}`,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        margin: '0 auto 12px',
-        transition: 'all 0.3s',
-        transform: active ? 'scale(1.12)' : 'scale(1)',
-        boxShadow: active
-          ? '0 6px 20px rgba(0,0,0,0.2)'
-          : `0 4px 12px ${uc.accent}20`,
+        display:'flex', alignItems:'center', justifyContent:'space-between',
+        paddingTop:10,
+        borderTop: `1px solid ${active ? 'rgba(255,255,255,0.2)' : '#f1f5f9'}`,
       }}>
-        <Icon size={26} color={active ? '#fff' : uc.accent} />
+        <span style={{
+          fontSize:10, fontWeight:800, color: active ? 'rgba(255,255,255,0.9)' : f.statColor,
+          display:'flex', alignItems:'center', gap:5,
+        }}>
+          <Icons.Sparkles size={11} color={active ? 'rgba(255,255,255,0.7)' : f.statColor} />
+          {f.stat}
+        </span>
+        <div style={{
+          display:'flex', alignItems:'center', gap:4,
+          fontSize:9.5, fontWeight:700,
+          color: active ? 'rgba(255,255,255,0.8)' : f.accent,
+        }}>
+          See demo <Icons.ArrowRight size={11} color={active ? 'rgba(255,255,255,0.8)' : f.accent} />
+        </div>
       </div>
-
-      <div style={{ fontSize:13.5, fontWeight:800, color:active?'#fff':uc.textColor, marginBottom:4 }}>{uc.label}</div>
-      <div style={{ fontSize:10.5, color:active?'rgba(255,255,255,0.78)':'#64748b', marginBottom:10, lineHeight:1.4 }}>{uc.sub}</div>
-      <span style={{
-        display:'inline-flex', alignItems:'center', gap:4,
-        background: active?'rgba(255,255,255,0.22)':'#fff',
-        border: `1.5px solid ${active?'rgba(255,255,255,0.35)':uc.border}`,
-        borderRadius:99, padding:'3px 10px',
-        fontSize:9, fontWeight:800, letterSpacing:'.06em', textTransform:'uppercase',
-        color: active?'#fff':uc.textColor,
-      }}>
-        {uc.stat}
-      </span>
-    </div>
-  )
-}
-
-/* ─────────────────────────────────────────────
-   SECTION HEADER
-───────────────────────────────────────────── */
-function SectionHeader({ badge, badgeBg, badgeBorder, badgeColor, title, highlight, highlightGradient, desc }) {
-  return (
-    <div style={{ textAlign:'center', marginBottom:52 }}>
-      <div style={{ display:'inline-flex', alignItems:'center', gap:7, background:badgeBg, border:`1.5px solid ${badgeBorder}`, borderRadius:99, padding:'7px 20px', fontSize:11.5, fontWeight:800, color:badgeColor, letterSpacing:'.06em', textTransform:'uppercase', marginBottom:16 }}>
-        {badge}
-      </div>
-      <h2 style={{ fontSize:'clamp(1.8rem, 3.8vw, 3rem)', fontWeight:900, color:'#0B2545', letterSpacing:'-.04em', lineHeight:1.1, margin:'0 0 14px', fontFamily:"'Outfit', sans-serif" }}>
-        {title}{' '}
-        <span style={{ background:highlightGradient, WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>{highlight}</span>
-      </h2>
-      <p style={{ fontSize:15, color:'#4b7a62', maxWidth:500, margin:'0 auto', lineHeight:1.8 }}>{desc}</p>
     </div>
   )
 }
@@ -1353,26 +1251,42 @@ function SectionHeader({ badge, badgeBg, badgeBorder, badgeColor, title, highlig
 ───────────────────────────────────────────── */
 export default function Features() {
   const [activeFeature, setActiveFeature] = useState('whatsapp')
-  const [activeUC, setActiveUC] = useState(0)
+
+  const activeF = FEATURES.find(f => f.id === activeFeature)
 
   return (
-    <section style={{ background:'linear-gradient(180deg, #f0f4f8 0%, #f8fafc 100%)', padding:'90px 24px 96px' }}>
+    <section style={{ background:'linear-gradient(180deg, #f0f4f8 0%, #f8fafc 60%, #f0f4f8 100%)', padding:'90px 24px 96px' }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&display=swap');
         * { box-sizing: border-box; }
-        .feat-layout { display: grid; grid-template-columns: 1fr 300px; gap: 40px; align-items: start; }
-        .feat-grid   { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-        .uc-grid     { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-        .phone-sticky { position: sticky; top: 80px; display: flex; flex-direction: column; align-items: center; }
+
+        .feat-section-layout {
+          display: grid;
+          grid-template-columns: 1fr 310px;
+          gap: 44px;
+          align-items: start;
+        }
+        .feat-grid {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 14px;
+        }
+        .phone-sticky {
+          position: sticky;
+          top: 80px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+
         @media (max-width: 1024px) {
-          .feat-layout { grid-template-columns: 1fr; }
-          .phone-sticky { position: relative; top: 0; margin: 0 auto 32px; }
-          .uc-grid { grid-template-columns: repeat(2, 1fr); }
+          .feat-section-layout { grid-template-columns: 1fr; }
+          .phone-sticky { position: relative; top: 0; margin: 0 auto 36px; order: -1; }
         }
         @media (max-width: 600px) {
           .feat-grid { grid-template-columns: 1fr; }
-          .uc-grid   { grid-template-columns: 1fr; }
         }
+
         @keyframes bounce {
           0%,100% { transform: translateY(0); opacity: 0.4; }
           50%      { transform: translateY(-4px); opacity: 1; }
@@ -1396,59 +1310,148 @@ export default function Features() {
           from { transform: rotate(0deg); }
           to   { transform: rotate(360deg); }
         }
+        @keyframes gradientShift {
+          0%   { background-position: 0% 50%; }
+          50%  { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
       `}</style>
 
       <div style={{ maxWidth:1160, margin:'0 auto' }}>
 
-        {/* ── FEATURES SECTION ── */}
-        <SectionHeader
-          badge="✦ Platform Features"
-          badgeBg="#dcfce7" badgeBorder="#4ade80" badgeColor="#14532d"
-          title="Powerful Features for"
-          highlight="Peace of Mind"
-          highlightGradient="linear-gradient(130deg,#16a34a,#059669)"
-          desc="Every feature has a live simulation — click any card, then hit the button to see it in action."
-        />
-
-        <div className="feat-layout" style={{ marginBottom:88 }}>
-          <div className="feat-grid">
-            {FEATURES.map(f => (
-              <FeatureCard key={f.id} f={f} active={activeFeature===f.id} onClick={()=>setActiveFeature(f.id)} />
-            ))}
+        {/* ── SECTION HEADER ── */}
+        <div style={{ textAlign:'center', marginBottom:56 }}>
+          <div style={{
+            display:'inline-flex', alignItems:'center', gap:7,
+            background:'#dcfce7', border:'1.5px solid #4ade80',
+            borderRadius:99, padding:'7px 20px',
+            fontSize:11.5, fontWeight:800, color:'#14532d',
+            letterSpacing:'.06em', textTransform:'uppercase', marginBottom:18,
+          }}>
+            ✦ Platform Features
           </div>
-          <div className="phone-sticky">
-            <FeatureSimulator featureId={activeFeature} />
+
+          <h2 style={{
+            fontSize:'clamp(2rem, 4vw, 3.25rem)', fontWeight:900,
+            color:'#0B2545', letterSpacing:'-.04em', lineHeight:1.08,
+            margin:'0 0 16px', fontFamily:"'Outfit', sans-serif",
+          }}>
+            Powerful Features for{' '}
+            <span style={{
+              background:'linear-gradient(130deg,#16a34a,#059669)',
+              WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text',
+            }}>
+              Peace of Mind
+            </span>
+          </h2>
+
+          <p style={{ fontSize:15.5, color:'#4b7a62', maxWidth:540, margin:'0 auto', lineHeight:1.8 }}>
+            Every feature has a live simulation — click any card, then hit the button to see it in action.
+          </p>
+
+          {/* Feature count pills */}
+          <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'center', gap:8, marginTop:20 }}>
+            {FEATURES.map(f => {
+              const IconComp = FEATURE_ICONS[f.id]
+              return (
+                <button
+                  key={f.id}
+                  onClick={() => setActiveFeature(f.id)}
+                  style={{
+                    display:'flex', alignItems:'center', gap:6,
+                    padding:'6px 14px',
+                    background: activeFeature === f.id ? f.accent : '#fff',
+                    border: `1.5px solid ${activeFeature === f.id ? f.accent : '#e2e8f0'}`,
+                    borderRadius:99,
+                    fontSize:11, fontWeight:700,
+                    color: activeFeature === f.id ? '#fff' : '#475569',
+                    cursor:'pointer',
+                    transition:'all 0.2s',
+                    boxShadow: activeFeature === f.id ? `0 4px 14px ${f.accent}40` : 'none',
+                  }}
+                >
+                  <IconComp size={12} color={activeFeature === f.id ? '#fff' : f.accent} />
+                  {f.title.split(' ').slice(-1)[0]}
+                </button>
+              )
+            })}
           </div>
         </div>
 
-        {/* ── USE CASES ── */}
-        <SectionHeader
-          badge="🛡️ Protection Categories"
-          badgeBg="#ffedd5" badgeBorder="#fb923c" badgeColor="#7c2d12"
-          title="8 Safety Categories."
-          highlight="One Smart Platform."
-          highlightGradient="linear-gradient(130deg,#ea580c,#dc2626)"
-          desc="From lost luggage to road emergencies — ScanForSafe covers every real-world scenario."
-        />
+        {/* ── MAIN LAYOUT ── */}
+        <div className="feat-section-layout">
 
-        <div className="uc-grid" style={{ marginBottom:64 }}>
-          {USE_CASES.map((uc,i) => (
-            <UseCaseCard key={i} uc={uc} active={activeUC===i} onClick={()=>setActiveUC(activeUC===i?-1:i)} />
-          ))}
+          {/* Left: 2×4 feature cards grid */}
+          <div className="feat-grid">
+            {FEATURES.map((f, i) => (
+              <FeatureCard
+                key={f.id}
+                f={f}
+                index={i}
+                active={activeFeature === f.id}
+                onClick={() => setActiveFeature(f.id)}
+              />
+            ))}
+          </div>
+
+          {/* Right: sticky phone */}
+          <div className="phone-sticky">
+            {/* Active feature label above phone */}
+            <div style={{
+              marginBottom:16, textAlign:'center',
+              animation:'fadeUp 0.3s ease',
+              key: activeFeature,
+            }}>
+              <div style={{
+                display:'inline-flex', alignItems:'center', gap:6,
+                background: activeF?.bg,
+                border: `1.5px solid ${activeF?.tagBg}`,
+                borderRadius:99, padding:'5px 14px',
+                fontSize:11, fontWeight:800, color: activeF?.tagColor,
+                letterSpacing:'.04em', textTransform:'uppercase',
+              }}>
+                {activeF && <>{(() => { const IconComp = FEATURE_ICONS[activeF.id]; return <IconComp size={13} color={activeF.accent} /> })()}</>}
+                {activeF?.title}
+              </div>
+            </div>
+
+            <FeatureSimulator featureId={activeFeature} />
+
+            {/* Mini instruction */}
+            <p style={{
+              fontSize:10.5, color:'#94a3b8', textAlign:'center',
+              marginTop:14, maxWidth:220, lineHeight:1.6,
+            }}>
+              ← Click any feature card to switch demo
+            </p>
+          </div>
         </div>
 
         {/* ── TRUST PILLS ── */}
-        <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'center', gap:'10px 18px', paddingTop:28, borderTop:'1.5px solid #e2e8f0' }}>
+        <div style={{
+          display:'flex', flexWrap:'wrap', justifyContent:'center',
+          gap:'10px 16px', paddingTop:32,
+          borderTop:'1.5px solid #e2e8f0', marginTop:16,
+        }}>
           {[
-            { icon: Icons.Lock,       text: 'ISO-grade data privacy' },
-            { icon: Icons.Zap,        text: 'Works 24/7 — even offline' },
-            { icon: Icons.Phone,      text: 'Any smartphone camera' },
-            { icon: Icons.Shield,     text: 'End-to-end encrypted' },
-            { icon: Icons.Star,       text: 'Made for India' },
+            { icon: Icons.Lock,      text: 'ISO-grade data privacy' },
+            { icon: Icons.Zap,       text: 'Works 24/7 — even offline' },
+            { icon: Icons.Phone,     text: 'Any smartphone camera' },
+            { icon: Icons.Shield,    text: 'End-to-end encrypted' },
+            { icon: Icons.Star,      text: 'Made for India' },
           ].map(({ icon: Icon, text }) => (
-            <div key={text} style={{ display:'flex', alignItems:'center', gap:8, background:'#fff', border:'1.5px solid #e2e8f0', borderRadius:99, padding:'7px 18px', fontSize:12.5, fontWeight:700, color:'#334155', transition:'all .2s ease', cursor:'default' }}
+            <div
+              key={text}
+              style={{
+                display:'flex', alignItems:'center', gap:8,
+                background:'#fff', border:'1.5px solid #e2e8f0',
+                borderRadius:99, padding:'7px 18px',
+                fontSize:12.5, fontWeight:700, color:'#334155',
+                transition:'all .2s ease', cursor:'default',
+              }}
               onMouseEnter={e=>{ e.currentTarget.style.borderColor='#86efac'; e.currentTarget.style.transform='translateY(-2px)'; e.currentTarget.style.boxShadow='0 4px 12px rgba(0,0,0,0.06)' }}
-              onMouseLeave={e=>{ e.currentTarget.style.borderColor='#e2e8f0'; e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='none' }}>
+              onMouseLeave={e=>{ e.currentTarget.style.borderColor='#e2e8f0'; e.currentTarget.style.transform='none'; e.currentTarget.style.boxShadow='none' }}
+            >
               <Icon size={14} color="#16a34a" />
               {text}
             </div>

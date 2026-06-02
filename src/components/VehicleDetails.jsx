@@ -32,10 +32,10 @@ export default function VehicleDetails() {
   const [sectionRef, visible] = useInView(0.1)
 
   const highlights = [
-    { icon: Zap,        label: 'Instant Scan',   desc: 'Under 2 seconds',      color: '#f97316', bg: '#fff7ed' },
-    { icon: Wifi,       label: 'Always Online',  desc: '99.9% uptime',         color: '#0891b2', bg: '#ecfeff' },
-    { icon: Lock,       label: 'Encrypted',      desc: 'Bank-level security',  color: '#7c3aed', bg: '#f5f3ff' },
-    { icon: Phone,      label: 'Multi-channel',  desc: 'App · SMS · WhatsApp', color: '#2ebd3a', bg: '#e8f8eb' },
+    { icon: Zap,   label: 'Instant Scan',  desc: 'Under 2 seconds',      color: '#f97316', bg: '#fff7ed' },
+    { icon: Wifi,  label: 'Always Online', desc: '99.9% uptime',         color: '#0891b2', bg: '#ecfeff' },
+    { icon: Lock,  label: 'Encrypted',     desc: 'Bank-level security',  color: '#7c3aed', bg: '#f5f3ff' },
+    { icon: Phone, label: 'Multi-channel', desc: 'App · SMS · WhatsApp', color: '#2ebd3a', bg: '#e8f8eb' },
   ]
 
   const cards = [
@@ -62,7 +62,7 @@ export default function VehicleDetails() {
   ]
 
   return (
-    <section ref={sectionRef} style={{ background: '#ffffff', padding: '90px 0', overflow: 'hidden' }}>
+    <section ref={sectionRef} style={{ background: '#ffffff', padding: '48px 0 56px', overflow: 'hidden' }}>
       <style>{`
         @keyframes gradient-x {
           0%,100% { background-position: 0% 50% }
@@ -71,10 +71,6 @@ export default function VehicleDetails() {
         @keyframes float-up {
           0%,100% { transform: translateY(0px) }
           50% { transform: translateY(-6px) }
-        }
-        @keyframes shimmer {
-          0% { background-position: -200% center }
-          100% { background-position: 200% center }
         }
         .animated-gradient-text {
           background: linear-gradient(135deg, #0B2545 0%, #2ebd3a 40%, #0891b2 70%, #0B2545 100%);
@@ -91,11 +87,11 @@ export default function VehicleDetails() {
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
 
         {/* ── HEADER ── */}
-        <div style={{ textAlign: 'center', marginBottom: 44 }}>
+        <div style={{ textAlign: 'center', marginBottom: 36 }}>
           <AnimatedItem visible={visible} delay={0}>
             <div style={{
               display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 20px',
-              borderRadius: 100, background: '#e8f8eb', border: '1px solid #c6f0cc', marginBottom: 18,
+              borderRadius: 100, background: '#e8f8eb', border: '1px solid #c6f0cc', marginBottom: 14,
             }}>
               <Car size={14} color="#2ebd3a" />
               <span style={{ fontSize: 13, fontWeight: 700, color: '#2ebd3a' }}>Vehicle Protection</span>
@@ -104,28 +100,26 @@ export default function VehicleDetails() {
 
           <AnimatedItem visible={visible} delay={120}>
             <h2 className="animated-gradient-text" style={{
-              fontSize: 'clamp(30px,4.5vw,52px)', fontWeight: 900, margin: '0 0 14px', lineHeight: 1.15,
+              fontSize: 'clamp(28px,4vw,48px)', fontWeight: 900, margin: '0 0 12px', lineHeight: 1.15,
             }}>
               Vehicle Details & Protection
             </h2>
           </AnimatedItem>
 
           <AnimatedItem visible={visible} delay={220}>
-            <p style={{ color: '#4b7a62', fontSize: 16, maxWidth: 520, margin: '0 auto', lineHeight: 1.75 }}>
+            <p style={{ color: '#4b7a62', fontSize: 15, maxWidth: 500, margin: '0 auto', lineHeight: 1.7 }}>
               Add your vehicle info once. Let the QR sticker do the rest —&nbsp;
               <strong style={{ color: '#0B2545' }}>24/7 protection</strong>, instant alerts, and GPS tracking
             </p>
           </AnimatedItem>
         </div>
 
-        {/* ══════════════════════════════════
-            HIGHLIGHT STRIP — NOW AT THE TOP
-        ══════════════════════════════════ */}
+        {/* ── HIGHLIGHT STRIP ── */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))',
           gap: 14,
-          marginBottom: 36,
+          marginBottom: 28,
         }}>
           {highlights.map(({ icon: Icon, label, desc, color, bg }, i) => (
             <AnimatedItem key={label} visible={visible} delay={320 + i * 80}>
@@ -134,7 +128,7 @@ export default function VehicleDetails() {
                 style={{
                   background: bg,
                   border: `1.5px solid ${color}33`,
-                  borderRadius: 18, padding: '18px 20px',
+                  borderRadius: 18, padding: '16px 18px',
                   display: 'flex', alignItems: 'center', gap: 14,
                   transition: 'all .3s cubic-bezier(0.34,1.2,0.64,1)',
                   cursor: 'default',
@@ -151,7 +145,6 @@ export default function VehicleDetails() {
                   e.currentTarget.style.transform = ''
                 }}
               >
-                {/* Left color bar */}
                 <div style={{ position: 'absolute', left: 0, top: 0, bottom: 0, width: 3, background: color, borderRadius: '18px 0 0 18px' }} />
                 <div style={{ width: 44, height: 44, borderRadius: 13, background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, boxShadow: `0 4px 12px ${color}22`, border: `1.5px solid ${color}22` }}>
                   <Icon size={21} color={color} />
@@ -165,16 +158,14 @@ export default function VehicleDetails() {
           ))}
         </div>
 
-        {/* ══════════════════
-            4 FEATURE CARDS
-        ══════════════════ */}
+        {/* ── 4 FEATURE CARDS ── */}
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(265px,1fr))', gap: 20 }}>
           {cards.map(({ icon: Icon, title, color, bg, badge, badgeColor, badgeBg, items }, i) => (
             <AnimatedItem key={title} visible={visible} delay={560 + i * 100}>
               <div
                 className="feature-card"
                 style={{
-                  background: '#fafafa', borderRadius: 22, padding: '26px 24px 28px',
+                  background: '#fafafa', borderRadius: 22, padding: '24px 22px 26px',
                   border: '1.5px solid #e5e7eb',
                   transition: 'all 0.3s cubic-bezier(0.4,0,0.2,1)',
                   cursor: 'pointer', position: 'relative', overflow: 'hidden',
@@ -193,7 +184,6 @@ export default function VehicleDetails() {
                   e.currentTarget.style.background = '#fafafa'
                 }}
               >
-                {/* Animated top accent line */}
                 <div className="card-top-line" style={{
                   position: 'absolute', top: 0, left: 0, height: 3,
                   width: '40%',
@@ -202,7 +192,6 @@ export default function VehicleDetails() {
                   transition: 'width 0.4s ease',
                 }} />
 
-                {/* Corner watermark */}
                 <div style={{
                   position: 'absolute', bottom: -18, right: -18,
                   width: 80, height: 80, borderRadius: '50%',
@@ -210,8 +199,7 @@ export default function VehicleDetails() {
                   border: `2px solid ${color}18`,
                 }} />
 
-                {/* Icon + badge */}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 16 }}>
                   <div style={{
                     width: 52, height: 52, borderRadius: 15, background: bg,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -232,14 +220,10 @@ export default function VehicleDetails() {
                   </span>
                 </div>
 
-                {/* Title */}
-                <h3 style={{
-                  margin: '0 0 6px', fontSize: 19, fontWeight: 900, color: '#0B2545', lineHeight: 1.2,
-                }}>{title}</h3>
-                <div style={{ width: 32, height: 3, background: `linear-gradient(90deg,${color},${color}44)`, borderRadius: 999, marginBottom: 16 }} />
+                <h3 style={{ margin: '0 0 6px', fontSize: 18, fontWeight: 900, color: '#0B2545', lineHeight: 1.2 }}>{title}</h3>
+                <div style={{ width: 32, height: 3, background: `linear-gradient(90deg,${color},${color}44)`, borderRadius: 999, marginBottom: 14 }} />
 
-                {/* Items */}
-                <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 9 }}>
                   {items.map((item, idx) => (
                     <li key={item} style={{
                       display: 'flex', alignItems: 'center', gap: 10,

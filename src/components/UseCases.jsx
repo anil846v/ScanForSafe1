@@ -4,12 +4,12 @@ import {
   Zap, MapPin, Bell, Clock, ScanLine, CreditCard,
 } from 'lucide-react'
 
-import bike1img   from '../../assets/bike.png'
-import petimg     from '../../assets/dog.png'
-import seniorimg  from '../../assets/senior.png'
-import kidimg     from '../../assets/kid.png'
-import luggage    from '../../assets/luggage1.png'
-import idimg      from '../../assets/id.png'
+import bike1img  from '../../assets/bike.png'
+import petimg    from '../../assets/dog.png'
+import seniorimg from '../../assets/senior.png'
+import kidimg    from '../../assets/kid.png'
+import luggage   from '../../assets/luggage1.png'
+import idimg     from '../../assets/id.png'
 
 /* ─────────────────────────── DATA ─────────────────────────── */
 const USE_CASES = [
@@ -126,7 +126,7 @@ export default function UseCases() {
       style={{ background: '#f0f6f1', padding: '52px 0 60px' }}
     >
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
 
         /* ── Grid ── */
         .uc-grid {
@@ -189,8 +189,8 @@ export default function UseCases() {
           background: rgba(255,255,255,0.92); backdrop-filter: blur(8px);
           border: 1.5px solid rgba(0,0,0,0.09);
           border-radius: 8px; padding: 4px 9px;
-          font-size: 8.5px; font-weight: 900; letter-spacing: 0.13em;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-size: 8.5px; font-weight: 800; letter-spacing: 0.13em;
+          font-family: 'Sora', sans-serif;
           text-transform: uppercase;
         }
 
@@ -201,8 +201,8 @@ export default function UseCases() {
           border: 1.5px solid rgba(46,189,58,0.35);
           border-radius: 8px; padding: 5px 10px;
           display: flex; align-items: center; gap: 5px;
-          font-size: 9.5px; font-weight: 700; color: #157a24;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-size: 9.5px; font-weight: 600; color: #157a24;
+          font-family: 'DM Sans', sans-serif;
           box-shadow: 0 2px 10px rgba(0,0,0,0.13);
           animation: ucQrPulse 2.8s ease-in-out infinite;
         }
@@ -215,9 +215,9 @@ export default function UseCases() {
         .uc-new-badge {
           position: absolute; top: 11px; right: 11px;
           background: linear-gradient(135deg,#4a41aa,#8b85e8);
-          color: #fff; font-size: 8px; font-weight: 900;
+          color: #fff; font-size: 8px; font-weight: 800;
           padding: 4px 10px; border-radius: 100px; letter-spacing: 0.1em;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-family: 'Sora', sans-serif;
           border: 1.5px solid rgba(255,255,255,0.28);
           box-shadow: 0 3px 10px rgba(74,65,170,0.42);
         }
@@ -245,22 +245,23 @@ export default function UseCases() {
         }
         .uc-card:hover .uc-icon-box { transform: translateY(-3px) scale(1.1); }
 
+        /* ── FONT CHANGES: Sora for title, DM Sans for everything else ── */
         .uc-name {
-          margin: 0; font-size: 15px; font-weight: 800; line-height: 1.15;
-          letter-spacing: -0.02em;
-          font-family: 'Instrument Serif', serif;
+          margin: 0; font-size: 14.5px; font-weight: 700; line-height: 1.18;
+          letter-spacing: -0.03em;
+          font-family: 'Sora', sans-serif;
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
         }
         .uc-sub {
-          font-size: 10px; font-weight: 600; margin-top: 2px;
-          font-family: 'Plus Jakarta Sans', sans-serif; opacity: 0.75;
+          font-size: 10px; font-weight: 500; margin-top: 2px;
+          font-family: 'DM Sans', sans-serif; opacity: 0.75;
         }
 
         .uc-tag-pill {
-          font-size: 9px; font-weight: 800; padding: 4px 10px;
+          font-size: 9px; font-weight: 700; padding: 4px 10px;
           border-radius: 100px; white-space: nowrap; flex-shrink: 0;
-          font-family: 'Plus Jakarta Sans', sans-serif;
-          letter-spacing: 0.04em;
+          font-family: 'DM Sans', sans-serif;
+          letter-spacing: 0.03em;
           border: 2px solid transparent;
         }
 
@@ -269,15 +270,15 @@ export default function UseCases() {
 
         /* description */
         .uc-desc {
-          margin: 0; font-size: 12px; line-height: 1.65; font-weight: 500;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          margin: 0; font-size: 12px; line-height: 1.68; font-weight: 400;
+          font-family: 'DM Sans', sans-serif;
         }
 
         /* pills */
         .uc-pills { display: flex; flex-wrap: wrap; gap: 4px; }
         .uc-pill {
-          font-size: 9px; font-weight: 700; padding: 3px 9px; border-radius: 999px;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-size: 9px; font-weight: 600; padding: 3px 9px; border-radius: 999px;
+          font-family: 'DM Sans', sans-serif;
           border: 1.5px solid transparent;
         }
 
@@ -296,12 +297,13 @@ export default function UseCases() {
         }
         .uc-stat + .uc-stat { border-left: 1.5px solid rgba(0,0,0,0.08); }
         .uc-stat-val {
-          font-size: 13px; font-weight: 900; line-height: 1;
-          font-family: 'Instrument Serif', serif;
+          font-size: 13px; font-weight: 800; line-height: 1;
+          font-family: 'Sora', sans-serif;
+          letter-spacing: -0.02em;
         }
         .uc-stat-lbl {
-          font-size: 7px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.09em;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-size: 7px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.09em;
+          font-family: 'DM Sans', sans-serif;
         }
 
         /* footer */
@@ -311,8 +313,8 @@ export default function UseCases() {
         }
         .uc-live {
           display: flex; align-items: center; gap: 5px;
-          font-size: 10px; font-weight: 700;
-          font-family: 'Plus Jakarta Sans', sans-serif;
+          font-size: 10px; font-weight: 600;
+          font-family: 'DM Sans', sans-serif;
         }
         .uc-dot {
           width: 6px; height: 6px; border-radius: 50%; background: #2ebd3a;
@@ -320,9 +322,9 @@ export default function UseCases() {
         }
         .uc-btn {
           display: inline-flex; align-items: center; gap: 4px;
-          font-size: 10.5px; font-weight: 800; padding: 6px 13px; border-radius: 999px;
-          cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
-          letter-spacing: 0.02em;
+          font-size: 10.5px; font-weight: 700; padding: 6px 13px; border-radius: 999px;
+          cursor: pointer; font-family: 'DM Sans', sans-serif;
+          letter-spacing: 0.01em;
           border: 2px solid rgba(0,0,0,0.12);
           background: rgba(255,255,255,0.82);
           box-shadow: 0 2px 5px rgba(0,0,0,0.07);
@@ -330,48 +332,67 @@ export default function UseCases() {
         }
         .uc-btn:hover { background:#fff; gap:7px; box-shadow:0 4px 12px rgba(0,0,0,0.12); border-color:rgba(0,0,0,0.2); }
 
-        /* mobile hint */
-        .uc-swipe { display:none; align-items:center; gap:5px; font-size:11px; color:#999; margin-bottom:10px; font-family:'Plus Jakarta Sans',sans-serif; }
+        /* mobile swipe hint */
+        .uc-swipe {
+          display: none; align-items: center; gap: 5px;
+          font-size: 11px; color: #999; margin-bottom: 10px;
+          font-family: 'DM Sans', sans-serif;
+        }
         @media (max-width:580px){ .uc-swipe{ display:flex; } }
+
+        /* ── Section header badge ── */
+        .uc-header-badge {
+          display: inline-flex; align-items: center; gap: 7px;
+          padding: 5px 16px; border-radius: 100px;
+          background: #daf2e1; border: 1.5px solid #82cc96; margin-bottom: 14px;
+          box-shadow: 0 2px 8px rgba(46,189,58,0.1);
+        }
+        .uc-header-badge span {
+          font-size: 11px; font-weight: 700; color: #157a24;
+          font-family: 'Sora', sans-serif; letter-spacing: 0.07em;
+          text-transform: uppercase;
+        }
+        .uc-header-h2 {
+          font-size: clamp(26px, 3.5vw, 44px);
+          font-weight: 900;
+          color: #06160A;
+          margin: 0 0 10px;
+          line-height: 1.0;
+          font-family: 'Sora', sans-serif;
+          letter-spacing: -0.04em;
+        }
+        .uc-header-h2 .uc-green {
+          background: linear-gradient(125deg, #0a2e10 0%, #2ebd3a 52%, #4bd557 100%);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
+        }
+        .uc-header-p {
+          color: #3a6b50; font-size: 14.5px; max-width: 480px; margin: 0 auto;
+          line-height: 1.75; font-family: 'DM Sans', sans-serif; font-weight: 400;
+        }
       `}</style>
 
       <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 20px' }}>
 
-        {/* Header */}
+        {/* ── Header ── */}
         <div style={{ textAlign: 'center', marginBottom: 36 }}>
-          <div style={{
-            display: 'inline-flex', alignItems: 'center', gap: 7,
-            padding: '5px 16px', borderRadius: 100,
-            background: '#daf2e1', border: '1.5px solid #82cc96', marginBottom: 14,
-            boxShadow: '0 2px 8px rgba(46,189,58,0.1)',
-          }}>
+          <div className="uc-header-badge">
             <ShieldCheck size={13} color="#157a24" />
-            <span style={{
-              fontSize: 11, fontWeight: 800, color: '#157a24',
-              fontFamily: "'Plus Jakarta Sans', sans-serif", letterSpacing: '0.07em',
-            }}>
-              Real-World Use Cases
-            </span>
+            <span>Real-World Use Cases</span>
           </div>
 
-          <h2 style={{
-            fontSize: 'clamp(26px, 3.5vw, 44px)', fontWeight: 400, color: '#0B2545',
-            margin: '0 0 10px', lineHeight: 1.1,
-            fontFamily: "'Instrument Serif', serif", letterSpacing: '-0.01em',
-            fontStyle: 'italic',
-          }}>
-            Protect Everything You Love
+          <h2 className="uc-header-h2">
+            Protect Everything<br />
+            <span className="uc-green">You Love</span>
           </h2>
 
-          <p style={{
-            color: '#3a6b50', fontSize: 14.5, maxWidth: 480, margin: '0 auto',
-            lineHeight: 1.72, fontFamily: "'Plus Jakarta Sans', sans-serif", fontWeight: 500,
-          }}>
+          <p className="uc-header-p">
             Smart QR safety tags for bikes, laptops, pets, children, ID cards, and senior citizens.
           </p>
         </div>
 
-        {/* Swipe hint */}
+        {/* ── Swipe hint (mobile) ── */}
         <div className="uc-swipe">
           <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#aaa" strokeWidth="2">
             <path d="M5 12h14M12 5l7 7-7 7" />
@@ -379,7 +400,7 @@ export default function UseCases() {
           Swipe to explore
         </div>
 
-        {/* Grid */}
+        {/* ── Grid ── */}
         <div className="uc-grid">
           {USE_CASES.map(uc => <UCCard key={uc.title} {...uc} />)}
         </div>
@@ -418,7 +439,6 @@ function UCCard({
               rgba(0,0,0,0.22) 100%)`,
           }}
         />
-        {/* category chip top-left */}
         <div className="uc-cat-chip" style={{ color: accentColor }}>
           {category}
         </div>

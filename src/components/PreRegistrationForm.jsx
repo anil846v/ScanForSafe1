@@ -7,7 +7,6 @@ export default function PreRegistrationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const iframeRef = useRef(null);
 
-  // Form states matching the parsed fields
   const [formData, setFormData] = useState({
     email: "",
     name: "",
@@ -15,14 +14,14 @@ export default function PreRegistrationForm() {
     address: "",
     city: "",
     pinCode: "",
-    qrType: [], // Array to support multiselect!
+    qrType: [], // Array for multiselect
     emergencyName: "",
     emergencyMobile: "",
     referredBy: "",
     referralMobile: "",
     declaration: false,
-    password: "", // NEW
-    confirmPassword: "", // NEW
+    password: "",
+    confirmPassword: "",
   });
 
   const [errors, setErrors] = useState({});
@@ -112,11 +111,21 @@ export default function PreRegistrationForm() {
       value: "Pets",
       label: "Pets",
       icon: (
+        /* Dog face SVG */
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-          <circle cx="12" cy="13" r="3" />
-          <circle cx="12" cy="6" r="2" />
-          <circle cx="7" cy="9" r="2" />
-          <circle cx="17" cy="9" r="2" />
+          {/* Head */}
+          <path d="M4 10c0-3.31 2.69-6 6-6h4c3.31 0 6 2.69 6 6v4a6 6 0 0 1-6 6h-4a6 6 0 0 1-6-6v-4z" />
+          {/* Left ear */}
+          <path d="M4 10 C3 7 1 6 2 4 C3 2 5 4 6 6" />
+          {/* Right ear */}
+          <path d="M20 10 C21 7 23 6 22 4 C21 2 19 4 18 6" />
+          {/* Eyes */}
+          <circle cx="9" cy="11" r="1" fill="currentColor" />
+          <circle cx="15" cy="11" r="1" fill="currentColor" />
+          {/* Nose */}
+          <ellipse cx="12" cy="14" rx="1.5" ry="1" fill="currentColor" />
+          {/* Mouth */}
+          <path d="M10.5 15.5 Q12 17 13.5 15.5" />
         </svg>
       )
     },
@@ -144,6 +153,7 @@ export default function PreRegistrationForm() {
     }
   };
 
+  // ✅ FIXED: proper multi-select toggle
   const handleToggleQRType = (val) => {
     let current = Array.isArray(formData.qrType) ? [...formData.qrType] : [];
     if (current.includes(val)) {
@@ -152,6 +162,14 @@ export default function PreRegistrationForm() {
       current.push(val);
     }
     handleInputChange("qrType", current);
+    // Also clear error if at least one selected
+    if (current.length > 0 && errors.qrType) {
+      setErrors((prev) => {
+        const copy = { ...prev };
+        delete copy.qrType;
+        return copy;
+      });
+    }
   };
 
   const validateForm = () => {
@@ -201,7 +219,6 @@ export default function PreRegistrationForm() {
       e.preventDefault();
       return;
     }
-    // Defer disabling the button so the browser can finish scheduling the form POST submission
     setTimeout(() => {
       setIsSubmitting(true);
     }, 10);
@@ -239,7 +256,6 @@ export default function PreRegistrationForm() {
           pointer-events: none;
         }
 
-        /* ── SINGLE COLUMN WIDE DECK CARD ── */
         .pr-card {
           width: 100%; max-width: 1240px;
           background: #ffffff;
@@ -252,13 +268,11 @@ export default function PreRegistrationForm() {
           transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* ── MAIN CONTENT CONTAINER ── */
         .pr-main {
           padding: 30px 40px;
           display: flex; flex-direction: column; justify-content: space-between;
         }
 
-        /* ── BRAND HEADER ── */
         .pr-form-header {
           text-align: center;
           margin-bottom: 20px;
@@ -285,7 +299,6 @@ export default function PreRegistrationForm() {
           color: #16a34a; font-weight: 700;
         }
 
-        /* ── DASHBOARD SECTION TITLES ── */
         .pr-section-title {
           display: flex; align-items: center; gap: 8px;
           font-family: 'Outfit', sans-serif;
@@ -300,7 +313,6 @@ export default function PreRegistrationForm() {
           padding: 2px 6px; border-radius: 4px;
         }
 
-        /* ── MNC-GRADE COMPACT HORIZONTAL GRID SYSTEM ── */
         .pr-grid-fields {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
@@ -333,7 +345,7 @@ export default function PreRegistrationForm() {
           margin-top: 3px; display: flex; align-items: center; gap: 3px;
         }
 
-        /* ── COMPACT QR TYPE HORIZONTAL SELECTION GRID ── */
+        /* ── MULTI-SELECT QR TYPE GRID ── */
         .pr-qr-grid {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
@@ -346,15 +358,27 @@ export default function PreRegistrationForm() {
           align-items: center; justify-content: center; gap: 5px;
           cursor: pointer; background: #f8fafc; transition: all 0.22s ease;
           color: #475569;
+          position: relative;
+          user-select: none;
         }
         .pr-qr-item:hover {
-          border-color: #cbd5e1; transform: translateY(-1.5px);
-          color: #0B2545;
+          border-color: #86efac; transform: translateY(-1.5px);
+          color: #0B2545; background: #f0fdf4;
         }
+        /* ✅ FIXED: uses .selected for multi-select */
         .pr-qr-item.selected {
-          border-color: #16a34a; background: rgba(22, 163, 74, 0.04);
+          border-color: #16a34a; background: rgba(22, 163, 74, 0.06);
           color: #16a34a;
-          box-shadow: 0 3px 10px rgba(22, 163, 74, 0.08);
+          box-shadow: 0 3px 10px rgba(22, 163, 74, 0.12);
+        }
+        /* Small checkmark badge on selected items */
+        .pr-qr-item.selected::after {
+          content: "✓";
+          position: absolute;
+          top: 4px; right: 6px;
+          font-size: 9px; font-weight: 900;
+          color: #16a34a;
+          line-height: 1;
         }
         .pr-qr-icon {
           display: flex; align-items: center; justify-content: center;
@@ -368,7 +392,13 @@ export default function PreRegistrationForm() {
         }
         .pr-qr-name { font-size: 10px; font-weight: 700; text-align: center; }
 
-        /* ── DECLARATION ── */
+        /* Multi-select hint label */
+        .pr-multiselect-hint {
+          font-size: 10px; color: #6b7280; font-weight: 500;
+          margin-bottom: 4px; margin-top: 2px;
+          display: flex; align-items: center; gap: 4px;
+        }
+
         .pr-dec-box {
           display: flex; gap: 10px; background: #f8fafc;
           border: 1px solid #cbd5e1; padding: 10px 14px; border-radius: 10px;
@@ -389,7 +419,6 @@ export default function PreRegistrationForm() {
         }
         .pr-dec-text { font-size: 11px; line-height: 1.4; color: #475569; text-align: left; font-weight: 500; }
 
-        /* ── ACTION BUTTONS ── */
         .pr-btn-prev {
           padding: 0; border-radius: 10px;
           border: 1.5px solid #cbd5e1; background: white;
@@ -412,7 +441,6 @@ export default function PreRegistrationForm() {
           box-shadow: 0 8px 18px rgba(46, 189, 58, 0.25);
         }
 
-        /* ── SUCCESS SCREEN ── */
         .pr-success { text-align: center; padding: 16px 0; }
         .pr-success-icon {
           width: 64px; height: 64px; border-radius: 50%;
@@ -457,7 +485,6 @@ export default function PreRegistrationForm() {
         }
         .pr-btn-home:hover { background: #081a30; transform: translateY(-1px); }
 
-        /* ── RESPONSIVE ADAPTATIONS ── */
         @media (max-width: 900px) {
           .pr-grid-fields { grid-template-columns: repeat(2, 1fr); }
           .pr-span-3-desktop { grid-column: span 2; }
@@ -497,7 +524,6 @@ export default function PreRegistrationForm() {
                   onLoad={handleIframeLoad}
                 />
 
-                {/* Form Action connects directly to parsed Google Form */}
                 <form
                   action="https://docs.google.com/forms/d/e/1FAIpQLSd9A7Dl1-VyVYOpzuSFH1dy_vWdsYBxjFUqh6h3LpmicZwKRg/formResponse"
                   method="POST"
@@ -505,7 +531,7 @@ export default function PreRegistrationForm() {
                   onSubmit={triggerSubmit}
                 >
                   
-                  {/* ── SECTION 01: CONTACT & DELIVERY DETAILS ── */}
+                  {/* ── SECTION 01 ── */}
                   <div className="pr-section-title">
                     <span className="pr-sec-num">01</span> Contact &amp; Shipping Details
                   </div>
@@ -638,16 +664,36 @@ export default function PreRegistrationForm() {
                       )}
                     </div>
 
+                    {/* ── QR TYPE MULTI-SELECT ── */}
                     <div className="pr-group pr-span-4-desktop">
                       <label className="pr-label" style={{ marginBottom: 2 }}>Select QR Visual Tag Type *</label>
-                      <input type="hidden" name="entry.1359574010" value={formData.qrType} />
+                      <div className="pr-multiselect-hint">
+                        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                          <polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+                        </svg>
+                        You can select multiple options
+                        {formData.qrType.length > 0 && (
+                          <span style={{ color: "#16a34a", fontWeight: 700 }}>
+                            &nbsp;— {formData.qrType.length} selected
+                          </span>
+                        )}
+                      </div>
+
+                      {/* Hidden input sends comma-separated values */}
+                      <input
+                        type="hidden"
+                        name="entry.1359574010"
+                        value={formData.qrType.join(", ")}
+                      />
                       
                       <div className="pr-qr-grid">
                         {qrTypes.map((q) => (
                           <div
                             key={q.value}
-                            className={`pr-qr-item ${formData.qrType === q.value ? "selected" : ""}`}
-                            onClick={() => handleInputChange("qrType", q.value)}
+                            // ✅ FIXED: uses .includes() for multi-select check
+                            className={`pr-qr-item ${formData.qrType.includes(q.value) ? "selected" : ""}`}
+                            // ✅ FIXED: calls handleToggleQRType instead of handleInputChange
+                            onClick={() => handleToggleQRType(q.value)}
                           >
                             <span className="pr-qr-icon">{q.icon}</span>
                             <span className="pr-qr-name">{q.label}</span>
@@ -666,7 +712,7 @@ export default function PreRegistrationForm() {
 
                   </div>
 
-                  {/* ── SECTION 02: EMERGENCY CONTACTS & REFERRAL ── */}
+                  {/* ── SECTION 02 ── */}
                   <div className="pr-section-title">
                     <span className="pr-sec-num">02</span> Emergency &amp; Referral Details
                   </div>
@@ -740,7 +786,7 @@ export default function PreRegistrationForm() {
                       />
                     </div>
 
-                    {/* Declaration Consent box */}
+                    {/* Declaration */}
                     <div className="pr-group pr-span-2-desktop" style={{ marginTop: 6 }}>
                       <input 
                         type="hidden" 
