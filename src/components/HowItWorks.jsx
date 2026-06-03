@@ -670,7 +670,7 @@ export default function HowItWorks() {
   ];
 
   return (
-    <div style={{ background:"linear-gradient(160deg,#f8fafc 0%,#fafcfa 50%,#f8fafc 100%)", fontFamily:"'DM Sans',system-ui,sans-serif" }}>
+    <div style={{      paddingTop: "30px",  background:"linear-gradient(160deg,#f8fafc 0%,#fafcfa 50%,#f8fafc 100%)", fontFamily:"'DM Sans',system-ui,sans-serif" }}>
       {/* dot grid */}
       <div style={{ position:"fixed", inset:0, pointerEvents:"none", zIndex:0, backgroundImage:"radial-gradient(circle,#7ded88 1px,transparent 1px)", backgroundSize:"28px 28px", opacity:0.35 }}/>
 
@@ -732,6 +732,30 @@ export default function HowItWorks() {
           .hiw-row { flex-direction:column!important; align-items:center!important; gap:48px!important; }
           .hiw-left { flex:none!important; width:100%!important; }
           .hiw-phone { flex:none!important; width:100%!important; padding-top:0!important; padding-bottom:52px!important; }
+        }
+        @media (min-width: 641px) and (max-width: 1024px) {
+          .hiw-left h1 {
+            font-size: 38px !important;
+            line-height: 1.15 !important;
+            margin-bottom: 12px !important;
+          }
+          .hiw-left p {
+            font-size: 16px !important;
+            margin-bottom: 32px !important;
+          }
+          .hiw-step-card h3 {
+            font-size: 17px !important;
+          }
+          .hiw-step-card p {
+            font-size: 13.5px !important;
+            line-height: 1.7 !important;
+          }
+          .hiw-step-card div {
+            font-size: 12.5px !important;
+          }
+          .hiw-stat-row p {
+            font-size: 13.5px !important;
+          }
         }
         @media (max-width: 640px) {
           .hiw-left h1 {

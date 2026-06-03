@@ -252,6 +252,20 @@ export default function ReferralSection() {
         .ref-desktop-desc { display: block; }
         .ref-mobile-desc { display: none; }
 
+        @media (min-width: 601px) and (max-width: 1024px) {
+          .ref-card-title {
+            font-size: 17.5px !important;
+          }
+          .ref-card-desc {
+            font-size: 14.5px !important;
+            line-height: 1.65 !important;
+          }
+          .ref-subtext {
+            font-size: 16px !important;
+            line-height: 1.75 !important;
+          }
+        }
+
         @media (max-width: 760px) {
           .ref-desktop-subtext { display: none !important; }
           .ref-mobile-subtext { display: block !important; margin: 0 auto 24px !important; max-width: 460px; padding: 0 16px; }
@@ -282,11 +296,11 @@ export default function ReferralSection() {
             height: 22px !important;
           }
           .ref-card-title {
-            font-size: 13px !important;
+            font-size: 14.5px !important;
             margin-bottom: 6px !important;
           }
           .ref-card-desc {
-            font-size: 10.5px !important;
+            font-size: 12.5px !important;
             line-height: 1.45 !important;
           }
           .ref-step-num {

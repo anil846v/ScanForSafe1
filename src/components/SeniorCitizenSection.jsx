@@ -172,8 +172,8 @@ export default function SeniorCitizenSection() {
                     <Icon size={20} color={color} />
                   </div>
                   <div>
-                    <div style={{ fontWeight: 800, fontSize: 14, color: '#0B2545', marginBottom: 4 }}>{title}</div>
-                    <div style={{ fontSize: 13.5, color: '#4b7a62', lineHeight: 1.6 }}>{desc}</div>
+                    <div className="sc-feat-title" style={{ fontWeight: 800, fontSize: 14, color: '#0B2545', marginBottom: 4 }}>{title}</div>
+                    <div className="sc-feat-desc" style={{ fontSize: 13.5, color: '#4b7a62', lineHeight: 1.6 }}>{desc}</div>
                   </div>
                 </div>
               ))}
@@ -250,8 +250,8 @@ export default function SeniorCitizenSection() {
                   <Icon size={18} color={color} />
                 </div>
                 <div>
-                  <h4 style={{ margin: '0 0 2px', fontSize: 13, fontWeight: 800, color: '#0B2545', fontFamily: "'Sora', sans-serif" }}>{title}</h4>
-                  <p style={{ margin: 0, fontSize: 11, color: '#64748b', fontWeight: 500, lineHeight: 1.3, fontFamily: "'DM Sans', sans-serif" }}>{desc}</p>
+                  <h4 style={{ margin: '0 0 2px', fontSize: 14.5, fontWeight: 800, color: '#0B2545', fontFamily: "'Sora', sans-serif" }}>{title}</h4>
+                  <p style={{ margin: 0, fontSize: 12.5, color: '#64748b', fontWeight: 500, lineHeight: 1.35, fontFamily: "'DM Sans', sans-serif" }}>{desc}</p>
                 </div>
               </div>
             ))}
@@ -270,6 +270,30 @@ export default function SeniorCitizenSection() {
       <style>{`
         .sc-mobile-layout {
           display: none;
+        }
+
+        @media (min-width: 601px) and (max-width: 1024px) {
+          .senior-grid {
+            grid-template-columns: 1fr !important;
+            gap: 32px !important;
+          }
+          .senior-grid > div {
+            width: 100% !important;
+            display: flex !important;
+            justify-content: center !important;
+          }
+          .sc-feat-title {
+            font-size: 16px !important;
+          }
+          .sc-feat-desc {
+            font-size: 14.5px !important;
+          }
+          .sc-mobile-card h4 {
+            font-size: 16px !important;
+          }
+          .sc-mobile-card p {
+            font-size: 13.5px !important;
+          }
         }
 
         @media (max-width: 768px) {

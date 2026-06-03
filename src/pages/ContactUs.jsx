@@ -126,10 +126,53 @@ export default function ContactUs() {
   }, [])
 
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value })
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
     setLoading(true)
-    setTimeout(() => { setLoading(false); setSubmitted(true) }, 1600)
+
+    // EmailJS credentials from your screenshots
+    const serviceId = "service_ncit63l"
+    const templateId = "template_dg0onu8" // Your EmailJS template ID
+    const publicKey = "IhorqTYFIEM5OnvfI"
+    const privateKey = "5kxT8tPwZqUL0m7jD1ANA" // accessToken for REST API authentication
+
+    try {
+      const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          service_id: serviceId,
+          template_id: templateId,
+          user_id: publicKey,
+          accessToken: privateKey,
+          template_params: {
+            from_name: form.name,
+            from_email: form.email,
+            name: form.name,          // Matches {{name}} in From Name header
+            email: form.email,        // Matches {{email}} in Reply To header
+            phone: form.phone || "Not provided",
+            message: form.message,
+            title: "New Website message", // Matches {{title}} in Subject line
+            to_name: "ScanForSafe Team",
+          },
+        }),
+      })
+
+      if (response.ok) {
+        setSubmitted(true)
+      } else {
+        const errorText = await response.text()
+        console.error("EmailJS Error Response:", errorText)
+        alert(`Failed to send message: ${errorText || response.statusText}. Please verify that you have created a template in your EmailJS dashboard and updated 'templateId' in ContactUs.jsx.`)
+      }
+    } catch (error) {
+      console.error("EmailJS connection error:", error)
+      alert("A network error occurred while sending your message. Please check your internet connection and try again.")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (

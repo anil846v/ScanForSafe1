@@ -229,7 +229,7 @@ export default function Navbar() {
         /* ← Merriweather Bold — matches logo serif style */
         .sfs-wordmark-primary {
           font-family: 'Merriweather', Georgia, serif;
-          font-size: 1.08rem;
+          font-size: 1.55rem;
           font-weight: 700;
           letter-spacing: .01em;
           line-height: 1;
@@ -242,7 +242,7 @@ export default function Navbar() {
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
-
+ 
         /* Status pill — unchanged */
         .sfs-status {
           display: inline-flex; align-items: center;
@@ -266,11 +266,11 @@ export default function Navbar() {
           letter-spacing: .16em; text-transform: uppercase;
           color: #15803d;
         }
-
+ 
         /* ← "Innovations" navy · "Pvt Ltd" green — Merriweather */
         .sfs-wordmark-secondary {
           font-family: 'Merriweather', Georgia, serif;
-          font-size: 9px;
+          font-size: 10.5px;
           font-weight: 700;
           letter-spacing: .03em;
           line-height: 1;
@@ -347,7 +347,6 @@ export default function Navbar() {
           .sfs-badge-wrap { width:46px; height:46px; }
         }
         @media (max-width:480px) { .sfs-status { display:none; } }
-        @media (max-width:380px) { .sfs-wordmark-secondary { display:none; } }
 
         /* ── DRAWER ── */
         .sfs-drawer-overlay {

@@ -621,11 +621,11 @@ export default function Franchise() {
             border-radius: 12px !important;
           }
           .fr-benefits-grid h3 {
-            font-size: 13.5px !important;
+            font-size: 14.5px !important;
             margin-bottom: 4px !important;
           }
           .fr-benefits-grid p {
-            font-size: 10.5px !important;
+            font-size: 12.5px !important;
             line-height: 1.4 !important;
           }
           .fr-benefits-grid svg {

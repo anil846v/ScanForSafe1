@@ -115,7 +115,7 @@ export default function App() {
             }
             .sfs-popup-card {
               position: relative;
-              max-width: min(90vw, 550px);
+              max-width: min(90vw, 800px);
               width: 100%;
               border-radius: 28px;
               background: white;

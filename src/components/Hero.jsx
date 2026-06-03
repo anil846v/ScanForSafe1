@@ -531,6 +531,16 @@ body.sfs-modal-open{overflow:hidden;}
   .sfs-img-frame{max-width:480px;}
 }
 
+@media (min-width: 641px) and (max-width: 1024px) {
+  .sfs-h1 { font-size: 54px !important; letter-spacing: -2.5px !important; }
+  .sfs-sub { font-size: 16.5px !important; max-width: 640px !important; }
+  .sfs-feat h4 { font-size: 14.5px !important; }
+  .sfs-feat p { font-size: 12.5px !important; }
+  .sfs-btn-main { font-size: 15.5px !important; padding: 16px 34px !important; }
+  .sfs-btn-sec { font-size: 14.5px !important; padding: 15px 28px !important; }
+  .sfs-img-frame { max-width: 520px !important; }
+}
+
 /* ════════════════════════════════════════
    MOBILE  ≤ 640px
 ════════════════════════════════════════ */

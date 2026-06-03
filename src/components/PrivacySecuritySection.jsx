@@ -140,6 +140,22 @@ export default function PrivacySecuritySection() {
           }
         }
 
+        @media (min-width: 601px) and (max-width: 1024px) {
+          .ps-card h3 {
+            font-size: 18px !important;
+          }
+          .ps-card p {
+            font-size: 14.5px !important;
+          }
+          .ps-desktop-para, .ps-mobile-para {
+            font-size: 16.5px !important;
+            line-height: 1.75 !important;
+          }
+          .ps-check-row span {
+            font-size: 16.5px !important;
+          }
+        }
+
         @media (max-width: 560px) {
           .ps-card-grid {
             grid-template-columns: repeat(2, 1fr) !important;
@@ -160,12 +176,12 @@ export default function PrivacySecuritySection() {
             height: 20px !important;
           }
           .ps-card h3 {
-            font-size: 13.5px !important;
+            font-size: 14.5px !important;
             margin-bottom: 4px !important;
             font-weight: 800 !important;
           }
           .ps-card p {
-            font-size: 10.5px !important;
+            font-size: 12.5px !important;
             line-height: 1.45 !important;
           }
         }

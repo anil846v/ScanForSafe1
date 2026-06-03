@@ -203,6 +203,7 @@ export default function NFCSection() {
             </h2>
 
             <p
+              className="nfc-desc"
               style={{
                 color: 'rgba(232,248,235,0.85)',
                 fontSize: 16,
@@ -264,6 +265,7 @@ export default function NFCSection() {
                   />
 
                   <div
+                    className="nfc-card-title"
                     style={{
                       color: '#f8fafc',
                       fontWeight: 700,
@@ -275,6 +277,7 @@ export default function NFCSection() {
                   </div>
 
                   <div
+                    className="nfc-card-sub"
                     style={{
                       color: 'rgba(232,248,235,0.65)',
                       fontSize: 12,
@@ -314,6 +317,7 @@ export default function NFCSection() {
 
               <div>
                 <div
+                  className="nfc-bottom-title"
                   style={{
                     color: '#f8fafc',
                     fontWeight: 700,
@@ -324,6 +328,7 @@ export default function NFCSection() {
                 </div>
 
                 <div
+                  className="nfc-bottom-sub"
                   style={{
                     color: 'rgba(232,248,235,0.7)',
                     fontSize: 12,
@@ -356,6 +361,24 @@ export default function NFCSection() {
           .nfc-grid {
             grid-template-columns: 1fr !important;
             gap: 40px !important;
+          }
+        }
+        @media (min-width: 601px) and (max-width: 1024px) {
+          .nfc-desc {
+            font-size: 17.5px !important;
+            line-height: 1.75 !important;
+          }
+          .nfc-card-title {
+            font-size: 15.5px !important;
+          }
+          .nfc-card-sub {
+            font-size: 13.5px !important;
+          }
+          .nfc-bottom-title {
+            font-size: 15.5px !important;
+          }
+          .nfc-bottom-sub {
+            font-size: 13.5px !important;
           }
         }
         @media (max-width: 480px) {

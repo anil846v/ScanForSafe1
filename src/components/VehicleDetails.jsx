@@ -135,6 +135,34 @@ export default function VehicleDetails() {
             box-shadow: 0 6px 18px rgba(46, 189, 58, 0.35) !important;
           }
         }
+
+        @media (min-width: 601px) and (max-width: 1024px) {
+          .vd-desktop-cards {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 20px !important;
+          }
+          .vd-desktop-highlights {
+            display: grid !important;
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 16px !important;
+          }
+          .feature-card h3 {
+            font-size: 20px !important;
+          }
+          .feature-card li {
+            font-size: 15px !important;
+          }
+          .highlight-card div {
+            font-size: 15px !important;
+          }
+          .vd-mobile-card h4 {
+            font-size: 16px !important;
+          }
+          .vd-mobile-card p {
+            font-size: 13.5px !important;
+          }
+        }
       `}</style>
 
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 24px' }}>
@@ -329,8 +357,8 @@ export default function VehicleDetails() {
                 <Icon size={18} color={color} />
               </div>
               <div>
-                <h4 style={{ margin: '0 0 2px', fontSize: 13, fontWeight: 800, color: '#0B2545', fontFamily: "'Sora', sans-serif" }}>{label}</h4>
-                <p style={{ margin: 0, fontSize: 11, color: '#64748b', fontWeight: 500, lineHeight: 1.3, fontFamily: "'DM Sans', sans-serif" }}>{desc}</p>
+                <h4 style={{ margin: '0 0 2px', fontSize: 14.5, fontWeight: 800, color: '#0B2545', fontFamily: "'Sora', sans-serif" }}>{label}</h4>
+                <p style={{ margin: 0, fontSize: 12.5, color: '#64748b', fontWeight: 500, lineHeight: 1.35, fontFamily: "'DM Sans', sans-serif" }}>{desc}</p>
               </div>
             </div>
           ))}
