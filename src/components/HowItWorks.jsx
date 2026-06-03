@@ -670,19 +670,13 @@ export default function HowItWorks() {
   ];
 
   return (
-    <div style={{      paddingTop: "30px",  background:"linear-gradient(160deg,#f8fafc 0%,#fafcfa 50%,#f8fafc 100%)", fontFamily:"'DM Sans',system-ui,sans-serif" }}>
+    <div style={{      paddingTop: "80px",  background:"linear-gradient(160deg,#f8fafc 0%,#fafcfa 50%,#f8fafc 100%)", fontFamily:"'DM Sans',system-ui,sans-serif" }}>
       {/* dot grid */}
       <div style={{ position:"fixed", inset:0, pointerEvents:"none", zIndex:0, backgroundImage:"radial-gradient(circle,#7ded88 1px,transparent 1px)", backgroundSize:"28px 28px", opacity:0.35 }}/>
 
       <div style={{ position:"relative", zIndex:1, maxWidth:1200, margin:"0 auto", padding:"48px 24px 44px" }}>
 
-        {/* pill */}
-        <div style={{ display:"flex", justifyContent:"center", marginBottom:20, opacity:visible?1:0, transform:visible?"translateY(0)":"translateY(-12px)", transition:"all 0.5s ease" }}>
-          <div style={{ display:"inline-flex", alignItems:"center", gap:7, background:"white", borderRadius:40, padding:"6px 16px", fontSize:10, fontWeight:700, color:BRAND.green, letterSpacing:"0.08em", textTransform:"uppercase", boxShadow:"0 2px 10px rgba(0,0,0,0.08)", border:`1px solid ${BRAND.borderGreen}`, fontFamily:"'Sora',sans-serif" }}>
-            <div style={{ width:6, height:6, borderRadius:"50%", background:BRAND.green, boxShadow:"0 0 0 3px rgba(22,101,52,0.2)" }}/>
-            Simple Process
-          </div>
-        </div>
+       
 
         {/* two-column */}
         <div className="hiw-row" style={{ display:"flex", alignItems:"stretch", gap:32 }}>
