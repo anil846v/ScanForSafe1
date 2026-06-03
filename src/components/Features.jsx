@@ -191,7 +191,6 @@ const FEATURES = [
     stat: 'Live in 3 steps',
     statColor: '#d97706',
   },
-  // PRIVACY — Light Cyan
   {
     id: 'privacy',
     bg: '#ecfeff',
@@ -215,7 +214,6 @@ const FEATURES = [
     stat: 'Unlimited history',
     statColor: '#2563eb',
   },
-  // UPDATE — Light Indigo
   {
     id: 'update',
     bg: '#eef2ff',
@@ -741,7 +739,6 @@ function SetupSimulatorWrapper() {
   )
 }
 
-// ✅ PRIVACY SIMULATOR — Light Cyan (#06b6d4 family) — light screen bg
 function PrivacySimulatorWrapper() {
   const [phase, setPhase] = useState('idle')
   const [running, setRunning] = useState(false)
@@ -771,7 +768,6 @@ function PrivacySimulatorWrapper() {
   return (
     <div style={{ display:'flex', flexDirection:'column', alignItems:'center' }}>
       <AndroidPhoneFrame screenBg="#f0fdff" accentColor={PA}>
-        {/* Header */}
         <div style={{ background:'linear-gradient(180deg,#ecfeff,#f0fdff)', padding:'10px 14px', flexShrink:0, borderBottom:`1.5px solid ${PA}40` }}>
           <div style={{ display:'flex', alignItems:'center', gap:8 }}>
             <div style={{ width:34,height:34,borderRadius:'50%',background:`${PA}20`,border:`1.5px solid ${PA}60`,display:'flex',alignItems:'center',justifyContent:'center' }}>
@@ -783,10 +779,7 @@ function PrivacySimulatorWrapper() {
             </div>
           </div>
         </div>
-
-        {/* Screen body */}
         <div style={{ flex:1,overflowY:'auto',padding:12,background:'#f0fdff' }}>
-
           {phase==='idle' && (
             <div style={{ textAlign:'center',paddingTop:24 }}>
               <div style={{ width:64,height:64,borderRadius:'50%',background:`${PA}18`,border:`2px solid ${PA}50`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 12px',boxShadow:`0 0 24px ${PA}25` }}>
@@ -796,7 +789,6 @@ function PrivacySimulatorWrapper() {
               <div style={{fontSize:9,fontWeight:700,color:'#0891b2',marginTop:3}}>vs. what your QR actually contains</div>
             </div>
           )}
-
           {phase==='scanning' && (
             <div style={{ textAlign:'center',paddingTop:30 }}>
               <div style={{ width:56,height:56,borderRadius:'50%',background:`${PA}18`,border:`2px solid ${PA}50`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 12px',animation:'pulse 0.6s ease infinite' }}>
@@ -805,7 +797,6 @@ function PrivacySimulatorWrapper() {
               <div style={{fontSize:11,fontWeight:800,color:'#164e63'}}>Finder scans QR…</div>
             </div>
           )}
-
           {phase==='proxy' && (
             <div style={{ textAlign:'center',paddingTop:10 }}>
               <div style={{ width:50,height:50,borderRadius:'50%',background:`${PA}25`,border:`2px solid ${PA}70`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 8px',boxShadow:`0 0 20px ${PA}30` }}>
@@ -826,7 +817,6 @@ function PrivacySimulatorWrapper() {
               </div>
             </div>
           )}
-
           {phase==='reveal' && (
             <div>
               <div style={{ fontSize:9,fontWeight:800,color:'#15803d',background:'rgba(34,197,94,0.08)',border:'1px solid rgba(34,197,94,0.25)',borderRadius:8,padding:'5px 10px',marginBottom:8,textAlign:'center',display:'flex',alignItems:'center',justifyContent:'center',gap:6 }}>
@@ -938,7 +928,6 @@ function HistorySimulatorWrapper() {
   )
 }
 
-// ✅ UPDATE SIMULATOR — Light Indigo (#6366f1 family) — light screen bg
 function UpdateSimulatorWrapper() {
   const [phase, setPhase] = useState('idle')
   const [running, setRunning] = useState(false)
@@ -969,7 +958,6 @@ function UpdateSimulatorWrapper() {
   return (
     <div style={{ display:'flex', flexDirection:'column', alignItems:'center' }}>
       <AndroidPhoneFrame screenBg="#f5f3ff" accentColor={UA}>
-        {/* Header */}
         <div style={{ background:'linear-gradient(180deg,#eef2ff,#f5f3ff)', padding:'10px 14px', flexShrink:0, borderBottom:`1.5px solid ${UA}40` }}>
           <div style={{ display:'flex', alignItems:'center', gap:8 }}>
             <div style={{ width:34,height:34,borderRadius:'50%',background:`${UA}18`,border:`1.5px solid ${UA}55`,display:'flex',alignItems:'center',justifyContent:'center' }}>
@@ -981,10 +969,7 @@ function UpdateSimulatorWrapper() {
             </div>
           </div>
         </div>
-
-        {/* Screen body */}
         <div style={{ flex:1,display:'flex',flexDirection:'column',justifyContent:'center',padding:14,background:'#f5f3ff' }}>
-
           {phase==='idle' && (
             <div style={{ textAlign:'center' }}>
               <div style={{ width:64,height:64,borderRadius:'50%',background:`${UA}15`,border:`2px solid ${UA}45`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 12px',boxShadow:`0 0 24px ${UA}25` }}>
@@ -994,7 +979,6 @@ function UpdateSimulatorWrapper() {
               <div style={{fontSize:9,fontWeight:700,color:UA,marginTop:4}}>Update in 30 seconds — tag stays same</div>
             </div>
           )}
-
           {(phase==='form'||phase==='saving') && (
             <div style={{ display:'flex',flexDirection:'column',gap:10 }}>
               <div style={{ background:'#fff',borderRadius:12,padding:'10px 14px',border:`1.5px solid ${UA}30`,boxShadow:`0 2px 8px ${UA}10` }}>
@@ -1018,7 +1002,6 @@ function UpdateSimulatorWrapper() {
               )}
             </div>
           )}
-
           {phase==='done' && (
             <div style={{ textAlign:'center',animation:'fadeUp 0.4s ease' }}>
               <div style={{ width:56,height:56,borderRadius:'50%',background:'rgba(34,197,94,0.12)',border:'2px solid rgba(74,222,128,0.5)',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 10px',boxShadow:'0 0 20px rgba(34,197,94,0.2)' }}>
@@ -1064,10 +1047,10 @@ function FeatureCard({ f, active, onClick }) {
           <IconComp size={20} color={active ? '#fff' : f.accent} />
         </div>
       </div>
-      {/* Title — always bold black */}
+      {/* Title — always bold, dark */}
       <h3 style={{ fontSize: 14.5, fontWeight: 900, margin: '0 0 7px', color: active ? '#fff' : '#0f172a', letterSpacing:'-.025em', lineHeight:1.2, fontFamily:"'Outfit', sans-serif" }}>{f.title}</h3>
-      {/* Description — black bold when inactive */}
-      <p style={{ fontSize: 12, lineHeight: 1.7, margin: '0 0 14px', color: active ? 'rgba(255,255,255,0.95)' : '#1e293b', fontWeight: active ? 400 : 600 }}>{f.desc}</p>
+      {/* ✅ CHANGED: description is now light grey (#94a3b8) at normal weight when inactive */}
+      <p style={{ fontSize: 12, lineHeight: 1.7, margin: '0 0 14px', color: active ? 'rgba(255,255,255,0.95)' : '#94a3b8', fontWeight: 400 }}>{f.desc}</p>
       <div style={{ display:'flex', flexWrap:'wrap', gap:5, marginBottom:12 }}>
         {f.pills.map(p => <span key={p} style={{ fontSize: 9.5, fontWeight: 700, padding: '3px 9px', borderRadius: 99, background: active ? 'rgba(255,255,255,0.16)' : f.bg, color: active ? '#fff' : f.tagColor, border: `1px solid ${active ? 'rgba(255,255,255,0.25)' : f.tagBg}` }}>{p}</span>)}
       </div>
@@ -1114,8 +1097,8 @@ export default function Features() {
             Powerful Features for{' '}
             <span style={{ background:'linear-gradient(130deg,#16a34a,#059669)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>Peace of Mind</span>
           </h2>
-          {/* Subtitle — black bold */}
-          <p style={{ fontSize:15.5, color:'#1e293b', fontWeight:700, maxWidth:540, margin:'0 auto', lineHeight:1.8 }}>Every feature has a live simulation — click any card, then hit the button to see it in action.</p>
+          {/* ✅ CHANGED: subtitle now light grey, normal weight */}
+          <p style={{ fontSize:15.5, color:'#94a3b8', fontWeight:400, maxWidth:540, margin:'0 auto', lineHeight:1.8 }}>Every feature has a live simulation — click any card, then hit the button to see it in action.</p>
           <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'center', gap:8, marginTop:20 }}>
             {FEATURES.map(f => {
               const IconComp = FEATURE_ICONS[f.id]
@@ -1142,7 +1125,6 @@ export default function Features() {
               </div>
             </div>
             <FeatureSimulator featureId={activeFeature} />
-            {/* Helper text — black bold */}
             <p style={{ fontSize:10.5, color:'#334155', fontWeight:700, textAlign:'center', marginTop:14, maxWidth:220, lineHeight:1.6 }}>← Click any feature card to switch demo</p>
           </div>
         </div>
