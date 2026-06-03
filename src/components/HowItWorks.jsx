@@ -53,7 +53,7 @@ function WhatsAppIcon({ size=22, color="white" }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill={color}/>
-      <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.402A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.073-1.115l-.292-.174-3.027.852.815-2.981-.19-.306A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill={color}/>
+      <path d="M12 2C6.477 2 6.477 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2 22l4.978-1.402A9.953 9.953 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.946 7.946 0 01-4.073-1.115l-.292-.174-3.027.852.815-2.981-.19-.306A7.944 7.944 0 014 12c0-4.411 3.589-8 8-8s8 3.589 8 8-3.589 8-8 8z" fill={color}/>
     </svg>
   );
 }
@@ -489,6 +489,7 @@ function IPhoneMockup({ targetHeight }) {
 
   return (
     <div style={{ position:"relative", width:PHONE_W, flexShrink:0 }}>
+      {/* Flow labels above phone */}
       <div style={{ position:"absolute", top:-28, left:"50%", transform:"translateX(-50%)", display:"flex", gap:8, whiteSpace:"nowrap" }}>
         <div style={{ fontSize:9, fontWeight:800, color:mode==="call"?BRAND.green:"#bbb", fontFamily:"'Sora',sans-serif", transition:"color 0.3s", letterSpacing:"0.06em", textTransform:"uppercase" }}>📞 Call Flow</div>
         <div style={{ fontSize:9, color:"#ccc" }}>·</div>
@@ -538,6 +539,7 @@ function IPhoneMockup({ targetHeight }) {
           </div>
         </div>
       </div>
+      {/* Page dots below phone */}
       <div style={{ position:"absolute", bottom:-26, left:"50%", transform:"translateX(-50%)", display:"flex", gap:4, alignItems:"center" }}>
         {[1,2,3,4,5,6].map(p=>(<div key={p} onClick={()=>goPage(p)} style={{ width:p===page?14:4, height:4, borderRadius:3, background:mode==="call"&&p===page?BRAND.green:p===page?"#aaa":"#ddd", cursor:"pointer", transition:"all 0.3s ease" }}/>))}
         <div style={{ width:1, height:8, background:"#ccc", margin:"0 2px" }}/>
@@ -548,9 +550,30 @@ function IPhoneMockup({ targetHeight }) {
 }
 
 const STEP_THEMES = [
-  { accent:"#1a56db", accentLight:"#eff6ff", accentBorder:"#bfdbfe", iconBg:"linear-gradient(135deg,#1e40af 0%,#3b82f6 100%)", numberBg:"linear-gradient(135deg,#0B2545 0%,#1a56db 100%)", badgeBg:"#eff6ff", badgeColor:"#1e40af", shadowColor:"rgba(26,86,219,0.18)", pill:"Step 1", highlight:"Login and Register", bullets:["Weatherproof & durable","Multiple size options","QR + NFC enabled"] },
-  { accent:"#0891b2", accentLight:"#ecfeff", accentBorder:"#a5f3fc", iconBg:"linear-gradient(135deg,#0e7490 0%,#22d3ee 100%)", numberBg:"linear-gradient(135deg,#0B2545 0%,#0891b2 100%)", badgeBg:"#ecfeff", badgeColor:"#0e7490", shadowColor:"rgba(8,145,178,0.18)", pill:"Step 2", highlight:"3 Minutes", bullets:["No tech skills needed","Add emergency contacts","Instant activation"] },
-  { accent:"#2ebd3a", accentLight:"#e8f8eb", accentBorder:"#7ded88", iconBg:"linear-gradient(135deg,#0B2545 0%,#2ebd3a 100%)", numberBg:"linear-gradient(135deg,#0B2545 0%,#2ebd3a 100%)", badgeBg:"#e8f8eb", badgeColor:"#166534", shadowColor:"rgba(46,189,58,0.18)", pill:"Step 3", highlight:"24 / 7", bullets:["Instant WhatsApp alert","Works without an app","Location pinned"] },
+  {
+    accent:"#1a56db", accentLight:"#eff6ff", accentBorder:"#bfdbfe",
+    iconBg:"linear-gradient(135deg,#1e40af 0%,#3b82f6 100%)",
+    numberBg:"linear-gradient(135deg,#0B2545 0%,#1a56db 100%)",
+    badgeBg:"#eff6ff", badgeColor:"#1e40af", shadowColor:"rgba(26,86,219,0.18)",
+    pill:"Step 1", highlight:"Register & Login",
+    bullets:["Weatherproof & durable","Multiple size options","QR + NFC enabled"]
+  },
+  {
+    accent:"#0891b2", accentLight:"#ecfeff", accentBorder:"#a5f3fc",
+    iconBg:"linear-gradient(135deg,#0e7490 0%,#22d3ee 100%)",
+    numberBg:"linear-gradient(135deg,#0B2545 0%,#0891b2 100%)",
+    badgeBg:"#ecfeff", badgeColor:"#0e7490", shadowColor:"rgba(8,145,178,0.18)",
+    pill:"Step 2", highlight:"3 Minutes",
+    bullets:["No tech skills needed","Add emergency contacts","Instant activation"]
+  },
+  {
+    accent:"#2ebd3a", accentLight:"#e8f8eb", accentBorder:"#7ded88",
+    iconBg:"linear-gradient(135deg,#0B2545 0%,#2ebd3a 100%)",
+    numberBg:"linear-gradient(135deg,#0B2545 0%,#2ebd3a 100%)",
+    badgeBg:"#e8f8eb", badgeColor:"#166534", shadowColor:"rgba(46,189,58,0.18)",
+    pill:"Step 3", highlight:"24 / 7",
+    bullets:["Instant WhatsApp alert","Works without an app","Location pinned"]
+  },
 ];
 
 function StepCard({ icon:Icon, title, description, badge, badgeIcon:BadgeIcon, themeIndex }) {
@@ -558,7 +581,10 @@ function StepCard({ icon:Icon, title, description, badge, badgeIcon:BadgeIcon, t
   const [active, setActive] = useState(false);
   const T = STEP_THEMES[themeIndex]||STEP_THEMES[0];
   return (
-    <div className="hiw-step-card" onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>{setHovered(false);setActive(false);}} onMouseDown={()=>setActive(true)} onMouseUp={()=>setActive(false)} onTouchStart={()=>setActive(true)} onTouchEnd={()=>setActive(false)}
+    <div className="hiw-step-card"
+      onMouseEnter={()=>setHovered(true)} onMouseLeave={()=>{setHovered(false);setActive(false);}}
+      onMouseDown={()=>setActive(true)} onMouseUp={()=>setActive(false)}
+      onTouchStart={()=>setActive(true)} onTouchEnd={()=>setActive(false)}
       style={{ background:active?T.accentLight:hovered?T.accentLight:"white", borderRadius:22, padding:"0 0 20px", flex:1, minWidth:0, position:"relative", overflow:"hidden", boxShadow:hovered?`0 20px 56px ${T.shadowColor}`:"0 4px 20px rgba(0,0,0,0.05)", transform:active?"translateY(-2px) scale(0.98)":hovered?"translateY(-8px) scale(1.02)":"none", transition:"all 0.28s cubic-bezier(0.4,0,0.2,1)", border:hovered||active?`2px solid ${T.accentBorder}`:"2px solid #f0f4f8", cursor:"pointer", display:"flex", flexDirection:"column" }}>
       <div style={{ height:6, background:T.iconBg, borderRadius:"20px 20px 0 0", flexShrink:0 }}/>
       <div style={{ position:"absolute", top:18, left:16, display:"inline-flex", alignItems:"center", gap:4, background:T.numberBg, borderRadius:20, padding:"3px 10px", fontSize:9, fontWeight:800, color:"white", letterSpacing:"0.04em", textTransform:"uppercase", fontFamily:"'Sora',sans-serif" }}>{T.pill}</div>
@@ -566,10 +592,10 @@ function StepCard({ icon:Icon, title, description, badge, badgeIcon:BadgeIcon, t
         <Icon size={28} color={hovered?"white":T.accent} strokeWidth={1.7}/>
       </div>
       <div style={{ textAlign:"center", margin:"10px 0 4px", fontSize:28, fontWeight:900, color:T.accent, fontFamily:"'Sora',sans-serif", lineHeight:1, flexShrink:0 }}>{T.highlight}</div>
-      <h3 style={{ fontSize:15, fontWeight:800, color:BRAND.navy, textAlign:"center", margin:"0 16px 8px", lineHeight:1.3, fontFamily:"'Sora',sans-serif", flexShrink:0 }}>{title}</h3>
-      <p style={{ fontSize:12, color:BRAND.textMain, textAlign:"center", lineHeight:1.65, margin:"0 18px 14px", opacity:0.72, flex:1, fontFamily:"'DM Sans',sans-serif" }}>{description}</p>
+      <h3 style={{ fontSize:15, fontWeight:900, color:"#06160A", textAlign:"center", margin:"0 16px 8px", lineHeight:1.3, fontFamily:"'Sora',sans-serif", flexShrink:0 }}>{title}</h3>
+      <p style={{ fontSize:12, color:"#1a2e22", fontWeight:500, textAlign:"center", lineHeight:1.65, margin:"0 18px 14px", flex:1, fontFamily:"'DM Sans',sans-serif" }}>{description}</p>
       <div style={{ margin:"0 14px 14px", background:hovered?"rgba(255,255,255,0.7)":T.accentLight, borderRadius:12, padding:"10px 12px", display:"flex", flexDirection:"column", gap:6, border:`1px solid ${T.accentBorder}`, flexShrink:0 }}>
-        {T.bullets.map(b=>(<div key={b} style={{ display:"flex", alignItems:"center", gap:7, fontSize:11, color:BRAND.navy, fontWeight:500 }}>
+        {T.bullets.map(b=>(<div key={b} style={{ display:"flex", alignItems:"center", gap:7, fontSize:11, color:"#0B2545", fontWeight:700 }}>
           <div style={{ width:16, height:16, borderRadius:"50%", background:T.iconBg, display:"flex", alignItems:"center", justifyContent:"center", flexShrink:0 }}><CheckCircle size={9} color="white" fill="white"/></div>{b}
         </div>))}
       </div>
@@ -638,9 +664,9 @@ export default function HowItWorks() {
   },[]);
 
   const steps = [
-    { icon:ShoppingBag, title:"Order Your QR Tag",       description:"Choose the right protection plan for your need and place your order. We deliver premium weatherproof QR tags to your doorstep within 3–5 business days.", badge:"Delivered across India", badgeIcon:Truck,  themeIndex:0 },
-    { icon:QrCode,      title:"Activate & Personalise",  description:"Scan your tag to activate it, then fill in your contact details, emergency info, and any important notes. Takes less than 3 minutes — no tech skills needed.", badge:"Set up in 3 minutes",   badgeIcon:Clock,  themeIndex:1 },
-    { icon:ShieldCheck, title:"Stay Protected 24/7",     description:"Attach the tag to your pet, vehicle, or valuables and you're done. Anyone who finds your item scans the code — you get a WhatsApp alert instantly.",  badge:"Always-on protection", badgeIcon:Zap,    themeIndex:2 },
+    { icon:ShoppingBag, title:"Order Your QR Tag",      description:"Choose the right protection plan for your need and place your order. We deliver premium weatherproof QR tags to your doorstep within 3–5 business days.", badge:"Delivered across India", badgeIcon:Truck,  themeIndex:0 },
+    { icon:QrCode,      title:"Activate & Personalise", description:"Scan your tag to activate it, then fill in your contact details, emergency info, and any important notes. Takes less than 3 minutes — no tech skills needed.", badge:"Set up in 3 minutes",   badgeIcon:Clock,  themeIndex:1 },
+    { icon:ShieldCheck, title:"Stay Protected 24/7",    description:"Attach the tag to your pet, vehicle, or valuables and you're done. Anyone who finds your item scans the code — you get a WhatsApp alert instantly.",  badge:"Always-on protection", badgeIcon:Zap,    themeIndex:2 },
   ];
 
   return (
@@ -667,15 +693,17 @@ export default function HowItWorks() {
               Register & Activate in<br/>
               <span style={{ background:"linear-gradient(125deg,#0a2e10 0%,#2ebd3a 52%,#4bd557 100%)", WebkitBackgroundClip:"text", WebkitTextFillColor:"transparent", backgroundClip:"text" }}>3 Easy Steps</span>
             </h1>
-            <p style={{ fontSize:13.5, color:BRAND.textMain, marginBottom:28, lineHeight:1.7, maxWidth:500, opacity:0.7 }}>No complicated setup. No technical knowledge needed.<br/>Just order, activate, and relax.</p>
+            <p style={{ fontSize:13.5, color:"#1a2e22", fontWeight:500, marginBottom:28, lineHeight:1.7, maxWidth:500 }}>No complicated setup. No technical knowledge needed.<br/>Just order, activate, and relax.</p>
+
             <div className="hiw-steps-container" style={{ position:"relative", display:"flex", gap:12, flexWrap:"wrap", alignItems:"stretch" }}>
               <div className="hiw-steps-line" style={{ position:"absolute", top:"30%", left:"calc(33.33% - 8px)", right:"calc(33.33% - 8px)", height:0, borderTop:`2px dashed ${BRAND.borderGreen}`, zIndex:0, pointerEvents:"none" }}/>
               {steps.map((s,i)=><StepCard key={i} {...s}/>)}
             </div>
           </div>
 
-          {/* RIGHT — phone */}
-          <div className="hiw-phone" style={{ flex:"0 0 auto", opacity:visible?1:0, transition:"opacity 0.6s ease 0.15s", display:"flex", alignItems:"center", justifyContent:"center", paddingTop:130, paddingBottom:0 }}>
+          {/* ── RIGHT: phone column — FIXED padding ── */}
+          {/* paddingTop reduced from 130 → 40 so phone sits inside the section, not behind the header */}
+          <div className="hiw-phone" style={{ flex:"0 0 auto", opacity:visible?1:0, transition:"opacity 0.6s ease 0.15s", display:"flex", alignItems:"center", justifyContent:"center", paddingTop:40, paddingBottom:0 }}>
             <IPhoneMockup targetHeight={isMobile ? 460 : cardsHeight}/>
           </div>
         </div>

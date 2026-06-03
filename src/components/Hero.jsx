@@ -8,7 +8,6 @@ import seniorimg  from "../../assets/senior.png";
 import kidimg     from "../../assets/kid.png";
 import idImg      from "../../assets/id.png";
 
-// ── Bike entry REMOVED — was incorrectly using carImg ──
 const ASSETS = [
   {
     label: "Vehicle",
@@ -199,8 +198,10 @@ const css = `
   background: linear-gradient(125deg, #0a2e10 0%, #2ebd3a 52%, #4bd557 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
 }
+
+/* ── UPDATED: subtitle text — darkened from grey (#4b6357) to dark green-black ── */
 .sfs-sub {
-  font-size: 14.5px; line-height: 1.75; color: var(--mid);
+  font-size: 14.5px; line-height: 1.75; color: #1a2e22;
   max-width: 460px; margin-bottom: 24px; font-weight: 400;
   animation: slideInLeft .85s .14s cubic-bezier(.22,1,.36,1) both;
 }
@@ -228,8 +229,13 @@ const css = `
   box-shadow: 0 4px 12px rgba(46,189,58,0.15); border: 1px solid rgba(46,189,58,0.16); flex-shrink: 0;
 }
 .sfs-feat:hover .sfs-feat-ico { transform: scale(1.12) rotate(-5deg); }
-.sfs-feat h4 { font-size: 12.5px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
-.sfs-feat p  { font-size: 10.5px; line-height: 1.5; color: #6a8070; }
+
+/* ── UPDATED: feature card title — bolder weight, darker color ── */
+.sfs-feat h4 { font-size: 12.5px; font-weight: 800; color: #06160A; margin-bottom: 4px; }
+
+/* ── UPDATED: feature card description — darker color, medium weight ── */
+.sfs-feat p  { font-size: 10.5px; line-height: 1.5; color: #2d4a38; font-weight: 500; }
+
 .sfs-feat:nth-child(1) { animation: fadeUp .55s .25s both; }
 .sfs-feat:nth-child(2) { animation: fadeUp .55s .36s both; }
 .sfs-feat:nth-child(3) { animation: fadeUp .55s .47s both; }
@@ -513,6 +519,7 @@ body.sfs-modal-open{overflow:hidden;}
 .sfs-vm-loading-label{font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;color:rgba(125,237,136,0.65);letter-spacing:.04em;}
 .sfs-vm-video{width:100%;display:block;max-height:76vh;object-fit:contain;background:#000;vertical-align:bottom;border:none;outline:none;}
 .sfs-vm-hint{padding:10px 4px 0;text-align:right;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:500;color:rgba(255,255,255,0.20);letter-spacing:.04em;}
+
 /* ════════════════════════════════════════
    TABLET  ≤ 1200px
 ════════════════════════════════════════ */
@@ -525,11 +532,10 @@ body.sfs-modal-open{overflow:hidden;}
 }
 
 /* ════════════════════════════════════════
-   MOBILE  ≤ 640px  — full redesign to match screenshot
- ════════════════════════════════════════ */
+   MOBILE  ≤ 640px
+════════════════════════════════════════ */
 @media(max-width:640px){
 
-  /* container and layout */
   .sfs-hero {
     border-radius: 20px;
     border-width: 1px;
@@ -541,7 +547,6 @@ body.sfs-modal-open{overflow:hidden;}
     gap: 0;
   }
 
-  /* Use display contents to interleave columns */
   .sfs-left {
     display: contents;
   }
@@ -549,7 +554,6 @@ body.sfs-modal-open{overflow:hidden;}
     display: contents;
   }
 
-  /* Hide elements not present in the screenshot */
   .sfs-shield-badge {
     display: none !important;
   }
@@ -560,7 +564,6 @@ body.sfs-modal-open{overflow:hidden;}
     display: none !important;
   }
 
-  /* ── LEFT — TEXT SECTION ── */
   .sfs-badge {
     order: 1;
     margin-bottom: 10px;
@@ -607,18 +610,18 @@ body.sfs-modal-open{overflow:hidden;}
     color: #16a34a;
   }
 
+  /* ── UPDATED mobile subtitle — darker color ── */
   .sfs-sub {
     order: 3;
     font-size: 13.5px;
     line-height: 1.55;
-    color: #4b6357;
+    color: #1a2e22;
     margin-bottom: 12px;
     max-width: 100%;
   }
 
-  /* ── ALERT FLOAT (Owner Alerted!) ── */
   .sfs-alert-float {
-    order: 1; /* Flows first inside .sfs-stage column */
+    order: 1;
     position: relative;
     inset: auto;
     display: flex;
@@ -658,9 +661,8 @@ body.sfs-modal-open{overflow:hidden;}
     margin-top: 1px;
   }
 
-  /* ── RIGHT — IMAGE FRAME STAGE ── */
   .sfs-stage {
-    order: 4; /* Positioned under subtitle in sfs-grid */
+    order: 4;
     display: flex;
     flex-direction: column;
     align-items: stretch;
@@ -686,7 +688,6 @@ body.sfs-modal-open{overflow:hidden;}
     border-radius: 14px;
   }
 
-  /* ── FLOATING CHIPS ON IMAGE ── */
   .sfs-asset-label {
     position: absolute;
     bottom: 12px;
@@ -773,7 +774,6 @@ body.sfs-modal-open{overflow:hidden;}
     background: #16a34a;
   }
 
-  /* ambient rings */
   .sfs-ring-1 {
     width: 280px;
     height: 280px;
@@ -782,7 +782,7 @@ body.sfs-modal-open{overflow:hidden;}
     display: none;
   }
 
-  /* ── FEATURE CARDS ── */
+  /* ── UPDATED mobile feature cards ── */
   .sfs-feats {
     order: 5;
     display: grid;
@@ -824,20 +824,22 @@ body.sfs-modal-open{overflow:hidden;}
     box-shadow: none;
     border: none;
   }
+  /* ── UPDATED mobile feature card title — bold + dark ── */
   .sfs-feat h4 {
     font-size: 10px;
     font-weight: 800;
-    color: #0f172a;
+    color: #06160A;
     margin-bottom: 2px;
     line-height: 1.2;
   }
+  /* ── UPDATED mobile feature card description — darker + medium weight ── */
   .sfs-feat p {
     font-size: 8.5px;
     line-height: 1.25;
-    color: #6b7280;
+    color: #2d4a38;
+    font-weight: 500;
   }
 
-  /* ── BUTTONS ── */
   .sfs-hero-actions {
     order: 6;
     display: flex;
@@ -898,7 +900,6 @@ body.sfs-modal-open{overflow:hidden;}
     justify-content: center;
   }
 
-  /* video modal */
   .sfs-vm-wrap {
     width: calc(100vw - 16px);
     padding: 0;
@@ -913,7 +914,7 @@ body.sfs-modal-open{overflow:hidden;}
 
 /* ════════════════════════════════════════
    EXTRA SMALL  ≤ 380px
- ════════════════════════════════════════ */
+════════════════════════════════════════ */
 @media(max-width:380px){
   .sfs-h1 {
     font-size: 28px;
@@ -930,6 +931,7 @@ body.sfs-modal-open{overflow:hidden;}
   }
 }
 `;
+
 /* ─── QR SVG ─── */
 function QRCodeSVG({ size = 48 }) {
   return (
@@ -1220,10 +1222,11 @@ export default function ScanForSafeHero() {
 
   const c = ASSETS[active];
 
+  // ── UPDATED: "Emergency Access" → "Report Emergency Access" ──
   const features = [
-    { ico:<SVGSecureQR/>,  bg:"linear-gradient(135deg,#e8eef8,#d0dcf0)", border:"rgba(11,37,69,0.18)",   h:"Secure QR & NFC",  p:"Military-grade encrypted ID protection" },
-    { ico:<SVGTracking/>,  bg:"linear-gradient(135deg,#e0f5f7,#c0eaed)", border:"rgba(13,122,138,0.18)", h:"Live Tracking",    p:"Real-time alerts & continuous monitoring" },
-    { ico:<SVGEmergency/>, bg:"linear-gradient(135deg,#fdecea,#f9d0cc)", border:"rgba(192,57,43,0.18)",  h:"Emergency Access", p:"Instant verified owner identification" },
+    { ico:<SVGSecureQR/>,  bg:"linear-gradient(135deg,#e8eef8,#d0dcf0)", border:"rgba(11,37,69,0.18)",   h:"Secure QR & NFC",          p:"Military-grade encrypted ID protection" },
+    { ico:<SVGTracking/>,  bg:"linear-gradient(135deg,#e0f5f7,#c0eaed)", border:"rgba(13,122,138,0.18)", h:"Live Tracking",             p:"Real-time alerts & continuous monitoring" },
+    { ico:<SVGEmergency/>, bg:"linear-gradient(135deg,#fdecea,#f9d0cc)", border:"rgba(192,57,43,0.18)",  h:"Report Emergency Access",   p:"Instant verified owner identification" },
   ];
 
   return (

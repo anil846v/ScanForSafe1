@@ -59,6 +59,16 @@ function SparklesSVG() {
   )
 }
 
+/* WhatsApp SVG Icon */
+function WhatsAppSVG({ size = 22 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z" fill="white"/>
+      <path d="M12.004 2C6.477 2 2 6.477 2 12.004c0 1.771.464 3.432 1.268 4.877L2 22l5.232-1.243A9.953 9.953 0 0012.004 22C17.531 22 22 17.523 22 12.004 22 6.477 17.531 2 12.004 2zm0 18.18a8.165 8.165 0 01-4.163-1.14l-.298-.177-3.105.738.766-3.024-.195-.31a8.12 8.12 0 01-1.248-4.263c0-4.504 3.666-8.17 8.17-8.17 4.504 0 8.17 3.666 8.17 8.17 0 4.504-3.666 8.176-8.097 8.176z" fill="white"/>
+    </svg>
+  )
+}
+
 /* =========================================
    TOPIC ICONS
 ========================================= */
@@ -135,6 +145,93 @@ const QUICK_TOPICS = [
   { label: 'QR Smart Tags', Icon: QRIcon },
   { label: 'NFC Technology', Icon: NFCIcon },
 ]
+
+/* =========================================
+   WHATSAPP CHANNEL BANNER (inside chat)
+========================================= */
+
+const WA_CHANNEL_URL = 'https://whatsapp.com/channel/0029VbCNFw0JP2105GmsoT0H'
+
+function WhatsAppChannelBanner() {
+  return (
+    <a
+      href={WA_CHANNEL_URL}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '12px',
+        padding: '11px 14px',
+        margin: '0 0 2px 0',
+        borderRadius: '14px',
+        background: 'linear-gradient(135deg, rgba(37,211,102,0.13) 0%, rgba(18,140,126,0.13) 100%)',
+        border: '1px solid rgba(37,211,102,0.25)',
+        textDecoration: 'none',
+        cursor: 'pointer',
+        transition: 'all 0.2s',
+        flexShrink: 0,
+      }}
+      onMouseEnter={e => {
+        e.currentTarget.style.background = 'linear-gradient(135deg, rgba(37,211,102,0.22) 0%, rgba(18,140,126,0.22) 100%)'
+        e.currentTarget.style.borderColor = 'rgba(37,211,102,0.45)'
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.background = 'linear-gradient(135deg, rgba(37,211,102,0.13) 0%, rgba(18,140,126,0.13) 100%)'
+        e.currentTarget.style.borderColor = 'rgba(37,211,102,0.25)'
+      }}
+    >
+      {/* WA Icon circle */}
+      <div style={{
+        width: '36px',
+        height: '36px',
+        borderRadius: '50%',
+        background: 'linear-gradient(135deg, #25d366, #128c7e)',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        flexShrink: 0,
+        boxShadow: '0 4px 12px rgba(37,211,102,0.35)',
+      }}>
+        <WhatsAppSVG size={20} />
+      </div>
+
+      {/* Text */}
+      <div style={{ flex: 1, minWidth: 0 }}>
+        <div style={{
+          fontSize: '12.5px',
+          fontWeight: 700,
+          color: '#4ade80',
+          letterSpacing: '-0.1px',
+          marginBottom: '2px',
+        }}>
+          Follow us on WhatsApp
+        </div>
+        <div style={{
+          fontSize: '11px',
+          color: 'rgba(148,163,184,0.8)',
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        }}>
+          Get updates & alerts on ScanForSafe Channel
+        </div>
+      </div>
+
+      {/* Arrow */}
+      <div style={{
+        color: '#4ade80',
+        opacity: 0.7,
+        fontSize: '16px',
+        flexShrink: 0,
+      }}>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+          <path d="M9 18l6-6-6-6" stroke="#4ade80" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </div>
+    </a>
+  )
+}
 
 /* =========================================
    TIME HELPER
@@ -220,6 +317,10 @@ function getAIResponse(message) {
     return `🚨 ScanForSafe Emergency Profiles help responders and families act quickly during emergencies.\n\nFeatures include:\n✅ Emergency contact access\n✅ Medical information support\n✅ Fast family communication\n✅ Smart emergency identification`
   }
 
+  if (msg.includes('whatsapp') || msg.includes('channel') || msg.includes('follow') || msg.includes('update')) {
+    return `📲 Stay connected with ScanForSafe on WhatsApp!\n\nFollow our official WhatsApp Channel for:\n✅ Real-time product updates\n✅ Safety tips & alerts\n✅ New feature announcements\n✅ Community recovery stories\n\nTap the WhatsApp banner below the chat to follow us instantly — no sign-up needed!`
+  }
+
   return `🤖 Thank you for contacting ScanForSafe.\n\nScanForSafe is a smart protection ecosystem designed for:\n• Vehicle safety\n• Family protection\n• Lost item recovery\n• Emergency support\n• QR + NFC smart identification\n\nPlease ask me about:\n✅ Vehicle protection\n✅ QR tags\n✅ NFC technology\n✅ Family safety\n✅ Emergency profiles\n✅ Recovery assistance`
 }
 
@@ -270,7 +371,7 @@ function AIChatWindow({ onClose }) {
       bottom: '96px',
       right: '24px',
       width: '420px',
-      maxHeight: '700px',
+      maxHeight: '720px',
       zIndex: 100,
       display: 'flex',
       flexDirection: 'column',
@@ -293,7 +394,6 @@ function AIChatWindow({ onClose }) {
         flexShrink: 0,
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '14px' }}>
-          {/* Bot Avatar */}
           <div style={{
             width: '52px',
             height: '52px',
@@ -361,7 +461,6 @@ function AIChatWindow({ onClose }) {
               gap: '10px',
               marginBottom: '2px',
             }}>
-              {/* Bot Avatar in chat */}
               {msg.role === 'assistant' && (
                 <div style={{
                   width: '36px', height: '36px', borderRadius: '50%',
@@ -400,7 +499,6 @@ function AIChatWindow({ onClose }) {
                     msg.content
                   )}
                 </div>
-                {/* Timestamp */}
                 <div style={{
                   fontSize: '11px',
                   color: 'rgba(148,163,184,0.6)',
@@ -461,9 +559,18 @@ function AIChatWindow({ onClose }) {
         <div ref={bottomRef} />
       </div>
 
+      {/* WHATSAPP CHANNEL BANNER */}
+      <div style={{
+        padding: '10px 14px 0px',
+        background: '#0d1b2e',
+        flexShrink: 0,
+      }}>
+        <WhatsAppChannelBanner />
+      </div>
+
       {/* QUICK TOPICS */}
       <div style={{
-        padding: '14px 16px 10px',
+        padding: '10px 16px 10px',
         borderTop: '1px solid rgba(255,255,255,0.06)',
         background: '#0d1b2e',
         flexShrink: 0,
@@ -570,7 +677,81 @@ function AIChatWindow({ onClose }) {
 }
 
 /* =========================================
-   FLOATING BUTTON
+   FLOATING WHATSAPP BUTTON
+========================================= */
+
+function WhatsAppFloatingButton() {
+  const [tooltip, setTooltip] = useState(false)
+
+  return (
+    <div style={{ position: 'relative' }}>
+      {/* Tooltip */}
+      {tooltip && (
+        <div style={{
+          position: 'absolute',
+          bottom: '72px',
+          right: '0',
+          background: '#1a2e1a',
+          border: '1px solid rgba(37,211,102,0.3)',
+          borderRadius: '10px',
+          padding: '8px 12px',
+          whiteSpace: 'nowrap',
+          fontSize: '12px',
+          color: '#4ade80',
+          fontWeight: 600,
+          boxShadow: '0 8px 24px rgba(0,0,0,0.4)',
+          pointerEvents: 'none',
+          zIndex: 200,
+        }}>
+          Follow ScanForSafe on WhatsApp
+          <div style={{
+            position: 'absolute',
+            bottom: '-6px',
+            right: '20px',
+            width: '10px',
+            height: '10px',
+            background: '#1a2e1a',
+            border: '1px solid rgba(37,211,102,0.3)',
+            borderTop: 'none',
+            borderLeft: 'none',
+            transform: 'rotate(45deg)',
+          }}/>
+        </div>
+      )}
+
+      <a
+        href={WA_CHANNEL_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        onMouseEnter={() => setTooltip(true)}
+        onMouseLeave={() => setTooltip(false)}
+        style={{
+          position: 'relative',
+          width: '56px',
+          height: '56px',
+          borderRadius: '50%',
+          background: 'linear-gradient(135deg, #25d366, #128c7e)',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          boxShadow: '0 6px 24px rgba(37,211,102,0.45)',
+          border: 'none',
+          cursor: 'pointer',
+          textDecoration: 'none',
+          transition: 'transform 0.2s, box-shadow 0.2s',
+          animation: 'wa-pulse 2.5s ease-in-out infinite',
+        }}
+        onFocus={() => setTooltip(true)}
+        onBlur={() => setTooltip(false)}
+      >
+        <WhatsAppSVG size={26} />
+      </a>
+    </div>
+  )
+}
+
+/* =========================================
+   FLOATING BUTTON GROUP
 ========================================= */
 
 export default function ScanForSafeChatWidget() {
@@ -588,64 +769,87 @@ export default function ScanForSafeChatWidget() {
           0% { transform: scale(1); opacity: 0.6; }
           100% { transform: scale(1.5); opacity: 0; }
         }
+        @keyframes wa-pulse {
+          0%, 100% { transform: scale(1); box-shadow: 0 6px 24px rgba(37,211,102,0.45); }
+          50% { transform: scale(1.06); box-shadow: 0 8px 32px rgba(37,211,102,0.6); }
+        }
+        @keyframes wa-float-in {
+          from { opacity: 0; transform: translateY(12px); }
+          to { opacity: 1; transform: translateY(0); }
+        }
       `}</style>
 
       {chatOpen && <AIChatWindow onClose={() => setChatOpen(false)} />}
 
-      {/* FLOATING CTA BUTTON */}
-      <button
-        onClick={() => setChatOpen(!chatOpen)}
-        style={{
-          position: 'fixed',
-          bottom: '24px',
-          right: '24px',
-          zIndex: 50,
-          height: '62px',
-          borderRadius: '999px',
-          border: 'none',
-          cursor: 'pointer',
-          padding: '0 22px 0 8px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '12px',
-          background: 'linear-gradient(135deg, #1d4ed8, #2563eb)',
-          color: '#fff',
-          boxShadow: '0 8px 32px rgba(37,99,235,0.5)',
-          fontFamily: "'Segoe UI', -apple-system, sans-serif",
-          transition: 'transform 0.2s, box-shadow 0.2s',
-        }}
-        onMouseEnter={e => {
-          e.currentTarget.style.transform = 'translateY(-2px)'
-          e.currentTarget.style.boxShadow = '0 12px 40px rgba(37,99,235,0.6)'
-        }}
-        onMouseLeave={e => {
-          e.currentTarget.style.transform = 'translateY(0)'
-          e.currentTarget.style.boxShadow = '0 8px 32px rgba(37,99,235,0.5)'
-        }}
-      >
-        <div style={{
-          width: '46px', height: '46px', borderRadius: '50%',
-          background: 'rgba(255,255,255,0.15)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          position: 'relative',
-        }}>
-          {chatOpen ? <XSvg size={18} /> : <BotSVG />}
-          {!chatOpen && (
-            <span style={{
-              position: 'absolute',
-              top: '0px', right: '0px',
-              width: '12px', height: '12px',
-              borderRadius: '50%',
-              background: '#22c55e',
-              border: '2px solid #1d4ed8',
-            }}/>
-          )}
+      {/* FLOATING BUTTON STACK */}
+      <div style={{
+        position: 'fixed',
+        bottom: '24px',
+        right: '24px',
+        zIndex: 50,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'flex-end',
+        gap: '12px',
+      }}>
+
+        {/* WhatsApp floating button — stacked above AI button */}
+        <div style={{ animation: 'wa-float-in 0.5s ease both' }}>
+          <WhatsAppFloatingButton />
         </div>
-        <div style={{ textAlign: 'left' }}>
-          <div style={{ fontWeight: 700, fontSize: '14px', letterSpacing: '-0.2px' }}>AI Assistant</div>
-          <div style={{ fontSize: '11px', opacity: 0.8, marginTop: '1px' }}>Ask anything</div>
-        </div>
-      </button>
+
+        {/* AI ASSISTANT FLOATING CTA BUTTON */}
+        <button
+          onClick={() => setChatOpen(!chatOpen)}
+          style={{
+            height: '62px',
+            borderRadius: '999px',
+            border: 'none',
+            cursor: 'pointer',
+            padding: '0 22px 0 8px',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            background: 'linear-gradient(135deg, #1d4ed8, #2563eb)',
+            color: '#fff',
+            boxShadow: '0 8px 32px rgba(37,99,235,0.5)',
+            fontFamily: "'Segoe UI', -apple-system, sans-serif",
+            transition: 'transform 0.2s, box-shadow 0.2s',
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.transform = 'translateY(-2px)'
+            e.currentTarget.style.boxShadow = '0 12px 40px rgba(37,99,235,0.6)'
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.transform = 'translateY(0)'
+            e.currentTarget.style.boxShadow = '0 8px 32px rgba(37,99,235,0.5)'
+          }}
+        >
+          <div style={{
+            width: '46px', height: '46px', borderRadius: '50%',
+            background: 'rgba(255,255,255,0.15)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            position: 'relative',
+          }}>
+            {chatOpen ? <XSvg size={18} /> : <BotSVG />}
+            {!chatOpen && (
+              <span style={{
+                position: 'absolute',
+                top: '0px', right: '0px',
+                width: '12px', height: '12px',
+                borderRadius: '50%',
+                background: '#22c55e',
+                border: '2px solid #1d4ed8',
+              }}/>
+            )}
+          </div>
+          <div style={{ textAlign: 'left' }}>
+            <div style={{ fontWeight: 700, fontSize: '14px', letterSpacing: '-0.2px' }}>AI Assistant</div>
+            <div style={{ fontSize: '11px', opacity: 0.8, marginTop: '1px' }}>Ask anything</div>
+          </div>
+        </button>
+
+      </div>
     </>
   )
 }
