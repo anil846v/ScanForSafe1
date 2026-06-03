@@ -7,7 +7,7 @@ import ContactUs from './pages/ContactUs'
 import PrivacyPolicy from './pages/PrivacyPolicy'
 import TermsConditions from './pages/TermsConditions'
 import FloatingCTA from './components/FloatingCTA'
-import QrCodeForm from './components/QrCodeForm'
+import QrCodeForm from './components/QRCodeForm'
 
 // Import standalone pages
 import FeaturesPage from './pages/FeaturesPage'
