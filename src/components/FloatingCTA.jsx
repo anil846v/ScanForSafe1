@@ -366,22 +366,37 @@ function AIChatWindow({ onClose }) {
   }
 
   return (
-    <div style={{
-      position: 'fixed',
-      bottom: '96px',
-      right: '24px',
-      width: '420px',
-      maxHeight: '720px',
-      zIndex: 100,
-      display: 'flex',
-      flexDirection: 'column',
-      borderRadius: '20px',
-      background: '#0d1b2e',
-      border: '1px solid rgba(255,255,255,0.07)',
-      boxShadow: '0 32px 80px rgba(0,0,0,0.6)',
-      overflow: 'hidden',
-      fontFamily: "'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif",
-    }}>
+    <div className="sfs-chat-window">
+      <style>{`
+        .sfs-chat-window {
+          position: fixed;
+          bottom: 96px;
+          right: 24px;
+          width: 420px;
+          max-height: 720px;
+          height: calc(100vh - 120px);
+          z-index: 10000;
+          display: flex;
+          flex-direction: column;
+          border-radius: 20px;
+          background: #0d1b2e;
+          border: 1px solid rgba(255,255,255,0.07);
+          box-shadow: 0 32px 80px rgba(0,0,0,0.6);
+          overflow: hidden;
+          font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        @media (max-width: 480px) {
+          .sfs-chat-window {
+            width: calc(100% - 32px) !important;
+            right: 16px !important;
+            left: 16px !important;
+            bottom: 96px !important;
+            height: calc(100vh - 130px) !important;
+            max-height: 540px !important;
+            border-radius: 16px !important;
+          }
+        }
+      `}</style>
 
       {/* HEADER */}
       <div style={{

@@ -236,7 +236,7 @@ function AndroidPhoneFrame({ children, screenBg = '#0a0a0a', accentColor = '#16a
     <div style={{ position: 'relative', width: 272 }}>
       <div style={{ width: 272, background: 'linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 40%, #242424 70%, #1c1c1c 100%)', borderRadius: 46, padding: '0', position: 'relative', boxShadow: `0 0 0 1px rgba(255,255,255,0.08), 0 0 0 2px #111, 0 2px 0 3px rgba(255,255,255,0.04), 4px 0 0 2px #0d0d0d, -4px 0 0 2px #0d0d0d, 0 32px 64px rgba(0,0,0,0.6), 0 8px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.3)` }}>
         <div style={{ margin: '10px 8px', borderRadius: 38, overflow: 'hidden', position: 'relative', background: screenBg, border: '1px solid rgba(255,255,255,0.06)', boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.8)' }}>
-          <div style={{ background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(8px)', padding: '8px 16px 6px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative', zIndex: 10, flexShrink: 0 }}>
+          <div style={{ background: '#0d0d0d', padding: '8px 16px 6px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', position: 'relative', zIndex: 10, flexShrink: 0 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
               <div style={{ width: 11, height: 11, borderRadius: '50%', background: '#0a0a0a', border: '1.5px solid rgba(255,255,255,0.08)', boxShadow: 'inset 0 0 4px rgba(0,0,0,0.9)' }} />
               <span style={{ color: 'rgba(255,255,255,0.85)', fontSize: 10, fontWeight: 600, letterSpacing: '.02em', marginLeft: 4 }}>{timeStr}</span>
