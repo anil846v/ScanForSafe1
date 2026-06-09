@@ -65,7 +65,7 @@ function BenefitCard({ icon, title, description, color, bg, borderColor, tags, t
         borderRadius: 16,
         border: `1.5px solid ${hovered ? color : borderColor}`,
         background: '#ffffff',
-        padding: '22px 20px 20px',
+        padding: '16px 14px 14px',
         transition: 'border-color 0.22s ease, box-shadow 0.22s ease, transform 0.25s cubic-bezier(0.34,1.3,0.64,1)',
         transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
         boxShadow: hovered ? `0 8px 28px ${color}28` : '0 1px 4px rgba(0,0,0,0.05)',
@@ -76,36 +76,36 @@ function BenefitCard({ icon, title, description, color, bg, borderColor, tags, t
     >
       {/* Icon box */}
       <div style={{
-        width: 48, height: 48,
-        borderRadius: 12,
+        width: 38, height: 38,
+        borderRadius: 10,
         background: bg,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        marginBottom: 14,
+        marginBottom: 10,
         border: `1px solid ${borderColor}`,
         flexShrink: 0,
       }}>
-        {cloneElement(icon, { color, size: 22 })}
+        {cloneElement(icon, { color, size: 18 })}
       </div>
 
       <h3 style={{
         fontFamily: "'Sora', sans-serif",
-        fontSize: 15,
+        fontSize: 14,
         fontWeight: 800,
         color: '#0B2545',
-        marginBottom: 8,
+        marginBottom: 6,
         letterSpacing: '-0.01em',
-        lineHeight: 1.25,
+        lineHeight: 1.2,
       }}>
         {title}
       </h3>
 
       <p style={{
         fontFamily: "'DM Sans', sans-serif",
-        fontSize: 13,
+        fontSize: 12,
         fontWeight: 400,
         color: '#374151',
-        lineHeight: 1.65,
-        marginBottom: 16,
+        lineHeight: 1.5,
+        marginBottom: 10,
         flex: 1,
       }}>
         {description}
@@ -117,7 +117,7 @@ function BenefitCard({ icon, title, description, color, bg, borderColor, tags, t
         alignItems: 'center',
         flexWrap: 'wrap',
         gap: 4,
-        paddingTop: 12,
+        paddingTop: 8,
         borderTop: `1px solid ${borderColor}`,
         marginTop: 'auto',
       }}>
@@ -125,23 +125,23 @@ function BenefitCard({ icon, title, description, color, bg, borderColor, tags, t
           <React.Fragment key={tag}>
             {i === 0 ? (
               <span style={{
-                display: 'inline-flex', alignItems: 'center', gap: 4,
+                display: 'inline-flex', alignItems: 'center', gap: 3,
                 background: `${tagColor}14`,
                 color: tagColor,
-                fontSize: 11, fontWeight: 700,
+                fontSize: 10, fontWeight: 700,
                 borderRadius: 20,
-                padding: '3px 9px',
+                padding: '2px 7px',
                 border: `1px solid ${tagColor}30`,
               }}>
-                <CheckCircle size={10} color={tagColor} />
+                <CheckCircle size={9} color={tagColor} />
                 {tag}
               </span>
             ) : (
               <span style={{
                 display: 'inline-flex', alignItems: 'center',
-                fontSize: 11, fontWeight: 600, color: '#64748b',
+                fontSize: 10, fontWeight: 600, color: '#64748b',
               }}>
-                <span style={{ color: '#cbd5e1', margin: '0 4px', fontSize: 13 }}>•</span>
+                <span style={{ color: '#cbd5e1', margin: '0 3px', fontSize: 11 }}>•</span>
                 {tag}
               </span>
             )}
@@ -262,51 +262,51 @@ export default function Franchise() {
     {
       icon: <TrendingUp />,
       title: "High ROI Model",
-      description: "Earn up to 10% - 30% profit margin on physical QR visual safety tags & smart NFC cards distributed in your region.",
+      description: "Earn 10% - 30% margin on high-demand physical QR safety tags.",
       color: "#16a34a",
       bg: "#e8f8eb",
       borderColor: "#bbf7d0",
-      tags: ["High demand", "Recurring business", "Scalable"],
+      tags: ["High demand", "Recurring", "Scalable"],
       tagColor: "#16a34a",
     },
     {
       icon: <Shield />,
       title: "Exclusive Territory",
-      description: "Secure exclusive ownership rights for dedicated pincodes. Zero local brand competition.",
+      description: "Secure exclusive ownership rights for dedicated pincodes. Zero local competition.",
       color: "#0891b2",
       bg: "#ecfeff",
       borderColor: "#bae6fd",
-      tags: ["Protected territory", "Local leadership"],
+      tags: ["Protected", "Local leadership"],
       tagColor: "#0891b2",
     },
     {
       icon: <Landmark />,
       title: "Innovative Tech",
-      description: "India's leading cloud network mapping QR codes for vehicle safety, senior citizens, children, and pets.",
+      description: "India's leading QR cloud network for vehicle, elder, child, and pet safety.",
       color: "#7c3aed",
       bg: "#f5f3ff",
       borderColor: "#ddd6fe",
-      tags: ["Innovative", "Reliable", "Future-ready"],
+      tags: ["Innovative", "Future-ready"],
       tagColor: "#7c3aed",
     },
     {
       icon: <Award />,
       title: "Marketing Support",
-      description: "Receive complete physical branding collaterals, digital flyers, and targeted local ad campaign execution.",
+      description: "Get complete branding materials, digital flyers, and local ad campaign execution.",
       color: "#f97316",
       bg: "#fff7ed",
       borderColor: "#fed7aa",
-      tags: ["Ready-to-use assets", "Local promotion", "Growth support"],
+      tags: ["Marketing assets", "Local promotion"],
       tagColor: "#f97316",
     },
     {
       icon: <Users />,
       title: "Dedicated Partner Support",
-      description: "Get complete training, onboarding, technical assistance, and ongoing business guidance from the ScanForSafe team.",
+      description: "Enjoy comprehensive training, onboarding assistance, and ongoing business guidance.",
       color: "#0891b2",
       bg: "#ecfeff",
       borderColor: "#bae6fd",
-      tags: ["Training", "Onboarding", "Ongoing assistance"],
+      tags: ["Full training", "Ongoing support"],
       tagColor: "#0891b2",
     },
   ];
@@ -445,6 +445,43 @@ export default function Franchise() {
           box-shadow: 0 14px 30px rgba(46, 189, 58, 0.4);
         }
         
+        .fr-opp-wrapper {
+          position: relative;
+          z-index: 2;
+          padding: 24px 24px 0;
+        }
+        .fr-adv-wrapper {
+          position: relative;
+          z-index: 2;
+          padding: 0 24px 16px;
+        }
+        .fr-opp-header-container {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          justify-content: center;
+          margin-bottom: 28px;
+        }
+        .fr-opp-header-divider {
+          flex: 1;
+          height: 1.5px;
+        }
+        .fr-opp-header-divider.divider-left {
+          background: linear-gradient(90deg, transparent, rgba(34,197,94,0.4));
+        }
+        .fr-opp-header-divider.divider-right {
+          background: linear-gradient(270deg, transparent, rgba(34,197,94,0.4));
+        }
+        .fr-opp-header-title {
+          font-family: 'Outfit', sans-serif;
+          font-size: 16.5px;
+          font-weight: 800;
+          color: #0B2545;
+          margin: 0;
+          white-space: nowrap;
+          letter-spacing: 0.01em;
+          text-transform: uppercase;
+        }
         /* Opportunities Container Card */
         .fr-opp-card {
           background: white;
@@ -562,8 +599,8 @@ export default function Franchise() {
 
         .fr-grid-split {
           display: grid;
-          grid-template-columns: 1.1fr 0.9fr;
-          gap: 40px;
+          grid-template-columns: 1.25fr 0.75fr;
+          gap: 32px;
           align-items: start;
         }
 
@@ -886,15 +923,30 @@ export default function Franchise() {
           .fr-benefits-top {
             grid-template-columns: repeat(2, 1fr) !important;
           }
+          .fr-opp-header-title {
+            white-space: normal !important;
+            font-size: 14.5px !important;
+            text-align: center;
+          }
+          .fr-opp-header-divider {
+            display: none !important;
+          }
+          .fr-opp-header-container {
+            justify-content: center;
+          }
         }
         @media (max-width: 580px) {
+          .fr-opp-wrapper { padding: 16px 12px 0 !important; }
+          .fr-adv-wrapper { padding: 0 12px 12px !important; }
+          .fr-opp-card { padding: 20px 14px !important; }
+          .fr-adv-bar { padding: 18px 14px !important; }
           .fr-benefits-top {
-            grid-template-columns: 1fr 1fr !important;
-            gap: 10px !important;
+            grid-template-columns: 1fr !important;
+            gap: 12px !important;
           }
           .fr-benefits-bottom {
             grid-template-columns: 1fr !important;
-            gap: 10px !important;
+            gap: 12px !important;
           }
           .fr-form-card { padding: 24px 18px; }
           .fr-opp-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
@@ -905,6 +957,7 @@ export default function Franchise() {
           .fr-adv-item { gap: 8px !important; }
           .fr-adv-title { font-size: 15px !important; }
           .fr-adv-desc { font-size: 12.5px !important; }
+          .fr-calc-btn { font-size: 10px !important; padding: 8px 2px !important; }
         }
       `}</style>
 
@@ -1073,24 +1126,15 @@ export default function Franchise() {
           </div>
 
           {/* ── OPPORTUNITIES CARD (WHITE CONTAINER) ── */}
-          <div style={{ position: 'relative', zIndex: 2, padding: '24px 24px 0' }}>
+          <div className="fr-opp-wrapper">
             <div className="fr-opp-card">
               {/* Header Title with horizontal divider lines */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: 16, justifyContent: 'center', marginBottom: 28 }}>
-                <div style={{ flex: 1, height: 1.5, background: 'linear-gradient(90deg, transparent, rgba(34,197,94,0.4))' }} />
-                <h3 style={{ 
-                  fontFamily: "'Outfit', sans-serif", 
-                  fontSize: 16.5, 
-                  fontWeight: 800, 
-                  color: '#0B2545',
-                  margin: 0,
-                  whiteSpace: 'nowrap',
-                  letterSpacing: '0.01em',
-                  textTransform: 'uppercase'
-                }}>
+              <div className="fr-opp-header-container">
+                <div className="fr-opp-header-divider divider-left" />
+                <h3 className="fr-opp-header-title">
                   A Growing Market. Multiple Opportunities.
                 </h3>
-                <div style={{ flex: 1, height: 1.5, background: 'linear-gradient(270deg, transparent, rgba(34,197,94,0.4))' }} />
+                <div className="fr-opp-header-divider divider-right" />
               </div>
 
               {/* 6 Opportunities Columns */}
@@ -1147,7 +1191,7 @@ export default function Franchise() {
           </div>
 
           {/* ── ADVANTAGES BAR (DARK DEEP GREEN STRIP) ── */}
-          <div style={{ position: 'relative', zIndex: 2, padding: '0 24px 16px' }}>
+          <div className="fr-adv-wrapper">
             <div className="fr-adv-bar">
               {/* 6 advantages columns */}
               <div className="fr-adv-grid">
