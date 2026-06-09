@@ -502,7 +502,15 @@ export default function Franchise() {
           flex-direction: column;
           align-items: center;
           text-align: center;
-          padding: 10px 6px;
+          padding: 18px 12px;
+          border-radius: 16px;
+          transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease, box-shadow 0.3s ease;
+          cursor: pointer;
+        }
+        .fr-opp-item:hover {
+          transform: translateY(-8px);
+          background-color: #f8fafc;
+          box-shadow: 0 12px 30px rgba(0, 0, 0, 0.04);
         }
         .fr-opp-icon-box {
           width: 44px;
@@ -515,6 +523,13 @@ export default function Franchise() {
           justify-content: center;
           color: #16a34a;
           margin-bottom: 12px;
+          transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .fr-opp-item:hover .fr-opp-icon-box {
+          transform: scale(1.18) rotate(5deg);
+          background-color: #16a34a;
+          color: white;
+          box-shadow: 0 6px 18px rgba(22, 163, 74, 0.3);
         }
         .fr-opp-title {
           font-family: 'Outfit', sans-serif;
@@ -523,6 +538,10 @@ export default function Franchise() {
           color: #0f172a;
           margin-bottom: 5px;
           line-height: 1.25;
+          transition: color 0.3s ease;
+        }
+        .fr-opp-item:hover .fr-opp-title {
+          color: #16a34a;
         }
         .fr-opp-desc {
           font-size: 13px;
