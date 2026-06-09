@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, cloneElement } from "react";
 import { useNavigate } from "react-router-dom";
-import { CheckCircle, Shield, Award, Landmark, TrendingUp, HelpCircle, MapPin, Send, DollarSign, Users } from "lucide-react";
+import { CheckCircle, Shield, Award, Landmark, TrendingUp, HelpCircle, MapPin, Send, DollarSign, Users, Car, Briefcase, PawPrint, GraduationCap, Smartphone, ShieldCheck, Truck, Headset, Map } from "lucide-react";
 
 function useInView(threshold = 0.12) {
   const ref = useRef(null);
