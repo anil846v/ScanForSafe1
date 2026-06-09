@@ -73,20 +73,123 @@ export default function Footer() {
     },
     {
       label: "Senior Citizen Protection", sub: "Safety Bands",
-      svg: <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#2ebd3a" strokeWidth="1.8" strokeLinecap="round"><circle cx="24" cy="13" r="6"/><path d="M10 42v-6a14 14 0 0 1 28 0v6"/><path d="M16 26l3 3 5-5"/><circle cx="35" cy="20" r="8" fill="rgba(46,189,58,0.1)" stroke="#2ebd3a"/><path d="M35 17v3l2 2"/></svg>,
+      svg: (
+<svg
+  width="32"
+  height="32"
+  viewBox="0 0 48 48"
+  fill="none"
+  stroke="#2ebd3a"
+  strokeWidth="1.8"
+  strokeLinecap="round"
+  strokeLinejoin="round"
+>
+  {/* Shield */}
+  <path
+    d="M24 4L40 10V20C40 31 33 39 24 44C15 39 8 31 8 20V10L24 4Z"
+    fill="rgba(46,189,58,0.08)"
+  />
+
+  {/* Elderly Person */}
+  <circle cx="22" cy="16" r="3" />
+  <path d="M22 19V28" />
+  <path d="M18 23L22 21L26 23" />
+  <path d="M22 28L19 34" />
+  <path d="M22 28L24 34" />
+
+  {/* Cane */}
+  <path d="M28 20V34" />
+  <path d="M28 34C28 36 29 37 31 37" />
+
+  {/* Wireless Alert Signal */}
+  <path d="M31 10C33 11 35 13 36 15" />
+  <path d="M29 8C33 10 36 13 38 17" />
+</svg>
+)
     },
-    {
-      label: "Child Safety", sub: "Smart ID Tags",
-      svg: <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#2ebd3a" strokeWidth="1.8" strokeLinecap="round"><circle cx="24" cy="12" r="6"/><path d="M12 42v-6a12 12 0 0 1 24 0v6"/><path d="M15 24l3 3 5-5"/><path d="M32 6l4 4-6 6"/></svg>,
-    },
-    {
-      label: "Pet Safety", sub: "Smart Pet Tags",
-      svg: <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#2ebd3a" strokeWidth="1.8" strokeLinecap="round"><circle cx="10" cy="14" r="4"/><circle cx="38" cy="14" r="4"/><circle cx="24" cy="8" r="4"/><path d="M14 24c0 7 10 16 10 16s10-9 10-16a10 10 0 0 0-20 0z"/></svg>,
-    },
-    {
-      label: "Luggage Protection", sub: "Smart Luggage Tags",
-      svg: <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#2ebd3a" strokeWidth="1.8" strokeLinecap="round"><rect x="10" y="16" width="28" height="26" rx="4"/><path d="M30 16v-4a6 6 0 0 0-12 0v4"/><line x1="24" y1="24" x2="24" y2="34"/><line x1="19" y1="29" x2="29" y2="29"/></svg>,
-    },
+  {
+  label: "Child Safety",
+  sub: "Smart ID Tags",
+  svg: (
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 48 48"
+      fill="none"
+      stroke="#2ebd3a"
+      strokeWidth="2.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {/* Head */}
+      <circle cx="24" cy="14" r="6" />
+
+      {/* Hair */}
+      <path d="M19 12C21 8 27 8 29 12" />
+
+      {/* Body */}
+      <path d="M15 34V28C15 22 19 19 24 19C29 19 33 22 33 28V34" />
+
+     
+
+     
+    </svg>
+  ),
+},
+  {
+  label: "Pet Safety",
+  sub: "Smart Pet Tags",
+  svg: (
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#2ebd3a"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M8 6 5 3v5" />
+      <path d="M16 6 19 3v5" />
+      <circle cx="12" cy="13" r="6" />
+      <circle cx="10" cy="12" r="0.5" fill="#2ebd3a" />
+      <circle cx="14" cy="12" r="0.5" fill="#2ebd3a" />
+      <path d="M12 14v1" />
+      <path d="M9 15h-2M17 15h-2" />
+      <path d="M9 17h-2M17 17h-2" />
+    </svg>
+  ),
+},
+   {
+  label: "Luggage Protection",
+  sub: "Smart Luggage Tags",
+  svg: (
+    <svg
+      width="32"
+      height="32"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="#2ebd3a"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {/* Handle */}
+      <path d="M9 7V5a3 3 0 0 1 6 0v2" />
+
+      {/* Suitcase */}
+      <rect x="5" y="7" width="14" height="13" rx="2" />
+
+      {/* Center line */}
+      <line x1="12" y1="7" x2="12" y2="20" />
+
+      {/* Wheels */}
+      <line x1="8" y1="20" x2="8" y2="22" />
+      <line x1="16" y1="20" x2="16" y2="22" />
+    </svg>
+  ),
+},
     {
       label: "Valuable Protection", sub: "For Everyday Essentials",
       svg: <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#2ebd3a" strokeWidth="1.8" strokeLinecap="round"><path d="M24 6l5 10h11l-9 8 3 11-10-6-10 6 3-11-9-8h11z"/></svg>,
@@ -104,6 +207,7 @@ export default function Footer() {
           color: #e2e8f0;
           width: 100%;
           overflow: hidden;
+          background: linear-gradient(150deg, #020c1b 0%, #0a1f44 40%, #004b23 80%, #031a07 100%);
         }
 
         /* ── Background image layer ── */
@@ -114,20 +218,8 @@ export default function Footer() {
           background-size: cover;
           background-position: center top;
           background-repeat: no-repeat;
+          opacity: 0.15;
           z-index: 0;
-        }
-        /* Dark overlay so text stays readable */
-        .ft-bg::after {
-          content: '';
-          position: absolute;
-          inset: 0;
-          background: linear-gradient(
-            180deg,
-            rgba(6,20,42,0.88) 0%,
-            rgba(6,20,42,0.82) 40%,
-            rgba(4,14,30,0.92) 80%,
-            rgba(3,10,22,0.97) 100%
-          );
         }
 
         /* top shimmer line */
