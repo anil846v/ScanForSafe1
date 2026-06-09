@@ -112,10 +112,11 @@ export default function SeniorCitizenSection() {
             fontSize: 'clamp(26px,4vw,42px)', fontWeight: 900,
             color: '#0B2545', margin: '0 0 12px', fontFamily: "'Sora', sans-serif", lineHeight: 1.2,
           }}>
-            Best Emergency Contact <span style={{ color: '#2ebd3a' }}>QR Wristbands</span> & Senior Protection
+            Protecting Seniors{' '}
+            <span style={{ color: '#2ebd3a' }}>When Every Second Matters</span>
           </h2>
           <p style={{ color: '#4b7a62', fontSize: 15, maxWidth: 540, margin: '0 auto', lineHeight: 1.7, fontFamily: "'DM Sans', sans-serif" }}>
-            Our <strong>top safety tags</strong> and emergency profiles provide responders, caregivers, and family members with instant medical details and contacts during critical situations.
+            One scan can help responders, caregivers, and family members access important information and emergency contacts quickly.
           </p>
         </div>
 

@@ -212,17 +212,16 @@ export default function VehicleDetails() {
             </div>
           </Fade>
 
-          <Fade visible={visible} delay={120}>
-            <h2 className="animated-gradient-text" style={{
-              fontSize: 'clamp(28px,4vw,48px)', fontWeight: 900, margin: '0 0 12px', lineHeight: 1.15,
-            }}>
-              Best Vehicle Owner Contact QR Stickers
+          <Fade visible={visible} delay={80}>
+            <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: 'clamp(28px,4vw,44px)', fontWeight: 900, margin: '0 0 14px', lineHeight: 1.1, color: '#0f172a', letterSpacing: '-0.03em' }}>
+              Everything Your Vehicle{' '}
+              <span style={{ color: '#22c55e' }}>Tag Can Do</span>
             </h2>
           </Fade>
 
-          <Fade visible={visible} delay={220}>
-            <p style={{ color: '#4b7a62', fontSize: 15, maxWidth: 500, margin: '0 auto', lineHeight: 1.7 }}>
-              Get the <strong>best anti theft sticker for motorcycle</strong> security and <strong>top bike safety stickers with QR codes</strong>. Get instant scan notifications, GPS tracking, and secure vehicle owner contact alerts.
+          <Fade visible={visible} delay={150}>
+            <p style={{ color: '#64748b', fontSize: 15.5, maxWidth: 520, margin: '0 auto', lineHeight: 1.7, fontFamily: "'DM Sans', sans-serif", fontWeight: 500 }}>
+              One scan connects the right people at the right time — during emergencies, lost-and-found cases, or roadside situations
             </p>
           </Fade>
         </div>

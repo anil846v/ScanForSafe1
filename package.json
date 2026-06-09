@@ -5,9 +5,7 @@
   "private": true,
   "dependencies": {
     "framer-motion": "^12.40.0",
-    "jpeg-js": "^0.4.4",
     "lucide-react": "^0.383.0",
-    "pngjs": "^7.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.6.0",

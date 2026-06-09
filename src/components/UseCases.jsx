@@ -19,7 +19,7 @@ const USE_CASES = [
     title: 'Motorcycles & Bikes',
     category: 'VEHICLE',
     qrSize: '3.5 cm QR Sticker',
-    description: 'Best anti theft sticker for motorcycles & top bike safety stickers with QR codes.',
+    description: 'Smart QR recovery sticker for bikes with instant owner GPS alerts.',
     cardBg: '#EAF3DE', accentColor: '#2ebd3a', iconBg: '#27500A', borderColor: '#92cc5a',
     tag: 'QR Sticker', tagBg: '#C0DD97', tagColor: '#27500A',
     titleColor: '#1a3d06', subColor: '#3B6D11', descColor: '#3B6D11',
@@ -53,7 +53,7 @@ const USE_CASES = [
     title: 'Dogs, Cats & Pets',
     category: 'PETS',
     qrSize: 'Collar QR Tag',
-    description: 'Top safety tags for pets with best GPS alerts. Light QR tag scans to alert owner.',
+    description: 'Lightweight QR collar tag. Anyone scans → instant owner notification with GPS.',
     cardBg: '#EAF3DE', accentColor: '#2ebd3a', iconBg: '#27500A', borderColor: '#92cc5a',
     tag: 'Collar Tag', tagBg: '#C0DD97', tagColor: '#27500A',
     titleColor: '#1a3d06', subColor: '#3B6D11', descColor: '#3B6D11',
@@ -70,7 +70,7 @@ const USE_CASES = [
     title: 'Children Safety',
     category: 'SAFETY',
     qrSize: 'Hand Band / Shoulder',
-    description: 'Best emergency contact QR wristbands for kids. Instant notifications & live GPS sharing.',
+    description: 'QR wristband for kids. Scan in crowds → parents alerted instantly with live GPS.',
     cardBg: '#EEEDFE', accentColor: '#534AB7', iconBg: '#3C3489', borderColor: '#9b93e8',
     tag: 'Hand Band', tagBg: '#CECBF6', tagColor: '#26215C',
     titleColor: '#1a1644', subColor: '#534AB7', descColor: '#534AB7',
@@ -407,23 +407,11 @@ export default function UseCases() {
         }
       `}</style>
 
-      <div style={{ maxWidth: 1140, margin: '0 auto', padding: '0 20px' }}>
-
-        {/* ── Header ── */}
-        <div style={{ textAlign: 'center', marginBottom: 36 }}>
-          <div className="uc-header-badge">
-            <ShieldCheck size={13} color="#157a24" />
-            <span>Real-World Use Cases</span>
-          </div>
-
-          <h2 className="uc-header-h2">
-            Best Smart QR Tags<br />
-            <span className="uc-green">For Safety & Protection</span>
-          </h2>
-
-          <p className="uc-header-p">
-            Discover top rated lost and found QR stickers for keys and baggage, best safety tags for pets with GPS alerts, and emergency contact QR wristbands.
-          </p>
+      {/* ── Hero Header ── */}
+      <div className="uc-hero">
+        <div className="uc-hero-pill">
+          <ShieldCheck size={12} color="#157a24" />
+          <span>Smart Protection. Instant Connect.</span>
         </div>
         <h1 className="uc-hero-h1">
           Protect People.{' '}

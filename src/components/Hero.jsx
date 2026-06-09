@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, Fragment } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import carImg     from "../../assets/car.png";
@@ -1055,7 +1055,7 @@ export default function ScanForSafeHero() {
               </h1>
 
               <p className="sfs-sub">
-                Protect your belongings with the <strong>best smart qr tags for safety</strong>, <strong>nfc emergency tags</strong>, and <strong>top rated lost and found qr stickers</strong> for keys and luggage. ScanForSafe provides advanced <strong>smart qr code protection</strong>, including the <strong>best vehicle owner contact qr sticker</strong>, <strong>top bike safety stickers with qr code</strong>, <strong>senior citizen medical id wristband</strong>, and <strong>waterproof qr pet id tags</strong> for instant owner contact and live GPS location alerts.
+                Protect your vehicles, pets, luggage, loved ones, and valuables with ScanForSafe Smart Shield. Using QR and NFC technology, anyone can quickly connect with the owner, report emergencies, or help return lost items—all with a simple scan.
               </p>
 
               <div className="sfs-feats">
@@ -1082,12 +1082,12 @@ export default function ScanForSafeHero() {
 
               <div className="sfs-tagline-row">
                 {taglineItems.map((item, i) => (
-                  <Fragment key={item.text}>
-                    {i > 0 && <span className="sfs-tagline-sep" />}
-                    <span className="sfs-tagline-item">
+                  <>
+                    {i > 0 && <span key={`sep-${i}`} className="sfs-tagline-sep" />}
+                    <span key={item.text} className="sfs-tagline-item">
                       {item.icon} {item.text}
                     </span>
-                  </Fragment>
+                  </>
                 ))}
                 <div className="sfs-tagline-bold">One Scan. <strong>Big Difference.</strong></div>
               </div>
