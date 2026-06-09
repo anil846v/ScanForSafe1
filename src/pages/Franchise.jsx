@@ -161,6 +161,11 @@ export default function Franchise() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [statsRef, statsInView] = useInView(0.3);
 
+  const scrollToForm = () => {
+    const el = document.getElementById('apply-form');
+    if (el) el.scrollIntoView({ behavior: 'smooth' });
+  };
+
   useEffect(() => {
     const t = setTimeout(() => setHeroVisible(true), 80);
     return () => clearTimeout(t);
@@ -358,6 +363,195 @@ export default function Franchise() {
           0%,100% { transform: translate(0,0) scale(1); }
           33%      { transform: translate(-70px,30px) scale(1.05); }
           66%      { transform: translate(40px,-50px) scale(1.1); }
+        }
+
+        .fr-hero-grid {
+          display: grid;
+          grid-template-columns: 1fr 1.05fr;
+          gap: 40px;
+          align-items: center;
+          max-width: 1280px;
+          margin: 0 auto;
+          padding: 10px 24px 40px;
+          text-align: left;
+        }
+        .fr-hero-left {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+        }
+        .fr-hero-right {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          width: 100%;
+        }
+        .fr-glass-pill {
+          background: rgba(10, 25, 47, 0.45);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          border-radius: 12px;
+          padding: 10px 16px;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          color: white;
+          text-align: left;
+          box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+        .fr-glass-pill-icon {
+          color: #2ebd3a;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+        }
+        .fr-glass-pill-text {
+          display: flex;
+          flex-direction: column;
+          line-height: 1.35;
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 11px;
+          font-weight: 500;
+        }
+        .fr-glass-pill-text span {
+          color: rgba(255, 255, 255, 0.82);
+        }
+        .fr-glass-pill-text .green-text {
+          color: #4ade80;
+          font-weight: 700;
+        }
+        .fr-hero-btn {
+          border: none;
+          background: linear-gradient(135deg, #1fa82a 0%, #2ebd3a 50%, #0B2545 100%);
+          color: white;
+          padding: 14px 28px;
+          border-radius: 12px;
+          font-size: 13.5px;
+          font-weight: 700;
+          font-family: 'Space Grotesk', sans-serif;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 8px;
+          box-shadow: 0 10px 24px rgba(46, 189, 58, 0.3), 0 2px 6px rgba(46, 189, 58, 0.15);
+          transition: transform .25s ease, box-shadow .25s ease;
+          text-decoration: none;
+          margin-top: 10px;
+        }
+        .fr-hero-btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 14px 30px rgba(46, 189, 58, 0.4);
+        }
+        
+        /* Opportunities Container Card */
+        .fr-opp-card {
+          background: white;
+          border: 1px solid #e2e8f0;
+          border-radius: 24px;
+          padding: 28px 24px;
+          max-width: 1240px;
+          margin: 0 auto 32px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.02), 0 2px 8px rgba(0,0,0,0.02);
+        }
+        .fr-opp-grid {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          gap: 16px;
+        }
+        .fr-opp-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          padding: 10px 6px;
+        }
+        .fr-opp-icon-box {
+          width: 44px;
+          height: 44px;
+          border-radius: 50%;
+          background: #f0fdf4;
+          border: 1.5px solid #dcfce7;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #16a34a;
+          margin-bottom: 12px;
+        }
+        .fr-opp-title {
+          font-family: 'Outfit', sans-serif;
+          font-size: 16px;
+          font-weight: 800;
+          color: #0f172a;
+          margin-bottom: 5px;
+          line-height: 1.25;
+        }
+        .fr-opp-desc {
+          font-size: 13px;
+          color: #64748b;
+          line-height: 1.4;
+          font-weight: 500;
+        }
+
+        /* Bottom Advantages Bar */
+        .fr-adv-bar {
+          background: rgba(3, 22, 8, 0.98);
+          border-top: 1.5px solid rgba(34, 197, 94, 0.22);
+          border-bottom: 1.5px solid rgba(34, 197, 94, 0.22);
+          padding: 24px 20px;
+          max-width: 1240px;
+          margin: 0 auto 28px;
+          border-radius: 20px;
+          box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+        }
+        .fr-adv-grid {
+          display: grid;
+          grid-template-columns: repeat(6, 1fr);
+          gap: 16px;
+          padding-bottom: 16px;
+          border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .fr-adv-item {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          text-align: left;
+        }
+        .fr-adv-icon-box {
+          width: 32px;
+          height: 32px;
+          border-radius: 50%;
+          background: rgba(22, 163, 74, 0.15);
+          border: 1px solid rgba(22, 163, 74, 0.3);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: #4ade80;
+          flex-shrink: 0;
+        }
+        .fr-adv-title {
+          font-family: 'Outfit', sans-serif;
+          font-size: 16.5px;
+          font-weight: 800;
+          color: #fff;
+          margin-bottom: 2px;
+          line-height: 1.2;
+        }
+        .fr-adv-desc {
+          font-size: 13.5px;
+          color: rgba(255, 255, 255, 0.6);
+          line-height: 1.3;
+          font-weight: 500;
+        }
+        .fr-adv-tagline {
+          font-family: 'Outfit', sans-serif;
+          font-size: 15px;
+          font-weight: 700;
+          color: #4ade80;
+          text-align: center;
+          margin-top: 14px;
+          letter-spacing: .02em;
         }
 
         .fr-section {
@@ -675,6 +869,11 @@ export default function Franchise() {
 
         @media (max-width: 900px) {
           .fr-grid-split { grid-template-columns: 1fr; gap: 30px; }
+          .fr-hero-grid { grid-template-columns: 1fr; text-align: center; gap: 32px; padding: 10px 16px 32px; }
+          .fr-hero-left { align-items: center; }
+          .fr-hero-right { align-items: center; }
+          .fr-opp-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+          .fr-adv-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
         }
         @media (max-width: 768px) {
           .fr-stats-counter {
@@ -698,118 +897,328 @@ export default function Franchise() {
             gap: 10px !important;
           }
           .fr-form-card { padding: 24px 18px; }
+          .fr-opp-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
+          .fr-adv-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
+          .fr-opp-item { padding: 8px 2px !important; }
+          .fr-opp-title { font-size: 14.5px !important; }
+          .fr-opp-desc { font-size: 12px !important; }
+          .fr-adv-item { gap: 8px !important; }
+          .fr-adv-title { font-size: 15px !important; }
+          .fr-adv-desc { font-size: 12.5px !important; }
         }
       `}</style>
 
       <div className="fr-page">
-        {/* ── HERO ── */}
+        {/* ── HERO SECTION ── */}
         <section style={{
           position: 'relative', overflow: 'hidden',
-          minHeight: 520, paddingTop: 10, paddingBottom: 40,
-          background: 'linear-gradient(150deg, #020c1b 0%, #0a1f44 40%, #004b23 80%, #16a34a 100%)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          textAlign: 'center'
+          background: 'linear-gradient(150deg, #020c1b 0%, #0a1f44 40%, #004b23 80%, #031a07 100%)',
+          paddingTop: 36, paddingBottom: 10,
+          borderBottom: '1px solid rgba(34,197,94,0.14)',
         }}>
+          {/* Glowing background blobs */}
           <div style={{
             position: 'absolute', width: 560, height: 560, borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(34, 197, 94, 0.18) 0%, transparent 65%)',
+            background: 'radial-gradient(circle, rgba(34, 197, 94, 0.16) 0%, transparent 65%)',
             top: -180, right: -120,
             animation: 'orbMove1 14s ease-in-out infinite',
             pointerEvents: 'none',
+            zIndex: 1
           }} />
           <div style={{
             position: 'absolute', width: 480, height: 480, borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(0,87,184,0.30) 0%, transparent 65%)',
+            background: 'radial-gradient(circle, rgba(0,87,184,0.22) 0%, transparent 65%)',
             bottom: -160, left: -100,
             animation: 'orbMove2 18s ease-in-out infinite',
             pointerEvents: 'none',
+            zIndex: 1
           }} />
           <div style={{
             position: 'absolute', inset: 0, pointerEvents: 'none',
-            backgroundImage: 'radial-gradient(rgba(255,255,255,0.07) 1px, transparent 1px)',
+            backgroundImage: 'radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px)',
             backgroundSize: '32px 32px',
-          }} />
-          <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', pointerEvents: 'none' }}>
-            <div style={{
-              position: 'absolute', left: 0, right: 0, height: 3,
-              background: 'linear-gradient(90deg, transparent 0%, rgba(74,222,128,0.0) 15%, rgba(74,222,128,0.9) 50%, rgba(74,222,128,0.0) 85%, transparent 100%)',
-              animation: 'scanBeam 4s ease-in-out infinite',
-              filter: 'blur(1px)',
-            }} />
-          </div>
-          <div style={{
-            position: 'absolute', top: 70, left: '7%',
-            width: 64, height: 64, border: '2px solid rgba(74,222,128,0.25)',
-            borderRadius: 16, transform: 'rotate(15deg)',
-            animation: 'floatYSlow 6s ease-in-out infinite',
-            pointerEvents: 'none',
-          }} />
-          <div style={{
-            position: 'absolute', bottom: 80, right: '8%',
-            width: 44, height: 44, border: '2px solid rgba(99,179,237,0.2)',
-            borderRadius: '50%',
-            animation: 'floatY 5s ease-in-out infinite',
-            pointerEvents: 'none',
-          }} />
-          <div style={{
-            position: 'absolute', top: 120, right: '18%',
-            width: 28, height: 28,
-            background: 'rgba(74,222,128,0.12)',
-            borderRadius: 8, transform: 'rotate(30deg)',
-            animation: 'floatYSlow 7s ease-in-out .5s infinite',
-            pointerEvents: 'none',
+            zIndex: 1
           }} />
 
-          <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', padding: '0 24px', maxWidth: 720 }}>
-            <h1 style={{
-              fontFamily: "'Bricolage Grotesque', sans-serif",
-              fontSize: 'clamp(2.2rem, 5vw, 3.8rem)',
-              fontWeight: 800, color: '#fff',
-              lineHeight: 1.08, letterSpacing: '-0.04em',
-              margin: '0 0 22px',
-              opacity: heroVisible ? 1 : 0,
-              transform: heroVisible ? 'translateY(0) skewY(0deg)' : 'translateY(40px) skewY(2deg)',
-              transition: 'opacity .75s ease .12s, transform .75s cubic-bezier(.34,1.3,.64,1) .12s',
-            }}>
-              Own a<br />
-              <span style={{
-                background: 'linear-gradient(90deg, #4bd557 0%, #7ded88 50%, #4bd557 100%)',
-                backgroundSize: '200% auto',
-                WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                animation: heroVisible ? 'glowPulse 3s ease-in-out infinite' : 'none',
-                display: 'inline-block',
+          {/* Grid Container */}
+          <div className="fr-hero-grid" style={{ position: 'relative', zIndex: 2 }}>
+            
+            {/* HERO LEFT COLUMN */}
+            <div className="fr-hero-left">
+
+
+              {/* Big Title */}
+              <h1 style={{
+                fontFamily: "'Bricolage Grotesque', sans-serif",
+                fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
+                fontWeight: 800, color: '#fff',
+                lineHeight: 1.08, letterSpacing: '-0.03em',
+                margin: '0 0 20px',
+                opacity: heroVisible ? 1 : 0,
+                transform: heroVisible ? 'translateY(0)' : 'translateY(30px)',
+                transition: 'opacity .75s ease .12s, transform .75s cubic-bezier(.34,1.3,.64,1) .12s',
               }}>
-                ScanForSafe Franchise
-              </span>
-            </h1>
+                Build a Smart Safety<br />Business with<br />
+                <span style={{
+                  background: 'linear-gradient(90deg, #4bd557 0%, #7ded88 50%, #4bd557 100%)',
+                  backgroundSize: '200% auto',
+                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
+                  animation: heroVisible ? 'glowPulse 3s ease-in-out infinite' : 'none',
+                  display: 'inline-block',
+                }}>
+                  ScanForSafe
+                </span>
+              </h1>
 
-            <p style={{
-              fontFamily: "'Instrument Sans', sans-serif",
-              fontSize: 16, color: 'rgba(186,230,253,0.85)',
-              lineHeight: 1.7, maxWidth: 580, margin: '0 auto 40px',
-              opacity: heroVisible ? 1 : 0,
-              transform: heroVisible ? 'translateY(0)' : 'translateY(24px)',
-              transition: 'opacity .7s ease .26s, transform .7s ease .26s',
-            }}>
-              Partner with India's smartest QR-based safety brand. Scale a high-yielding technology business with exclusive territories, high margins, and 100% advertising support.
-            </p>
+              {/* Subtext */}
+              <p style={{
+                fontFamily: "'Instrument Sans', sans-serif",
+                fontSize: 15.5, color: 'rgba(241,245,249,0.85)',
+                lineHeight: 1.65, margin: '0 0 28px',
+                opacity: heroVisible ? 1 : 0,
+                transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'opacity .7s ease .24s, transform .7s ease .24s',
+                maxWidth: 500,
+              }}>
+                Join the ScanForSafe partner network and bring innovative QR + NFC safety solutions to your city. Help protect vehicles, luggage, pets, children, senior citizens, and valuables while building a scalable and profitable business.
+              </p>
 
-            <div ref={statsRef} className="fr-stats-counter">
-              <StatItem num={30} suffix="%" label="Max Profit Margin" active={statsInView} delay={0} />
-              <div className="fr-stats-divider" />
-              <StatItem num={12} suffix=" hrs" label="Approval turnaround" active={statsInView} delay={0.15} />
-              <div className="fr-stats-divider" />
-              <StatItem num={90000} suffix="+" label="Est. Monthly ROI (₹)" active={statsInView} delay={0.3} />
-              <div className="fr-stats-divider" />
-              <StatItem num={100} suffix="%" label="Exclusive Territory" active={statsInView} delay={0.45} />
+              {/* Action Button */}
+              <button 
+                onClick={scrollToForm}
+                className="fr-hero-btn"
+                style={{
+                  opacity: heroVisible ? 1 : 0,
+                  transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
+                  transition: 'opacity .7s ease .32s, transform .7s ease .32s',
+                }}
+              >
+                APPLY FOR FRANCHISE
+              </button>
+
+              {/* Checklist Row */}
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: 6,
+                color: 'rgba(255,255,255,0.6)', fontSize: 11.5, fontWeight: 600,
+                marginTop: 18,
+                opacity: heroVisible ? 1 : 0,
+                transition: 'opacity .8s ease .4s',
+              }}>
+                <CheckCircle size={12} color="#4ade80" />
+                <span>Quick Application</span>
+                <span style={{ opacity: 0.4 }}>•</span>
+                <span>Expert Guidance</span>
+                <span style={{ opacity: 0.4 }}>•</span>
+                <span>Fast Onboarding</span>
+              </div>
+            </div>
+
+            {/* HERO RIGHT COLUMN */}
+            <div className="fr-hero-right">
+              {/* Glass Pills Badge Row */}
+              <div style={{ 
+                display: 'flex', gap: 10, marginBottom: 18, flexWrap: 'wrap', 
+                opacity: heroVisible ? 1 : 0,
+                transform: heroVisible ? 'translateY(0)' : 'translateY(20px)',
+                transition: 'opacity .75s ease .2s, transform .75s ease .2s',
+              }}>
+                <div className="fr-glass-pill">
+                  <Award className="fr-glass-pill-icon" size={24} strokeWidth={1.8} />
+                  <div className="fr-glass-pill-text">
+                    <span>India's Emerging</span>
+                    <span className="green-text">QR + NFC</span>
+                    <span>Safety Brand</span>
+                  </div>
+                </div>
+                <div className="fr-glass-pill">
+                  <Users className="fr-glass-pill-icon" size={24} strokeWidth={1.8} />
+                  <div className="fr-glass-pill-text">
+                    <span className="green-text">High Demand</span>
+                    <span>Across Multiple</span>
+                    <span>Segments</span>
+                  </div>
+                </div>
+                <div className="fr-glass-pill">
+                  <TrendingUp className="fr-glass-pill-icon" size={24} strokeWidth={1.8} />
+                  <div className="fr-glass-pill-text">
+                    <span className="green-text">Scalable</span>
+                    <span>Business</span>
+                    <span>Opportunity</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Composite mockup image */}
+              <div style={{
+                width: '100%',
+                opacity: heroVisible ? 1 : 0,
+                transform: heroVisible ? 'scale(1)' : 'scale(0.95)',
+                transition: 'opacity .85s cubic-bezier(.34,1.3,.64,1) .28s, transform .85s cubic-bezier(.34,1.3,.64,1) .28s',
+              }}>
+                <img 
+                  src="/franchise3.png" 
+                  alt="ScanForSafe Safety Products Ecosystem" 
+                  style={{
+                    width: '100%',
+                    height: 'auto',
+                    borderRadius: 24,
+                    boxShadow: '0 25px 60px rgba(0,0,0,0.35), 0 0 50px rgba(34,197,94,0.18)',
+                    border: '1px solid rgba(255,255,255,0.12)',
+                    display: 'block'
+                  }}
+                />
+              </div>
+            </div>
+
+          </div>
+
+          {/* ── OPPORTUNITIES CARD (WHITE CONTAINER) ── */}
+          <div style={{ position: 'relative', zIndex: 2, padding: '24px 24px 0' }}>
+            <div className="fr-opp-card">
+              {/* Header Title with horizontal divider lines */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16, justifyContent: 'center', marginBottom: 28 }}>
+                <div style={{ flex: 1, height: 1.5, background: 'linear-gradient(90deg, transparent, rgba(34,197,94,0.4))' }} />
+                <h3 style={{ 
+                  fontFamily: "'Outfit', sans-serif", 
+                  fontSize: 16.5, 
+                  fontWeight: 800, 
+                  color: '#0B2545',
+                  margin: 0,
+                  whiteSpace: 'nowrap',
+                  letterSpacing: '0.01em',
+                  textTransform: 'uppercase'
+                }}>
+                  A Growing Market. Multiple Opportunities.
+                </h3>
+                <div style={{ flex: 1, height: 1.5, background: 'linear-gradient(270deg, transparent, rgba(34,197,94,0.4))' }} />
+              </div>
+
+              {/* 6 Opportunities Columns */}
+              <div className="fr-opp-grid">
+                <div className="fr-opp-item">
+                  <div className="fr-opp-icon-box">
+                    <Car size={20} />
+                  </div>
+                  <div className="fr-opp-title">Vehicle Protection</div>
+                  <div className="fr-opp-desc">A large and growing automotive market</div>
+                </div>
+
+                <div className="fr-opp-item">
+                  <div className="fr-opp-icon-box">
+                    <Briefcase size={20} />
+                  </div>
+                  <div className="fr-opp-title">Luggage & Travel</div>
+                  <div className="fr-opp-desc">For travelers, students and professionals</div>
+                </div>
+
+                <div className="fr-opp-item">
+                  <div className="fr-opp-icon-box">
+                    <PawPrint size={20} />
+                  </div>
+                  <div className="fr-opp-title">Pet Safety</div>
+                  <div className="fr-opp-desc">Rising demand for pet protection tags</div>
+                </div>
+
+                <div className="fr-opp-item">
+                  <div className="fr-opp-icon-box">
+                    <Users size={20} />
+                  </div>
+                  <div className="fr-opp-title">Senior Citizen Care</div>
+                  <div className="fr-opp-desc">Essential smart wearables for elders</div>
+                </div>
+
+                <div className="fr-opp-item">
+                  <div className="fr-opp-icon-box">
+                    <GraduationCap size={20} />
+                  </div>
+                  <div className="fr-opp-title">Schools & ID</div>
+                  <div className="fr-opp-desc">Smart student IDs and visitor badges</div>
+                </div>
+
+                <div className="fr-opp-item">
+                  <div className="fr-opp-icon-box">
+                    <Shield size={20} />
+                  </div>
+                  <div className="fr-opp-title">Corporate Assets</div>
+                  <div className="fr-opp-desc">Protect company assets and employee devices</div>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, pointerEvents: 'none' }}>
-            <svg viewBox="0 0 1440 72" xmlns="http://www.w3.org/2000/svg" style={{ display: 'block' }}>
-              <path d="M0,48 C240,80 480,16 720,40 C960,64 1200,24 1440,48 L1440,72 L0,72 Z" fill="#f1f5f9" />
-            </svg>
+          {/* ── ADVANTAGES BAR (DARK DEEP GREEN STRIP) ── */}
+          <div style={{ position: 'relative', zIndex: 2, padding: '0 24px 16px' }}>
+            <div className="fr-adv-bar">
+              {/* 6 advantages columns */}
+              <div className="fr-adv-grid">
+                <div className="fr-adv-item">
+                  <div className="fr-adv-icon-box">
+                    <Smartphone size={15} />
+                  </div>
+                  <div>
+                    <div className="fr-adv-title">QR + NFC Tech</div>
+                    <div className="fr-adv-desc">Advanced & reliable connectivity</div>
+                  </div>
+                </div>
+
+                <div className="fr-adv-item">
+                  <div className="fr-adv-icon-box">
+                    <ShieldCheck size={15} />
+                  </div>
+                  <div>
+                    <div className="fr-adv-title">Made in India</div>
+                    <div className="fr-adv-desc">Proudly designed & developed locally</div>
+                  </div>
+                </div>
+
+                <div className="fr-adv-item">
+                  <div className="fr-adv-icon-box">
+                    <Truck size={15} />
+                  </div>
+                  <div>
+                    <div className="fr-adv-title">Nationwide Delivery</div>
+                    <div className="fr-adv-desc">Fast, secure pan-India delivery</div>
+                  </div>
+                </div>
+
+                <div className="fr-adv-item">
+                  <div className="fr-adv-icon-box">
+                    <Headset size={15} />
+                  </div>
+                  <div>
+                    <div className="fr-adv-title">Dedicated Support</div>
+                    <div className="fr-adv-desc">Onboarding & local sales training</div>
+                  </div>
+                </div>
+
+                <div className="fr-adv-item">
+                  <div className="fr-adv-icon-box">
+                    <Users size={15} />
+                  </div>
+                  <div>
+                    <div className="fr-adv-title">Strong Product Portfolio</div>
+                    <div className="fr-adv-desc">Diverse categories for every customer</div>
+                  </div>
+                </div>
+
+                <div className="fr-adv-item">
+                  <div className="fr-adv-icon-box">
+                    <Map size={15} />
+                  </div>
+                  <div>
+                    <div className="fr-adv-title">Territory-Based Growth</div>
+                    <div className="fr-adv-desc">Grow in exclusive pincode zones</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Tagline */}
+              <div className="fr-adv-tagline">
+                Be part of a mission to make safety smarter. Be a ScanForSafe Partner.
+              </div>
+            </div>
           </div>
+
         </section>
 
         {/* ── MAIN CONTENT ── */}
@@ -898,7 +1307,7 @@ export default function Franchise() {
             </div>
 
             {/* RIGHT: Form */}
-            <div className="fr-form-card">
+            <div className="fr-form-card" id="apply-form">
               {!submitted ? (
                 <>
                   <div className="fr-form-head">
