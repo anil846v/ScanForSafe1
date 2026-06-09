@@ -18,6 +18,7 @@ import TestimonialsPage from './pages/TestimonialsPage'
 import LoginPage from './pages/LoginPage'
 import PreRegistrationForm from './components/PreRegistrationForm'
 import Franchise from './pages/Franchise'
+import AboutUs from './pages/AboutUs'
 
 export default function App() {
   const location = useLocation()
@@ -55,6 +56,7 @@ export default function App() {
           <Route path="/qr-form" element={<QrCodeForm />} />
           <Route path="/preregister" element={<PreRegistrationForm />} />
           <Route path="/franchise" element={<Franchise />} />
+          <Route path="/about" element={<AboutUs />} />
         </Routes>
       </main>
       {!isLoginPage && <Footer />}
@@ -125,13 +127,13 @@ export default function App() {
               animation: zoomInModal 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
             }
           `}</style>
-          
+
           <div className="sfs-popup-card" onClick={(e) => e.stopPropagation()}>
             {/* Close Button */}
             <button className="sfs-popup-close" onClick={() => setShowPopup(false)}>
               ✕
             </button>
-            
+
             {/* Popup Image */}
             <img
               src="/popup.png"

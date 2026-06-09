@@ -55,9 +55,8 @@ export default function NFCSection() {
   return (
     <section
       style={{
-        background:
-          'linear-gradient(135deg,#0B2545 0%,#2ebd3a 50%,#081c35 100%)',
-        padding: '60px 0',
+        background: 'linear-gradient(135deg,#0B2545 0%,#2ebd3a 50%,#081c35 100%)',
+        padding: '52px 0 0',
         overflow: 'hidden',
         position: 'relative',
       }}
@@ -68,8 +67,7 @@ export default function NFCSection() {
           position: 'absolute',
           inset: 0,
           opacity: 0.07,
-          backgroundImage:
-            'radial-gradient(circle, #ffffff 1px, transparent 1px)',
+          backgroundImage: 'radial-gradient(circle, #ffffff 1px, transparent 1px)',
           backgroundSize: '28px 28px',
           pointerEvents: 'none',
         }}
@@ -77,31 +75,25 @@ export default function NFCSection() {
 
       <div
         style={{
-          maxWidth: 1200,
+          maxWidth: 1160,
           margin: '0 auto',
-          padding: '0 24px',
+          padding: '0 32px',
           position: 'relative',
           zIndex: 1,
         }}
       >
         <div
-          className="nfc-grid"
+          className="nfc-main-grid"
           style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 1fr',
-            gap: 50,
+            gridTemplateColumns: '1fr 1.5fr',
+            gap: 56,
             alignItems: 'center',
           }}
         >
-          {/* LEFT (Unaltered, as requested) */}
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
-            <div
-              style={{
-                position: 'relative',
-                width: 280,
-                height: 280,
-              }}
-            >
+          {/* ── LEFT: NFC pulse animation ── */}
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+            <div style={{ position: 'relative', width: 280, height: 280 }}>
               {/* pulse rings */}
               {[1, 2, 3].map((i) => (
                 <div
@@ -111,20 +103,17 @@ export default function NFCSection() {
                     inset: 0,
                     borderRadius: '50%',
                     border: '1.5px solid rgba(232,248,235,0.3)',
-                    animation: `nfcPulse ${
-                      1.6 + i * 0.5
-                    }s ease-out ${i * 0.4}s infinite`,
+                    animation: `nfcPulse ${1.6 + i * 0.5}s ease-out ${i * 0.4}s infinite`,
                   }}
                 />
               ))}
 
-              {/* center */}
+              {/* center orb */}
               <div
                 style={{
                   position: 'absolute',
                   inset: '50px',
-                  background:
-                    'linear-gradient(135deg,rgba(255,255,255,0.15),rgba(255,255,255,0.08))',
+                  background: 'linear-gradient(135deg,rgba(255,255,255,0.15),rgba(255,255,255,0.08))',
                   backdropFilter: 'blur(12px)',
                   borderRadius: '50%',
                   border: '1.5px solid rgba(255,255,255,0.2)',
@@ -135,26 +124,14 @@ export default function NFCSection() {
                 }}
               >
                 <div style={{ textAlign: 'center' }}>
-                  <Wifi
-                    size={48}
-                    color="#e8f8eb"
-                    strokeWidth={1.5}
-                  />
-
-                  <div
-                    style={{
-                      color: '#e8f8eb',
-                      fontWeight: 800,
-                      fontSize: 14,
-                      marginTop: 8,
-                    }}
-                  >
+                  <Wifi size={48} color="#e8f8eb" strokeWidth={1.5} />
+                  <div style={{ color: '#e8f8eb', fontWeight: 800, fontSize: 14, marginTop: 8 }}>
                     NFC Ready
                   </div>
                 </div>
               </div>
 
-              {/* chips */}
+              {/* floating chips */}
               {[
                 {
                   top: '8%',
@@ -176,12 +153,12 @@ export default function NFCSection() {
                   label: 'No App Needed',
                   icon: <Zap size={16} color="#2ebd3a" />,
                 },
-              ].map(({ transform, ...rest }) => (
+              ].map(({ transform, icon, label, ...pos }) => (
                 <div
-                  key={rest.label}
+                  key={label}
                   style={{
                     position: 'absolute',
-                    ...rest,
+                    ...pos,
                     transform,
                     background: '#e8f8eb',
                     borderRadius: 12,
@@ -196,15 +173,16 @@ export default function NFCSection() {
                     whiteSpace: 'nowrap',
                   }}
                 >
-                  {rest.icon}
-                  {rest.label}
+                  {icon}
+                  {label}
                 </div>
               ))}
             </div>
           </div>
 
-          {/* RIGHT */}
+          {/* ── RIGHT: text + cards ── */}
           <div>
+            {/* pill badge */}
             <div
               style={{
                 display: 'inline-flex',
@@ -212,39 +190,41 @@ export default function NFCSection() {
                 gap: 8,
                 padding: '6px 14px',
                 borderRadius: 100,
-                background: 'rgba(46, 189, 58, 0.15)',
-                border: '1px solid rgba(46, 189, 58, 0.25)',
-                marginBottom: 16,
+                background: 'rgba(46,189,58,0.15)',
+                border: '1px solid rgba(46,189,58,0.30)',
+                marginBottom: 18,
               }}
             >
-              <Wifi size={14} color="#4ade80" />
+              <Wifi size={13} color="#4ade80" />
               <span
                 style={{
                   fontSize: 11,
                   fontWeight: 700,
                   color: '#4ade80',
                   textTransform: 'uppercase',
-                  letterSpacing: '0.05em',
+                  letterSpacing: '0.06em',
                 }}
               >
                 NFC Technology
               </span>
             </div>
 
+            {/* heading */}
             <h2
               style={{
-                fontSize: 'clamp(32px, 3.8vw, 46px)',
+                fontSize: 'clamp(28px,3.8vw,46px)',
                 fontWeight: 800,
                 color: '#ffffff',
-                margin: '0 0 16px',
-                lineHeight: 1.15,
-                letterSpacing: '-0.02em',
+                margin: '0 0 14px',
+                lineHeight: 1.12,
+                letterSpacing: '-0.025em',
               }}
             >
-              NFC Technology – <br />
+              NFC Technology —{' '}
+              <br />
               <span
                 style={{
-                  background: 'linear-gradient(90deg, #4ade80 0%, #2ebd3a 100%)',
+                  background: 'linear-gradient(90deg,#4ade80 0%,#2ebd3a 100%)',
                   WebkitBackgroundClip: 'text',
                   WebkitTextFillColor: 'transparent',
                 }}
@@ -253,26 +233,26 @@ export default function NFCSection() {
               </span>
             </h2>
 
+            {/* description */}
             <p
-              className="nfc-desc"
               style={{
-                color: 'rgba(255, 255, 255, 0.7)',
-                fontSize: '16px',
-                lineHeight: '1.6',
-                marginBottom: '32px',
-                maxWidth: '560px',
+                color: 'rgba(255,255,255,0.72)',
+                fontSize: 15.5,
+                lineHeight: 1.65,
+                margin: '0 0 24px',
+                maxWidth: 520,
               }}
             >
               Tap any NFC-enabled smartphone to securely connect with the owner or access emergency contact information when needed. No app. No hassle. Just a simple tap.
             </p>
 
+            {/* feature cards */}
             <div
               className="nfc-features-grid"
               style={{
                 display: 'grid',
                 gridTemplateColumns: '1fr 1fr',
-                gap: '16px',
-                marginBottom: '32px',
+                gap: '12px',
               }}
             >
               {cards.map(({ icon: Icon, title, sub, fullWidth }) => (
@@ -281,14 +261,14 @@ export default function NFCSection() {
                   className="nfc-feature-card"
                   style={{
                     gridColumn: fullWidth ? '1 / -1' : 'auto',
-                    background: 'rgba(6, 26, 14, 0.4)',
+                    background: 'rgba(6,26,14,0.42)',
                     backdropFilter: 'blur(10px)',
-                    border: '1px solid rgba(46, 189, 58, 0.15)',
-                    borderRadius: '16px',
-                    padding: '16px 20px',
+                    border: '1px solid rgba(46,189,58,0.15)',
+                    borderRadius: '14px',
+                    padding: '14px 18px',
                     display: 'flex',
                     alignItems: 'center',
-                    gap: '16px',
+                    gap: '14px',
                   }}
                 >
                   <div
@@ -296,8 +276,8 @@ export default function NFCSection() {
                       width: '44px',
                       height: '44px',
                       borderRadius: '12px',
-                      background: 'rgba(46, 189, 58, 0.15)',
-                      border: '1px solid rgba(46, 189, 58, 0.3)',
+                      background: 'rgba(46,189,58,0.18)',
+                      border: '1px solid rgba(46,189,58,0.30)',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
@@ -306,24 +286,21 @@ export default function NFCSection() {
                   >
                     <Icon size={20} color="#4ade80" />
                   </div>
-
                   <div>
                     <div
-                      className="nfc-card-title"
                       style={{
                         color: '#ffffff',
                         fontWeight: 700,
-                        fontSize: '15px',
-                        marginBottom: '4px',
+                        fontSize: '14.5px',
+                        marginBottom: '3px',
                       }}
                     >
                       {title}
                     </div>
                     <div
-                      className="nfc-card-sub"
                       style={{
-                        color: 'rgba(255, 255, 255, 0.65)',
-                        fontSize: '13px',
+                        color: 'rgba(255,255,255,0.62)',
+                        fontSize: '12.5px',
                         lineHeight: '1.4',
                       }}
                     >
@@ -334,161 +311,110 @@ export default function NFCSection() {
               ))}
             </div>
           </div>
+        </div>
+      </div>
 
-          {/* Bottom Products Container */}
+      {/* ── Products bar — full bleed at bottom ── */}
+      <div
+        style={{
+          borderTop: '1px solid rgba(46,189,58,0.18)',
+          background: 'rgba(6,26,14,0.35)',
+          backdropFilter: 'blur(8px)',
+          padding: '18px 32px',
+          marginTop: '36px',
+          width: '100%',
+          boxSizing: 'border-box',
+        }}
+      >
+        <div style={{ maxWidth: 1160, margin: '0 auto' }}>
           <div
+            className="products-flex-container"
             style={{
-              gridColumn: '1 / -1',
-              border: '1px solid rgba(46, 189, 58, 0.2)',
-              borderRadius: '24px',
-              background: 'rgba(6, 26, 14, 0.3)',
-              backdropFilter: 'blur(8px)',
-              padding: '24px',
-              marginTop: '20px',
-              width: '100%',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+              flexWrap: 'wrap',
+              gap: '12px',
             }}
           >
-            <div
-              style={{
-                color: '#ffffff',
-                fontSize: '14px',
-                fontWeight: 700,
-                textTransform: 'uppercase',
-                letterSpacing: '0.05em',
-                marginBottom: '20px',
-                textAlign: 'left',
-              }}
-            >
-              Available Across ScanForSafe Products
-            </div>
-
-            <div
-              className="products-flex-container"
-              style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                flexWrap: 'wrap',
-                gap: '16px',
-              }}
-            >
-              {products.map((prod, index) => (
-                <Fragment key={prod.name}>
-                  {index > 0 && (
-                    <div
-                      className="product-divider"
-                      style={{
-                        width: '1px',
-                        height: '24px',
-                        background: 'rgba(46, 189, 58, 0.25)',
-                        alignSelf: 'center',
-                      }}
-                    />
-                  )}
+            {products.map((prod, index) => (
+              <Fragment key={prod.name}>
+                {index > 0 && (
+                  <div
+                    className="product-divider"
+                    style={{
+                      width: '1px',
+                      height: '22px',
+                      background: 'rgba(46,189,58,0.25)',
+                      alignSelf: 'center',
+                    }}
+                  />
+                )}
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '9px',
+                    flex: '1',
+                    justifyContent: 'center',
+                    minWidth: '130px',
+                  }}
+                >
                   <div
                     style={{
+                      width: '30px',
+                      height: '30px',
+                      borderRadius: '50%',
+                      background: 'rgba(46,189,58,0.15)',
                       display: 'flex',
                       alignItems: 'center',
-                      gap: '10px',
-                      flex: '1',
                       justifyContent: 'center',
-                      minWidth: '150px',
+                      flexShrink: 0,
+                      border: '1px solid rgba(46,189,58,0.28)',
                     }}
                   >
-                    <div
-                      style={{
-                        width: '32px',
-                        height: '32px',
-                        borderRadius: '50%',
-                        background: 'rgba(46, 189, 58, 0.15)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        flexShrink: 0,
-                        border: '1px solid rgba(46, 189, 58, 0.3)',
-                      }}
-                    >
-                      <prod.icon size={16} color="#4ade80" />
-                    </div>
-                    <span
-                      style={{
-                        color: '#e8f8eb',
-                        fontSize: '14px',
-                        fontWeight: 600,
-                        whiteSpace: 'nowrap',
-                      }}
-                    >
-                      {prod.name}
-                    </span>
+                    <prod.icon size={15} color="#4ade80" />
                   </div>
-                </Fragment>
-              ))}
-            </div>
+                  <span
+                    style={{
+                      color: '#e8f8eb',
+                      fontSize: '13.5px',
+                      fontWeight: 600,
+                      whiteSpace: 'nowrap',
+                    }}
+                  >
+                    {prod.name}
+                  </span>
+                </div>
+              </Fragment>
+            ))}
           </div>
         </div>
       </div>
 
       <style>{`
         @keyframes nfcPulse {
-          0% {
-            transform: scale(0.8);
-            opacity: 0.8;
-          }
-
-          100% {
-            transform: scale(1.8);
-            opacity: 0;
-          }
+          0%   { transform: scale(0.85); opacity: 0.75; }
+          100% { transform: scale(1.9);  opacity: 0; }
         }
-
         .nfc-feature-card {
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+          transition: all 0.28s cubic-bezier(0.4,0,0.2,1) !important;
         }
         .nfc-feature-card:hover {
           transform: translateY(-2px);
-          border-color: rgba(46, 189, 58, 0.35) !important;
-          background: rgba(6, 26, 14, 0.55) !important;
-          box-shadow: 0 10px 30px rgba(46, 189, 58, 0.08);
+          border-color: rgba(46,189,58,0.35) !important;
+          background: rgba(6,26,14,0.60) !important;
+          box-shadow: 0 8px 28px rgba(46,189,58,0.10);
         }
-
         @media (max-width: 1024px) {
-          .product-divider {
-            display: none !important;
-          }
-          .products-flex-container {
-            justify-content: center !important;
-            gap: 20px !important;
-          }
+          .product-divider { display: none !important; }
+          .products-flex-container { justify-content: center !important; gap: 18px !important; }
         }
-
-        @media (max-width: 768px) {
-          .nfc-grid {
-            grid-template-columns: 1fr !important;
-            gap: 40px !important;
-          }
-        }
-        @media (min-width: 601px) and (max-width: 1024px) {
-          .nfc-desc {
-            font-size: 17.5px !important;
-            line-height: 1.75 !important;
-          }
-          .nfc-card-title {
-            font-size: 15.5px !important;
-          }
-          .nfc-card-sub {
-            font-size: 13.5px !important;
-          }
-          .nfc-bottom-title {
-            font-size: 15.5px !important;
-          }
-          .nfc-bottom-sub {
-            font-size: 13.5px !important;
-          }
+        @media (max-width: 820px) {
+          .nfc-main-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
         }
         @media (max-width: 480px) {
-          .nfc-features-grid {
-            grid-template-columns: 1fr !important;
-          }
+          .nfc-features-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </section>

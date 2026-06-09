@@ -1,7 +1,170 @@
 import { useNavigate } from "react-router-dom";
 
+// ─── MAIN CARD ICONS (large, bold, 72×72 viewBox) ────────────────────────────
+
+const IconLink = () => (
+  <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="28" cy="44" r="12" stroke="#3b82f6" strokeWidth="3.2" strokeLinecap="round"/>
+    <circle cx="44" cy="28" r="12" stroke="#3b82f6" strokeWidth="3.2" strokeLinecap="round"/>
+    <line x1="34" y1="38" x2="38" y2="34" stroke="#3b82f6" strokeWidth="3.2" strokeLinecap="round"/>
+    <path d="M50 18 L56 12 M56 22 L62 22 M50 12 L50 6" stroke="#93c5fd" strokeWidth="2.5" strokeLinecap="round"/>
+  </svg>
+);
+
+const IconActivation = () => (
+  <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="28" cy="22" r="10" stroke="#7c3aed" strokeWidth="3.2" strokeLinecap="round"/>
+    <path d="M10 58 C10 44 46 44 46 58" stroke="#7c3aed" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"/>
+    <circle cx="52" cy="46" r="14" fill="#ede9fe" stroke="#7c3aed" strokeWidth="3"/>
+    <path d="M45 46 L50 51 L59 41" stroke="#7c3aed" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const IconWallet = () => (
+  <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="10" y="22" width="52" height="36" rx="7" fill="#dcfce7" stroke="#16a34a" strokeWidth="3.2"/>
+    <path d="M10 34 L62 34" stroke="#16a34a" strokeWidth="3" strokeLinecap="round"/>
+    <rect x="42" y="40" width="16" height="11" rx="5.5" fill="#16a34a"/>
+    <circle cx="50" cy="45.5" r="2.5" fill="#dcfce7"/>
+    <path d="M20 18 L20 15 C20 12 24 10 28 10 L44 10 C48 10 52 12 52 15 L52 18" stroke="#16a34a" strokeWidth="3" strokeLinecap="round"/>
+  </svg>
+);
+
+// ─── CATEGORY ICONS (compact, 36×36 viewBox, bold lines) ─────────────────────
+
+const CatVehicle = () => (
+  <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="5" y="18" width="30" height="13" rx="4" fill="#dcfce7" stroke="#16a34a" strokeWidth="2.2"/>
+    <path d="M8 18 L12 9 H28 L32 18" stroke="#16a34a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+    <circle cx="13" cy="31" r="4" fill="#16a34a"/>
+    <circle cx="13" cy="31" r="1.8" fill="#dcfce7"/>
+    <circle cx="27" cy="31" r="4" fill="#16a34a"/>
+    <circle cx="27" cy="31" r="1.8" fill="#dcfce7"/>
+    <line x1="5" y1="23" x2="35" y2="23" stroke="#16a34a" strokeWidth="1.6" strokeLinecap="round"/>
+    <rect x="14" y="10" width="12" height="8" rx="2" fill="#bbf7d0" stroke="#16a34a" strokeWidth="1.5"/>
+  </svg>
+);
+
+const CatSenior = () => (
+  <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="20" cy="10" r="6" fill="#fef9c3" stroke="#ca8a04" strokeWidth="2.2"/>
+    <path d="M8 35 C8 26 32 26 32 35" stroke="#ca8a04" strokeWidth="2.2" strokeLinecap="round"/>
+    <circle cx="20" cy="10" r="2.5" fill="#fde68a"/>
+    <path d="M16 7 C17 4 23 4 24 7" stroke="#ca8a04" strokeWidth="1.8" strokeLinecap="round"/>
+    <path d="M13 22 L16 25 L21 20" stroke="#16a34a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+    <rect x="27" y="17" width="10" height="6" rx="3" fill="#fef9c3" stroke="#ca8a04" strokeWidth="1.8"/>
+  </svg>
+);
+
+const CatChild = () => (
+  <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="20" cy="10" r="6" fill="#dbeafe" stroke="#3b82f6" strokeWidth="2.2"/>
+    <path d="M8 35 C8 26 32 26 32 35" stroke="#3b82f6" strokeWidth="2.2" strokeLinecap="round"/>
+    <circle cx="17" cy="11" r="1.2" fill="#3b82f6"/>
+    <circle cx="23" cy="11" r="1.2" fill="#3b82f6"/>
+    <path d="M17 14 C18 16 22 16 23 14" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M13 20 L16 23 L21 18" stroke="#16a34a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+    <path d="M28 5 L32 9 L27 14" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const CatPet = () => (
+  <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="10" cy="12" rx="4" ry="5" fill="#fce7f3" stroke="#ec4899" strokeWidth="2"/>
+    <ellipse cx="30" cy="12" rx="4" ry="5" fill="#fce7f3" stroke="#ec4899" strokeWidth="2"/>
+    <ellipse cx="16" cy="8" rx="3.5" ry="4.5" fill="#fce7f3" stroke="#ec4899" strokeWidth="2"/>
+    <ellipse cx="24" cy="8" rx="3.5" ry="4.5" fill="#fce7f3" stroke="#ec4899" strokeWidth="2"/>
+    <path d="M13 22 C13 31 20 37 20 37 C20 37 27 31 27 22 A7 7 0 0 0 13 22 Z" fill="#fce7f3" stroke="#ec4899" strokeWidth="2.2" strokeLinejoin="round"/>
+    <ellipse cx="20" cy="27" rx="3.5" ry="2.5" fill="#ec4899" opacity="0.45"/>
+  </svg>
+);
+
+const CatLuggage = () => (
+  <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="14" width="24" height="20" rx="4" fill="#dbeafe" stroke="#3b82f6" strokeWidth="2.2"/>
+    <path d="M25 14 L25 10 C25 8 22 7 20 7 C18 7 15 8 15 10 L15 14" stroke="#3b82f6" strokeWidth="2.2" strokeLinecap="round"/>
+    <line x1="20" y1="20" x2="20" y2="28" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round"/>
+    <line x1="16" y1="24" x2="24" y2="24" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round"/>
+    <line x1="8" y1="20" x2="32" y2="20" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2.5 2.5"/>
+    <rect x="6" y="29" width="4" height="6" rx="2" fill="#93c5fd"/>
+    <rect x="30" y="29" width="4" height="6" rx="2" fill="#93c5fd"/>
+  </svg>
+);
+
+// ─── TRUST BAR ICONS ──────────────────────────────────────────────────────────
+
+const TrustShield = () => (
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+    <path d="M13 3 L22 6.5 V12.5 C22 18 17.5 22 13 24 C8.5 22 4 18 4 12.5 V6.5 Z" fill="#dcfce7" stroke="#16a34a" strokeWidth="1.8" strokeLinejoin="round"/>
+    <path d="M9 13 L12 16 L17 10" stroke="#16a34a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const TrustLock = () => (
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+    <rect x="5" y="12" width="16" height="11" rx="3" fill="#dbeafe" stroke="#3b82f6" strokeWidth="1.8"/>
+    <path d="M9 12 V9 C9 6.2 17 6.2 17 9 V12" stroke="#3b82f6" strokeWidth="1.8" strokeLinecap="round"/>
+    <circle cx="13" cy="17" r="2" fill="#3b82f6"/>
+    <line x1="13" y1="19" x2="13" y2="21" stroke="#3b82f6" strokeWidth="1.6" strokeLinecap="round"/>
+  </svg>
+);
+
+const TrustCheck = () => (
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+    <circle cx="13" cy="13" r="10" fill="#dcfce7" stroke="#16a34a" strokeWidth="1.8"/>
+    <path d="M8 13 L11.5 16.5 L18 9" stroke="#16a34a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+const TrustTag = () => (
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+    <path d="M13 3 H7 C5 3 4 4 4 6 V12 L14 22 L22 14 Z" fill="#fef9c3" stroke="#ca8a04" strokeWidth="1.8" strokeLinejoin="round"/>
+    <circle cx="9" cy="9" r="1.8" fill="#ca8a04"/>
+    <path d="M16 7 L20 11" stroke="#ca8a04" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>
+);
+
+const TrustHeadset = () => (
+  <svg width="26" height="26" viewBox="0 0 26 26" fill="none">
+    <path d="M4 13 C4 7.5 9 3 13 3 C17 3 22 7.5 22 13" stroke="#7c3aed" strokeWidth="1.8" strokeLinecap="round"/>
+    <rect x="3" y="12" width="4" height="7" rx="2" fill="#ede9fe" stroke="#7c3aed" strokeWidth="1.6"/>
+    <rect x="19" y="12" width="4" height="7" rx="2" fill="#ede9fe" stroke="#7c3aed" strokeWidth="1.6"/>
+    <path d="M23 18 V20 C23 21.7 21.7 23 20 23 H16" stroke="#7c3aed" strokeWidth="1.6" strokeLinecap="round"/>
+    <rect x="13" y="21" width="5" height="3.5" rx="1.75" fill="#ede9fe" stroke="#7c3aed" strokeWidth="1.4"/>
+  </svg>
+);
+
+const IconGiftBtn = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+    <rect x="3" y="9" width="18" height="13" rx="2" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+    <line x1="3" y1="13" x2="21" y2="13" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+    <line x1="12" y1="9" x2="12" y2="22" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+    <path d="M8.5 9 C8.5 6 10 4 12 4 C14 4 15.5 6 15.5 9" stroke="white" strokeWidth="2" strokeLinecap="round"/>
+    <path d="M9 4 C7 2 5 4 7 6 L9 9" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
+    <path d="M15 4 C17 2 19 4 17 6 L15 9" stroke="white" strokeWidth="1.8" strokeLinecap="round"/>
+  </svg>
+);
+
+// ─── Main Component ────────────────────────────────────────────────────────────
+
 export default function ReferralSection() {
   const navigate = useNavigate();
+
+  const categories = [
+    { Icon: CatVehicle,  label: "Vehicle\nTags",       bg: "#f0fdf4", border: "#bbf7d0" },
+    { Icon: CatSenior,   label: "Senior\nBands",       bg: "#fffbeb", border: "#fde68a" },
+    { Icon: CatChild,    label: "Child\nTags",         bg: "#eff6ff", border: "#bfdbfe" },
+    { Icon: CatPet,      label: "Pet\nTags",           bg: "#fdf2f8", border: "#fbcfe8" },
+    { Icon: CatLuggage,  label: "Luggage\nTags",       bg: "#eff6ff", border: "#bfdbfe" },
+  ];
+
+  const trustItems = [
+    { Icon: TrustShield,  bg: "#dcfce7", title: "100% Safe",         sub: "and Secure" },
+    { Icon: TrustLock,    bg: "#dbeafe", title: "Your Data",         sub: "Remains Private" },
+    { Icon: TrustCheck,   bg: "#dcfce7", title: "Trusted by",        sub: "Thousands" },
+    { Icon: TrustTag,     bg: "#fef9c3", title: "Exclusive Rewards", sub: "& Offers" },
+    { Icon: TrustHeadset, bg: "#ede9fe", title: "Dedicated",         sub: "Support" },
+  ];
 
   return (
     <section style={{
@@ -43,7 +206,9 @@ export default function ReferralSection() {
           max-width: 580px; margin: 0 auto 36px;
         }
 
-        .rs-row { display: flex; align-items: stretch; gap: 0; margin-bottom: 16px; }
+        .rs-row {
+          display: flex; align-items: stretch; gap: 0; margin-bottom: 16px;
+        }
 
         .rs-card {
           flex: 1; background: #fff; border: 1.5px solid #e2ece3;
@@ -61,9 +226,9 @@ export default function ReferralSection() {
         }
 
         .rs-icon-circle {
-          width: 100px; height: 100px; border-radius: 50%;
+          width: 110px; height: 110px; border-radius: 50%;
           display: flex; align-items: center; justify-content: center;
-          margin: 6px 0 20px;
+          margin: 6px 0 22px;
         }
 
         .rs-card-title {
@@ -86,17 +251,25 @@ export default function ReferralSection() {
           align-items: center; justify-content: center; padding-bottom: 80px;
         }
 
+        /* ── Category icons: single row, no wrap ── */
         .rs-cats {
-          display: flex; gap: 7px; align-items: flex-start;
-          justify-content: center; flex-wrap: wrap; width: 100%; margin-top: 4px;
+          display: flex; gap: 6px; align-items: flex-start;
+          justify-content: center; width: 100%; margin-top: 6px;
+          flex-wrap: nowrap;
         }
-        .rs-cat { display: flex; flex-direction: column; align-items: center; gap: 4px; min-width: 40px; }
+        .rs-cat {
+          display: flex; flex-direction: column; align-items: center;
+          gap: 5px; flex: 1; min-width: 0;
+        }
         .rs-cat-box {
-          width: 38px; height: 38px; border-radius: 10px;
+          width: 48px; height: 48px; border-radius: 12px;
           display: flex; align-items: center; justify-content: center;
+          flex-shrink: 0;
         }
-        .rs-cat-box img { width: 24px; height: 24px; object-fit: contain; }
-        .rs-cat-label { font-size: 9.5px; font-weight: 500; color: #5a7060; text-align: center; line-height: 1.3; }
+        .rs-cat-label {
+          font-size: 9px; font-weight: 600; color: #5a7060;
+          text-align: center; line-height: 1.3; white-space: pre-line;
+        }
 
         .rs-trust {
           display: flex; align-items: stretch; background: #fff;
@@ -104,17 +277,19 @@ export default function ReferralSection() {
           margin-bottom: 32px; overflow: hidden;
         }
         .rs-trust-item {
-          flex: 1; display: flex; align-items: center; gap: 11px;
-          padding: 16px 18px; border-right: 1.5px solid #e8ede9;
+          flex: 1; display: flex; align-items: center; gap: 10px;
+          padding: 14px 14px; border-right: 1.5px solid #e8ede9;
         }
         .rs-trust-item:last-child { border-right: none; }
         .rs-trust-icon {
-          width: 46px; height: 46px; border-radius: 50%;
+          width: 44px; height: 44px; border-radius: 50%;
           display: flex; align-items: center; justify-content: center; flex-shrink: 0;
         }
-        .rs-trust-icon img { width: 28px; height: 28px; object-fit: contain; }
-        .rs-trust-title { font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 700; color: #0d1a0f; line-height: 1.25; }
-        .rs-trust-sub { font-size: 11.5px; color: #7a9382; margin-top: 2px; }
+        .rs-trust-title {
+          font-family: 'Sora', sans-serif; font-size: 12px;
+          font-weight: 700; color: #0d1a0f; line-height: 1.25;
+        }
+        .rs-trust-sub { font-size: 11px; color: #7a9382; margin-top: 2px; }
 
         .rs-cta {
           display: inline-flex; align-items: center; gap: 10px;
@@ -122,7 +297,10 @@ export default function ReferralSection() {
           background: linear-gradient(135deg, #166534 0%, #16a34a 50%, #0f4a2a 100%);
           color: #fff; font-family: 'Sora', sans-serif; font-size: 16px;
           font-weight: 700; border: none; cursor: pointer; letter-spacing: -0.01em;
+          transition: opacity 0.2s, transform 0.15s;
         }
+        .rs-cta:hover { opacity: 0.9; transform: translateY(-2px); }
+
         .rs-sub {
           display: flex; align-items: center; gap: 6px; justify-content: center;
           font-size: 13px; color: #5a7060; margin-top: 14px;
@@ -132,6 +310,7 @@ export default function ReferralSection() {
           .rs-row { flex-direction: column; gap: 12px; }
           .rs-arrow { display: none; }
           .rs-card { min-height: unset; width: 100%; }
+          .rs-cats { flex-wrap: wrap; }
           .rs-trust { flex-wrap: wrap; }
           .rs-trust-item { flex: 0 0 calc(50% - 1px); border-right: none; border-bottom: 1.5px solid #e8ede9; }
           .rs-trust-item:nth-child(odd) { border-right: 1.5px solid #e8ede9; }
@@ -172,12 +351,8 @@ export default function ReferralSection() {
           {/* Card 1 */}
           <div className="rs-card">
             <div className="rs-step" style={{ background: "#dbeafe", color: "#1d4ed8" }}>01</div>
-            <div className="rs-icon-circle" style={{ background: "#e8eeff" }}>
-              <img
-                src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@15.0.1/img/apple/64/1f517.png"
-                alt="link"
-                style={{ width: 68, height: 68 }}
-              />
+            <div className="rs-icon-circle" style={{ background: "#dbeafe" }}>
+              <IconLink />
             </div>
             <h3 className="rs-card-title">Share Your Referral Link</h3>
             <p className="rs-card-desc">
@@ -203,35 +378,20 @@ export default function ReferralSection() {
           {/* Card 2 */}
           <div className="rs-card">
             <div className="rs-step" style={{ background: "#ede9fe", color: "#6d28d9" }}>02</div>
-            <div className="rs-icon-circle" style={{ background: "#f0ebff" }}>
-              <img
-                src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@15.0.1/img/apple/64/1f46b.png"
-                alt="people"
-                style={{ width: 68, height: 68 }}
-              />
+            <div className="rs-icon-circle" style={{ background: "#ede9fe" }}>
+              <IconActivation />
             </div>
             <h3 className="rs-card-title">They Activate ScanForSafe</h3>
             <p className="rs-card-desc">
               When your friends purchase and activate any ScanForSafe product, the activation is linked to your referral.
             </p>
             <div className="rs-cats">
-              {[
-                { img: "1f697", alt: "car", label: "Vehicle\nTags", bg: "#f0fdf4", border: "#bbf7d0" },
-                { img: "1f474", alt: "senior", label: "Senior\nBands", bg: "#fffbeb", border: "#fde68a" },
-                { img: "1f476", alt: "child", label: "Child Safety\nTags", bg: "#eff6ff", border: "#bfdbfe" },
-                { img: "1f43e", alt: "paw", label: "Pet\nTags", bg: "#fdf2f8", border: "#fbcfe8" },
-                { img: "1f9f3", alt: "luggage", label: "Luggage\nTags", bg: "#eff6ff", border: "#bfdbfe" },
-              ].map((cat) => (
-                <div className="rs-cat" key={cat.alt}>
-                  <div className="rs-cat-box" style={{ background: cat.bg, border: `1.5px solid ${cat.border}` }}>
-                    <img
-                      src={`https://cdn.jsdelivr.net/npm/emoji-datasource-apple@15.0.1/img/apple/64/${cat.img}.png`}
-                      alt={cat.alt}
-                    />
+              {categories.map(({ Icon, label, bg, border }) => (
+                <div className="rs-cat" key={label}>
+                  <div className="rs-cat-box" style={{ background: bg, border: `1.5px solid ${border}` }}>
+                    <Icon />
                   </div>
-                  <span className="rs-cat-label">
-                    {cat.label.split("\n").map((l, i) => <span key={i} style={{ display: "block" }}>{l}</span>)}
-                  </span>
+                  <span className="rs-cat-label">{label}</span>
                 </div>
               ))}
             </div>
@@ -248,12 +408,8 @@ export default function ReferralSection() {
           {/* Card 3 */}
           <div className="rs-card">
             <div className="rs-step" style={{ background: "#dcfce7", color: "#16a34a" }}>03</div>
-            <div className="rs-icon-circle" style={{ background: "#e8f8ee" }}>
-              <img
-                src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@15.0.1/img/apple/64/1f381.png"
-                alt="gift"
-                style={{ width: 68, height: 68 }}
-              />
+            <div className="rs-icon-circle" style={{ background: "#dcfce7" }}>
+              <IconWallet />
             </div>
             <h3 className="rs-card-title">Earn Rewards</h3>
             <p className="rs-card-desc">
@@ -271,23 +427,14 @@ export default function ReferralSection() {
 
         {/* TRUST BAR */}
         <div className="rs-trust">
-          {[
-            { img: "1f6e1-fe0f", alt: "shield", bg: "#dcfce7", title: "100% Safe", sub: "and Secure" },
-            { img: "1f512",      alt: "lock",   bg: "#dbeafe", title: "Your Data", sub: "Remains Private" },
-            { img: "2705",       alt: "check",  bg: "#dcfce7", title: "Trusted by", sub: "Thousands" },
-            { img: "1f3f7-fe0f", alt: "tag",    bg: "#fef9c3", title: "Exclusive Rewards", sub: "& Offers" },
-            { img: "1f3a7",      alt: "headphones", bg: "#ede9fe", title: "Dedicated", sub: "Support" },
-          ].map((t, i) => (
+          {trustItems.map(({ Icon, bg, title, sub }, i) => (
             <div className="rs-trust-item" key={i}>
-              <div className="rs-trust-icon" style={{ background: t.bg }}>
-                <img
-                  src={`https://cdn.jsdelivr.net/npm/emoji-datasource-apple@15.0.1/img/apple/64/${t.img}.png`}
-                  alt={t.alt}
-                />
+              <div className="rs-trust-icon" style={{ background: bg }}>
+                <Icon />
               </div>
               <div>
-                <div className="rs-trust-title">{t.title}</div>
-                <div className="rs-trust-sub">{t.sub}</div>
+                <div className="rs-trust-title">{title}</div>
+                <div className="rs-trust-sub">{sub}</div>
               </div>
             </div>
           ))}
@@ -296,17 +443,12 @@ export default function ReferralSection() {
         {/* CTA */}
         <div style={{ textAlign: "center" }}>
           <button className="rs-cta" onClick={() => navigate("/qr-form")}>
-            <img
-              src="https://cdn.jsdelivr.net/npm/emoji-datasource-apple@15.0.1/img/apple/64/1f381.png"
-              alt="gift"
-              style={{ width: 20, height: 20 }}
-            />
+            <IconGiftBtn />
             Start Referring Today
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round">
               <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
             </svg>
           </button>
-
           <div className="rs-sub">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#16a34a" strokeWidth="2.2" strokeLinecap="round">
               <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>

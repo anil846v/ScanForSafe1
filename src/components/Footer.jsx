@@ -48,21 +48,22 @@ export default function Footer() {
   };
 
   const navLinks = [
-    { label: "Home", to: "/" },
-    { label: "Features", to: "/features" },
-    { label: "Use Cases", to: "/use-cases" },
+    { label: "Home",         to: "/" },
+    { label: "Features",     to: "/features" },
+    { label: "Use Cases",    to: "/use-cases" },
     { label: "How It Works", to: "/how-it-works" },
-    { label: "Franchise", to: "/franchise" },
-    { label: "Contact", to: "/contact" },
+    { label: "About Us",     to: "/about" },
+    { label: "Franchise",    to: "/franchise" },
+    { label: "Contact",      to: "/contact" },
   ];
 
   const socials = [
-    { Icon: FacebookIcon, href: "https://facebook.com/Scanforsafeinnovations", label: "Facebook", bg: "#1877F2" },
+    { Icon: FacebookIcon,  href: "https://facebook.com/Scanforsafeinnovations",      label: "Facebook",  bg: "#1877F2" },
     { Icon: InstagramIcon, href: "https://www.instagram.com/scanforsafeinnovations", label: "Instagram", bg: "linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)" },
-    { Icon: TwitterXIcon, href: "https://twitter.com", label: "X", bg: "#000" },
-    { Icon: LinkedInIcon, href: "https://linkedin.com", label: "LinkedIn", bg: "#0A66C2" },
-    { Icon: YoutubeIcon, href: "https://youtube.com", label: "YouTube", bg: "#FF0000" },
-    { Icon: TelegramIcon, href: "https://t.me/scanforsafe", label: "Telegram", bg: "#26A5E4" },
+    { Icon: TwitterXIcon,  href: "https://x.com/Scanforsafe99",                      label: "X",         bg: "#000" },
+    { Icon: LinkedInIcon,  href: "https://linkedin.com",                             label: "LinkedIn",  bg: "#0A66C2" },
+    { Icon: YoutubeIcon,   href: "https://www.youtube.com/@Scanforsafe",             label: "YouTube",   bg: "#FF0000" },
+    { Icon: TelegramIcon,  href: "https://t.me/scanforsafe",                         label: "Telegram",  bg: "#26A5E4" },
   ];
 
   const categories = [
@@ -98,27 +99,47 @@ export default function Footer() {
         @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800;900&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap');
 
         .ft-root {
-          background-color: #08111f;
-          background-image: radial-gradient(circle, rgba(46,189,58,0.18) 1px, transparent 1px);
-          background-size: 28px 28px;
+          position: relative;
           font-family: 'DM Sans', sans-serif;
           color: #e2e8f0;
           width: 100%;
-          position: relative;
+          overflow: hidden;
         }
-        .ft-root::before {
+
+        /* ── Background image layer ── */
+        .ft-bg {
+          position: absolute;
+          inset: 0;
+          background-image: url('/footer_bg.png');
+          background-size: cover;
+          background-position: center top;
+          background-repeat: no-repeat;
+          z-index: 0;
+        }
+        /* Dark overlay so text stays readable */
+        .ft-bg::after {
           content: '';
           position: absolute;
           inset: 0;
-          background: linear-gradient(180deg,
-            rgba(8,17,31,0.45) 0%,
-            rgba(8,17,31,0.15) 30%,
-            rgba(8,17,31,0.15) 70%,
-            rgba(8,17,31,0.55) 100%
+          background: linear-gradient(
+            180deg,
+            rgba(6,20,42,0.88) 0%,
+            rgba(6,20,42,0.82) 40%,
+            rgba(4,14,30,0.92) 80%,
+            rgba(3,10,22,0.97) 100%
           );
-          pointer-events: none;
-          z-index: 0;
         }
+
+        /* top shimmer line */
+        .ft-root::before {
+          content: '';
+          position: absolute;
+          top: 0; left: 0; right: 0;
+          height: 2px;
+          background: linear-gradient(90deg, transparent, #2ebd3a 40%, #4ade80 50%, #2ebd3a 60%, transparent);
+          z-index: 2;
+        }
+
         .ft-wrap {
           position: relative;
           z-index: 1;
@@ -127,39 +148,35 @@ export default function Footer() {
           padding: 0 clamp(16px, 4vw, 56px);
         }
 
-        /* Newsletter */
+        /* ── Newsletter ── */
         .ft-newsletter {
-          border: 1.5px solid rgba(46,189,58,0.30);
+          border: 1.5px solid rgba(46,189,58,0.28);
           border-radius: 18px;
-          background: rgba(8,17,31,0.75);
-          backdrop-filter: blur(2px);
+          background: rgba(6,20,42,0.55);
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
           padding: 20px 28px;
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 24px;
-          margin: 24px 0 0;
+          margin: 28px 0 0;
           flex-wrap: wrap;
         }
         .ft-nl-left { display: flex; align-items: center; gap: 16px; }
         .ft-nl-icon-box {
           width: 52px; height: 52px;
           border-radius: 14px;
-          background: rgba(46,189,58,0.12);
-          border: 1.5px solid rgba(46,189,58,0.25);
+          background: rgba(46,189,58,0.10);
+          border: 1.5px solid rgba(46,189,58,0.22);
           display: flex; align-items: center; justify-content: center;
-          color: #2ebd3a;
-          flex-shrink: 0;
-          position: relative;
+          color: #2ebd3a; flex-shrink: 0; position: relative;
         }
         .ft-nl-badge {
           position: absolute; bottom: -4px; right: -4px;
-          width: 18px; height: 18px;
-          border-radius: 50%;
-          background: #2ebd3a;
-          border: 2px solid #08111f;
-          display: flex; align-items: center; justify-content: center;
-          color: white;
+          width: 18px; height: 18px; border-radius: 50%;
+          background: #2ebd3a; border: 2px solid #06142A;
+          display: flex; align-items: center; justify-content: center; color: white;
         }
         .ft-nl-title { font-family: 'Sora', sans-serif; font-size: 16px; font-weight: 700; color: #fff; margin: 0 0 3px; }
         .ft-nl-title span { color: #2ebd3a; }
@@ -168,9 +185,8 @@ export default function Footer() {
         .ft-nl-form {
           display: flex;
           background: rgba(255,255,255,0.05);
-          border: 1.5px solid rgba(255,255,255,0.1);
-          border-radius: 12px;
-          overflow: hidden;
+          border: 1.5px solid rgba(255,255,255,0.10);
+          border-radius: 12px; overflow: hidden;
           transition: border-color 0.2s;
         }
         .ft-nl-form:focus-within { border-color: #2ebd3a; }
@@ -188,18 +204,20 @@ export default function Footer() {
           cursor: pointer; display: flex; align-items: center; gap: 6px;
           transition: opacity 0.2s; white-space: nowrap;
         }
-        .ft-nl-btn:hover { opacity: 0.9; }
-        .ft-nl-hint { display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: rgba(46,189,58,0.7); }
+        .ft-nl-btn:hover { opacity: 0.88; }
+        .ft-nl-hint { display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: rgba(46,189,58,0.65); }
 
-        /* Category row */
+        /* ── Category row ── */
         .ft-cats {
           display: grid;
           grid-template-columns: repeat(6, 1fr);
-          border: 1.5px solid rgba(255,255,255,0.09);
+          border: 1.5px solid rgba(255,255,255,0.07);
           border-radius: 14px;
           margin: 20px 0;
           overflow: hidden;
-          background: rgba(8,17,31,0.70);
+          background: rgba(6,20,42,0.45);
+          backdrop-filter: blur(10px);
+          -webkit-backdrop-filter: blur(10px);
         }
         .ft-cat-item {
           padding: 18px 12px 16px;
@@ -208,17 +226,17 @@ export default function Footer() {
           transition: background 0.2s; cursor: default;
         }
         .ft-cat-item:last-child { border-right: none; }
-        .ft-cat-item:hover { background: rgba(46,189,58,0.06); }
+        .ft-cat-item:hover { background: rgba(46,189,58,0.08); }
         .ft-cat-icon {
           width: 54px; height: 54px; border-radius: 14px;
           background: rgba(46,189,58,0.08);
-          border: 1.5px solid rgba(46,189,58,0.20);
+          border: 1.5px solid rgba(46,189,58,0.18);
           display: flex; align-items: center; justify-content: center;
         }
         .ft-cat-title { font-family: 'Sora', sans-serif; font-size: 11.5px; font-weight: 700; color: #fff; text-align: center; line-height: 1.3; }
         .ft-cat-sub { font-size: 10.5px; color: #64748b; text-align: center; line-height: 1.3; margin-top: -4px; }
 
-        /* Main grid */
+        /* ── Main grid ── */
         .ft-main-grid {
           display: grid;
           grid-template-columns: 1.7fr 1fr 1.3fr 1.4fr;
@@ -241,9 +259,9 @@ export default function Footer() {
         .ft-brand-logo-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; text-decoration: none; }
         .ft-logo-box {
           width: 54px; height: 54px; border-radius: 14px;
-          background: rgba(255,255,255,0.9);
+          background: rgba(255,255,255,0.92);
           border: 2px solid #2ebd3a;
-          box-shadow: 0 0 16px rgba(46,189,58,0.25);
+          box-shadow: 0 0 18px rgba(46,189,58,0.22);
           display: flex; align-items: center; justify-content: center;
           overflow: hidden; flex-shrink: 0;
         }
@@ -265,7 +283,7 @@ export default function Footer() {
           height: 42%; background: linear-gradient(180deg,rgba(255,255,255,0.18),transparent);
           pointer-events: none; border-radius: 9px 9px 40% 40%;
         }
-        .ft-social-btn:hover { transform: translateY(-4px) scale(1.07); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
+        .ft-social-btn:hover { transform: translateY(-4px) scale(1.08); box-shadow: 0 8px 22px rgba(0,0,0,0.45); }
 
         /* Nav */
         .ft-nav-links { display: flex; flex-direction: column; gap: 10px; }
@@ -283,7 +301,7 @@ export default function Footer() {
         .ft-contact-item { display: flex; align-items: flex-start; gap: 10px; }
         .ft-contact-icon-box {
           width: 30px; height: 30px; border-radius: 8px;
-          background: rgba(46,189,58,0.12);
+          background: rgba(46,189,58,0.10);
           display: flex; align-items: center; justify-content: center;
           color: #2ebd3a; flex-shrink: 0;
         }
@@ -292,9 +310,11 @@ export default function Footer() {
 
         /* QR Card */
         .ft-qr-card {
-          background: rgba(8,17,31,0.80);
-          border: 1.5px solid rgba(46,189,58,0.25);
+          background: rgba(6,20,42,0.60);
+          border: 1.5px solid rgba(46,189,58,0.22);
           border-radius: 16px; padding: 18px 16px; height: fit-content;
+          backdrop-filter: blur(14px);
+          -webkit-backdrop-filter: blur(14px);
         }
         .ft-qr-heading { font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 800; color: #2ebd3a; margin: 0 0 4px; letter-spacing: -0.01em; }
         .ft-qr-sub { font-size: 12px; color: #94a3b8; margin: 0 0 14px; line-height: 1.5; }
@@ -304,7 +324,7 @@ export default function Footer() {
         .ft-qr-icon-box {
           width: 40px; height: 40px; border-radius: 10px;
           background: rgba(46,189,58,0.10);
-          border: 1.5px solid rgba(46,189,58,0.20);
+          border: 1.5px solid rgba(46,189,58,0.18);
           display: flex; align-items: center; justify-content: center;
           flex-shrink: 0; color: #2ebd3a;
         }
@@ -313,7 +333,7 @@ export default function Footer() {
 
         /* Bottom bar */
         .ft-bottom {
-          border-top: 1px solid rgba(255,255,255,0.07);
+          border-top: 1px solid rgba(255,255,255,0.08);
           padding: 18px 0;
           display: flex; align-items: center; justify-content: space-between;
           gap: 20px; flex-wrap: wrap;
@@ -331,6 +351,7 @@ export default function Footer() {
         .ft-trust-title { font-family: 'Sora', sans-serif; font-size: 11px; font-weight: 700; color: #fff; }
         .ft-trust-sub { font-size: 10px; color: #64748b; }
 
+        /* ── Responsive ── */
         @media (max-width: 1100px) {
           .ft-main-grid { grid-template-columns: 1fr 1fr; gap: 28px; }
           .ft-cats { grid-template-columns: repeat(3, 1fr); }
@@ -349,9 +370,13 @@ export default function Footer() {
       `}</style>
 
       <footer className="ft-root">
+
+        {/* Background image with overlay */}
+        <div className="ft-bg" />
+
         <div className="ft-wrap">
 
-          {/* Newsletter */}
+          {/* ── Newsletter ── */}
           <div className="ft-newsletter">
             <div className="ft-nl-left">
               <div className="ft-nl-icon-box">
@@ -394,7 +419,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Categories */}
+          {/* ── Categories ── */}
           <div className="ft-cats">
             {categories.map((c, i) => (
               <div className="ft-cat-item" key={i}>
@@ -405,7 +430,7 @@ export default function Footer() {
             ))}
           </div>
 
-          {/* Main Grid */}
+          {/* ── Main Grid ── */}
           <div className="ft-main-grid">
 
             {/* Brand */}
@@ -432,7 +457,7 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Navigation — updated to Image 2 links only */}
+            {/* Navigation */}
             <div>
               <p className="ft-col-title">Navigation</p>
               <div className="ft-nav-links">
@@ -519,7 +544,7 @@ export default function Footer() {
 
           </div>
 
-          {/* Bottom bar */}
+          {/* ── Bottom bar ── */}
           <div className="ft-bottom">
             <p className="ft-copy">
               © 2026 <strong>ScanForSafe Innovations Pvt. Ltd.</strong> All rights reserved.

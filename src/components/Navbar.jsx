@@ -22,12 +22,13 @@ export default function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: "Home",          to: "/" },
-    { label: "Features",      to: "/features" },
-    { label: "Use Cases",     to: "/use-cases" },
-    { label: "How It Works",  to: "/how-it-works" },
-    { label: "Franchise",     to: "/franchise" },
-    { label: "Contact",       to: "/contact" },
+    { label: "Home",         to: "/" },
+    { label: "Features",     to: "/features" },
+    { label: "Use Cases",    to: "/use-cases" },
+    { label: "How It Works", to: "/how-it-works" },
+    { label: "About Us",     to: "/about" },
+    { label: "Franchise",    to: "/franchise" },
+    { label: "Contact",      to: "/contact" },
   ];
 
   const isActive = (to) =>
