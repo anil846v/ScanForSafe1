@@ -1090,9 +1090,9 @@ export default function Features() {
         {/* Section header */}
         <div style={{ textAlign:'center', marginBottom:56 }}>
           <div style={{ display:'inline-flex', alignItems:'center', gap:7, background:'#dcfce7', border:'1.5px solid #4ade80', borderRadius:99, padding:'7px 20px', fontSize:11.5, fontWeight:800, color:'#14532d', letterSpacing:'.06em', textTransform:'uppercase', marginBottom:18 }}>✦ Platform Features</div>
-          <h2 style={{ fontSize:'clamp(2rem, 4vw, 3.25rem)', fontWeight:900, color:'#0B2545', letterSpacing:'-.04em', lineHeight:1.08, margin:'0 0 16px', fontFamily:"'Outfit', sans-serif" }}>
-            Powerful Features for{' '}
-            <span style={{ background:'linear-gradient(130deg,#16a34a,#059669)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>Peace of Mind</span>
+          <h2 style={{ fontSize:'clamp(2rem, 4vw, 3.25rem)', fontWeight:700, color:'#0B2545', letterSpacing:'-.04em', lineHeight:1.08, margin:'0 0 16px', fontFamily:"'Outfit', sans-serif" }}>
+            Smart Protection Features that {' '}
+            <span style={{ background:'linear-gradient(130deg,#16a34a,#059669)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>Work When It Matters Most</span>
           </h2>
           {/* ✅ CHANGED: subtitle uses rgb(90,100,114) at weight 600 to match Image 1 */}
           <p style={{ fontSize:15.5, color:'rgb(90,100,114)', fontWeight:600, maxWidth:540, margin:'0 auto', lineHeight:1.8 }}>Every feature has a live simulation — click any card, then hit the button to see it in action.</p>
