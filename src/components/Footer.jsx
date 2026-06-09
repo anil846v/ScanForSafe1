@@ -49,13 +49,11 @@ export default function Footer() {
 
   const navLinks = [
     { label: "Home", to: "/" },
+    { label: "Features", to: "/features" },
+    { label: "Use Cases", to: "/use-cases" },
     { label: "How It Works", to: "/how-it-works" },
-    { label: "Products", to: "/products" },
-    { label: "Vehicle Tags", to: "/vehicle-tags" },
-    { label: "Senior Citizen Bands", to: "/senior-bands" },
-    { label: "Pet Tags", to: "/pet-tags" },
-    { label: "FAQ", to: "/faq" },
-    { label: "Contact Us", to: "/contact" },
+    { label: "Franchise", to: "/franchise" },
+    { label: "Contact", to: "/contact" },
   ];
 
   const socials = [
@@ -124,9 +122,6 @@ export default function Footer() {
         .ft-wrap {
           position: relative;
           z-index: 1;
-        }
-
-        .ft-wrap {
           max-width: 1400px;
           margin: 0 auto;
           padding: 0 clamp(16px, 4vw, 56px);
@@ -146,11 +141,7 @@ export default function Footer() {
           margin: 24px 0 0;
           flex-wrap: wrap;
         }
-        .ft-nl-left {
-          display: flex;
-          align-items: center;
-          gap: 16px;
-        }
+        .ft-nl-left { display: flex; align-items: center; gap: 16px; }
         .ft-nl-icon-box {
           width: 52px; height: 52px;
           border-radius: 14px;
@@ -162,8 +153,7 @@ export default function Footer() {
           position: relative;
         }
         .ft-nl-badge {
-          position: absolute;
-          bottom: -4px; right: -4px;
+          position: absolute; bottom: -4px; right: -4px;
           width: 18px; height: 18px;
           border-radius: 50%;
           background: #2ebd3a;
@@ -171,13 +161,7 @@ export default function Footer() {
           display: flex; align-items: center; justify-content: center;
           color: white;
         }
-        .ft-nl-title {
-          font-family: 'Sora', sans-serif;
-          font-size: 16px;
-          font-weight: 700;
-          color: #fff;
-          margin: 0 0 3px;
-        }
+        .ft-nl-title { font-family: 'Sora', sans-serif; font-size: 16px; font-weight: 700; color: #fff; margin: 0 0 3px; }
         .ft-nl-title span { color: #2ebd3a; }
         .ft-nl-desc { font-size: 12.5px; color: #94a3b8; margin: 0; line-height: 1.5; }
         .ft-nl-right { display: flex; flex-direction: column; gap: 6px; flex: 1; max-width: 480px; min-width: 260px; }
@@ -190,48 +174,22 @@ export default function Footer() {
           transition: border-color 0.2s;
         }
         .ft-nl-form:focus-within { border-color: #2ebd3a; }
-        .ft-nl-form-inner {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          padding: 0 14px;
-          flex: 1;
-          color: #64748b;
-        }
+        .ft-nl-form-inner { display: flex; align-items: center; gap: 8px; padding: 0 14px; flex: 1; color: #64748b; }
         .ft-nl-input {
-          background: transparent;
-          border: none;
-          outline: none;
-          color: #fff;
-          font-size: 13px;
-          font-family: 'DM Sans', sans-serif;
-          padding: 11px 0;
-          width: 100%;
+          background: transparent; border: none; outline: none;
+          color: #fff; font-size: 13px; font-family: 'DM Sans', sans-serif;
+          padding: 11px 0; width: 100%;
         }
         .ft-nl-input::placeholder { color: #64748b; }
         .ft-nl-btn {
           background: linear-gradient(135deg, #1a8a24, #2ebd3a);
-          color: #fff;
-          border: none;
-          padding: 0 18px;
-          font-family: 'Sora', sans-serif;
-          font-size: 13px;
-          font-weight: 700;
-          cursor: pointer;
-          display: flex;
-          align-items: center;
-          gap: 6px;
-          transition: opacity 0.2s;
-          white-space: nowrap;
+          color: #fff; border: none; padding: 0 18px;
+          font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 700;
+          cursor: pointer; display: flex; align-items: center; gap: 6px;
+          transition: opacity 0.2s; white-space: nowrap;
         }
         .ft-nl-btn:hover { opacity: 0.9; }
-        .ft-nl-hint {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-          font-size: 11.5px;
-          color: rgba(46,189,58,0.7);
-        }
+        .ft-nl-hint { display: flex; align-items: center; gap: 5px; font-size: 11.5px; color: rgba(46,189,58,0.7); }
 
         /* Category row */
         .ft-cats {
@@ -245,38 +203,20 @@ export default function Footer() {
         }
         .ft-cat-item {
           padding: 18px 12px 16px;
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          gap: 10px;
+          display: flex; flex-direction: column; align-items: center; gap: 10px;
           border-right: 1px solid rgba(255,255,255,0.07);
-          transition: background 0.2s;
-          cursor: default;
+          transition: background 0.2s; cursor: default;
         }
         .ft-cat-item:last-child { border-right: none; }
         .ft-cat-item:hover { background: rgba(46,189,58,0.06); }
         .ft-cat-icon {
-          width: 54px; height: 54px;
-          border-radius: 14px;
+          width: 54px; height: 54px; border-radius: 14px;
           background: rgba(46,189,58,0.08);
           border: 1.5px solid rgba(46,189,58,0.20);
           display: flex; align-items: center; justify-content: center;
         }
-        .ft-cat-title {
-          font-family: 'Sora', sans-serif;
-          font-size: 11.5px;
-          font-weight: 700;
-          color: #fff;
-          text-align: center;
-          line-height: 1.3;
-        }
-        .ft-cat-sub {
-          font-size: 10.5px;
-          color: #64748b;
-          text-align: center;
-          line-height: 1.3;
-          margin-top: -4px;
-        }
+        .ft-cat-title { font-family: 'Sora', sans-serif; font-size: 11.5px; font-weight: 700; color: #fff; text-align: center; line-height: 1.3; }
+        .ft-cat-sub { font-size: 10.5px; color: #64748b; text-align: center; line-height: 1.3; margin-top: -4px; }
 
         /* Main grid */
         .ft-main-grid {
@@ -288,199 +228,102 @@ export default function Footer() {
 
         .ft-col-title {
           font-family: 'Sora', sans-serif;
-          font-size: 11px;
-          font-weight: 800;
-          color: #2ebd3a;
-          letter-spacing: 0.1em;
-          text-transform: uppercase;
-          margin: 0 0 18px;
-          position: relative;
-          padding-bottom: 10px;
+          font-size: 11px; font-weight: 800; color: #2ebd3a;
+          letter-spacing: 0.1em; text-transform: uppercase;
+          margin: 0 0 18px; position: relative; padding-bottom: 10px;
         }
         .ft-col-title::after {
-          content: '';
-          position: absolute;
-          left: 0; bottom: 0;
-          width: 28px; height: 2px;
-          background: #2ebd3a;
-          border-radius: 2px;
+          content: ''; position: absolute; left: 0; bottom: 0;
+          width: 28px; height: 2px; background: #2ebd3a; border-radius: 2px;
         }
 
         /* Brand col */
-        .ft-brand-logo-row {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          margin-bottom: 14px;
-          text-decoration: none;
-        }
+        .ft-brand-logo-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; text-decoration: none; }
         .ft-logo-box {
-          width: 54px; height: 54px;
-          border-radius: 14px;
+          width: 54px; height: 54px; border-radius: 14px;
           background: rgba(255,255,255,0.9);
           border: 2px solid #2ebd3a;
           box-shadow: 0 0 16px rgba(46,189,58,0.25);
           display: flex; align-items: center; justify-content: center;
-          overflow: hidden;
-          flex-shrink: 0;
+          overflow: hidden; flex-shrink: 0;
         }
         .ft-logo-box img { width: 80%; height: auto; object-fit: contain; }
-        .ft-brand-name {
-          font-family: 'Sora', sans-serif;
-          font-size: 20px;
-          font-weight: 800;
-          color: #fff;
-          margin: 0;
-          letter-spacing: -0.02em;
-        }
+        .ft-brand-name { font-family: 'Sora', sans-serif; font-size: 20px; font-weight: 800; color: #fff; margin: 0; letter-spacing: -0.02em; }
         .ft-brand-name span { color: #2ebd3a; }
-        .ft-brand-tag {
-          font-size: 9.5px;
-          font-weight: 700;
-          color: #2ebd3a;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          margin-top: 2px;
-        }
-        .ft-brand-desc {
-          font-size: 13px;
-          color: #94a3b8;
-          line-height: 1.7;
-          margin: 0 0 18px;
-          max-width: 320px;
-        }
-        .ft-socials {
-          display: flex;
-          gap: 9px;
-          flex-wrap: wrap;
-        }
+        .ft-brand-tag { font-size: 9.5px; font-weight: 700; color: #2ebd3a; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 2px; }
+        .ft-brand-desc { font-size: 13px; color: #94a3b8; line-height: 1.7; margin: 0 0 18px; max-width: 320px; }
+        .ft-socials { display: flex; gap: 9px; flex-wrap: wrap; }
         .ft-social-btn {
-          width: 40px; height: 40px;
-          border-radius: 10px;
+          width: 40px; height: 40px; border-radius: 10px;
           display: flex; align-items: center; justify-content: center;
-          color: #fff;
-          text-decoration: none;
+          color: #fff; text-decoration: none;
           transition: transform 0.2s ease, box-shadow 0.2s ease;
-          flex-shrink: 0;
-          position: relative;
-          overflow: hidden;
+          flex-shrink: 0; position: relative; overflow: hidden;
         }
         .ft-social-btn::after {
-          content: '';
-          position: absolute; top: 0; left: 0; right: 0;
-          height: 42%;
-          background: linear-gradient(180deg,rgba(255,255,255,0.18),transparent);
-          pointer-events: none;
-          border-radius: 9px 9px 40% 40%;
+          content: ''; position: absolute; top: 0; left: 0; right: 0;
+          height: 42%; background: linear-gradient(180deg,rgba(255,255,255,0.18),transparent);
+          pointer-events: none; border-radius: 9px 9px 40% 40%;
         }
         .ft-social-btn:hover { transform: translateY(-4px) scale(1.07); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
 
         /* Nav */
         .ft-nav-links { display: flex; flex-direction: column; gap: 10px; }
         .ft-nav-link {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          color: #94a3b8;
-          text-decoration: none;
-          font-size: 13.5px;
-          font-weight: 500;
+          display: flex; align-items: center; gap: 8px;
+          color: #94a3b8; text-decoration: none;
+          font-size: 13.5px; font-weight: 500;
           transition: color 0.2s, transform 0.2s;
         }
         .ft-nav-link:hover { color: #fff; transform: translateX(4px); }
-        .ft-nav-dot {
-          width: 5px; height: 5px;
-          border-radius: 50%;
-          background: #2ebd3a;
-          flex-shrink: 0;
-        }
+        .ft-nav-dot { width: 5px; height: 5px; border-radius: 50%; background: #2ebd3a; flex-shrink: 0; }
 
         /* Contact */
         .ft-contact-list { display: flex; flex-direction: column; gap: 13px; }
         .ft-contact-item { display: flex; align-items: flex-start; gap: 10px; }
         .ft-contact-icon-box {
-          width: 30px; height: 30px;
-          border-radius: 8px;
+          width: 30px; height: 30px; border-radius: 8px;
           background: rgba(46,189,58,0.12);
           display: flex; align-items: center; justify-content: center;
-          color: #2ebd3a;
-          flex-shrink: 0;
+          color: #2ebd3a; flex-shrink: 0;
         }
-        .ft-contact-label {
-          font-family: 'Sora', sans-serif;
-          font-size: 10.5px;
-          font-weight: 700;
-          color: #2ebd3a;
-          margin-bottom: 1px;
-        }
+        .ft-contact-label { font-family: 'Sora', sans-serif; font-size: 10.5px; font-weight: 700; color: #2ebd3a; margin-bottom: 1px; }
         .ft-contact-val { font-size: 12.5px; color: #cbd5e1; line-height: 1.5; }
 
         /* QR Card */
         .ft-qr-card {
           background: rgba(8,17,31,0.80);
           border: 1.5px solid rgba(46,189,58,0.25);
-          border-radius: 16px;
-          padding: 18px 16px;
-          height: fit-content;
+          border-radius: 16px; padding: 18px 16px; height: fit-content;
         }
-        .ft-qr-heading {
-          font-family: 'Sora', sans-serif;
-          font-size: 14px;
-          font-weight: 800;
-          color: #2ebd3a;
-          margin: 0 0 4px;
-          letter-spacing: -0.01em;
-        }
+        .ft-qr-heading { font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 800; color: #2ebd3a; margin: 0 0 4px; letter-spacing: -0.01em; }
         .ft-qr-sub { font-size: 12px; color: #94a3b8; margin: 0 0 14px; line-height: 1.5; }
         .ft-qr-divider { height: 1px; background: rgba(255,255,255,0.07); margin: 0 0 12px; }
-        .ft-qr-row {
-          display: flex;
-          align-items: center;
-          gap: 12px;
-          padding: 8px 0;
-        }
+        .ft-qr-row { display: flex; align-items: center; gap: 12px; padding: 8px 0; }
         .ft-qr-row + .ft-qr-row { border-top: 1px solid rgba(255,255,255,0.06); }
         .ft-qr-icon-box {
-          width: 40px; height: 40px;
-          border-radius: 10px;
+          width: 40px; height: 40px; border-radius: 10px;
           background: rgba(46,189,58,0.10);
           border: 1.5px solid rgba(46,189,58,0.20);
           display: flex; align-items: center; justify-content: center;
-          flex-shrink: 0;
-          color: #2ebd3a;
+          flex-shrink: 0; color: #2ebd3a;
         }
-        .ft-qr-row-title {
-          font-family: 'Sora', sans-serif;
-          font-size: 12.5px;
-          font-weight: 700;
-          color: #fff;
-          margin: 0 0 2px;
-        }
+        .ft-qr-row-title { font-family: 'Sora', sans-serif; font-size: 12.5px; font-weight: 700; color: #fff; margin: 0 0 2px; }
         .ft-qr-row-sub { font-size: 11px; color: #64748b; margin: 0; }
 
         /* Bottom bar */
         .ft-bottom {
           border-top: 1px solid rgba(255,255,255,0.07);
           padding: 18px 0;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 20px;
-          flex-wrap: wrap;
+          display: flex; align-items: center; justify-content: space-between;
+          gap: 20px; flex-wrap: wrap;
         }
         .ft-copy { font-size: 12.5px; color: #64748b; margin: 0; }
         .ft-copy strong { color: #2ebd3a; font-weight: 600; }
-        .ft-trust-items {
-          display: flex;
-          align-items: center;
-          gap: 0;
-        }
+        .ft-trust-items { display: flex; align-items: center; gap: 0; }
         .ft-trust-item {
-          display: flex;
-          align-items: center;
-          gap: 8px;
-          padding: 0 18px;
-          border-right: 1px solid rgba(255,255,255,0.08);
+          display: flex; align-items: center; gap: 8px;
+          padding: 0 18px; border-right: 1px solid rgba(255,255,255,0.08);
         }
         .ft-trust-item:first-child { padding-left: 0; }
         .ft-trust-item:last-child { border-right: none; padding-right: 0; }
@@ -589,7 +432,7 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Navigation */}
+            {/* Navigation — updated to Image 2 links only */}
             <div>
               <p className="ft-col-title">Navigation</p>
               <div className="ft-nav-links">

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef, cloneElement } from "react";
 import { useNavigate } from "react-router-dom";
-import { CheckCircle, Shield, Award, Landmark, TrendingUp, HelpCircle, MapPin, Send, DollarSign, GraduationCap, Car, PawPrint, Briefcase, Truck, Headset, QrCode, ShieldCheck, Map, Users, Smartphone } from "lucide-react";
+import { CheckCircle, Shield, Award, Landmark, TrendingUp, HelpCircle, MapPin, Send, DollarSign, Users } from "lucide-react";
 
 function useInView(threshold = 0.12) {
   const ref = useRef(null);
@@ -54,59 +54,42 @@ function StatItem({ num, suffix, label, active, delay }) {
 }
 
 /* ── BENEFIT CARD COMPONENT ── */
-function BenefitCard({ icon, title, description, color, bg, borderColor, index }) {
+function BenefitCard({ icon, title, description, color, bg, borderColor, tags, tagColor }) {
   const [hovered, setHovered] = useState(false);
-  const [clicked, setClicked] = useState(false);
-
-  const active = clicked || hovered;
 
   return (
     <div
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      onClick={() => setClicked((prev) => !prev)}
       style={{
-        position: 'relative',
         borderRadius: 16,
-        border: active
-          ? `1px solid ${color}`
-          : `1px solid ${borderColor}`,
-        background:  '#ffffff',
-        padding: '22px 20px 28px',
-        overflow: 'hidden',
-        transition: 'border-color 0.22s ease, background 0.22s ease, box-shadow 0.22s ease, transform 0.25s cubic-bezier(0.34,1.3,0.64,1)',
-        transform: active ? 'translateY(-4px)' : 'translateY(0)',
-        boxShadow: active
-          ? `0 8px 24px ${color}20, 0 2px 8px rgba(0,0,0,0.06)`
-          : '0 1px 4px rgba(0,0,0,0.04)',
-        cursor: 'pointer',
+        border: `1.5px solid ${hovered ? color : borderColor}`,
+        background: '#ffffff',
+        padding: '22px 20px 20px',
+        transition: 'border-color 0.22s ease, box-shadow 0.22s ease, transform 0.25s cubic-bezier(0.34,1.3,0.64,1)',
+        transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
+        boxShadow: hovered ? `0 8px 28px ${color}28` : '0 1px 4px rgba(0,0,0,0.05)',
+        display: 'flex',
+        flexDirection: 'column',
+        cursor: 'default',
       }}
     >
-      {/* bottom accent line */}
+      {/* Icon box */}
       <div style={{
-        position: 'absolute',
-        bottom: 0, left: 20, right: 20,
-        height: 3,
-        borderRadius: '3px 3px 0 0',
-        background: color,
-        opacity: active ? 1 : 0.35,
-        transition: 'opacity 0.22s ease',
-      }} />
-
-      <div className="fr-benefit-icon-box" style={{
         width: 48, height: 48,
         borderRadius: 12,
         background: bg,
-        color: color,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        marginBottom: 16,
+        marginBottom: 14,
+        border: `1px solid ${borderColor}`,
+        flexShrink: 0,
       }}>
-        {cloneElement(icon, { color: color })}
+        {cloneElement(icon, { color, size: 22 })}
       </div>
 
       <h3 style={{
         fontFamily: "'Sora', sans-serif",
-        fontSize: 16,
+        fontSize: 15,
         fontWeight: 800,
         color: '#0B2545',
         marginBottom: 8,
@@ -118,13 +101,53 @@ function BenefitCard({ icon, title, description, color, bg, borderColor, index }
 
       <p style={{
         fontFamily: "'DM Sans', sans-serif",
-        fontSize: 12.5,
-        fontWeight: 500,
+        fontSize: 13,
+        fontWeight: 400,
         color: '#374151',
         lineHeight: 1.65,
+        marginBottom: 16,
+        flex: 1,
       }}>
         {description}
       </p>
+
+      {/* Tag chips row */}
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        flexWrap: 'wrap',
+        gap: 4,
+        paddingTop: 12,
+        borderTop: `1px solid ${borderColor}`,
+        marginTop: 'auto',
+      }}>
+        {tags.map((tag, i) => (
+          <React.Fragment key={tag}>
+            {i === 0 ? (
+              <span style={{
+                display: 'inline-flex', alignItems: 'center', gap: 4,
+                background: `${tagColor}14`,
+                color: tagColor,
+                fontSize: 11, fontWeight: 700,
+                borderRadius: 20,
+                padding: '3px 9px',
+                border: `1px solid ${tagColor}30`,
+              }}>
+                <CheckCircle size={10} color={tagColor} />
+                {tag}
+              </span>
+            ) : (
+              <span style={{
+                display: 'inline-flex', alignItems: 'center',
+                fontSize: 11, fontWeight: 600, color: '#64748b',
+              }}>
+                <span style={{ color: '#cbd5e1', margin: '0 4px', fontSize: 13 }}>•</span>
+                {tag}
+              </span>
+            )}
+          </React.Fragment>
+        ))}
+      </div>
     </div>
   );
 }
@@ -237,43 +260,61 @@ export default function Franchise() {
 
   const benefitCards = [
     {
-      icon: <TrendingUp size={20} />,
+      icon: <TrendingUp />,
       title: "High ROI Model",
       description: "Earn up to 10% - 30% profit margin on physical QR visual safety tags & smart NFC cards distributed in your region.",
       color: "#16a34a",
       bg: "#e8f8eb",
       borderColor: "#bbf7d0",
+      tags: ["High demand", "Recurring business", "Scalable"],
+      tagColor: "#16a34a",
     },
     {
-      icon: <Shield size={20} />,
+      icon: <Shield />,
       title: "Exclusive Territory",
       description: "Secure exclusive ownership rights for dedicated pincodes. Zero local brand competition.",
       color: "#0891b2",
       bg: "#ecfeff",
       borderColor: "#bae6fd",
+      tags: ["Protected territory", "Local leadership"],
+      tagColor: "#0891b2",
     },
     {
-      icon: <Landmark size={20} />,
+      icon: <Landmark />,
       title: "Innovative Tech",
       description: "India's leading cloud network mapping QR codes for vehicle safety, senior citizens, children, and pets.",
       color: "#7c3aed",
       bg: "#f5f3ff",
       borderColor: "#ddd6fe",
+      tags: ["Innovative", "Reliable", "Future-ready"],
+      tagColor: "#7c3aed",
     },
     {
-      icon: <Award size={20} />,
+      icon: <Award />,
       title: "Marketing Support",
       description: "Receive complete physical branding collaterals, digital flyers, and targeted local ad campaign execution.",
       color: "#f97316",
       bg: "#fff7ed",
       borderColor: "#fed7aa",
+      tags: ["Ready-to-use assets", "Local promotion", "Growth support"],
+      tagColor: "#f97316",
+    },
+    {
+      icon: <Users />,
+      title: "Dedicated Partner Support",
+      description: "Get complete training, onboarding, technical assistance, and ongoing business guidance from the ScanForSafe team.",
+      color: "#0891b2",
+      bg: "#ecfeff",
+      borderColor: "#bae6fd",
+      tags: ["Training", "Onboarding", "Ongoing assistance"],
+      tagColor: "#0891b2",
     },
   ];
 
   return (
     <>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
-      <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Fira+Code:wght@400;500&family=Outfit:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+      <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Fira+Code:wght@400;500&family=Outfit:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 
       <style>{`
         .fr-page {
@@ -526,28 +567,60 @@ export default function Franchise() {
           align-items: start;
         }
 
-        .fr-benefits-title {
-          font-family: 'Outfit', sans-serif;
-          font-size: 24px;
-          font-weight: 800;
-          color: #0f172a;
-          margin-bottom: 6px;
+        /* ── Benefits Section Header ── */
+        .fr-benefits-header {
+          display: flex;
+          align-items: flex-start;
+          gap: 14px;
+          margin-bottom: 20px;
+        }
+
+        .fr-benefits-header-icon {
+          width: 48px;
+          height: 48px;
+          border-radius: 50%;
+          border: 2px solid #16a34a;
+          background: #f0fdf4;
           display: flex;
           align-items: center;
-          gap: 10px;
+          justify-content: flex-start;
+          justify-content: center;
+          flex-shrink: 0;
+          margin-top: 2px;
+        }
+
+        .fr-benefits-title {
+          font-family: 'Outfit', sans-serif;
+          font-size: 26px;
+          font-weight: 800;
+          color: #0f172a;
+          margin-bottom: 4px;
+          letter-spacing: -0.02em;
+          line-height: 1.15;
+        }
+
+        .fr-benefits-title span {
+          color: #16a34a;
         }
 
         .fr-benefits-subtitle {
-          font-size: 13px;
+          font-size: 13.5px;
           color: #64748b;
-          margin-bottom: 22px;
-          font-weight: 500;
-          line-height: 1.5;
+          font-weight: 400;
+          line-height: 1.6;
         }
 
-        .fr-benefits-grid {
+        /* ── 3-col top + 2-col bottom grid ── */
+        .fr-benefits-top {
           display: grid;
-          grid-template-columns: 1fr 1fr;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 14px;
+          margin-bottom: 14px;
+        }
+
+        .fr-benefits-bottom {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
           gap: 14px;
         }
 
@@ -686,6 +759,7 @@ export default function Franchise() {
           color: #0f172a;
           outline: none;
           transition: all 0.22s ease;
+          box-sizing: border-box;
         }
 
         .fr-input:focus {
@@ -809,33 +883,18 @@ export default function Franchise() {
             justify-items: center;
           }
           .fr-stats-divider { display: none !important; }
+          .fr-benefits-top {
+            grid-template-columns: repeat(2, 1fr) !important;
+          }
         }
         @media (max-width: 580px) {
-          .fr-benefits-grid {
-            grid-template-columns: repeat(2, 1fr) !important;
+          .fr-benefits-top {
+            grid-template-columns: 1fr 1fr !important;
             gap: 10px !important;
           }
-          .fr-benefits-grid > div {
-            padding: 14px 10px 18px !important;
-            border-radius: 12px !important;
-          }
-          .fr-benefits-grid h3 {
-            font-size: 14.5px !important;
-            margin-bottom: 4px !important;
-          }
-          .fr-benefits-grid p {
-            font-size: 12.5px !important;
-            line-height: 1.4 !important;
-          }
-          .fr-benefits-grid svg {
-            width: 18px !important;
-            height: 18px !important;
-          }
-          .fr-benefit-icon-box {
-            width: 36px !important;
-            height: 36px !important;
-            border-radius: 8px !important;
-            margin-bottom: 10px !important;
+          .fr-benefits-bottom {
+            grid-template-columns: 1fr !important;
+            gap: 10px !important;
           }
           .fr-form-card { padding: 24px 18px; }
           .fr-opp-grid { grid-template-columns: repeat(2, 1fr) !important; gap: 14px !important; }
@@ -1167,16 +1226,32 @@ export default function Franchise() {
           <div className="fr-grid-split">
             {/* LEFT */}
             <div>
-              <h2 className="fr-benefits-title">
-                <Award style={{ color: "#16a34a" }} /> Why Partner With Us?
-              </h2>
-              <p className="fr-benefits-subtitle">
-                Choose ScanForSafe and unlock a proven safety-tech business model with real territorial advantage.
-              </p>
+              {/* Benefits Header — matches image style */}
+              <div className="fr-benefits-header">
+                <div className="fr-benefits-header-icon">
+                  <Award size={22} color="#16a34a" />
+                </div>
+                <div>
+                  <h2 className="fr-benefits-title">
+                    Why Partner With <span>Us?</span>
+                  </h2>
+                  <p className="fr-benefits-subtitle">
+                    Choose ScanForSafe and unlock a proven safety-tech business model with real territorial advantage.
+                  </p>
+                </div>
+              </div>
 
-              <div className="fr-benefits-grid">
-                {benefitCards.map((card, i) => (
-                  <BenefitCard key={card.title} {...card} index={i} />
+              {/* TOP ROW — 3 cards */}
+              <div className="fr-benefits-top">
+                {benefitCards.slice(0, 3).map((card) => (
+                  <BenefitCard key={card.title} {...card} />
+                ))}
+              </div>
+
+              {/* BOTTOM ROW — 2 cards */}
+              <div className="fr-benefits-bottom">
+                {benefitCards.slice(3).map((card) => (
+                  <BenefitCard key={card.title} {...card} />
                 ))}
               </div>
 
