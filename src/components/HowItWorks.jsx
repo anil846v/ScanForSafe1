@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   ShoppingBag, QrCode, ShieldCheck, ArrowRight,
   Truck, Clock, Zap, CheckCircle, ChevronLeft,
@@ -94,14 +94,14 @@ export default function HowItWorks() {
           <div style={{ flex: "1 1 0", minWidth: 0, opacity: visible ? 1 : 0, transform: visible ? "none" : "translateX(-24px)", transition: "all 0.6s ease 0.1s" }}>
             <div style={{ display: "flex", alignItems: "stretch", gap: 0, justifyContent: "center" }}>
               {steps.map((step, idx) => (
-                <>
-                  <StepCard key={step.badge} step={step} />
+                <React.Fragment key={step.badge}>
+                  <StepCard step={step} />
                   {idx < steps.length - 1 && (
-                    <div key={`arrow-${idx}`} style={{ width: 40, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 5 }}>
+                    <div style={{ width: 40, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", zIndex: 5 }}>
                       <ArrowButton />
                     </div>
                   )}
-                </>
+                </React.Fragment>
               ))}
             </div>
           </div>
