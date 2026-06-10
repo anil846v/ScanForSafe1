@@ -144,20 +144,13 @@ export default function Footer() {
       width="32"
       height="32"
       viewBox="0 0 24 24"
-      fill="none"
-      stroke="#2ebd3a"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
+      fill="#2ebd3a"
     >
-      <path d="M8 6 5 3v5" />
-      <path d="M16 6 19 3v5" />
-      <circle cx="12" cy="13" r="6" />
-      <circle cx="10" cy="12" r="0.5" fill="#2ebd3a" />
-      <circle cx="14" cy="12" r="0.5" fill="#2ebd3a" />
-      <path d="M12 14v1" />
-      <path d="M9 15h-2M17 15h-2" />
-      <path d="M9 17h-2M17 17h-2" />
+      <path d="M12 14c-1.8 0-3.3 1.2-3.3 3.2 0 2.5 1.5 3.6 3.3 3.6s3.3-1.1 3.3-3.6c0-2-1.5-3.2-3.3-3.2z" />
+      <circle cx="6.2" cy="11.8" r="1.6" />
+      <circle cx="9.8" cy="8.5" r="1.6" />
+      <circle cx="14.2" cy="8.5" r="1.6" />
+      <circle cx="17.8" cy="11.8" r="1.6" />
     </svg>
   ),
 },
@@ -570,7 +563,7 @@ export default function Footer() {
                 {[
                   {
                     icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>,
-                    label: 'Phone', val: '+91 98765 43210',
+                    label: 'Phone', val: '+91 8639322479',
                   },
                   {
                     icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>,
@@ -582,11 +575,11 @@ export default function Footer() {
                   },
                   {
                     icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>,
-                    label: 'WhatsApp Support', val: '+91 98765 43210',
+                    label: 'WhatsApp Support', val: '+91 8639322479',
                   },
                   {
                     icon: <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>,
-                    label: 'Corporate Office', val: 'SFSI Innovations Tower, Phase-2,\nCyber Heights, Hyderabad, India',
+                    label: 'Corporate Office', val: 'R/o 87/1151-4-a-vf-501, Nagireddy Revenue Colony, Revenue Ward No. 87, Kurnool, Andhra Pradesh, PIN Code: 518002',
                   },
                 ].map((c, i) => (
                   <div className="ft-contact-item" key={i}>

@@ -31,12 +31,16 @@ const ScanForSafeLogo = () => (
     <line x1="15" y1="29" x2="29" y2="29" stroke="#22C55E" strokeWidth="2" strokeLinecap="round"/>
   </svg>
 );
-
-// ── Icons ────────────────────────────────────────────────────────────────
-const ShieldCheckIcon = ({ size = 20, color = "#22C55E" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-    <polyline points="9 12 11 14 15 10"/>
+const CircleCheck = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" />
+    <polyline points="8 12 11 15 16 10" />
+  </svg>
+);
+const RefreshCw = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="23 4 23 10 17 10" /><polyline points="1 20 1 14 7 14" />
+    <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15" />
   </svg>
 );
 const RefreshCwIcon = ({ size = 20, color = "#22C55E" }) => (
@@ -46,71 +50,67 @@ const RefreshCwIcon = ({ size = 20, color = "#22C55E" }) => (
     <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
   </svg>
 );
-const LockIcon = ({ size = 20, color = "#22C55E" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-    <path d="M7 11V7a5 5 0 0110 0v4"/>
+const TargetIcon = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" /><circle cx="12" cy="12" r="6" /><circle cx="12" cy="12" r="2" />
   </svg>
 );
-const TargetIcon = ({ size = 44, color = "#22C55E" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/>
-    <line x1="22" y1="12" x2="18" y2="12"/><line x1="6" y1="12" x2="2" y2="12"/>
-    <line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/>
+const EyeIcon = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" /><circle cx="12" cy="12" r="3" />
   </svg>
 );
-const EyeIcon = ({ size = 44, color = "#3B82F6" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
-    <circle cx="12" cy="12" r="3"/>
+const CheckIcon = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="9 11 12 14 22 4" />
+    <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11" />
   </svg>
 );
-const IntegrityIcon = ({ size = 38, color = "#22C55E" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-    <polyline points="9 12 11 14 15 10"/>
+const UsersIcon = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" />
+    <path d="M23 21v-2a4 4 0 00-3-3.87" /><path d="M16 3.13a4 4 0 010 7.75" />
   </svg>
 );
-const CustomerFocusIcon = ({ size = 38, color = "#3B82F6" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
-    <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+const BulbIcon = () => (
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <line x1="9" y1="18" x2="15" y2="18" /><line x1="10" y1="22" x2="14" y2="22" />
+    <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0018 8 6 6 0 006 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 018.91 14" />
   </svg>
 );
-const InnovationIcon = ({ size = 38, color = "#22C55E" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <line x1="9" y1="18" x2="15" y2="18"/><line x1="10" y1="22" x2="14" y2="22"/>
-    <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0018 8 6 6 0 006 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 018.91 14"/>
+const HandshakeIcon = () => (
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71" />
+    <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71" />
   </svg>
 );
-const CommitmentIcon = ({ size = 38, color = "#3B82F6" }) => (
-  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/>
+const Globe = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="10" /><line x1="2" y1="12" x2="22" y2="12" />
+    <path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20" />
   </svg>
 );
-const UsersStatIcon = ({ color = "#22C55E" }) => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
-    <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+const UserGroup = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" />
+    <path d="M23 21v-2a4 4 0 00-3-3.87" /><path d="M16 3.13a4 4 0 010 7.75" />
   </svg>
 );
-const GlobeIcon = ({ color = "#3B82F6" }) => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/>
-    <path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/>
+const HeadSet = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M3 18v-6a9 9 0 0118 0v6" />
+    <path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z" />
   </svg>
 );
-const ShieldStatIcon = ({ color = "#EAB308" }) => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-    <polyline points="9 12 11 14 15 10"/>
+const ShieldStat = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><polyline points="9 12 11 14 15 10" />
   </svg>
 );
-const HeadsetIcon = ({ color = "#8B5CF6" }) => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M3 18v-6a9 9 0 0118 0v6"/>
-    <path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3z"/>
-    <path d="M3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/>
+const PeopleIcon = () => (
+  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" />
+    <path d="M23 21v-2a4 4 0 00-3-3.87" /><path d="M16 3.13a4 4 0 010 7.75" />
   </svg>
 );
 const PeopleIcon = ({ size = 28, color = "#fff" }) => (
@@ -143,262 +143,408 @@ const GreenDivider = () => (
 const LeaderAvatar = ({ src, name, size = 128, color = "#22C55E", borderColor = "#d1fae5" }) => {
   const initials = name.split(" ").map(n => n[0]).slice(0, 2).join("").toUpperCase();
   return (
-    <div style={{
-      width: size, height: size, borderRadius: 14, flexShrink: 0,
-      border: `2px solid ${borderColor}`,
-      boxShadow: "0 4px 16px rgba(0,0,0,0.12)",
-      background: "linear-gradient(135deg, #0d1b2a, #1a2f4a)",
-      display: "flex", flexDirection: "column",
-      alignItems: "center", justifyContent: "center", gap: 4,
-      overflow: "hidden",
-    }}>
-      {src ? (
-        <img src={src} alt={name} style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }} />
-      ) : (
-        <>
-          <div style={{
-            width: 52, height: 52, borderRadius: "50%",
-            background: "rgba(34,197,94,0.15)",
-            border: `2px solid ${color}`,
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }}>
-            <span style={{ color, fontWeight: 900, fontSize: 20 }}>{initials}</span>
-          </div>
-          <div style={{ width: 28, height: 2, background: color, borderRadius: 2, marginTop: 6 }}/>
-        </>
-      )}
-    </div>
-  );
-};
+    <div style={{ fontFamily: "'Segoe UI', system-ui, Arial, sans-serif", color: "#1a2332", background: "#fff", margin: 0, padding: 0, paddingTop: "80px" }}>
 
-// ── NAVBAR ────────────────────────────────────────────────────────────────
-const Navbar = ({ isMobile }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const navLinks = ["Home", "How It Works", "Features", "Solutions", "About Us", "Contact Us"];
 
-  return (
-    <nav style={{
-      position: "sticky", top: 0, zIndex: 100,
-      background: "#060d1a",
-      borderBottom: "1px solid rgba(34,197,94,0.15)",
-    }}>
-      <div style={{
-        padding: isMobile ? "0 20px" : "0 48px",
-        display: "flex", alignItems: "center", justifyContent: "space-between",
-        height: isMobile ? 56 : 64,
-      }}>
-        {/* Logo */}
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <ScanForSafeLogo />
-          <span style={{ color: "#fff", fontWeight: 800, fontSize: isMobile ? 15 : 18, letterSpacing: "-0.3px" }}>
-            Scan<span style={{ color: "#22C55E" }}>For</span>Safe
-          </span>
-        </div>
-
-        {/* Desktop links */}
-        {!isMobile && (
-          <div style={{ display: "flex", alignItems: "center", gap: 32 }}>
-            {navLinks.map(item => (
-              <a key={item} href="#" style={{
-                color: item === "About Us" ? "#22C55E" : "#94a3b8",
-                fontSize: 14, fontWeight: item === "About Us" ? 600 : 500,
-                textDecoration: "none",
-                borderBottom: item === "About Us" ? "2px solid #22C55E" : "none",
-                paddingBottom: item === "About Us" ? 2 : 0,
-              }}>{item}</a>
-            ))}
-          </div>
-        )}
-
-        {/* Desktop CTA / Mobile hamburger */}
-        {!isMobile ? (
-          <button style={{
-            background: "transparent", border: "1.5px solid #22C55E",
-            color: "#22C55E", padding: "8px 22px",
-            borderRadius: 8, fontSize: 14, fontWeight: 600, cursor: "pointer",
-          }}>Get in Touch</button>
-        ) : (
-          <button
-            onClick={() => setMenuOpen(v => !v)}
-            style={{ background: "transparent", border: "none", cursor: "pointer", padding: 4 }}
-          >
-            {menuOpen ? <CloseIcon /> : <MenuIcon />}
-          </button>
-        )}
-      </div>
-
-      {/* Mobile dropdown menu */}
-      {isMobile && menuOpen && (
-        <div style={{
-          background: "#0a1628",
-          borderTop: "1px solid rgba(34,197,94,0.12)",
-          padding: "16px 20px 20px",
-        }}>
-          {navLinks.map(item => (
-            <a key={item} href="#" style={{
-              display: "block",
-              color: item === "About Us" ? "#22C55E" : "#94a3b8",
-              fontSize: 15, fontWeight: item === "About Us" ? 700 : 500,
-              textDecoration: "none",
-              padding: "11px 0",
-              borderBottom: "1px solid rgba(255,255,255,0.05)",
-            }}>{item}</a>
-          ))}
-          <button style={{
-            marginTop: 16, width: "100%",
-            background: "transparent", border: "1.5px solid #22C55E",
-            color: "#22C55E", padding: "11px 0",
-            borderRadius: 8, fontSize: 15, fontWeight: 600, cursor: "pointer",
-          }}>Get in Touch</button>
-        </div>
-      )}
-    </nav>
-  );
-};
-
-// ── MAIN COMPONENT ────────────────────────────────────────────────────────
-export default function AboutUs() {
-  const isMobile = useIsMobile();
-  const px = isMobile ? "20px" : "56px";
-  const sectionPy = isMobile ? "48px" : "72px";
-
-  return (
-    <div style={{
-      fontFamily: "'Inter','Segoe UI',system-ui,sans-serif",
-      color: "#111827", background: "#fff", margin: 0, padding: 0, overflowX: "hidden",
-    }}>
-
-      {/* ── NAVBAR ── */}
-      <Navbar isMobile={isMobile} />
 
       {/* ── HERO ── */}
-      <section style={{
-        position: "relative",
-        overflow: "hidden",
-        borderBottom: "3px solid #22C55E",
-        background: "linear-gradient(135deg, #050c18 0%, #071220 40%, #0a1a2e 70%, #061525 100%)",
-        minHeight: isMobile ? "auto" : 540,
-        display: "flex",
-        alignItems: "center",
-      }}>
-        {/* Ambient glow orbs */}
-        <div style={{
-          position: "absolute", left: -120, top: -80, width: 480, height: 480,
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(34,197,94,0.06) 0%, transparent 65%)",
-          pointerEvents: "none",
-        }}/>
-        <div style={{
-          position: "absolute", right: "10%", bottom: -100, width: 520, height: 520,
-          borderRadius: "50%",
-          background: "radial-gradient(circle, rgba(59,130,246,0.07) 0%, transparent 65%)",
-          pointerEvents: "none",
-        }}/>
+      <div className="about-hero-section">
+        <style>{`
+          .about-hero-section {
+            width: 100%;
+            min-height: 520px;
+            background: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px), 
+                        linear-gradient(150deg, #020c1b 0%, #0a1f44 40%, #004b23 80%, #031a07 100%);
+            background-size: 32px 32px, 100% 100%;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            box-sizing: border-box;
+            font-family: 'DM Sans', sans-serif;
+            margin-top: 0;
+            border-bottom: 1px solid rgba(34, 197, 94, 0.14);
+          }
+          .about-hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+          }
+          .about-hero-orb.orb-1 {
+            width: 560px;
+            height: 560px;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.16) 0%, transparent 65%);
+            top: -180px;
+            right: -120px;
+            animation: orbMove1 14s ease-in-out infinite;
+          }
+          .about-hero-orb.orb-2 {
+            width: 480px;
+            height: 480px;
+            background: radial-gradient(circle, rgba(0, 87, 184, 0.22) 0%, transparent 65%);
+            bottom: -160px;
+            left: -100px;
+            animation: orbMove2 18s ease-in-out infinite;
+          }
+          @keyframes orbMove1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(60px, -40px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.95); }
+          }
+          @keyframes orbMove2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-70px, 30px) scale(1.05); }
+            66% { transform: translate(40px, -50px) scale(1.1); }
+          }
+          .about-hero-image-bg {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            background: url('/aboutus.png') no-repeat right 18% bottom / auto 90%;
+            z-index: 2;
+            animation: gentleFloat 8s ease-in-out infinite;
+          }
 
-        {/* Subtle grid lines texture */}
-        <div style={{
-          position: "absolute", inset: 0, opacity: 0.025, pointerEvents: "none",
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.5) 1px, transparent 1px)",
-          backgroundSize: "60px 60px",
-        }}/>
+          @keyframes gentleFloat {
+            0%, 100% {
+              transform: translateY(0);
+            }
+            50% {
+              transform: translateY(-8px);
+            }
+          }
+          .about-hero-container {
+            max-width: 1280px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 40px 48px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 4;
+          }
+          .about-hero-content {
+            max-width: 620px;
+            text-align: left;
+            position: relative;
+            z-index: 5;
+          }
+          .about-hero-tagline {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 20px;
+          }
+          .about-hero-tagline-line {
+            width: 18px;
+            height: 2px;
+            background-color: #22c55e;
+            display: inline-block;
+          }
+          .about-hero-tagline-text {
+            color: #22c55e;
+            font-size: 13.5px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+          }
+          .about-hero-heading {
+            font-family: 'Sora', sans-serif;
+            font-size: 52px;
+            font-weight: 800;
+            line-height: 1.15;
+            color: #ffffff;
+            margin: 0 0 20px 0;
+            letter-spacing: -1.5px;
+          }
+          .about-hero-heading .text-green {
+            color: #22c55e;
+          }
+          .about-hero-description {
+            font-size: 15.5px;
+            line-height: 1.7;
+            color: #cbd5e1;
+            margin: 0 0 36px 0;
+            max-width: 520px;
+          }
+          .about-hero-features {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+          }
+          .about-hero-feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+          }
+          .about-hero-feature-icon {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1.5px solid #22c55e;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #22c55e;
+            flex-shrink: 0;
+            background-color: rgba(34, 197, 94, 0.12);
+          }
+          .about-hero-feature-info {
+            display: flex;
+            flex-direction: column;
+          }
+          .about-hero-feature-title {
+            font-size: 14.5px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 2px;
+          }
+          .about-hero-feature-desc {
+            font-size: 11.5px;
+            line-height: 1.4;
+            color: #94a3b8;
+          }
+          .about-hero-feature-divider {
+            width: 1px;
+            height: 38px;
+            background-color: rgba(255, 255, 255, 0.15);
+          }
 
-        {/* Green bottom glow line */}
-        <div style={{
-          position: "absolute", bottom: 0, left: 0, right: 0, height: 1,
-          background: "linear-gradient(90deg, transparent 0%, #22C55E 30%, #22C55E 70%, transparent 100%)",
-          boxShadow: "0 0 24px rgba(34,197,94,0.6)",
-        }}/>
+          @media (max-width: 1024px) {
+            .about-hero-heading {
+              font-size: 42px;
+              letter-spacing: -1px;
+            }
+            .about-hero-section {
+              flex-direction: column;
+              min-height: auto;
+              padding: 0;
+            }
+            .about-hero-image-bg {
+              position: relative;
+              width: 100%;
+              height: 360px;
+              order: 2;
+              background-position: center bottom !important;
+              background-size: contain !important;
+              animation: none;
+            }
+            .about-hero-container {
+              padding: 48px 24px;
+              justify-content: center;
+              order: 1;
+            }
+            .about-hero-content {
+              max-width: 100%;
+              text-align: center;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+            .about-hero-tagline {
+              justify-content: center;
+            }
+            .about-hero-description {
+              margin-bottom: 28px;
+              max-width: 100%;
+            }
+            .about-hero-features {
+              justify-content: center;
+              gap: 20px;
+            }
+            .about-hero-feature-divider {
+              display: none;
+            }
+            .about-hero-feature-item {
+              flex-direction: column;
+              align-items: center;
+              text-align: center;
+              min-width: 140px;
+            }
+          }
 
-        {/* Inner layout */}
-        <div style={{
-          maxWidth: 1200,
-          margin: "0 auto",
-          width: "100%",
-          padding: isMobile ? "48px 20px 44px" : "60px 72px",
-          display: "flex",
-          flexDirection: isMobile ? "column" : "row",
-          alignItems: "center",
-          gap: isMobile ? 36 : 0,
-          boxSizing: "border-box",
-        }}>
+          @media (max-width: 480px) {
+            .about-hero-heading {
+              font-size: 32px !important;
+              line-height: 1.25 !important;
+            }
+          }
+        `}</style>
 
-          {/* LEFT: Text */}
-          <div style={{
-            flex: isMobile ? "none" : "0 0 52%",
-            width: isMobile ? "100%" : "52%",
-            zIndex: 2,
-          }}>
-            {/* ABOUT US pill */}
-            <div style={{
-              display: "inline-flex", alignItems: "center", gap: 8,
-              marginBottom: 20, alignSelf: "flex-start",
-              background: "rgba(34,197,94,0.10)",
-              border: "1.5px solid rgba(34,197,94,0.35)",
-              borderRadius: 20, padding: "5px 16px 5px 10px",
-            }}>
-              <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#22C55E", boxShadow: "0 0 8px #22C55E", flexShrink: 0 }}/>
-              <span style={{ color: "#22C55E", fontSize: 10, fontWeight: 800, letterSpacing: "2.5px", textTransform: "uppercase" }}>About Us</span>
+        {/* Glowing background blobs */}
+        <div className="about-hero-orb orb-1"></div>
+        <div className="about-hero-orb orb-2"></div>
+        <div className="about-hero-image-bg"></div>
+        
+        <div className="about-hero-container">
+          <div className="about-hero-content">
+            
+            <div className="about-hero-tagline">
+              <span className="about-hero-tagline-line"></span>
+              <span className="about-hero-tagline-text">ABOUT US</span>
             </div>
 
-            {/* Headline */}
-            <h1 style={{
-              margin: "0 0 14px",
-              fontSize: isMobile ? 30 : 48,
-              fontWeight: 900, color: "#ffffff",
-              lineHeight: 1.1, letterSpacing: "-1px",
-            }}>
+            <h1 className="about-hero-heading">
               Building a Safer,<br />
-              Connected{" "}
-              <span style={{ color: "#22C55E", textShadow: "0 0 32px rgba(34,197,94,0.45)" }}>World</span>
+              Connected <span className="text-green">World</span>
             </h1>
 
-            {/* Green accent bar */}
-            <div style={{
-              width: 52, height: 3.5,
-              background: "linear-gradient(90deg,#22C55E,#86efac)",
-              borderRadius: 2, marginBottom: 18,
-            }}/>
-
-            <p style={{
-              margin: "0 0 32px",
-              color: "#8fa3bc", fontSize: isMobile ? 14 : 15.5,
-              lineHeight: 1.8, fontWeight: 400,
-              maxWidth: isMobile ? "100%" : 430,
-            }}>
+            <p className="about-hero-description">
               ScanForSafe is on a mission to help individuals and organizations protect what matters most using smart QR technology and secure digital solutions.
             </p>
 
-            {/* Feature badges */}
-            <div style={{
-              display: "grid",
-              gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(3, 1fr)",
-              gap: isMobile ? 8 : 10,
-              maxWidth: isMobile ? "100%" : 460,
-            }}>
-              {[
-                { icon: <ShieldCheckIcon size={14} color="#22C55E" />, title: "Secure", desc: "Security at every layer" },
-                { icon: <RefreshCwIcon size={14} color="#22C55E" />, title: "Reliable", desc: "Solutions you can count on" },
-                { icon: <LockIcon size={14} color="#22C55E" />, title: "Privacy First", desc: "Your data is protected" },
-              ].map(({ icon, title, desc }) => (
-                <div key={title} style={{
-                  display: "flex", alignItems: "center", gap: 9,
-                  background: "rgba(255,255,255,0.04)",
-                  border: "1px solid rgba(34,197,94,0.18)",
-                  borderRadius: 10, padding: "10px 12px",
-                  backdropFilter: "blur(8px)",
-                }}>
-                  <div style={{
-                    width: 28, height: 28, borderRadius: 7,
-                    background: "rgba(34,197,94,0.12)",
-                    border: "1px solid rgba(34,197,94,0.28)",
-                    display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-                  }}>{icon}</div>
-                  <div>
-                    <div style={{ color: "#e2e8f0", fontSize: 11.5, fontWeight: 700, marginBottom: 2 }}>{title}</div>
-                    <div style={{ color: "#4e6a80", fontSize: 10, lineHeight: 1.3 }}>{desc}</div>
-                  </div>
+            <div className="about-hero-features">
+              
+              <div className="about-hero-feature-item">
+                <div className="about-hero-feature-icon">
+                  <ShieldCheck />
                 </div>
-              ))}
+                <div className="about-hero-feature-info">
+                  <div className="about-hero-feature-title">Secure</div>
+                  <div className="about-hero-feature-desc">Built with security<br />at every layer</div>
+                </div>
+              </div>
+
+              <div className="about-hero-feature-divider"></div>
+
+              <div className="about-hero-feature-item">
+                <div className="about-hero-feature-icon">
+                  <CircleCheck />
+                </div>
+                <div className="about-hero-feature-info">
+                  <div className="about-hero-feature-title">Reliable</div>
+                  <div className="about-hero-feature-desc">Solutions you can<br />count on</div>
+                </div>
+              </div>
+
+              <div className="about-hero-feature-divider"></div>
+
+              <div className="about-hero-feature-item">
+                <div className="about-hero-feature-icon">
+                  <Lock />
+                </div>
+                <div className="about-hero-feature-info">
+                  <div className="about-hero-feature-title">Privacy First</div>
+                  <div className="about-hero-feature-desc">Your data is always<br />protected</div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      {/* ── MISSION & VISION ── */}
+      <section className="about-us-section" style={{ padding: "50px", background: "#f8fafc", fontFamily: "'DM Sans', sans-serif" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          
+          {/* Section Header */}
+          <div className="section-header" style={{ textAlign: "center", marginBottom: 54 }}>
+            <h2 style={{ margin: "0 0 8px", fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "'Sora', sans-serif", letterSpacing: "-0.5px" }}>
+              Mission & <span style={{ color: "#22c55e" }}>Vision</span>
+            </h2>
+            <p style={{ margin: "0 auto", color: "#64748b", fontSize: 15, maxWidth: 600, lineHeight: 1.6 }}>
+              Our purpose and goals guiding us toward a safer, more connected tomorrow.
+            </p>
+          </div>
+
+          <style>{`
+            .mission-vision-grid {
+              display: grid;
+              grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+              gap: 32px;
+            }
+            @media (max-width: 768px) {
+              .about-us-section {
+                padding: 32px 16px !important;
+              }
+              .section-header {
+                margin-bottom: 24px !important;
+              }
+              .section-header h2 {
+                font-size: 22px !important;
+              }
+              .section-header p {
+                font-size: 13.5px !important;
+              }
+              .mission-vision-grid {
+                gap: 16px !important;
+              }
+              .mission-vision-card {
+                padding: 20px 16px !important;
+                gap: 12px !important;
+              }
+              .mission-vision-card h2 {
+                font-size: 18px !important;
+                margin-bottom: 6px !important;
+              }
+              .mission-vision-card p {
+                font-size: 13.5px !important;
+                line-height: 1.6 !important;
+              }
+            }
+          `}</style>
+
+          <div className="mission-vision-grid">
+            {/* Mission Card */}
+            <div style={{
+              background: "#ffffff",
+              border: "1px solid #e2e8f0",
+              borderLeft: "5px solid #22c55e",
+              borderRadius: "12px",
+              padding: "36px",
+              boxShadow: "0 12px 24px -10px rgba(0, 0, 0, 0.05)",
+              display: "flex",
+              alignItems: "flex-start",
+              gap: 20
+            }} className="mission-vision-card">
+              <div style={{
+                width: 54, height: 54, borderRadius: 12, background: "#f0fdf4",
+                border: "1px solid #bbf7d0", display: "flex", alignItems: "center",
+                justifyContent: "center", flexShrink: 0, color: "#22c55e"
+              }}>
+                <TargetIcon />
+              </div>
+              <div>
+                <h2 style={{ margin: "0 0 12px", fontSize: 20, fontWeight: 700, color: "#0f172a", fontFamily: "'Sora', sans-serif" }}>
+                  Our <span style={{ color: "#22c55e" }}>Mission</span>
+                </h2>
+                <p style={{ margin: 0, color: "#475569", fontSize: 14.5, lineHeight: 1.75 }}>
+                  To empower people and businesses with innovative, easy-to-use, and reliable solutions that enhance security, build trust, and create peace of mind.
+                </p>
+              </div>
+            </div>
+
+            {/* Vision Card */}
+            <div style={{
+              background: "#f4f8ff",
+              border: "1px solid #d0e1fd",
+              borderLeft: "5px solid #2563eb",
+              borderRadius: "12px",
+              padding: "36px",
+              boxShadow: "0 12px 24px -10px rgba(37, 99, 235, 0.06)",
+              display: "flex",
+              alignItems: "flex-start",
+              gap: 20
+            }} className="mission-vision-card">
+              <div style={{
+                width: 54, height: 54, borderRadius: 12, background: "#eff6ff",
+                border: "1px solid #bfdbfe", display: "flex", alignItems: "center",
+                justifyContent: "center", flexShrink: 0, color: "#2563eb"
+              }}>
+                <EyeIcon />
+              </div>
+              <div>
+                <h2 style={{ margin: "0 0 12px", fontSize: 20, fontWeight: 700, color: "#0f172a", fontFamily: "'Sora', sans-serif" }}>
+                  Our <span style={{ color: "#2563eb" }}>Vision</span>
+                </h2>
+                <p style={{ margin: 0, color: "#475569", fontSize: 14.5, lineHeight: 1.75 }}>
+                  To be the world's most trusted platform for digital identity and asset protection, enabling a safer and more transparent tomorrow.
+                </p>
+              </div>
             </div>
           </div>
 
@@ -440,289 +586,385 @@ export default function AboutUs() {
         </div>
       </section>
 
-      {/* ── MISSION & VISION ── */}
-      <section style={{
-        padding: `${sectionPy} ${px}`,
-        background: "linear-gradient(180deg, #f0fdf4 0%, #f8fafc 100%)",
-        borderBottom: "2px solid #e5e7eb",
-      }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-            gap: isMobile ? 16 : 28,
-          }}>
-            {[
-              {
-                icon: <TargetIcon size={isMobile ? 36 : 42} color="#22C55E" />,
-                title: "Mission", titleColor: "#22C55E",
-                iconBg: "linear-gradient(135deg,#f0fdf4,#dcfce7)", iconBorder: "#bbf7d0",
-                cardBorder: "#d1fae5", topBar: "linear-gradient(90deg,#22C55E,#86efac)",
-                shadow: "rgba(34,197,94,0.08)", bottomBar: "#22C55E",
-                text: "To empower people and businesses with innovative, easy-to-use, and reliable solutions that enhance security, build trust, and create peace of mind — wherever they are in the world.",
-              },
-              {
-                icon: <EyeIcon size={isMobile ? 36 : 42} color="#3B82F6" />,
-                title: "Vision", titleColor: "#3B82F6",
-                iconBg: "linear-gradient(135deg,#eff6ff,#dbeafe)", iconBorder: "#bfdbfe",
-                cardBorder: "#dbeafe", topBar: "linear-gradient(90deg,#3B82F6,#93c5fd)",
-                shadow: "rgba(59,130,246,0.08)", bottomBar: "#3B82F6",
-                text: "To be the world's most trusted platform for digital identity and asset protection, enabling a safer and more transparent tomorrow for individuals and enterprises alike.",
-              },
-            ].map(({ icon, title, titleColor, iconBg, iconBorder, cardBorder, topBar, shadow, bottomBar, text }) => (
-              <div key={title} style={{
-                background: "#fff", borderRadius: 18,
-                padding: isMobile ? "24px 20px 28px" : "36px 32px 40px",
-                border: `2px solid ${cardBorder}`,
-                boxShadow: `0 4px 24px ${shadow}, 0 1px 4px rgba(0,0,0,0.05)`,
-                display: "flex", gap: isMobile ? 16 : 22, alignItems: "flex-start",
-                position: "relative", overflow: "hidden",
-              }}>
-                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: topBar }}/>
-                <div style={{ position: "absolute", bottom: 0, left: isMobile ? 20 : 32, width: 44, height: 3.5, background: bottomBar, borderRadius: 2 }}/>
-                <div style={{
-                  width: isMobile ? 60 : 76, height: isMobile ? 60 : 76,
-                  borderRadius: 14, flexShrink: 0,
-                  background: iconBg, border: `2px solid ${iconBorder}`,
-                  display: "flex", alignItems: "center", justifyContent: "center",
-                  boxShadow: `0 2px 12px ${shadow}`,
-                }}>{icon}</div>
-                <div style={{ flex: 1 }}>
-                  <h2 style={{ margin: "0 0 12px", fontSize: isMobile ? 18 : 22, fontWeight: 900, color: "#111827" }}>
-                    Our <span style={{ color: titleColor }}>{title}</span>
-                  </h2>
-                  <p style={{ margin: 0, color: "#374151", fontSize: isMobile ? 13.5 : 15, lineHeight: 1.85 }}>{text}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ── CORE VALUES ── */}
-      <section style={{
-        padding: `${sectionPy} ${px}`,
-        background: "#fff",
-        borderBottom: "2px solid #e5e7eb",
-      }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: isMobile ? 32 : 52 }}>
-            <GreenDivider />
-            <h2 style={{ margin: "0 0 10px", fontSize: isMobile ? 26 : 32, fontWeight: 900, color: "#111827" }}>
-              Our Core <span style={{ color: "#22C55E" }}>Values</span>
+      <section className="about-values-section" style={{ padding: "50px", background: "#ffffff", fontFamily: "'DM Sans', sans-serif" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          {/* Header */}
+          <div className="about-values-header" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: 20, marginBottom: 48 }}>
+            <div style={{ flex: 1, height: 1, background: "#cbd5e1" }} />
+            <h2 style={{
+              margin: 0,
+              fontSize: 24,
+              fontWeight: 800,
+              color: "#0f172a",
+              whiteSpace: "nowrap",
+              fontFamily: "'Sora', sans-serif",
+              letterSpacing: "-0.5px"
+            }}>
+              Our Core <span style={{ color: "#22c55e" }}>Values</span>
             </h2>
-            <p style={{ margin: 0, color: "#6b7280", fontSize: isMobile ? 13.5 : 15, maxWidth: 480, marginLeft: "auto", marginRight: "auto" }}>
-              The principles that guide every decision, product, and partnership we build.
-            </p>
+            <div style={{ flex: 1, height: 1, background: "#cbd5e1" }} />
           </div>
 
-          <div style={{
+          {/* 4 value columns with vertical dividers */}
+          <div className="core-values-grid" style={{
             display: "grid",
-            gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)",
-            gap: isMobile ? 12 : 22,
+            gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
+            gap: "24px 0"
           }}>
+            <style>{`
+              .core-value-item {
+                transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+                cursor: pointer;
+                border-radius: 12px;
+              }
+              .core-value-item:hover {
+                transform: translateY(-8px);
+                background-color: #f8fafc;
+                box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.05);
+              }
+              .core-value-icon-box {
+                transition: all 0.35s ease;
+              }
+              .core-value-item:hover .core-value-icon-box {
+                transform: scale(1.1);
+                box-shadow: 0 6px 15px -4px rgba(0, 0, 0, 0.08);
+              }
+              .val-green:hover .core-value-icon-box {
+                background-color: #22c55e !important;
+                border-color: #22c55e !important;
+                color: #ffffff !important;
+              }
+              .val-blue:hover .core-value-icon-box {
+                background-color: #2563eb !important;
+                border-color: #2563eb !important;
+                color: #ffffff !important;
+              }
+              @media (max-width: 768px) {
+                .about-values-section {
+                  padding: 32px 16px !important;
+                }
+                .about-values-header {
+                  margin-bottom: 24px !important;
+                  gap: 12px !important;
+                }
+                .about-values-header h2 {
+                  font-size: 20px !important;
+                }
+                .core-values-grid {
+                  grid-template-columns: repeat(2, 1fr) !important;
+                  gap: 0 !important;
+                }
+                .core-value-col {
+                  border-right: 1.5px solid #e2e8f0 !important;
+                  border-bottom: 1.5px solid #e2e8f0 !important;
+                  padding: 18px 12px !important;
+                }
+                .core-value-col:nth-child(2n) {
+                  border-right: none !important;
+                }
+                .core-value-col:nth-child(3),
+                .core-value-col:nth-child(4) {
+                  border-bottom: none !important;
+                }
+                .core-value-icon-box {
+                  margin: 0 auto 10px !important;
+                  width: 48px !important;
+                  height: 48px !important;
+                }
+                .core-value-icon-box svg {
+                  width: 18px !important;
+                  height: 18px !important;
+                }
+                .core-value-col h3 {
+                  font-size: 14.5px !important;
+                  margin-bottom: 6px !important;
+                }
+                .core-value-col p {
+                  font-size: 12.5px !important;
+                  line-height: 1.5 !important;
+                }
+                .core-value-item:hover {
+                  transform: none !important;
+                  background-color: transparent !important;
+                  box-shadow: none !important;
+                }
+                .val-green:hover .core-value-icon-box,
+                .val-blue:hover .core-value-icon-box {
+                  background-color: transparent !important;
+                  color: inherit !important;
+                  border-color: inherit !important;
+                }
+              }
+            `}</style>
             {[
-              { icon: <IntegrityIcon size={isMobile ? 30 : 38} color="#22C55E" />, label: "Integrity", iconBg: "linear-gradient(135deg,#f0fdf4,#dcfce7)", iconBorder: "#bbf7d0", iconShadow: "rgba(34,197,94,0.15)", topBar: "#22C55E", desc: "We uphold honesty and transparency in everything we do, building trust at every touchpoint." },
-              { icon: <CustomerFocusIcon size={isMobile ? 30 : 38} color="#3B82F6" />, label: "Customer Focus", iconBg: "linear-gradient(135deg,#eff6ff,#dbeafe)", iconBorder: "#bfdbfe", iconShadow: "rgba(59,130,246,0.15)", topBar: "#3B82F6", desc: "Our customers are at the heart of every innovation, decision, and feature we ship." },
-              { icon: <InnovationIcon size={isMobile ? 30 : 38} color="#22C55E" />, label: "Innovation", iconBg: "linear-gradient(135deg,#f0fdf4,#dcfce7)", iconBorder: "#bbf7d0", iconShadow: "rgba(34,197,94,0.15)", topBar: "#22C55E", desc: "We continuously evolve our platform to deliver smarter, faster, and more secure solutions." },
-              { icon: <CommitmentIcon size={isMobile ? 30 : 38} color="#3B82F6" />, label: "Commitment", iconBg: "linear-gradient(135deg,#eff6ff,#dbeafe)", iconBorder: "#bfdbfe", iconShadow: "rgba(59,130,246,0.15)", topBar: "#3B82F6", desc: "We are committed to quality, reliability, and long-term partnerships that grow with you." },
-            ].map(({ icon, label, iconBg, iconBorder, iconShadow, topBar, desc }) => (
+              { icon: <CheckIcon />, iconBg: "#f0fdf4", iconBorder: "#bbf7d0", iconColor: "#22c55e", label: "Integrity", desc: "We uphold honesty and transparency in everything we do." },
+              { icon: <UsersIcon />, iconBg: "#eff6ff", iconBorder: "#bfdbfe", iconColor: "#2563eb", label: "Customer Focus", desc: "Our customers are at the heart of our innovation and decisions." },
+              { icon: <BulbIcon />, iconBg: "#f0fdf4", iconBorder: "#bbf7d0", iconColor: "#22c55e", label: "Innovation", desc: "We continuously innovate to deliver smarter and more secure solutions." },
+              { icon: <HandshakeIcon />, iconBg: "#eff6ff", iconBorder: "#bfdbfe", iconColor: "#2563eb", label: "Commitment", desc: "We are committed to quality, reliability, and long-term partnerships." },
+            ].map(({ icon, iconBg, iconBorder, iconColor, label, desc }, index) => (
               <div key={label} style={{
                 textAlign: "center",
-                padding: isMobile ? "24px 14px 20px" : "36px 22px 30px",
-                background: "#fff", borderRadius: 16,
-                border: "2px solid #e5e7eb",
-                boxShadow: "0 2px 14px rgba(0,0,0,0.06)",
-                position: "relative", overflow: "hidden",
-              }}>
-                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: topBar }}/>
+                padding: "16px 28px",
+                borderRight: index < 3 ? "1.5px solid #e2e8f0" : "none",
+                boxSizing: "border-box"
+              }} className={`core-value-col core-value-item ${iconColor === "#22c55e" ? "val-green" : "val-blue"}`}>
                 <div style={{
-                  width: isMobile ? 54 : 68, height: isMobile ? 54 : 68,
-                  borderRadius: "50%", background: iconBg, border: `2px solid ${iconBorder}`,
+                  width: 58, height: 58, borderRadius: "50%", background: iconBg,
+                  border: `1.5px solid ${iconBorder}`,
+                  color: iconColor,
                   display: "flex", alignItems: "center", justifyContent: "center",
-                  margin: "0 auto 14px",
-                  boxShadow: `0 4px 14px ${iconShadow}`,
-                }}>{icon}</div>
-                <h3 style={{ margin: "0 0 8px", fontSize: isMobile ? 13 : 15.5, fontWeight: 800, color: "#111827" }}>{label}</h3>
-                <p style={{ margin: 0, color: "#6b7280", fontSize: isMobile ? 12 : 13.5, lineHeight: 1.7 }}>{desc}</p>
+                  margin: "0 auto 18px",
+                  boxShadow: "0 4px 12px rgba(0,0,0,0.02)"
+                }} className="core-value-icon-box">{icon}</div>
+                <h3 style={{ margin: "0 0 10px", fontSize: 16, fontWeight: 700, color: "#0f172a", fontFamily: "'Sora', sans-serif" }}>{label}</h3>
+                <p style={{ margin: 0, color: "#475569", fontSize: 13.5, lineHeight: 1.65 }}>{desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* ── LEADERSHIP TEAM ── */}
-      <section style={{
-        padding: `${sectionPy} ${px}`,
-        background: "linear-gradient(180deg,#f8fafc,#f0fdf4 100%)",
-        borderBottom: "2px solid #e5e7eb",
-      }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
-          <div style={{ textAlign: "center", marginBottom: isMobile ? 28 : 48 }}>
-            <GreenDivider />
-            <h2 style={{ margin: "0 0 10px", fontSize: isMobile ? 26 : 32, fontWeight: 900, color: "#111827" }}>
-              Leadership <span style={{ color: "#22C55E" }}>Team</span>
+      {/* ── LEADERSHIP ── */}
+      <section style={{ padding: "50px", background: "#f8fafc", fontFamily: "'DM Sans', sans-serif" }}>
+        <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+          <div style={{ textAlign: "center", marginBottom: 54 }}>
+            <h2 style={{ margin: "0 0 8px", fontSize: 28, fontWeight: 800, color: "#0f172a", fontFamily: "'Sora', sans-serif", letterSpacing: "-0.5px" }}>
+              Leadership <span style={{ color: "#22c55e" }}>Team</span>
             </h2>
-            <p style={{ margin: 0, color: "#6b7280", fontSize: isMobile ? 13.5 : 15 }}>
-              Experienced leaders driving innovation and trust at ScanForSafe.
+            <p style={{ margin: "0 auto", color: "#64748b", fontSize: 15, maxWidth: 600, lineHeight: 1.6 }}>
+              Experienced leaders driving innovation, security, and trust at ScanForSafe.
             </p>
           </div>
 
           <div style={{
             display: "grid",
-            gridTemplateColumns: isMobile ? "1fr" : "1fr 1fr",
-            gap: isMobile ? 16 : 28,
-          }}>
-            {[
-              {
-                name: "Sudharani M", role: "Director", photo: "/sudharani.jpg",
-                color: "#22C55E", borderColor: "#d1fae5", topBar: "#22C55E",
-                shadow: "rgba(34,197,94,0.08)",
-                quals: ["MBA", "PG Diploma in Computer Applications"],
-                desc: "Experienced in business operations, customer engagement, and strategic planning. Passionate about delivering solutions that make the world safer and more connected."
-              },
-              {
-                name: "Sailajeswari devi M", role: "Director", photo: "/sailajeswari.jpg",
-                color: "#22C55E", borderColor: "#d1fae5", topBar: "#22C55E",
-                shadow: "rgba(34,197,94,0.08)",
-                quals: ["MA Economics", "PG Diploma in Computer Applications"],
-                desc: "Specialized in finance, administration, and business development. Focused on building sustainable growth and strong partnerships."
+            gridTemplateColumns: "1fr 1fr",
+            gap: 20
+          }} className="leader-grid">
+            <style>{`
+              @media (max-width: 900px) {
+                .leader-grid {
+                  grid-template-columns: 1fr !important;
+                }
               }
-            ].map(({ name, role, photo, color, borderColor, topBar, shadow, quals, desc }) => (
-              <div key={name} style={{
-                background: "#fff", borderRadius: 18,
-                padding: isMobile ? "20px" : "28px",
-                border: `2px solid ${borderColor}`,
-                boxShadow: `0 4px 24px ${shadow}, 0 1px 4px rgba(0,0,0,0.05)`,
+              @media (max-width: 550px) {
+                .leader-card {
+                  flex-direction: column !important;
+                  align-items: center !important;
+                  padding: 24px !important;
+                }
+                .leader-card-info {
+                  align-items: center !important;
+                  text-align: center !important;
+                  display: flex !important;
+                  flex-direction: column !important;
+                }
+                .leader-card-info ul {
+                  padding-left: 0 !important;
+                  list-style-type: none !important;
+                }
+              }
+            `}</style>
+            
+            {/* Sudharani M */}
+            <div style={{
+              background: "#ffffff",
+              borderRadius: 16,
+              padding: "32px",
+              boxShadow: "0 10px 25px -5px rgba(0,0,0,0.03)",
+              border: "1px solid #e2e8f0",
+              display: "flex",
+              gap: 28,
+              alignItems: "flex-start"
+            }} className="leader-card">
+              {/* Image Frame Placeholder */}
+              <div style={{
+                width: 200, height: 240,
+                borderRadius: 12,
+                background: "#f1f5f9",
+                border: "1px solid #e2e8f0",
+                position: "relative",
+                overflow: "hidden",
                 display: "flex",
-                flexDirection: isMobile ? "column" : "row",
-                gap: isMobile ? 16 : 22,
-                position: "relative", overflow: "hidden",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0
               }}>
-                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: `linear-gradient(90deg,${topBar},#86efac)` }}/>
-                {isMobile ? (
-                  <div style={{ display: "flex", gap: 16, alignItems: "center" }}>
-                    <LeaderAvatar src={photo} name={name} size={90} color={color} borderColor={borderColor} />
-                    <div>
-                      <h3 style={{ margin: "0 0 3px", fontSize: 16, fontWeight: 900, color: "#111827" }}>{name}</h3>
-                      <div style={{ color, fontWeight: 700, fontSize: 13 }}>{role}</div>
-                    </div>
-                  </div>
-                ) : (
-                  <LeaderAvatar src={photo} name={name} size={128} color={color} borderColor={borderColor} />
-                )}
-                <div style={{ flex: 1, paddingTop: isMobile ? 0 : 4 }}>
-                  {!isMobile && (
-                    <>
-                      <h3 style={{ margin: "0 0 4px", fontSize: 18, fontWeight: 900, color: "#111827" }}>{name}</h3>
-                      <div style={{ color, fontWeight: 700, fontSize: 13.5, marginBottom: 14 }}>{role}</div>
-                    </>
-                  )}
-                  <div style={{ marginBottom: 12, marginTop: isMobile ? 12 : 0 }}>
-                    {quals.map(q => (
-                      <div key={q} style={{ display: "flex", alignItems: "center", gap: 8, color: "#374151", fontSize: 13, marginBottom: 5, fontWeight: 500 }}>
-                        <div style={{ width: 5, height: 5, borderRadius: "50%", background: color, flexShrink: 0 }}/>
-                        {q}
-                      </div>
-                    ))}
-                  </div>
-                  <div style={{ width: 32, height: 3, background: color, borderRadius: 2, marginBottom: 12 }}/>
-                  <p style={{ margin: 0, color: "#4b5563", fontSize: 13, lineHeight: 1.8 }}>{desc}</p>
+                <div style={{ position: "absolute", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                  <span style={{ fontSize: 9, color: "#94a3b8", marginTop: 6, fontWeight: 600, letterSpacing: "1px" }}>PHOTO</span>
                 </div>
+                <img 
+                  src="/Sudharani.png" 
+                  alt="Sudharani M" 
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    zIndex: 2
+                  }}
+                />
               </div>
-            ))}
+
+              {/* Info */}
+              <div style={{ flex: 1 }} className="leader-card-info">
+                <h3 style={{ margin: "0 0 4px", fontSize: 22, fontWeight: 700, color: "#0f172a", fontFamily: "'Sora', sans-serif" }}>Sudharani M</h3>
+                <div style={{ color: "#22c55e", fontWeight: 700, fontSize: 13.5, textTransform: "uppercase", letterSpacing: "1px" }}>Director</div>
+                
+                {/* Qualifications List */}
+                <ul style={{ margin: "12px 0 14px 0", paddingLeft: 18, color: "#334155", fontSize: 13.5, lineHeight: 1.6 }}>
+                  {["MBA", "PG Diploma in Computer Applications"].map(q => (
+                    <li key={q} style={{ marginBottom: 4 }}>{q}</li>
+                  ))}
+                </ul>
+
+                {/* Green Accent Line */}
+                <div style={{ width: 48, height: 3, backgroundColor: "#22c55e", margin: "14px 0 16px 0", borderRadius: 2 }} />
+
+                <p style={{ margin: 0, color: "#475569", fontSize: 13.5, lineHeight: 1.7 }}>
+                  Experienced in business operations, customer engagement, and strategic planning. Passionate about delivering solutions that make the world safer and more connected.
+                </p>
+              </div>
+            </div>
+
+            {/* Sailajeswari devi M */}
+            <div style={{
+              background: "#ffffff",
+              borderRadius: 16,
+              padding: "32px",
+              boxShadow: "0 10px 25px -5px rgba(0,0,0,0.03)",
+              border: "1px solid #e2e8f0",
+              display: "flex",
+              gap: 28,
+              alignItems: "flex-start"
+            }} className="leader-card">
+              {/* Image Frame Placeholder */}
+              <div style={{
+                width: 200, height: 240,
+                borderRadius: 12,
+                background: "#f1f5f9",
+                border: "1px solid #e2e8f0",
+                position: "relative",
+                overflow: "hidden",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                flexShrink: 0
+              }}>
+                <div style={{ position: "absolute", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                    <circle cx="12" cy="7" r="4" />
+                  </svg>
+                  <span style={{ fontSize: 9, color: "#94a3b8", marginTop: 6, fontWeight: 600, letterSpacing: "1px" }}>PHOTO</span>
+                </div>
+                <img 
+                  src="/Sailajeswari.png" 
+                  alt="Sailajeswari devi M" 
+                  onError={(e) => { e.target.style.display = 'none'; }}
+                  style={{
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    zIndex: 2
+                  }}
+                />
+              </div>
+
+              {/* Info */}
+              <div style={{ flex: 1 }} className="leader-card-info">
+                <h3 style={{ margin: "0 0 4px", fontSize: 22, fontWeight: 700, color: "#0f172a", fontFamily: "'Sora', sans-serif" }}>Sailajeswari devi M</h3>
+                <div style={{ color: "#22c55e", fontWeight: 700, fontSize: 13.5, textTransform: "uppercase", letterSpacing: "1px" }}>Director</div>
+                
+                {/* Qualifications List */}
+                <ul style={{ margin: "12px 0 14px 0", paddingLeft: 18, color: "#334155", fontSize: 13.5, lineHeight: 1.6 }}>
+                  {["MA Economics", "PG Diploma in Computer Applications"].map(q => (
+                    <li key={q} style={{ marginBottom: 4 }}>{q}</li>
+                  ))}
+                </ul>
+
+                {/* Green Accent Line */}
+                <div style={{ width: 48, height: 3, backgroundColor: "#22c55e", margin: "14px 0 16px 0", borderRadius: 2 }} />
+
+                <p style={{ margin: 0, color: "#475569", fontSize: 13.5, lineHeight: 1.7 }}>
+                  Specialized in finance, administration, and business development. Focused on building sustainable growth and strong relationships.
+                </p>
+              </div>
+            </div>
+
           </div>
         </div>
       </section>
 
       {/* ── WHY WE EXIST ── */}
-      <section style={{
-        padding: isMobile ? "40px 20px 48px" : "52px 56px 64px",
-        background: "linear-gradient(180deg,#f0fdf4,#f8fafc)",
-        borderBottom: "2px solid #e5e7eb",
-      }}>
-        <div style={{ maxWidth: 1100, margin: "0 auto" }}>
+      <section style={{ padding: "0px 50px", background: "#f8fafc", fontFamily: "'DM Sans', sans-serif" }}>
+        <div style={{
+          maxWidth: 1000,
+          margin: "0 auto",
+          background: "#f4f9f5",
+          borderRadius: 16,
+          border: "1px solid #dcfce7",
+          boxShadow: "0 10px 25px -10px rgba(34, 197, 94, 0.08)",
+          padding: "36px 40px",
+          display: "flex",
+          alignItems: "center",
+          gap: 28,
+          position: "relative",
+          overflow: "hidden"
+        }} className="why-exist-container">
+          <style>{`
+            @media (max-width: 600px) {
+              .why-exist-container {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+                padding: 32px 24px;
+              }
+            }
+          `}</style>
+          
+          {/* Faint watermark shield on the right */}
           <div style={{
-            background: "#fff",
-            borderRadius: 18,
-            padding: isMobile ? "24px 20px" : "36px 40px",
-            border: "2px solid #d1fae5",
-            boxShadow: "0 4px 28px rgba(34,197,94,0.09), 0 1px 4px rgba(0,0,0,0.05)",
-            display: "flex",
-            flexDirection: isMobile ? "column" : "row",
-            alignItems: isMobile ? "flex-start" : "center",
-            gap: isMobile ? 16 : 28,
-            position: "relative", overflow: "hidden",
+            position: "absolute",
+            right: -20,
+            bottom: -20,
+            opacity: 0.04,
+            pointerEvents: "none",
+            color: "#22c55e"
           }}>
-            <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: 4, background: "linear-gradient(90deg,#22C55E,#86efac,transparent)" }}/>
-            {!isMobile && (
-              <div style={{ position: "absolute", right: 48, top: "50%", transform: "translateY(-50%)", opacity: 0.06, pointerEvents: "none" }}>
-                <svg width="140" height="140" viewBox="0 0 44 44">
-                  <path d="M22 2L4 9v12c0 10.5 7.7 20.3 18 22.8C32.3 41.3 40 31.5 40 21V9L22 2z" fill="#22C55E"/>
-                </svg>
-              </div>
-            )}
-            <div style={{
-              width: isMobile ? 52 : 64, height: isMobile ? 52 : 64,
-              borderRadius: "50%",
-              background: "linear-gradient(135deg,#22C55E,#16a34a)",
-              flexShrink: 0,
-              display: "flex", alignItems: "center", justifyContent: "center",
-              boxShadow: "0 4px 18px rgba(34,197,94,0.35)",
-              border: "3px solid #86efac",
-            }}>
-              <PeopleIcon size={isMobile ? 22 : 28} color="#fff" />
-            </div>
-            <div style={{ zIndex: 1 }}>
-              <h3 style={{ margin: "0 0 10px", fontSize: isMobile ? 17 : 20, fontWeight: 900, color: "#111827" }}>Why We Exist</h3>
-              <p style={{ margin: 0, color: "#374151", fontSize: isMobile ? 13.5 : 15, lineHeight: 1.85, maxWidth: 760 }}>
-                We believe security is not just a feature — it's a promise. ScanForSafe was created to empower individuals and organizations with smart, simple, and secure technology that protects, connects, and gives peace of mind. Because in a digital world,{" "}
-                <strong style={{ color: "#111827", fontWeight: 700 }}>trust is everything.</strong>
-              </p>
-            </div>
+            <svg width="220" height="220" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+
+          <div style={{
+            width: 58, height: 58, borderRadius: 14, background: "#dcfce7",
+            border: "1px solid #bbf7d0",
+            display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center",
+            color: "#16a34a", flexShrink: 0
+          }}>
+            <PeopleIcon />
+          </div>
+
+          <div style={{ zIndex: 1, position: "relative" }}>
+            <h3 style={{ margin: "0 0 8px", fontSize: 18, fontWeight: 700, color: "#14532d", fontFamily: "'Sora', sans-serif" }}>Why We Exist</h3>
+            <p style={{ margin: 0, color: "#166534", fontSize: 14.5, lineHeight: 1.7 }}>
+              We believe security is not just a feature, it's a promise. ScanForSafe was created to empower individuals and organizations with smart, simple, and secure technology that protects, connects, and gives peace of mind.
+            </p>
           </div>
         </div>
       </section>
-
-      {/* ── STATS ── */}
-      <section style={{
-        background: "#060d1a",
-        padding: isMobile ? "36px 20px" : "44px 56px",
-        borderTop: "3px solid #22C55E",
-      }}>
-        <div style={{
-          maxWidth: 1100, margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: isMobile ? "1fr 1fr" : "repeat(4, 1fr)",
-          gap: isMobile ? 12 : 20,
-        }}>
-          {[
-            { icon: <UsersStatIcon color="#22C55E" />, value: "10K+", label: "Happy Customers", valueColor: "#22C55E", border: "rgba(34,197,94,0.25)", iconBg: "rgba(34,197,94,0.10)" },
-            { icon: <GlobeIcon color="#3B82F6" />, value: "50+", label: "Countries Served", valueColor: "#3B82F6", border: "rgba(59,130,246,0.25)", iconBg: "rgba(59,130,246,0.10)" },
-            { icon: <ShieldStatIcon color="#EAB308" />, value: "99.9%", label: "Trust & Reliability", valueColor: "#EAB308", border: "rgba(234,179,8,0.25)", iconBg: "rgba(234,179,8,0.10)" },
-            { icon: <HeadsetIcon color="#8B5CF6" />, value: "24/7", label: "Customer Support", valueColor: "#8B5CF6", border: "rgba(139,92,246,0.25)", iconBg: "rgba(139,92,246,0.10)" },
-          ].map(({ icon, value, label, valueColor, border, iconBg }) => (
-            <div key={label} style={{
-              display: "flex", alignItems: "center", gap: isMobile ? 12 : 18,
-              background: "rgba(255,255,255,0.04)",
-              border: `1.5px solid ${border}`,
-              borderRadius: 14, padding: isMobile ? "16px 14px" : "22px 24px",
-            }}>
-              <div style={{
-                width: isMobile ? 42 : 54, height: isMobile ? 42 : 54,
-                borderRadius: 12, background: iconBg,
-                border: `1.5px solid ${border}`,
-                display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0,
-              }}>{icon}</div>
-              <div>
-                <div style={{ color: valueColor, fontWeight: 900, fontSize: isMobile ? 20 : 28, lineHeight: 1, letterSpacing: "-0.5px" }}>{value}</div>
-                <div style={{ color: "#94a3b8", fontSize: isMobile ? 11 : 13, marginTop: 4, fontWeight: 500 }}>{label}</div>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
-
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import carImg     from "../../assets/car.png";
@@ -1082,12 +1082,12 @@ export default function ScanForSafeHero() {
 
               <div className="sfs-tagline-row">
                 {taglineItems.map((item, i) => (
-                  <>
-                    {i > 0 && <span key={`sep-${i}`} className="sfs-tagline-sep" />}
-                    <span key={item.text} className="sfs-tagline-item">
+                  <React.Fragment key={item.text}>
+                    {i > 0 && <span className="sfs-tagline-sep" />}
+                    <span className="sfs-tagline-item">
                       {item.icon} {item.text}
                     </span>
-                  </>
+                  </React.Fragment>
                 ))}
                 <div className="sfs-tagline-bold">One Scan. <strong>Big Difference.</strong></div>
               </div>

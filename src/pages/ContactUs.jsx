@@ -5,19 +5,19 @@ const CONTACT_INFO = [
   {
     icon: Phone,
     label: 'Phone',
-    value: '+91 XXXXX XXXXX',
-    href: 'tel:+91XXXXXXXXXX',
+    value: '+91 7661-827418',
+    href: 'tel:+917661827418',
     color: '#0057b8',
     bg: 'linear-gradient(135deg,#eff6ff,#dbeafe)',
     border: '#bfdbfe',
     emoji: '📞',
-    desc: 'Mon - Sat, 9am to 7pm',
+    desc: 'Central support line',
   },
   {
     icon: MessageCircle,
     label: 'WhatsApp',
-    value: 'Chat with us instantly',
-    href: 'https://wa.me/91XXXXXXXXXX',
+    value: '+91 8639322479',
+    href: 'https://wa.me/919876543210',
     color: '#2ebd3a',
     bg: 'linear-gradient(135deg,#f8fafc,#e8f8eb)',
     border: '#e8f8eb',
@@ -27,8 +27,8 @@ const CONTACT_INFO = [
   {
     icon: Mail,
     label: 'Email',
-    value: 'hello@scanforsafe.in',
-    href: 'mailto:hello@scanforsafe.in',
+    value: 'customercare@scanforsafe.com',
+    href: 'mailto:customercare@scanforsafe.com',
     color: '#7c3aed',
     bg: 'linear-gradient(135deg,#f8fafc,#ede9fe)',
     border: '#ddd6fe',
@@ -38,13 +38,13 @@ const CONTACT_INFO = [
   {
     icon: MapPin,
     label: 'Office',
-    value: 'Your City, State - 000000',
+    value: 'R/o 87/1151-4-a-vf-501, Nagireddy Revenue Colony, Revenue Ward No. 87, Kurnool, Andhra Pradesh, PIN Code: 518002',
     href: null,
-    color: '#e11d48',
-    bg: 'linear-gradient(135deg,#fff1f2,#ffe4e6)',
-    border: '#fecdd3',
+    color: '#0057b8',
+    bg: 'linear-gradient(135deg,#eff6ff,#dbeafe)',
+    border: '#bfdbfe',
     emoji: '📍',
-    desc: 'Headquarters, India',
+    desc: 'Registered Office',
   },
 ]
 
@@ -625,7 +625,7 @@ export default function ContactUs() {
                   <div className="cu-channel-title">WhatsApp Support</div>
                   <div style={{ width: 24, height: 2, background: '#24b13b', margin: '4px auto 12px' }} />
                   <div className="cu-channel-desc">Chat with us on WhatsApp for quick assistance.</div>
-                  <a href="https://wa.me/91XXXXXXXXXX" target="_blank" rel="noopener noreferrer"
+                  <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer"
                     className="cu-channel-btn"
                     style={{ border: '1px solid #24b13b', color: '#24b13b' }}
                     onMouseEnter={e => { e.currentTarget.style.background = '#24b13b'; e.currentTarget.style.color = '#fff' }}
@@ -666,7 +666,7 @@ export default function ContactUs() {
                   <div className="cu-channel-title">Call Support</div>
                   <div style={{ width: 24, height: 2, background: '#24b13b', margin: '4px auto 12px' }} />
                   <div className="cu-channel-desc">Speak with our team during business hours.</div>
-                  <a href="tel:+91XXXXXXXXXX"
+                  <a href="tel:+917661827418"
                     className="cu-channel-btn"
                     style={{ border: '1px solid #24b13b', color: '#24b13b' }}
                     onMouseEnter={e => { e.currentTarget.style.background = '#24b13b'; e.currentTarget.style.color = '#fff' }}
@@ -706,7 +706,7 @@ export default function ContactUs() {
                   objectFit: 'contain',
                   objectPosition: 'bottom right',
                   zIndex: 5,
-                  transform: 'translateY(16px) translateX(-30px)',
+                  transform: 'translateY(16px) translateX(-100px)',
                 }}
               />
             </div>
@@ -761,8 +761,8 @@ export default function ContactUs() {
               <div
                 className="cf-info-card"
                 style={{
-                  background: 'linear-gradient(135deg,#fff1f2,#ffe4e6)',
-                  borderColor: '#fecdd3',
+                  background: 'linear-gradient(135deg,#eff6ff,#dbeafe)',
+                  borderColor: '#bfdbfe',
                   opacity: infoInView ? 1 : 0,
                   transform: infoInView ? 'translateX(0)' : 'translateX(-28px)',
                   transition: 'opacity .5s ease .1s, transform .5s cubic-bezier(.34,1.3,.64,1) .1s, box-shadow .3s ease',
@@ -778,9 +778,9 @@ export default function ContactUs() {
                   background: 'rgba(255,255,255,0.8)', flexShrink: 0,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-                  border: '1.5px solid #fecdd3',
+                  border: '1.5px solid #bfdbfe',
                 }}>
-                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#e11d48" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#0057b8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
                     <circle cx="12" cy="10" r="3"/>
                   </svg>
@@ -789,10 +789,10 @@ export default function ContactUs() {
                   <div style={{
                     fontFamily: "'Fira Code', monospace",
                     fontSize: 9.5, fontWeight: 500, letterSpacing: '.14em',
-                    textTransform: 'uppercase', color: '#e11d48', marginBottom: 4,
+                    textTransform: 'uppercase', color: '#0057b8', marginBottom: 4,
                     display: 'flex', alignItems: 'center', gap: 5,
                   }}>
-                    <span style={{ width: 14, height: 1.5, background: '#e11d48', display: 'inline-block' }} />
+                    <span style={{ width: 14, height: 1.5, background: '#0057b8', display: 'inline-block' }} />
                     OFFICE
                   </div>
                   <div style={{
@@ -800,73 +800,19 @@ export default function ContactUs() {
                     fontSize: 15, fontWeight: 700, color: '#0B2545',
                     lineHeight: 1.4, marginBottom: 4,
                   }}>
-                    Your City, State - 000000
+                    R/o 87/1151-4-a-vf-501, Nagireddy Revenue Colony, Revenue Ward No. 87, Kurnool, Andhra Pradesh, PIN Code: 518002
                   </div>
                   <div style={{ fontSize: 12, color: '#64748b', fontWeight: 500, marginBottom: 8 }}>
-                    Headquarters, India
+                    Registered Office
                   </div>
-                  <div style={{ fontSize: 11.5, color: '#e11d48', fontWeight: 600 }}>
+                  <div style={{ fontSize: 11.5, color: '#0057b8', fontWeight: 600 }}>
                     🕒 Visits by appointment only
                   </div>
                 </div>
               </div>
 
-              {/* Operating Hours card */}
+              {/* Email support card */}
               <div
-                className="cf-info-card"
-                style={{
-                  background: 'linear-gradient(135deg,#f0fdf4,#dcfce7)',
-                  borderColor: '#bbf7d0',
-                  opacity: infoInView ? 1 : 0,
-                  transform: infoInView ? 'translateX(0)' : 'translateX(-28px)',
-                  transition: 'opacity .5s ease .2s, transform .5s cubic-bezier(.34,1.3,.64,1) .2s, box-shadow .3s ease',
-                  padding: '24px',
-                  borderRadius: 18,
-                  display: 'flex',
-                  alignItems: 'flex-start',
-                  gap: 16,
-                }}
-              >
-                <div style={{
-                  width: 48, height: 48, borderRadius: 14,
-                  background: 'rgba(255,255,255,0.8)', flexShrink: 0,
-                  display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-                  border: '1.5px solid #bbf7d0',
-                }}>
-                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#16a34a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <circle cx="12" cy="12" r="10"/>
-                    <polyline points="12 6 12 12 16 14"/>
-                  </svg>
-                </div>
-                <div>
-                  <div style={{
-                    fontFamily: "'Fira Code', monospace",
-                    fontSize: 9.5, fontWeight: 500, letterSpacing: '.14em',
-                    textTransform: 'uppercase', color: '#16a34a', marginBottom: 4,
-                    display: 'flex', alignItems: 'center', gap: 5,
-                  }}>
-                    <span style={{ width: 14, height: 1.5, background: '#16a34a', display: 'inline-block' }} />
-                    OPERATING HOURS
-                  </div>
-                  <div style={{
-                    fontFamily: "'Instrument Sans', sans-serif",
-                    fontSize: 15, fontWeight: 700, color: '#0B2545',
-                    lineHeight: 1.4, marginBottom: 4,
-                  }}>
-                    Mon - Sat: 9:00 AM - 7:00 PM
-                  </div>
-                  <div style={{ fontSize: 12, color: '#64748b', fontWeight: 500, marginBottom: 8 }}>
-                    Standard Business Hours (IST)
-                  </div>
-                  <div style={{ fontSize: 11.5, color: '#16a34a', fontWeight: 600 }}>
-                    ⚡ Emergency support active 24/7
-                  </div>
-                </div>
-              </div>
-
-              {/* Corporate Inquiries card */}
-              {/* <div
                 className="cf-info-card"
                 style={{
                   background: 'linear-gradient(135deg,#f5f3ff,#ede9fe)',
@@ -889,8 +835,8 @@ export default function ContactUs() {
                   border: '1.5px solid #ddd6fe',
                 }}>
                   <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#7c3aed" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2"/>
-                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/>
+                    <rect x="2" y="4" width="20" height="16" rx="2"/>
+                    <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
                   </svg>
                 </div>
                 <div>
@@ -901,30 +847,30 @@ export default function ContactUs() {
                     display: 'flex', alignItems: 'center', gap: 5,
                   }}>
                     <span style={{ width: 14, height: 1.5, background: '#7c3aed', display: 'inline-block' }} />
-                    PARTNERSHIPS & PRESS
+                    EMAIL
                   </div>
                   <div style={{
                     fontFamily: "'Instrument Sans', sans-serif",
                     fontSize: 15, fontWeight: 700, color: '#0B2545',
                     lineHeight: 1.4, marginBottom: 4,
                   }}>
-                    partners@scanforsafe.in
+                    customercare@scanforsafe.com
                   </div>
                   <div style={{ fontSize: 12, color: '#64748b', fontWeight: 500, marginBottom: 8 }}>
-                    Institutional sales and media contracts
+                    Send us an email for general help and queries
                   </div>
                   <div style={{ fontSize: 11.5, color: '#7c3aed', fontWeight: 600 }}>
-                    🤝 Response within 1 business day
+                    ✉️ Reply within 2 business hours
                   </div>
                 </div>
-              </div> */}
+              </div>
 
-              {/* Security & Data Abuse card */}
-              {/* <div
+              {/* WhatsApp Support card */}
+              <div
                 className="cf-info-card"
                 style={{
-                  background: 'linear-gradient(135deg,#eff6ff,#dbeafe)',
-                  borderColor: '#bfdbfe',
+                  background: 'linear-gradient(135deg,#f0fdf4,#dcfce7)',
+                  borderColor: '#bbf7d0',
                   opacity: infoInView ? 1 : 0,
                   transform: infoInView ? 'translateX(0)' : 'translateX(-28px)',
                   transition: 'opacity .5s ease .4s, transform .5s cubic-bezier(.34,1.3,.64,1) .4s, box-shadow .3s ease',
@@ -940,37 +886,37 @@ export default function ContactUs() {
                   background: 'rgba(255,255,255,0.8)', flexShrink: 0,
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
                   boxShadow: '0 2px 8px rgba(0,0,0,0.06)',
-                  border: '1.5px solid #bfdbfe',
+                  border: '1.5px solid #bbf7d0',
                 }}>
-                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#0057b8" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/>
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#16a34a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
                   </svg>
                 </div>
                 <div>
                   <div style={{
                     fontFamily: "'Fira Code', monospace",
                     fontSize: 9.5, fontWeight: 500, letterSpacing: '.14em',
-                    textTransform: 'uppercase', color: '#0057b8', marginBottom: 4,
+                    textTransform: 'uppercase', color: '#16a34a', marginBottom: 4,
                     display: 'flex', alignItems: 'center', gap: 5,
                   }}>
-                    <span style={{ width: 14, height: 1.5, background: '#0057b8', display: 'inline-block' }} />
-                    SECURITY & DATA ABUSE
+                    <span style={{ width: 14, height: 1.5, background: '#16a34a', display: 'inline-block' }} />
+                    WHATSAPP SUPPORT
                   </div>
                   <div style={{
                     fontFamily: "'Instrument Sans', sans-serif",
                     fontSize: 15, fontWeight: 700, color: '#0B2545',
                     lineHeight: 1.4, marginBottom: 4,
                   }}>
-                    abuse@scanforsafe.in
+                    +91 8639322479
                   </div>
                   <div style={{ fontSize: 12, color: '#64748b', fontWeight: 500, marginBottom: 8 }}>
-                    Report vulnerabilities or visual tag issues
+                    Chat with us on WhatsApp for instant support
                   </div>
-                  <div style={{ fontSize: 11.5, color: '#0057b8', fontWeight: 600 }}>
-                    🛡️ Verified security reports rewarded
+                  <div style={{ fontSize: 11.5, color: '#16a34a', fontWeight: 600 }}>
+                    💬 Fastest - reply under 10 min
                   </div>
                 </div>
-              </div> */}
+              </div>
             </div>
 
             {/* ── RIGHT: Contact form ── */}
