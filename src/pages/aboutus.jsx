@@ -736,18 +736,19 @@ export default function AboutUs() {
           }} className="leader-grid">
             <style>{`
               .leader-card {
-                border: 2px solid #bbf7d0 !important;
-                transition: all 0.3s ease;
+                border: 1.5px solid #dbeafe !important;
+                transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
                 display: flex;
                 align-items: stretch;
                 padding: 0 !important;
                 overflow: hidden;
                 gap: 20px !important;
+                box-shadow: 0 4px 12px rgba(37, 99, 235, 0.04) !important;
               }
               .leader-card:hover {
-                border-color: #22c55e !important;
-                transform: translateY(-4px);
-                box-shadow: 0 12px 30px -10px rgba(34, 197, 94, 0.12) !important;
+                transform: translateY(-5px);
+                border-color: #2563eb !important;
+                box-shadow: 0 20px 38px -12px rgba(37, 99, 235, 0.16) !important;
               }
               .leader-card-image-wrapper {
                 width: 240px;
@@ -764,7 +765,11 @@ export default function AboutUs() {
               .leader-card-info {
                 padding: 32px 32px 32px 0 !important;
               }
-              @media (max-width: 900px) {
+              .leader-card-info ul {
+                padding-left: 20px !important;
+                list-style-type: disc !important;
+              }
+              @media (max-width: 1024px) {
                 .leader-grid {
                   grid-template-columns: 1fr !important;
                 }
@@ -789,8 +794,10 @@ export default function AboutUs() {
                   padding: 12px 0 0 0 !important;
                 }
                 .leader-card-info ul {
-                  padding-left: 0 !important;
-                  list-style-type: none !important;
+                  padding-left: 20px !important;
+                  list-style-type: disc !important;
+                  align-self: flex-start !important;
+                  text-align: left !important;
                 }
               }
             `}</style>

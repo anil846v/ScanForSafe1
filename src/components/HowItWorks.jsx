@@ -420,7 +420,60 @@ function Page10() {
 }
 
 // ── Handwritten annotation — text + curved arrow ──
-function GlossySpeechBubble() {
+// ── Handwritten annotation — text + curved arrow ──
+function GlossySpeechBubble({ isMobile }) {
+  if (isMobile) {
+    return (
+      <div style={{
+        position: "absolute",
+        top: -110,
+        left: "50%",
+        transform: "translateX(-50%)",
+        width: 250,
+        pointerEvents: "none",
+        zIndex: 20,
+      }}>
+        <div style={{
+          fontFamily: "'Caveat', 'Kalam', cursive",
+          fontSize: 17,
+          fontWeight: 700,
+          color: "#1a9e2e",
+          lineHeight: 1.3,
+          textAlign: "center",
+          marginBottom: 2,
+          letterSpacing: "0.01em",
+        }}>
+          This is what people see<br/>when they scan your tag
+        </div>
+        <svg
+          width="250" height="60"
+          viewBox="0 0 250 60"
+          fill="none"
+          style={{ display:"block", margin:"0 auto" }}
+        >
+          {/* Straight arrow pointing down */}
+          <path
+            d="M 125 4 L 125 44"
+            stroke="#1a9e2e"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            fill="none"
+            strokeDasharray="3 3"
+          />
+          {/* Arrowhead */}
+          <path
+            d="M 119 38 L 125 44 L 131 38"
+            stroke="#1a9e2e"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            fill="none"
+          />
+        </svg>
+      </div>
+    );
+  }
+
   return (
     <div style={{
       position: "absolute",
@@ -471,7 +524,7 @@ function GlossySpeechBubble() {
   );
 }
 
-function IPhoneMockup({ targetHeight }) {
+function IPhoneMockup({ targetHeight, isMobile }) {
   const [page, setPage] = useState(1);
   const [prevPage, setPrev] = useState(null);
   const [dir, setDir] = useState(1);
@@ -515,7 +568,7 @@ function IPhoneMockup({ targetHeight }) {
   <div style={{ position:"relative", width:PHONE_W, flexShrink:0, overflow:"visible" }}>
 
       {/* ── Glossy Speech Bubble Annotation ── */}
-      <GlossySpeechBubble />
+      <GlossySpeechBubble isMobile={isMobile} />
 
       {/* Flow labels above phone */}
       <div style={{ position:"absolute", top:-28, left:"50%", transform:"translateX(-50%)", display:"flex", gap:8, whiteSpace:"nowrap" }}>
@@ -723,7 +776,7 @@ export default function HowItWorks() {
 
           {/* RIGHT: phone column */}
           <div className="hiw-phone" style={{ flex:"0 0 auto", opacity:visible?1:0, transition:"opacity 0.6s ease 0.15s", display:"flex", alignItems:"flex-start", justifyContent:"center", paddingTop: 160, paddingBottom:0, overflow:"visible" }}>
-            <IPhoneMockup targetHeight={isMobile ? 420 : 500}/>
+            <IPhoneMockup targetHeight={isMobile ? 420 : 500} isMobile={isMobile}/>
           </div>
         </div>
 
@@ -739,7 +792,7 @@ export default function HowItWorks() {
         @media (max-width: 960px) {
           .hiw-row { flex-direction:column!important; align-items:center!important; gap:48px!important; }
           .hiw-left { flex:none!important; width:100%!important; }
-          .hiw-phone { flex:none!important; width:100%!important; padding-top:0!important; padding-bottom:52px!important; }
+          .hiw-phone { flex:none!important; width:100%!important; padding-top:115px!important; padding-bottom:52px!important; }
         }
         @media (min-width: 641px) and (max-width: 1024px) {
           .hiw-left h1 { font-size: 38px !important; line-height: 1.15 !important; margin-bottom: 12px !important; }
