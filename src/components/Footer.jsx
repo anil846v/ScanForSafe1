@@ -200,7 +200,7 @@ export default function Footer() {
           color: #e2e8f0;
           width: 100%;
           overflow: hidden;
-          background: linear-gradient(150deg, #020c1b 0%, #0a1f44 40%, #004b23 80%, #031a07 100%);
+          background: linear-gradient(150deg, #020c1b 0%, #0a1f44 100%);
         }
 
         /* ── Background image layer ── */
