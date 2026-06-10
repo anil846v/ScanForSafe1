@@ -28,15 +28,14 @@ function Fade({ children, delay = 0, visible, style = {} }) {
 }
 
 const Check = ({ color }) => (
-  <svg width="18" height="18" viewBox="0 0 18 18" fill="none" style={{ flexShrink: 0, marginTop: 1 }}>
+  <svg width="17" height="17" viewBox="0 0 18 18" fill="none" style={{ flexShrink: 0, marginTop: 1 }}>
     <circle cx="9" cy="9" r="8.5" fill={`${color}18`} stroke={color} strokeWidth="1"/>
     <path d="M5.5 9.2l2.3 2.3 4.2-4.8" stroke={color} strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 )
 
-/* ── CORNER DECORATIONS ── */
 const CornerCar = () => (
-  <svg width="108" height="70" viewBox="0 0 108 70" fill="none" style={{ opacity: 0.11 }}>
+  <svg width="108" height="70" viewBox="0 0 108 70" fill="none" style={{ opacity: 0.08 }}>
     <ellipse cx="54" cy="63" rx="36" ry="7" fill="#22c55e"/>
     <rect x="5" y="27" width="98" height="28" rx="11" fill="#22c55e"/>
     <rect x="19" y="10" width="70" height="24" rx="9" fill="#22c55e"/>
@@ -48,7 +47,7 @@ const CornerCar = () => (
 )
 
 const CornerPhone = () => (
-  <svg width="78" height="108" viewBox="0 0 78 108" fill="none" style={{ opacity: 0.11 }}>
+  <svg width="78" height="108" viewBox="0 0 78 108" fill="none" style={{ opacity: 0.08 }}>
     <rect x="9" y="5" width="50" height="86" rx="11" fill="#3b82f6"/>
     <rect x="15" y="13" width="38" height="58" rx="5" fill="#fff" opacity="0.4"/>
     <circle cx="34" cy="84" r="5" fill="#fff" opacity="0.55"/>
@@ -59,7 +58,7 @@ const CornerPhone = () => (
 )
 
 const CornerAmbulance = () => (
-  <svg width="106" height="66" viewBox="0 0 106 66" fill="none" style={{ opacity: 0.11 }}>
+  <svg width="106" height="66" viewBox="0 0 106 66" fill="none" style={{ opacity: 0.08 }}>
     <rect x="4" y="20" width="70" height="34" rx="8" fill="#f97316"/>
     <rect x="74" y="30" width="28" height="24" rx="6" fill="#f97316"/>
     <circle cx="19" cy="54" r="10" fill="#f97316"/>
@@ -73,7 +72,7 @@ const CornerAmbulance = () => (
 )
 
 const CornerShield = () => (
-  <svg width="80" height="90" viewBox="0 0 80 90" fill="none" style={{ opacity: 0.11 }}>
+  <svg width="80" height="90" viewBox="0 0 80 90" fill="none" style={{ opacity: 0.08 }}>
     <path d="M40 4L5 18v28c0 22 14 40 35 50 21-10 35-28 35-50V18L40 4z" fill="#8b5cf6"/>
     <path d="M27 49l10 10L53 37" stroke="#fff" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
@@ -81,58 +80,59 @@ const CornerShield = () => (
 
 export default function VehicleDetails() {
   const [ref, visible] = useInView()
+  const [hoveredCard, setHoveredCard] = useState(null)
 
   const cards = [
     {
       img: '/essential.png',
-      imgBg: '#f0fdf4',
       corner: <CornerCar />,
       badge: 'ESSENTIAL',
       badgeColor: '#16a34a',
       badgeBg: '#dcfce7',
       title: 'Vehicle Information',
       color: '#16a34a',
-      bg: '#f0fdf4',
-      border: '#bbf7d0',
+      topBorder: '#4ade80',
+      imgBg: '#f0fdf4',
+      imgBorder: '#bbf7d0',
       items: ['Registration Number', 'Make & Model', 'Vehicle Type', 'Optional Notes'],
     },
     {
       img: '/public.png',
-      imgBg: '#eff6ff',
       corner: <CornerPhone />,
       badge: 'SMART',
       badgeColor: '#1d4ed8',
       badgeBg: '#dbeafe',
       title: 'QR + NFC Technology',
       color: '#2563eb',
-      bg: '#eff6ff',
-      border: '#bfdbfe',
+      topBorder: '#60a5fa',
+      imgBg: '#eff6ff',
+      imgBorder: '#bfdbfe',
       items: ['QR Code Access', 'NFC Tap Support', 'Fast Identification', 'Easy Registration'],
     },
     {
       img: '/helpful.png',
-      imgBg: '#fff7ed',
       corner: <CornerAmbulance />,
       badge: 'HELPFUL',
       badgeColor: '#c2410c',
       badgeBg: '#ffedd5',
       title: 'Emergency Assistance',
       color: '#f97316',
-      bg: '#fff7ed',
-      border: '#fed7aa',
+      topBorder: '#fdba74',
+      imgBg: '#fff7ed',
+      imgBorder: '#fed7aa',
       items: ['Report Emergency', 'Contact Vehicle Owner', 'Message Vehicle Owner', 'Emergency Contact Access'],
     },
     {
       img: '/secure.png',
-      imgBg: '#faf5ff',
       corner: <CornerShield />,
       badge: 'SECURE',
       badgeColor: '#6d28d9',
       badgeBg: '#ede9fe',
       title: 'Privacy & Protection',
       color: '#8b5cf6',
-      bg: '#faf5ff',
-      border: '#e9d5ff',
+      topBorder: '#c4b5fd',
+      imgBg: '#faf5ff',
+      imgBorder: '#e9d5ff',
       items: ['Owner Details Hidden', 'Secure Owner Connection', 'Privacy Controlled Sharing', 'Tamper-Resistant Vehicle Tag'],
     },
   ]
@@ -145,45 +145,50 @@ export default function VehicleDetails() {
         .vd-grid {
           display: grid;
           grid-template-columns: repeat(4, 1fr);
-          gap: 16px;
+          gap: 18px;
           align-items: stretch;
         }
         .vd-card {
           background: #ffffff;
-          border-radius: 22px;
-          padding: 26px 22px 24px;
-          border: 1.5px solid #e8edf3;
+          border-radius: 20px;
+          border: 1.5px solid #ebebeb;
           position: relative;
           overflow: hidden;
           display: flex;
           flex-direction: column;
           box-sizing: border-box;
-          box-shadow: 0 2px 14px rgba(15,23,42,0.045);
-          transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease, border-color 0.2s;
+          box-shadow: 0 2px 12px rgba(15,23,42,0.045);
+          transition: transform 0.28s cubic-bezier(0.22,1,0.36,1), box-shadow 0.28s ease, border-color 0.22s;
           cursor: pointer;
         }
         .vd-card:hover {
           transform: translateY(-6px);
-          box-shadow: 0 20px 48px rgba(15,23,42,0.10);
-          border-color: #d1d5db;
+          box-shadow: 0 20px 48px rgba(15,23,42,0.09);
+          border-color: #d4d4d4;
+        }
+        .vd-top-bar {
+          height: 3px;
+          flex-shrink: 0;
+          border-radius: 20px 20px 0 0;
+          transition: opacity 0.25s ease;
         }
         .vd-icon-box {
-          transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+          transition: transform 0.32s cubic-bezier(0.34,1.56,0.64,1);
         }
         .vd-card:hover .vd-icon-box {
-          transform: scale(1.08);
+          transform: scale(1.07);
         }
         .vd-banner {
           background: #ffffff;
           border-radius: 18px;
-          padding: 18px 28px;
-          border: 1.5px solid #e5e7eb;
+          padding: 20px 28px;
+          border: 1.5px solid #e9ecef;
           display: flex;
           align-items: center;
           justify-content: space-between;
           gap: 20px;
-          margin-top: 18px;
-          box-shadow: 0 4px 20px rgba(15,23,42,0.04);
+          margin-top: 20px;
+          box-shadow: 0 4px 20px rgba(15,23,42,0.05);
           flex-wrap: wrap;
         }
         @media (max-width: 920px) {
@@ -199,7 +204,7 @@ export default function VehicleDetails() {
       <div className="vd-outer">
 
         {/* HEADER */}
-        <div style={{ textAlign: 'center', marginBottom: 38 }}>
+        <div style={{ textAlign: 'center', marginBottom: 40 }}>
           <Fade visible={visible} delay={0}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, padding: '5px 14px', borderRadius: 100, background: '#f0fdf4', border: '1.5px solid #bbf7d0', marginBottom: 16 }}>
               <svg width="11" height="11" viewBox="0 0 11 11" fill="none">
@@ -230,73 +235,84 @@ export default function VehicleDetails() {
         <div className="vd-grid">
           {cards.map((card, i) => (
             <Fade key={card.title} visible={visible} delay={230 + i * 80} style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
-              <div className="vd-card">
-                {/* Soft circle bg decoration */}
-                <div style={{ position: 'absolute', top: -18, right: -18, width: 110, height: 110, borderRadius: '50%', background: card.bg, opacity: 0.75, pointerEvents: 'none' }} />
+              <div
+                className="vd-card"
+                onMouseEnter={() => setHoveredCard(i)}
+                onMouseLeave={() => setHoveredCard(null)}
+              >
+                {/* Subtle colored top border strip */}
+                <div
+                  className="vd-top-bar"
+                  style={{
+                    background: `linear-gradient(90deg, ${card.color}, ${card.topBorder})`,
+                    opacity: hoveredCard === i ? 1 : 0.45,
+                  }}
+                />
+
                 {/* Corner watermark */}
                 <div style={{ position: 'absolute', bottom: -4, right: -4, pointerEvents: 'none', zIndex: 0 }}>
                   {card.corner}
                 </div>
 
-                {/* Icon + Badge row */}
-                <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 18, position: 'relative', zIndex: 1 }}>
-                  <div
-                    className="vd-icon-box"
-                    style={{
-                      width: 72,
-                      height: 72,
-                      borderRadius: 18,
-                      background: card.imgBg,
-                      border: `1.5px solid ${card.border}`,
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                      boxShadow: `0 4px 16px ${card.color}14`,
-                      overflow: 'hidden',
-                    }}
-                  >
-                    <img
-                      src={card.img}
-                      alt={card.title}
-                      style={{ width: 52, height: 52, objectFit: 'contain' }}
-                    />
+                {/* Card body */}
+                <div style={{ padding: '22px 22px 26px', flex: 1, display: 'flex', flexDirection: 'column', position: 'relative', zIndex: 1 }}>
+
+                  {/* Icon + Badge */}
+                  <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 18 }}>
+                    <div
+                      className="vd-icon-box"
+                      style={{
+                        width: 68,
+                        height: 68,
+                        borderRadius: 16,
+                        background: card.imgBg,
+                        border: `1.5px solid ${card.imgBorder}`,
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        flexShrink: 0,
+                        boxShadow: `0 4px 14px ${card.color}12`,
+                        overflow: 'hidden',
+                      }}
+                    >
+                      <img src={card.img} alt={card.title} style={{ width: 50, height: 50, objectFit: 'contain' }} />
+                    </div>
+
+                    <span style={{
+                      background: card.badgeBg,
+                      color: card.badgeColor,
+                      fontSize: 10,
+                      fontWeight: 800,
+                      letterSpacing: '0.09em',
+                      padding: '4px 11px',
+                      borderRadius: 999,
+                      textTransform: 'uppercase',
+                      fontFamily: "'DM Sans', sans-serif",
+                      whiteSpace: 'nowrap',
+                      marginTop: 4,
+                    }}>
+                      {card.badge}
+                    </span>
                   </div>
-                  <span style={{
-                    background: card.badgeBg,
-                    color: card.badgeColor,
-                    fontSize: 10,
-                    fontWeight: 800,
-                    letterSpacing: '0.1em',
-                    padding: '4px 11px',
-                    borderRadius: 999,
-                    textTransform: 'uppercase',
-                    fontFamily: "'DM Sans', sans-serif",
-                    whiteSpace: 'nowrap',
-                    marginTop: 4,
-                    border: `1px solid ${card.color}25`
-                  }}>
-                    {card.badge}
-                  </span>
+
+                  {/* Title */}
+                  <h3 style={{ margin: '0 0 14px', fontSize: 16, fontWeight: 800, color: '#0f172a', lineHeight: 1.25, fontFamily: "'Sora', sans-serif" }}>
+                    {card.title}
+                  </h3>
+
+                  {/* Thin divider */}
+                  <div style={{ height: 1, background: '#f1f5f9', marginBottom: 16, borderRadius: 1 }} />
+
+                  {/* Feature list — clean, no item borders */}
+                  <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 12 }}>
+                    {card.items.map((item) => (
+                      <li key={item} style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: 13.5, color: '#374151', fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 1.4 }}>
+                        <Check color={card.color} />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-
-                {/* Color accent line */}
-                <div style={{ width: 28, height: 2.5, borderRadius: 99, background: card.color, marginBottom: 12, position: 'relative', zIndex: 1 }} />
-
-                {/* Title */}
-                <h3 style={{ margin: '0 0 15px', fontSize: 16.5, fontWeight: 800, color: '#0f172a', lineHeight: 1.22, fontFamily: "'Sora', sans-serif", position: 'relative', zIndex: 1 }}>
-                  {card.title}
-                </h3>
-
-                {/* Feature list */}
-                <ul style={{ margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 9, position: 'relative', zIndex: 1 }}>
-                  {card.items.map((item) => (
-                    <li key={item} style={{ display: 'flex', alignItems: 'center', gap: 9, fontSize: 13.5, color: '#374151', fontFamily: "'DM Sans', sans-serif", fontWeight: 500, lineHeight: 1.4 }}>
-                      <Check color={card.color} />
-                      {item}
-                    </li>
-                  ))}
-                </ul>
               </div>
             </Fade>
           ))}
@@ -305,13 +321,12 @@ export default function VehicleDetails() {
         {/* BOTTOM BANNER */}
         <Fade visible={visible} delay={700}>
           <div className="vd-banner">
-            {/* Left: shield icon + text */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
               <div style={{
                 width: 46, height: 46, borderRadius: 13,
                 background: '#f0fdf4', border: '1.5px solid #bbf7d0',
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
-                flexShrink: 0, boxShadow: '0 3px 10px #22c55e18'
+                flexShrink: 0, boxShadow: '0 3px 10px #22c55e18',
               }}>
                 <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
                   <path d="M11 2L3 6v7c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V6L11 2z" fill="url(#bs)" stroke="#16a34a" strokeWidth="0.5"/>
@@ -334,21 +349,12 @@ export default function VehicleDetails() {
               </div>
             </div>
 
-            {/* Right: vehicle image + QR icon */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 12, flexShrink: 0 }}>
-              {/* Vehicle detail image */}
               <img
                 src="/vechicledetails.png"
                 alt="Vehicle"
-                style={{
-                  height: 56,
-                  width: 'auto',
-                  objectFit: 'contain',
-                  borderRadius: 10,
-                  display: 'block',
-                }}
+                style={{ height: 56, width: 'auto', objectFit: 'contain', borderRadius: 10, display: 'block' }}
               />
-              {/* QR icon box */}
               <div style={{
                 width: 50, height: 50,
                 background: '#0f172a',

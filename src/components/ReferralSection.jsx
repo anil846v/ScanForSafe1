@@ -1,36 +1,215 @@
 import { useNavigate } from "react-router-dom";
 
-// ─── MAIN CARD ICONS (large, bold, 72×72 viewBox) ────────────────────────────
+// ─── STYLE: flat vector, 2.8px stroke, rounded card bg, reference-image style ─
 
+// 1. Share Referral Link – chain links with share sparkle
 const IconLink = () => (
   <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="28" cy="44" r="12" stroke="#3b82f6" strokeWidth="3.2" strokeLinecap="round"/>
-    <circle cx="44" cy="28" r="12" stroke="#3b82f6" strokeWidth="3.2" strokeLinecap="round"/>
-    <line x1="34" y1="38" x2="38" y2="34" stroke="#3b82f6" strokeWidth="3.2" strokeLinecap="round"/>
-    <path d="M50 18 L56 12 M56 22 L62 22 M50 12 L50 6" stroke="#93c5fd" strokeWidth="2.5" strokeLinecap="round"/>
+    <rect x="8" y="8" width="56" height="56" rx="14" fill="#dbeafe"/>
+    {/* left link ring */}
+    <rect x="14" y="30" width="22" height="12" rx="6" fill="none" stroke="#3b82f6" strokeWidth="2.8" strokeLinecap="round"/>
+    {/* right link ring */}
+    <rect x="36" y="30" width="22" height="12" rx="6" fill="none" stroke="#3b82f6" strokeWidth="2.8" strokeLinecap="round"/>
+    {/* overlap fill to create chain illusion */}
+    <rect x="36" y="33" width="9" height="6" fill="#dbeafe"/>
+    <line x1="36" y1="33" x2="36" y2="39" stroke="#dbeafe" strokeWidth="1.5"/>
+    {/* share arrow top-right */}
+    <path d="M52 16 L58 16 L58 22" stroke="#93c5fd" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <line x1="52" y1="22" x2="58" y2="16" stroke="#93c5fd" strokeWidth="2" strokeLinecap="round"/>
   </svg>
 );
 
+// 2. Activate ScanForSafe – person silhouette + checkmark badge
 const IconActivation = () => (
   <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="28" cy="22" r="10" stroke="#7c3aed" strokeWidth="3.2" strokeLinecap="round"/>
-    <path d="M10 58 C10 44 46 44 46 58" stroke="#7c3aed" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"/>
-    <circle cx="52" cy="46" r="14" fill="#ede9fe" stroke="#7c3aed" strokeWidth="3"/>
-    <path d="M45 46 L50 51 L59 41" stroke="#7c3aed" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round"/>
+    <rect x="8" y="8" width="56" height="56" rx="14" fill="#ede9fe"/>
+    {/* person head */}
+    <circle cx="30" cy="26" r="9" fill="none" stroke="#7c3aed" strokeWidth="2.8"/>
+    {/* person body */}
+    <path d="M14 56 C14 44 46 44 46 56" fill="none" stroke="#7c3aed" strokeWidth="2.8" strokeLinecap="round"/>
+    {/* check badge */}
+    <circle cx="52" cy="50" r="11" fill="#ede9fe" stroke="#7c3aed" strokeWidth="2.5"/>
+    <path d="M46 50 L50 54 L58 44" stroke="#7c3aed" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
+// 3. Earn Rewards – wallet with dollar coin
 const IconWallet = () => (
   <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="10" y="22" width="52" height="36" rx="7" fill="#dcfce7" stroke="#16a34a" strokeWidth="3.2"/>
-    <path d="M10 34 L62 34" stroke="#16a34a" strokeWidth="3" strokeLinecap="round"/>
-    <rect x="42" y="40" width="16" height="11" rx="5.5" fill="#16a34a"/>
-    <circle cx="50" cy="45.5" r="2.5" fill="#dcfce7"/>
-    <path d="M20 18 L20 15 C20 12 24 10 28 10 L44 10 C48 10 52 12 52 15 L52 18" stroke="#16a34a" strokeWidth="3" strokeLinecap="round"/>
+    <rect x="8" y="8" width="56" height="56" rx="14" fill="#dcfce7"/>
+    {/* wallet flap top */}
+    <path d="M18 28 L18 24 C18 21 54 21 54 24 L54 28" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round"/>
+    {/* wallet body */}
+    <rect x="14" y="28" width="44" height="30" rx="7" fill="#dcfce7" stroke="#16a34a" strokeWidth="2.8"/>
+    {/* divider line */}
+    <line x1="14" y1="38" x2="58" y2="38" stroke="#16a34a" strokeWidth="2.2" strokeLinecap="round"/>
+    {/* coin pocket */}
+    <rect x="40" y="42" width="14" height="10" rx="5" fill="#16a34a"/>
+    <circle cx="47" cy="47" r="2.5" fill="#dcfce7"/>
+    {/* dollar coin top-left */}
+    <circle cx="26" cy="24" r="7" fill="#bbf7d0" stroke="#16a34a" strokeWidth="2"/>
+    <text x="26" y="28" fontFamily="sans-serif" fontSize="9" fontWeight="800" fill="#166534" textAnchor="middle">$</text>
   </svg>
 );
 
-// ─── CATEGORY ICONS (compact, 36×36 viewBox, bold lines) ─────────────────────
+// 4. Vehicle Tag – car with QR tag
+const IconVehicle = () => (
+  <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="8" width="52" height="52" rx="14" fill="#dcfce7"/>
+    {/* car body */}
+    <rect x="10" y="38" width="48" height="18" rx="6" fill="#bbf7d0" stroke="#16a34a" strokeWidth="2.5"/>
+    {/* car roof */}
+    <path d="M16 38 L22 26 H46 L52 38" fill="#dcfce7" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+    {/* windshield */}
+    <rect x="24" y="27" width="20" height="11" rx="3" fill="#a7f3d0" stroke="#16a34a" strokeWidth="1.6"/>
+    {/* divider line */}
+    <line x1="10" y1="44" x2="58" y2="44" stroke="#16a34a" strokeWidth="1.8" strokeLinecap="round"/>
+    {/* wheel left */}
+    <circle cx="21" cy="56" r="5" fill="#16a34a"/>
+    <circle cx="21" cy="56" r="2" fill="#dcfce7"/>
+    {/* wheel right */}
+    <circle cx="47" cy="56" r="5" fill="#16a34a"/>
+    <circle cx="47" cy="56" r="2" fill="#dcfce7"/>
+    {/* QR tag badge */}
+    <rect x="44" y="14" width="16" height="14" rx="3" fill="#fff" stroke="#16a34a" strokeWidth="1.8"/>
+    <line x1="47" y1="17" x2="47" y2="25" stroke="#16a34a" strokeWidth="1.3" strokeLinecap="round"/>
+    <line x1="50" y1="17" x2="50" y2="25" stroke="#16a34a" strokeWidth="1.3" strokeLinecap="round"/>
+    <line x1="53" y1="17" x2="53" y2="25" stroke="#16a34a" strokeWidth="1.3" strokeLinecap="round"/>
+    <line x1="56" y1="17" x2="56" y2="25" stroke="#16a34a" strokeWidth="1.3" strokeLinecap="round"/>
+  </svg>
+);
+
+// 5. Senior Band – elder person with wristband + check
+const IconSenior = () => (
+  <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="8" width="52" height="52" rx="14" fill="#fef9c3"/>
+    {/* head */}
+    <circle cx="30" cy="24" r="10" fill="none" stroke="#ca8a04" strokeWidth="2.8"/>
+    {/* hair arc (senior) */}
+    <path d="M22 20 C23 16 37 16 38 20" fill="none" stroke="#ca8a04" strokeWidth="2" strokeLinecap="round"/>
+    {/* body */}
+    <path d="M14 55 C14 43 46 43 46 55" fill="none" stroke="#ca8a04" strokeWidth="2.8" strokeLinecap="round"/>
+    {/* wristband */}
+    <rect x="46" y="36" width="14" height="8" rx="4" fill="#fef9c3" stroke="#ca8a04" strokeWidth="2.2"/>
+    {/* check on band */}
+    <path d="M49 40 L52 43 L57 37" fill="none" stroke="#16a34a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>
+);
+
+// 6. Child Tag – smiley child with ID tag
+const IconChild = () => (
+  <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="8" width="52" height="52" rx="14" fill="#dbeafe"/>
+    {/* head */}
+    <circle cx="28" cy="24" r="10" fill="none" stroke="#3b82f6" strokeWidth="2.8"/>
+    {/* eyes */}
+    <circle cx="24" cy="23" r="1.5" fill="#3b82f6"/>
+    <circle cx="32" cy="23" r="1.5" fill="#3b82f6"/>
+    {/* smile */}
+    <path d="M24 28 C26 31 30 31 32 28" fill="none" stroke="#3b82f6" strokeWidth="1.8" strokeLinecap="round"/>
+    {/* body */}
+    <path d="M12 54 C12 42 44 42 44 54" fill="none" stroke="#3b82f6" strokeWidth="2.8" strokeLinecap="round"/>
+    {/* ID tag card */}
+    <rect x="40" y="20" width="20" height="24" rx="4" fill="#fff" stroke="#3b82f6" strokeWidth="2"/>
+    {/* tag string */}
+    <line x1="50" y1="20" x2="50" y2="14" stroke="#3b82f6" strokeWidth="1.8" strokeLinecap="round"/>
+    <circle cx="50" cy="13" r="2" fill="none" stroke="#3b82f6" strokeWidth="1.6"/>
+    {/* ID text lines */}
+    <text x="50" y="33" fontFamily="sans-serif" fontSize="7" fontWeight="800" fill="#1d4ed8" textAnchor="middle">ID</text>
+    <line x1="43" y1="36" x2="57" y2="36" stroke="#93c5fd" strokeWidth="1.4" strokeLinecap="round"/>
+    <line x1="43" y1="39" x2="57" y2="39" stroke="#93c5fd" strokeWidth="1.4" strokeLinecap="round"/>
+  </svg>
+);
+
+// 7. Pet Tag – cat face with collar + tag
+const IconPet = () => (
+  <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="8" width="52" height="52" rx="14" fill="#fce7f3"/>
+    {/* ears */}
+    <polygon points="22,24 16,14 28,18" fill="#fce7f3" stroke="#ec4899" strokeWidth="2.2" strokeLinejoin="round"/>
+    <polygon points="46,24 52,14 40,18" fill="#fce7f3" stroke="#ec4899" strokeWidth="2.2" strokeLinejoin="round"/>
+    {/* head */}
+    <ellipse cx="34" cy="34" rx="18" ry="16" fill="#fce7f3" stroke="#ec4899" strokeWidth="2.8"/>
+    {/* eyes */}
+    <circle cx="27" cy="31" r="2.5" fill="#ec4899"/>
+    <circle cx="41" cy="31" r="2.5" fill="#ec4899"/>
+    {/* nose */}
+    <path d="M32 37 L34 35 L36 37 L34 39 Z" fill="#ec4899"/>
+    {/* whiskers */}
+    <line x1="16" y1="36" x2="28" y2="37" stroke="#ec4899" strokeWidth="1.3" strokeLinecap="round"/>
+    <line x1="40" y1="37" x2="52" y2="36" stroke="#ec4899" strokeWidth="1.3" strokeLinecap="round"/>
+    <line x1="16" y1="39" x2="28" y2="39" stroke="#ec4899" strokeWidth="1.3" strokeLinecap="round"/>
+    <line x1="40" y1="39" x2="52" y2="39" stroke="#ec4899" strokeWidth="1.3" strokeLinecap="round"/>
+    {/* collar */}
+    <path d="M18 46 C20 52 48 52 50 46" fill="none" stroke="#ec4899" strokeWidth="2.5" strokeLinecap="round"/>
+    {/* tag circle */}
+    <circle cx="34" cy="55" r="7" fill="#fff" stroke="#ec4899" strokeWidth="2"/>
+    <text x="34" y="58" fontFamily="sans-serif" fontSize="6" fontWeight="800" fill="#be185d" textAnchor="middle">PET</text>
+  </svg>
+);
+
+// 8. Luggage Tag – suitcase with dangling tag
+const IconLuggage = () => (
+  <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="8" width="52" height="52" rx="14" fill="#dbeafe"/>
+    {/* handle */}
+    <path d="M24 26 C24 19 44 19 44 26" fill="none" stroke="#3b82f6" strokeWidth="2.5" strokeLinecap="round"/>
+    {/* suitcase body */}
+    <rect x="14" y="26" width="40" height="30" rx="6" fill="#dbeafe" stroke="#3b82f6" strokeWidth="2.8"/>
+    {/* mid seam */}
+    <line x1="14" y1="38" x2="54" y2="38" stroke="#3b82f6" strokeWidth="1.8" strokeLinecap="round" strokeDasharray="3 2.5"/>
+    {/* plus cross */}
+    <line x1="34" y1="40" x2="34" y2="52" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round"/>
+    <line x1="28" y1="46" x2="40" y2="46" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round"/>
+    {/* wheels */}
+    <rect x="16" y="52" width="6" height="8" rx="3" fill="#93c5fd"/>
+    <rect x="46" y="52" width="6" height="8" rx="3" fill="#93c5fd"/>
+    {/* tag dangling */}
+    <line x1="52" y1="28" x2="60" y2="18" stroke="#3b82f6" strokeWidth="1.8" strokeLinecap="round"/>
+    <rect x="55" y="11" width="12" height="10" rx="3" fill="#fff" stroke="#3b82f6" strokeWidth="1.8"/>
+    <line x1="57" y1="14" x2="65" y2="14" stroke="#93c5fd" strokeWidth="1.3" strokeLinecap="round"/>
+    <line x1="57" y1="17" x2="65" y2="17" stroke="#93c5fd" strokeWidth="1.3" strokeLinecap="round"/>
+  </svg>
+);
+
+// 9. Safe & Secure – shield with lock
+const IconShield = () => (
+  <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="8" width="52" height="52" rx="14" fill="#dcfce7"/>
+    {/* shield */}
+    <path d="M34 14 L54 21 L54 36 C54 48 34 56 34 56 C34 56 14 48 14 36 L14 21 Z" fill="#bbf7d0" stroke="#16a34a" strokeWidth="2.8" strokeLinejoin="round"/>
+    {/* lock body */}
+    <rect x="25" y="36" width="18" height="14" rx="5" fill="#dcfce7" stroke="#16a34a" strokeWidth="2.5"/>
+    {/* lock shackle */}
+    <path d="M29 36 L29 32 C29 27 39 27 39 32 L39 36" fill="none" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round"/>
+    {/* keyhole */}
+    <circle cx="34" cy="42" r="2.5" fill="#16a34a"/>
+    <line x1="34" y1="44.5" x2="34" y2="47" stroke="#16a34a" strokeWidth="2" strokeLinecap="round"/>
+  </svg>
+);
+
+// 10. Dedicated Support – headset with mic
+const IconHeadset = () => (
+  <svg width="68" height="68" viewBox="0 0 68 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="8" y="8" width="52" height="52" rx="14" fill="#ede9fe"/>
+    {/* arc */}
+    <path d="M14 36 C14 22 54 22 54 36" fill="none" stroke="#7c3aed" strokeWidth="2.8" strokeLinecap="round"/>
+    {/* left ear cup */}
+    <rect x="11" y="34" width="9" height="14" rx="4.5" fill="#ede9fe" stroke="#7c3aed" strokeWidth="2.5"/>
+    {/* right ear cup */}
+    <rect x="48" y="34" width="9" height="14" rx="4.5" fill="#ede9fe" stroke="#7c3aed" strokeWidth="2.5"/>
+    {/* cord to mic */}
+    <path d="M57 47 L57 50 C57 53 54 55 51 55 L42 55" fill="none" stroke="#7c3aed" strokeWidth="2" strokeLinecap="round"/>
+    {/* mic pill */}
+    <rect x="36" y="51" width="12" height="7" rx="3.5" fill="#ede9fe" stroke="#7c3aed" strokeWidth="2"/>
+    {/* sound wave dots */}
+    <circle cx="28" cy="20" r="2.5" fill="#a78bfa" opacity="0.7"/>
+    <circle cx="34" cy="18" r="2.5" fill="#7c3aed" opacity="0.5"/>
+    <circle cx="40" cy="20" r="2.5" fill="#a78bfa" opacity="0.7"/>
+  </svg>
+);
+
+// ─── CATEGORY ICONS (compact, used inside card 2) ────────────────────────────
 
 const CatVehicle = () => (
   <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -47,35 +226,37 @@ const CatVehicle = () => (
 
 const CatSenior = () => (
   <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="20" cy="10" r="6" fill="#fef9c3" stroke="#ca8a04" strokeWidth="2.2"/>
+    <circle cx="20" cy="10" r="6" fill="none" stroke="#ca8a04" strokeWidth="2.2"/>
     <path d="M8 35 C8 26 32 26 32 35" stroke="#ca8a04" strokeWidth="2.2" strokeLinecap="round"/>
-    <circle cx="20" cy="10" r="2.5" fill="#fde68a"/>
     <path d="M16 7 C17 4 23 4 24 7" stroke="#ca8a04" strokeWidth="1.8" strokeLinecap="round"/>
-    <path d="M13 22 L16 25 L21 20" stroke="#16a34a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
     <rect x="27" y="17" width="10" height="6" rx="3" fill="#fef9c3" stroke="#ca8a04" strokeWidth="1.8"/>
+    <path d="M29 20 L31 22 L35 18" stroke="#16a34a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
   </svg>
 );
 
 const CatChild = () => (
   <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="20" cy="10" r="6" fill="#dbeafe" stroke="#3b82f6" strokeWidth="2.2"/>
+    <circle cx="20" cy="10" r="6" fill="none" stroke="#3b82f6" strokeWidth="2.2"/>
     <path d="M8 35 C8 26 32 26 32 35" stroke="#3b82f6" strokeWidth="2.2" strokeLinecap="round"/>
     <circle cx="17" cy="11" r="1.2" fill="#3b82f6"/>
     <circle cx="23" cy="11" r="1.2" fill="#3b82f6"/>
     <path d="M17 14 C18 16 22 16 23 14" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round"/>
-    <path d="M13 20 L16 23 L21 18" stroke="#16a34a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-    <path d="M28 5 L32 9 L27 14" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+    <rect x="26" y="16" width="10" height="12" rx="3" fill="#dbeafe" stroke="#3b82f6" strokeWidth="1.6"/>
+    <text x="31" y="25" fontFamily="sans-serif" fontSize="5" fontWeight="800" fill="#1d4ed8" textAnchor="middle">ID</text>
   </svg>
 );
 
 const CatPet = () => (
   <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <ellipse cx="10" cy="12" rx="4" ry="5" fill="#fce7f3" stroke="#ec4899" strokeWidth="2"/>
-    <ellipse cx="30" cy="12" rx="4" ry="5" fill="#fce7f3" stroke="#ec4899" strokeWidth="2"/>
-    <ellipse cx="16" cy="8" rx="3.5" ry="4.5" fill="#fce7f3" stroke="#ec4899" strokeWidth="2"/>
-    <ellipse cx="24" cy="8" rx="3.5" ry="4.5" fill="#fce7f3" stroke="#ec4899" strokeWidth="2"/>
-    <path d="M13 22 C13 31 20 37 20 37 C20 37 27 31 27 22 A7 7 0 0 0 13 22 Z" fill="#fce7f3" stroke="#ec4899" strokeWidth="2.2" strokeLinejoin="round"/>
-    <ellipse cx="20" cy="27" rx="3.5" ry="2.5" fill="#ec4899" opacity="0.45"/>
+    <polygon points="14,16 10,8 18,12" fill="#fce7f3" stroke="#ec4899" strokeWidth="1.8" strokeLinejoin="round"/>
+    <polygon points="26,16 30,8 22,12" fill="#fce7f3" stroke="#ec4899" strokeWidth="1.8" strokeLinejoin="round"/>
+    <ellipse cx="20" cy="24" rx="10" ry="9" fill="#fce7f3" stroke="#ec4899" strokeWidth="2.2"/>
+    <circle cx="16" cy="22" r="1.5" fill="#ec4899"/>
+    <circle cx="24" cy="22" r="1.5" fill="#ec4899"/>
+    <path d="M18 27 L20 25 L22 27 L20 29 Z" fill="#ec4899"/>
+    <path d="M12 33 C14 37 26 37 28 33" stroke="#ec4899" strokeWidth="2" strokeLinecap="round"/>
+    <circle cx="20" cy="36" r="4" fill="#fff" stroke="#ec4899" strokeWidth="1.6"/>
+    <text x="20" y="38.5" fontFamily="sans-serif" fontSize="3.8" fontWeight="800" fill="#be185d" textAnchor="middle">PET</text>
   </svg>
 );
 
@@ -145,17 +326,17 @@ const IconGiftBtn = () => (
   </svg>
 );
 
-// ─── Main Component ────────────────────────────────────────────────────────────
+// ─── MAIN COMPONENT ───────────────────────────────────────────────────────────
 
 export default function ReferralSection() {
   const navigate = useNavigate();
 
   const categories = [
-    { Icon: CatVehicle,  label: "Vehicle\nTags",       bg: "#f0fdf4", border: "#bbf7d0" },
-    { Icon: CatSenior,   label: "Senior\nBands",       bg: "#fffbeb", border: "#fde68a" },
-    { Icon: CatChild,    label: "Child\nTags",         bg: "#eff6ff", border: "#bfdbfe" },
-    { Icon: CatPet,      label: "Pet\nTags",           bg: "#fdf2f8", border: "#fbcfe8" },
-    { Icon: CatLuggage,  label: "Luggage\nTags",       bg: "#eff6ff", border: "#bfdbfe" },
+    { Icon: CatVehicle,  label: "Vehicle\nTags",   bg: "#f0fdf4", border: "#bbf7d0" },
+    { Icon: CatSenior,   label: "Senior\nBands",   bg: "#fffbeb", border: "#fde68a" },
+    { Icon: CatChild,    label: "Child\nTags",     bg: "#eff6ff", border: "#bfdbfe" },
+    { Icon: CatPet,      label: "Pet\nTags",       bg: "#fdf2f8", border: "#fbcfe8" },
+    { Icon: CatLuggage,  label: "Luggage\nTags",   bg: "#eff6ff", border: "#bfdbfe" },
   ];
 
   const trustItems = [
@@ -225,8 +406,8 @@ export default function ReferralSection() {
           font-family: 'Sora', sans-serif; font-size: 11px; font-weight: 800;
         }
 
-        .rs-icon-circle {
-          width: 110px; height: 110px; border-radius: 50%;
+        .rs-icon-wrap {
+          width: 110px; height: 110px; border-radius: 24px;
           display: flex; align-items: center; justify-content: center;
           margin: 6px 0 22px;
         }
@@ -251,7 +432,6 @@ export default function ReferralSection() {
           align-items: center; justify-content: center; padding-bottom: 80px;
         }
 
-        /* ── Category icons: single row, no wrap ── */
         .rs-cats {
           display: flex; gap: 6px; align-items: flex-start;
           justify-content: center; width: 100%; margin-top: 6px;
@@ -321,7 +501,7 @@ export default function ReferralSection() {
 
       <div className="rs-wrap">
 
-        {/* HEADER */}
+        {/* ── HEADER ── */}
         <div style={{ textAlign: "center" }}>
           <div className="rs-badge">
             <div className="rs-badge-icon">
@@ -345,13 +525,13 @@ export default function ReferralSection() {
           </p>
         </div>
 
-        {/* 3 CARDS */}
+        {/* ── 3 CARDS ── */}
         <div className="rs-row">
 
-          {/* Card 1 */}
+          {/* Card 1 – Share Link */}
           <div className="rs-card">
             <div className="rs-step" style={{ background: "#dbeafe", color: "#1d4ed8" }}>01</div>
-            <div className="rs-icon-circle" style={{ background: "#dbeafe" }}>
+            <div className="rs-icon-wrap" style={{ background: "#dbeafe" }}>
               <IconLink />
             </div>
             <h3 className="rs-card-title">Share Your Referral Link</h3>
@@ -375,10 +555,10 @@ export default function ReferralSection() {
             </svg>
           </div>
 
-          {/* Card 2 */}
+          {/* Card 2 – Activate */}
           <div className="rs-card">
             <div className="rs-step" style={{ background: "#ede9fe", color: "#6d28d9" }}>02</div>
-            <div className="rs-icon-circle" style={{ background: "#ede9fe" }}>
+            <div className="rs-icon-wrap" style={{ background: "#ede9fe" }}>
               <IconActivation />
             </div>
             <h3 className="rs-card-title">They Activate ScanForSafe</h3>
@@ -405,10 +585,10 @@ export default function ReferralSection() {
             </svg>
           </div>
 
-          {/* Card 3 */}
+          {/* Card 3 – Earn Rewards */}
           <div className="rs-card">
             <div className="rs-step" style={{ background: "#dcfce7", color: "#16a34a" }}>03</div>
-            <div className="rs-icon-circle" style={{ background: "#dcfce7" }}>
+            <div className="rs-icon-wrap" style={{ background: "#dcfce7" }}>
               <IconWallet />
             </div>
             <h3 className="rs-card-title">Earn Rewards</h3>
@@ -425,7 +605,7 @@ export default function ReferralSection() {
 
         </div>
 
-        {/* TRUST BAR */}
+        {/* ── TRUST BAR ── */}
         <div className="rs-trust">
           {trustItems.map(({ Icon, bg, title, sub }, i) => (
             <div className="rs-trust-item" key={i}>
@@ -440,7 +620,7 @@ export default function ReferralSection() {
           ))}
         </div>
 
-        {/* CTA */}
+        {/* ── CTA ── */}
         <div style={{ textAlign: "center" }}>
           <button className="rs-cta" onClick={() => navigate("/qr-form")}>
             <IconGiftBtn />
