@@ -743,12 +743,13 @@ export default function AboutUs() {
                 padding: 0 !important;
                 overflow: hidden;
                 gap: 20px !important;
-                box-shadow: 0 4px 12px rgba(37, 99, 235, 0.04) !important;
+                box-shadow: 0 10px 30px rgba(51, 109, 234, 0.1), 0 2px 10px rgba(0, 0, 0, 0.04) !important;
               }
               .leader-card:hover {
                 transform: translateY(-5px);
-                border-color: #2563eb !important;
-                box-shadow: 0 20px 38px -12px rgba(37, 99, 235, 0.16) !important;
+                // border-width: 0.5px !important;
+                // border-color: #2563eb !important;
+                box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2), 0 4px 15px rgba(0, 0, 0, 0.06) !important;
               }
               .leader-card-image-wrapper {
                 width: 240px;
