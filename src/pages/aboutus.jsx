@@ -181,7 +181,7 @@ export default function AboutUs() {
             width: 100%;
             min-height: 520px;
             background: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px), 
-                        linear-gradient(150deg, #020c1b 0%, #0a1f44 40%, #004b23 80%, #031a07 100%);
+                        linear-gradient(150deg, #020c1b 0%, #0a1f44 100%);
             background-size: 32px 32px, 100% 100%;
             display: flex;
             align-items: center;
@@ -747,8 +747,7 @@ export default function AboutUs() {
               }
               .leader-card:hover {
                 transform: translateY(-5px);
-                // border-width: 0.5px !important;
-                // border-color: #2563eb !important;
+                border-width: 1px !important;
                 box-shadow: 0 20px 40px rgba(37, 99, 235, 0.2), 0 4px 15px rgba(0, 0, 0, 0.06) !important;
               }
               .leader-card-image-wrapper {
