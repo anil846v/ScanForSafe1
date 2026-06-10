@@ -1,9 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-// ── Icons ────────────────────────────────────────────────────────────────────
-const ShieldCheck = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><polyline points="9 12 11 14 15 10" />
+// ── Responsive hook ───────────────────────────────────────────────────────
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== "undefined" ? window.innerWidth < 768 : false
+  );
+  useEffect(() => {
+    const handler = () => setIsMobile(window.innerWidth < 768);
+    window.addEventListener("resize", handler);
+    return () => window.removeEventListener("resize", handler);
+  }, []);
+  return isMobile;
+};
+
+// ── ScanForSafe Logo ──────────────────────────────────────────────────────
+const ScanForSafeLogo = () => (
+  <svg width="36" height="36" viewBox="0 0 44 44" fill="none">
+    <defs>
+      <linearGradient id="lg1" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stopColor="#4ADE80" />
+        <stop offset="100%" stopColor="#16A34A" />
+      </linearGradient>
+    </defs>
+    <path d="M22 2L4 9v12c0 10.5 7.7 20.3 18 22.8C32.3 41.3 40 31.5 40 21V9L22 2z"
+      fill="url(#lg1)" opacity="0.18" stroke="url(#lg1)" strokeWidth="1.8"/>
+    <path d="M15 15 Q11 19 15 22 Q19 25 15 29" fill="none" stroke="#22C55E" strokeWidth="2" strokeLinecap="round"/>
+    <path d="M29 15 Q33 19 29 22 Q25 25 29 29" fill="none" stroke="#22C55E" strokeWidth="2" strokeLinecap="round"/>
+    <line x1="15" y1="15" x2="29" y2="15" stroke="#22C55E" strokeWidth="2" strokeLinecap="round"/>
+    <line x1="15" y1="22" x2="29" y2="22" stroke="#22C55E" strokeWidth="2" strokeLinecap="round"/>
+    <line x1="15" y1="29" x2="29" y2="29" stroke="#22C55E" strokeWidth="2" strokeLinecap="round"/>
   </svg>
 );
 const CircleCheck = () => (
@@ -18,9 +43,11 @@ const RefreshCw = () => (
     <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15" />
   </svg>
 );
-const Lock = () => (
-  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0110 0v4" />
+const RefreshCwIcon = ({ size = 20, color = "#22C55E" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+    <polyline points="23 4 23 10 17 10"/>
+    <polyline points="1 20 1 14 7 14"/>
+    <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
   </svg>
 );
 const TargetIcon = () => (
@@ -86,38 +113,35 @@ const PeopleIcon = () => (
     <path d="M23 21v-2a4 4 0 00-3-3.87" /><path d="M16 3.13a4 4 0 010 7.75" />
   </svg>
 );
+const PeopleIcon = ({ size = 28, color = "#fff" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
+    <path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/>
+  </svg>
+);
+const MenuIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round">
+    <line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>
+  </svg>
+);
+const CloseIcon = () => (
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2" strokeLinecap="round">
+    <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+  </svg>
+);
 
-// ── Logo ─────────────────────────────────────────────────────────────────────
-const Logo = () => (
-  <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-    <svg width="32" height="32" viewBox="0 0 40 40">
-      <polygon points="20,2 38,10 38,24 20,38 2,24 2,10" fill="#1a2332" stroke="#22c55e" strokeWidth="2.5" />
-      <text x="20" y="27" textAnchor="middle" fontSize="17" fontWeight="bold" fill="#22c55e" fontFamily="sans-serif">S</text>
-    </svg>
-    <span style={{ fontWeight: 700, fontSize: 17, color: "#fff" }}>
-      Scan<span style={{ color: "#22c55e" }}>For</span>Safe
-    </span>
+// ── Divider ───────────────────────────────────────────────────────────────
+const GreenDivider = () => (
+  <div style={{ display: "flex", alignItems: "center", gap: 12, justifyContent: "center", marginBottom: 16 }}>
+    <div style={{ height: 2, width: 40, background: "linear-gradient(90deg,#22C55E,transparent)" }}/>
+    <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#22C55E" }}/>
+    <div style={{ height: 2, width: 40, background: "linear-gradient(90deg,transparent,#22C55E)" }}/>
   </div>
 );
 
-// ── Avatar placeholder ────────────────────────────────────────────────────────
-const Avatar = () => (
-  <div style={{
-    width: 120, height: 140,
-    background: "linear-gradient(160deg, #b8ccd8 0%, #8fa8b8 100%)",
-    borderRadius: 8, flexShrink: 0,
-    display: "flex", alignItems: "flex-end", justifyContent: "center",
-    overflow: "hidden"
-  }}>
-    <svg viewBox="0 0 80 95" width="80" height="95" fill="#6b8a9a">
-      <circle cx="40" cy="28" r="20" />
-      <ellipse cx="40" cy="90" rx="34" ry="24" />
-    </svg>
-  </div>
-);
-
-// ── Main ──────────────────────────────────────────────────────────────────────
-export default function AboutUs() {
+// ── Leader Avatar ─────────────────────────────────────────────────────────
+const LeaderAvatar = ({ src, name, size = 128, color = "#22C55E", borderColor = "#d1fae5" }) => {
+  const initials = name.split(" ").map(n => n[0]).slice(0, 2).join("").toUpperCase();
   return (
     <div style={{ fontFamily: "'Segoe UI', system-ui, Arial, sans-serif", color: "#1a2332", background: "#fff", margin: 0, padding: 0, paddingTop: "80px" }}>
 
@@ -522,6 +546,41 @@ export default function AboutUs() {
                 </p>
               </div>
             </div>
+          </div>
+
+          {/* RIGHT: Logo image — properly fitted, centered, with glow */}
+          <div style={{
+            flex: isMobile ? "none" : "0 0 48%",
+            width: isMobile ? "100%" : "48%",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "relative",
+            zIndex: 2,
+          }}>
+            {/* Glow ring behind logo */}
+            <div style={{
+              position: "absolute",
+              width: isMobile ? 220 : 340,
+              height: isMobile ? 220 : 340,
+              borderRadius: "50%",
+              background: "radial-gradient(circle, rgba(34,197,94,0.10) 0%, rgba(59,130,246,0.06) 50%, transparent 75%)",
+              filter: "blur(24px)",
+            }}/>
+            <img
+              src="/aboutus.png"
+              alt="ScanForSafe Logo"
+              style={{
+                width: isMobile ? "78%" : "88%",
+                maxWidth: isMobile ? 300 : 460,
+                height: "auto",
+                objectFit: "contain",
+                display: "block",
+                position: "relative",
+                zIndex: 1,
+                filter: "drop-shadow(0 8px 40px rgba(34,197,94,0.18)) drop-shadow(0 4px 20px rgba(59,130,246,0.15))",
+              }}
+            />
           </div>
 
         </div>
