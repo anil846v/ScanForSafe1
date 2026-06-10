@@ -138,7 +138,7 @@ export default function VehicleDetails() {
   ]
 
   return (
-    <section ref={ref} style={{ background: '#f8fafc', padding: '64px 0 72px', fontFamily: "'DM Sans', sans-serif" }}>
+    <section ref={ref} style={{ background: '#ffffff', padding: '64px 0 72px', fontFamily: "'DM Sans', sans-serif" }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Sora:wght@700;800;900&family=DM+Sans:wght@400;500;600;700&display=swap');
         .vd-outer { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
