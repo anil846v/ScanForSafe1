@@ -182,21 +182,19 @@ const FEATURES = [
     statColor: '#0d9488',
   },
   {
+    // ✅ CHANGED: amber/orange → light peach
     id: 'setup',
-    bg: '#fef3c7', accent: '#d97706', tagBg: '#fde68a', tagColor: '#78350f',
+    bg: '#fff0eb', accent: '#e8734a', tagBg: '#ffd5c2', tagColor: '#7a2e10',
     tag: '3 Minutes',
     title: 'Instant Activation',
     desc: 'Peel, stick, and you\'re protected. Register your tag in under 3 minutes with a guided setup wizard — zero technical knowledge, no instructions manual needed.',
     pills: ['Under 3 Min', 'Guided Setup', 'Instant Live'],
     stat: 'Live in 3 steps',
-    statColor: '#d97706',
+    statColor: '#e8734a',
   },
   {
     id: 'privacy',
-    bg: '#ecfeff',
-    accent: '#06b6d4',
-    tagBg: '#cffafe',
-    tagColor: '#164e63',
+    bg: '#ecfeff', accent: '#06b6d4', tagBg: '#cffafe', tagColor: '#164e63',
     tag: 'Privacy First',
     title: 'Your Number Stays Hidden',
     desc: 'Your phone number, address, and identity are never stored on the tag. A secure encrypted proxy handles all communication — finders see only what you allow.',
@@ -216,10 +214,7 @@ const FEATURES = [
   },
   {
     id: 'update',
-    bg: '#eef2ff',
-    accent: '#6366f1',
-    tagBg: '#e0e7ff',
-    tagColor: '#312e81',
+    bg: '#eef2ff', accent: '#6366f1', tagBg: '#e0e7ff', tagColor: '#312e81',
     tag: 'Always Current',
     title: 'Update Info in 30 Seconds',
     desc: 'Changed your number? Switched phones? Update your contact details in 30 seconds from any device, anywhere. The physical tag never needs replacing.',
@@ -692,49 +687,53 @@ function SetupSimulatorWrapper() {
   useEffect(() => { run(); return () => reset() }, [])
   const pct = Math.min(100, Math.round((elapsed/total)*100))
 
+  // ✅ LIGHT PEACH palette (replaces old amber/orange)
+  const PA = '#e8734a'
+  const PA_LIGHT = '#f4a07a'
+
   return (
     <div style={{ display:'flex', flexDirection:'column', alignItems:'center' }}>
-      <AndroidPhoneFrame screenBg="#1a0e00" accentColor="#d97706">
-        <div style={{ background:'linear-gradient(180deg,#2a1600,#1a0e00)', padding:'10px 14px', flexShrink:0, borderBottom:'1px solid rgba(217,119,6,0.3)' }}>
+      <AndroidPhoneFrame screenBg="#1a0800" accentColor={PA}>
+        <div style={{ background:'linear-gradient(180deg,#2a1200,#1a0800)', padding:'10px 14px', flexShrink:0, borderBottom:`1px solid rgba(232,115,74,0.3)` }}>
           <div style={{ display:'flex', alignItems:'center', gap:8 }}>
-            <div style={{ width:34,height:34,borderRadius:'50%',background:'rgba(217,119,6,0.2)',border:'1.5px solid rgba(251,191,36,0.4)',display:'flex',alignItems:'center',justifyContent:'center' }}><Icons.Zap size={16} color="#fbbf24" /></div>
+            <div style={{ width:34,height:34,borderRadius:'50%',background:`rgba(232,115,74,0.2)`,border:`1.5px solid rgba(244,160,122,0.4)`,display:'flex',alignItems:'center',justifyContent:'center' }}><Icons.Zap size={16} color={PA_LIGHT} /></div>
             <div>
-              <div style={{fontSize:12,fontWeight:800,color:'#fef3c7'}}>Activation Wizard</div>
-              <div style={{fontSize:9,color:'#d97706'}}>Under 3 minutes • Zero tech needed</div>
+              <div style={{fontSize:12,fontWeight:800,color:'#ffe8dc'}}>Activation Wizard</div>
+              <div style={{fontSize:9,color:PA}}>Under 3 minutes • Zero tech needed</div>
             </div>
           </div>
         </div>
-        <div style={{ flex:1,overflowY:'auto',padding:'10px',background:'#1a0e00' }}>
+        <div style={{ flex:1,overflowY:'auto',padding:'10px',background:'#1a0800' }}>
           {(running || done.length > 0) && (
             <div style={{ marginBottom:10 }}>
-              <div style={{display:'flex',justifyContent:'space-between',fontSize:9,color:'#d97706',marginBottom:3}}><span>Progress</span><span style={{fontWeight:700,color:'#fbbf24'}}>{pct}%</span></div>
-              <div style={{height:6,background:'rgba(217,119,6,0.2)',borderRadius:99,overflow:'hidden',border:'1px solid rgba(217,119,6,0.2)'}}><div style={{height:'100%',width:`${pct}%`,background:'linear-gradient(90deg,#d97706,#f59e0b)',borderRadius:99,transition:'width 0.1s linear',boxShadow:'0 0 8px rgba(251,191,36,0.4)'}} /></div>
+              <div style={{display:'flex',justifyContent:'space-between',fontSize:9,color:PA,marginBottom:3}}><span>Progress</span><span style={{fontWeight:700,color:PA_LIGHT}}>{pct}%</span></div>
+              <div style={{height:6,background:`rgba(232,115,74,0.15)`,borderRadius:99,overflow:'hidden',border:`1px solid rgba(232,115,74,0.2)`}}><div style={{height:'100%',width:`${pct}%`,background:`linear-gradient(90deg,${PA},${PA_LIGHT})`,borderRadius:99,transition:'width 0.1s linear',boxShadow:`0 0 8px rgba(232,115,74,0.4)`}} /></div>
             </div>
           )}
           {SETUP_STEPS.map((step, i) => {
             const isDone = done.includes(i); const isActive = active === i
             return (
-              <div key={i} style={{ display:'flex',alignItems:'flex-start',gap:10,padding:'8px 10px',borderRadius:12,marginBottom:5, background:isDone?'rgba(217,119,6,0.1)':isActive?'rgba(255,255,255,0.04)':'rgba(255,255,255,0.02)', border:`1.5px solid ${isDone?'rgba(217,119,6,0.4)':isActive?'rgba(217,119,6,0.6)':'rgba(255,255,255,0.05)'}`, transition:'all 0.3s' }}>
-                <div style={{ width:30,height:30,borderRadius:'50%',flexShrink:0, background:isDone?'linear-gradient(135deg,#d97706,#f59e0b)':isActive?'rgba(217,119,6,0.2)':'rgba(255,255,255,0.04)', display:'flex',alignItems:'center',justifyContent:'center', boxShadow:isDone?'0 0 12px rgba(217,119,6,0.4)':'' }}>
-                  {isDone ? <Icons.CheckCircle size={14} color="#fff" /> : <step.icon size={14} color={isActive?'#fbbf24':'#78350f'} />}
+              <div key={i} style={{ display:'flex',alignItems:'flex-start',gap:10,padding:'8px 10px',borderRadius:12,marginBottom:5, background:isDone?`rgba(232,115,74,0.1)`:isActive?'rgba(255,255,255,0.04)':'rgba(255,255,255,0.02)', border:`1.5px solid ${isDone?'rgba(232,115,74,0.4)':isActive?'rgba(232,115,74,0.6)':'rgba(255,255,255,0.05)'}`, transition:'all 0.3s' }}>
+                <div style={{ width:30,height:30,borderRadius:'50%',flexShrink:0, background:isDone?`linear-gradient(135deg,${PA},${PA_LIGHT})`:isActive?`rgba(232,115,74,0.2)`:'rgba(255,255,255,0.04)', display:'flex',alignItems:'center',justifyContent:'center', boxShadow:isDone?`0 0 12px rgba(232,115,74,0.4)`:'' }}>
+                  {isDone ? <Icons.CheckCircle size={14} color="#fff" /> : <step.icon size={14} color={isActive?PA_LIGHT:'#5a2a10'} />}
                 </div>
                 <div>
-                  <div style={{fontSize:10.5,fontWeight:800,color:isDone?'#fbbf24':isActive?'#d97706':'#4a3000'}}>{step.label}</div>
-                  {(isDone||isActive) && <div style={{fontSize:9,color:'#92400e',marginTop:1}}>{step.sub}</div>}
-                  {isActive && <div style={{display:'flex',gap:2,marginTop:4}}>{[0,1,2].map(d=><div key={d} style={{width:4,height:4,borderRadius:'50%',background:'#d97706',animation:`bounce 0.8s ease ${d*0.15}s infinite`}}/>)}</div>}
+                  <div style={{fontSize:10.5,fontWeight:800,color:isDone?PA_LIGHT:isActive?PA:'#3d1a0a'}}>{step.label}</div>
+                  {(isDone||isActive) && <div style={{fontSize:9,color:'#7a3a1a',marginTop:1}}>{step.sub}</div>}
+                  {isActive && <div style={{display:'flex',gap:2,marginTop:4}}>{[0,1,2].map(d=><div key={d} style={{width:4,height:4,borderRadius:'50%',background:PA,animation:`bounce 0.8s ease ${d*0.15}s infinite`}}/>)}</div>}
                 </div>
               </div>
             )
           })}
           {done.length === SETUP_STEPS.length && (
             <div style={{ textAlign:'center',padding:'10px 0',animation:'fadeUp 0.4s ease' }}>
-              <div style={{ width:48,height:48,borderRadius:'50%',background:'rgba(217,119,6,0.2)',border:'2px solid #fbbf24',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 8px',boxShadow:'0 0 20px rgba(251,191,36,0.3)' }}><Icons.CheckCircle size={22} color="#fbbf24" /></div>
-              <div style={{fontSize:11,fontWeight:800,color:'#fbbf24'}}>Protected in {(elapsed/1000).toFixed(1)}s!</div>
+              <div style={{ width:48,height:48,borderRadius:'50%',background:`rgba(232,115,74,0.2)`,border:`2px solid ${PA_LIGHT}`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 8px',boxShadow:`0 0 20px rgba(232,115,74,0.3)` }}><Icons.CheckCircle size={22} color={PA_LIGHT} /></div>
+              <div style={{fontSize:11,fontWeight:800,color:PA_LIGHT}}>Protected in {(elapsed/1000).toFixed(1)}s!</div>
             </div>
           )}
         </div>
       </AndroidPhoneFrame>
-      <SimCTA running={running} hasData={done.length>0} onRun={run} onReset={reset} accent="#d97706" label="Start Setup Demo" />
+      <SimCTA running={running} hasData={done.length>0} onRun={run} onReset={reset} accent={PA} label="Start Setup Demo" />
     </div>
   )
 }
@@ -760,7 +759,6 @@ function PrivacySimulatorWrapper() {
 
   const HIDDEN = ['+91-98400-XXXXX', '12, MG Road, Chennai', 'owner@email.com', 'Bank Details', 'Aadhaar Number']
   const HIDDEN_ICONS = [Icons.Phone, Icons.MapPin, Icons.Bell, Icons.Shield, Icons.Lock]
-
   const PA = '#06b6d4'
 
   return (
@@ -768,9 +766,7 @@ function PrivacySimulatorWrapper() {
       <AndroidPhoneFrame screenBg="#f0fdff" accentColor={PA}>
         <div style={{ background:'linear-gradient(180deg,#ecfeff,#f0fdff)', padding:'10px 14px', flexShrink:0, borderBottom:`1.5px solid ${PA}40` }}>
           <div style={{ display:'flex', alignItems:'center', gap:8 }}>
-            <div style={{ width:34,height:34,borderRadius:'50%',background:`${PA}20`,border:`1.5px solid ${PA}60`,display:'flex',alignItems:'center',justifyContent:'center' }}>
-              <Icons.Shield size={16} color={PA} />
-            </div>
+            <div style={{ width:34,height:34,borderRadius:'50%',background:`${PA}20`,border:`1.5px solid ${PA}60`,display:'flex',alignItems:'center',justifyContent:'center' }}><Icons.Shield size={16} color={PA} /></div>
             <div>
               <div style={{fontSize:12,fontWeight:800,color:'#164e63'}}>Privacy Shield</div>
               <div style={{fontSize:9,fontWeight:700,color:'#0891b2'}}>Your data never touches the QR</div>
@@ -780,26 +776,20 @@ function PrivacySimulatorWrapper() {
         <div style={{ flex:1,overflowY:'auto',padding:12,background:'#f0fdff' }}>
           {phase==='idle' && (
             <div style={{ textAlign:'center',paddingTop:24 }}>
-              <div style={{ width:64,height:64,borderRadius:'50%',background:`${PA}18`,border:`2px solid ${PA}50`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 12px',boxShadow:`0 0 24px ${PA}25` }}>
-                <Icons.Lock size={30} color={PA} />
-              </div>
+              <div style={{ width:64,height:64,borderRadius:'50%',background:`${PA}18`,border:`2px solid ${PA}50`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 12px',boxShadow:`0 0 24px ${PA}25` }}><Icons.Lock size={30} color={PA} /></div>
               <div style={{fontSize:11,fontWeight:800,color:'#164e63'}}>See what the finder sees</div>
               <div style={{fontSize:9,fontWeight:700,color:'#0891b2',marginTop:3}}>vs. what your QR actually contains</div>
             </div>
           )}
           {phase==='scanning' && (
             <div style={{ textAlign:'center',paddingTop:30 }}>
-              <div style={{ width:56,height:56,borderRadius:'50%',background:`${PA}18`,border:`2px solid ${PA}50`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 12px',animation:'pulse 0.6s ease infinite' }}>
-                <Icons.QrCode size={28} color={PA} />
-              </div>
+              <div style={{ width:56,height:56,borderRadius:'50%',background:`${PA}18`,border:`2px solid ${PA}50`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 12px',animation:'pulse 0.6s ease infinite' }}><Icons.QrCode size={28} color={PA} /></div>
               <div style={{fontSize:11,fontWeight:800,color:'#164e63'}}>Finder scans QR…</div>
             </div>
           )}
           {phase==='proxy' && (
             <div style={{ textAlign:'center',paddingTop:10 }}>
-              <div style={{ width:50,height:50,borderRadius:'50%',background:`${PA}25`,border:`2px solid ${PA}70`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 8px',boxShadow:`0 0 20px ${PA}30` }}>
-                <Icons.Lock size={22} color={PA} />
-              </div>
+              <div style={{ width:50,height:50,borderRadius:'50%',background:`${PA}25`,border:`2px solid ${PA}70`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 8px',boxShadow:`0 0 20px ${PA}30` }}><Icons.Lock size={22} color={PA} /></div>
               <div style={{fontSize:10,fontWeight:800,color:'#164e63',margin:'0 0 10px'}}>Secure proxy intercepts</div>
               <div style={{ display:'flex',flexDirection:'column',gap:4 }}>
                 {HIDDEN.map((h,i) => {
@@ -958,9 +948,7 @@ function UpdateSimulatorWrapper() {
       <AndroidPhoneFrame screenBg="#f5f3ff" accentColor={UA}>
         <div style={{ background:'linear-gradient(180deg,#eef2ff,#f5f3ff)', padding:'10px 14px', flexShrink:0, borderBottom:`1.5px solid ${UA}40` }}>
           <div style={{ display:'flex', alignItems:'center', gap:8 }}>
-            <div style={{ width:34,height:34,borderRadius:'50%',background:`${UA}18`,border:`1.5px solid ${UA}55`,display:'flex',alignItems:'center',justifyContent:'center' }}>
-              <Icons.RefreshCw size={16} color={UA} />
-            </div>
+            <div style={{ width:34,height:34,borderRadius:'50%',background:`${UA}18`,border:`1.5px solid ${UA}55`,display:'flex',alignItems:'center',justifyContent:'center' }}><Icons.RefreshCw size={16} color={UA} /></div>
             <div>
               <div style={{fontSize:12,fontWeight:800,color:UADark}}>Update Dashboard</div>
               <div style={{fontSize:9,fontWeight:700,color:UA}}>Change anytime • No new tag needed</div>
@@ -970,9 +958,7 @@ function UpdateSimulatorWrapper() {
         <div style={{ flex:1,display:'flex',flexDirection:'column',justifyContent:'center',padding:14,background:'#f5f3ff' }}>
           {phase==='idle' && (
             <div style={{ textAlign:'center' }}>
-              <div style={{ width:64,height:64,borderRadius:'50%',background:`${UA}15`,border:`2px solid ${UA}45`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 12px',boxShadow:`0 0 24px ${UA}25` }}>
-                <Icons.RefreshCw size={30} color={UA} />
-              </div>
+              <div style={{ width:64,height:64,borderRadius:'50%',background:`${UA}15`,border:`2px solid ${UA}45`,display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 12px',boxShadow:`0 0 24px ${UA}25` }}><Icons.RefreshCw size={30} color={UA} /></div>
               <div style={{fontSize:11,fontWeight:800,color:UADark}}>Changed your number?</div>
               <div style={{fontSize:9,fontWeight:700,color:UA,marginTop:4}}>Update in 30 seconds — tag stays same</div>
             </div>
@@ -1002,9 +988,7 @@ function UpdateSimulatorWrapper() {
           )}
           {phase==='done' && (
             <div style={{ textAlign:'center',animation:'fadeUp 0.4s ease' }}>
-              <div style={{ width:56,height:56,borderRadius:'50%',background:'rgba(34,197,94,0.12)',border:'2px solid rgba(74,222,128,0.5)',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 10px',boxShadow:'0 0 20px rgba(34,197,94,0.2)' }}>
-                <Icons.CheckCircle size={26} color="#16a34a" />
-              </div>
+              <div style={{ width:56,height:56,borderRadius:'50%',background:'rgba(34,197,94,0.12)',border:'2px solid rgba(74,222,128,0.5)',display:'flex',alignItems:'center',justifyContent:'center',margin:'0 auto 10px',boxShadow:'0 0 20px rgba(34,197,94,0.2)' }}><Icons.CheckCircle size={26} color="#16a34a" /></div>
               <div style={{fontSize:13,fontWeight:900,color:'#15803d',marginBottom:6}}>Updated!</div>
               <div style={{ background:'#fff',borderRadius:12,padding:'8px 14px',border:`1.5px solid ${UALight}55`,marginBottom:8,display:'flex',alignItems:'center',justifyContent:'center',gap:8,boxShadow:`0 2px 8px ${UA}15` }}>
                 <Icons.Phone size={13} color={UA} />
@@ -1046,7 +1030,6 @@ function FeatureCard({ f, active, onClick }) {
         </div>
       </div>
       <h3 style={{ fontSize: 14.5, fontWeight: 900, margin: '0 0 7px', color: active ? '#fff' : '#0f172a', letterSpacing:'-.025em', lineHeight:1.2, fontFamily:"'Outfit', sans-serif" }}>{f.title}</h3>
-      {/* ✅ CHANGED: description uses rgb(90,100,114) at weight 600 when inactive, matching Image 1 */}
       <p style={{ fontSize: 12, lineHeight: 1.7, margin: '0 0 14px', color: active ? 'rgba(255,255,255,0.95)' : 'rgb(90,100,114)', fontWeight: active ? 400 : 600 }}>{f.desc}</p>
       <div style={{ display:'flex', flexWrap:'wrap', gap:5, marginBottom:12 }}>
         {f.pills.map(p => <span key={p} style={{ fontSize: 9.5, fontWeight: 700, padding: '3px 9px', borderRadius: 99, background: active ? 'rgba(255,255,255,0.16)' : f.bg, color: active ? '#fff' : f.tagColor, border: `1px solid ${active ? 'rgba(255,255,255,0.25)' : f.tagBg}` }}>{p}</span>)}
@@ -1086,15 +1069,12 @@ export default function Features() {
       `}</style>
 
       <div style={{ maxWidth:1160, margin:'0 auto' }}>
-
-        {/* Section header */}
         <div style={{ textAlign:'center', marginBottom:56 }}>
           <div style={{ display:'inline-flex', alignItems:'center', gap:7, background:'#dcfce7', border:'1.5px solid #4ade80', borderRadius:99, padding:'7px 20px', fontSize:11.5, fontWeight:800, color:'#14532d', letterSpacing:'.06em', textTransform:'uppercase', marginBottom:18 }}>✦ Platform Features</div>
           <h2 style={{ fontSize:'clamp(2rem, 4vw, 3.25rem)', fontWeight:700, color:'#0B2545', letterSpacing:'-.04em', lineHeight:1.08, margin:'0 0 16px', fontFamily:"'Outfit', sans-serif" }}>
-            Smart Protection Features that {' '}
+            Smart Protection Features that{' '}
             <span style={{ background:'linear-gradient(130deg,#16a34a,#059669)', WebkitBackgroundClip:'text', WebkitTextFillColor:'transparent', backgroundClip:'text' }}>Work When It Matters Most</span>
           </h2>
-          {/* ✅ CHANGED: subtitle uses rgb(90,100,114) at weight 600 to match Image 1 */}
           <p style={{ fontSize:15.5, color:'rgb(90,100,114)', fontWeight:600, maxWidth:540, margin:'0 auto', lineHeight:1.8 }}>Every feature has a live simulation — click any card, then hit the button to see it in action.</p>
           <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'center', gap:8, marginTop:20 }}>
             {FEATURES.map(f => {
@@ -1109,7 +1089,6 @@ export default function Features() {
           </div>
         </div>
 
-        {/* Main layout */}
         <div className="feat-section-layout">
           <div className="feat-grid">
             {FEATURES.map((f, i) => <FeatureCard key={f.id} f={f} index={i} active={activeFeature === f.id} onClick={() => setActiveFeature(f.id)} />)}
@@ -1126,7 +1105,6 @@ export default function Features() {
           </div>
         </div>
 
-        {/* Trust badges */}
         <div style={{ display:'flex', flexWrap:'wrap', justifyContent:'center', gap:'10px 16px', paddingTop:32, borderTop:'1.5px solid #e2e8f0', marginTop:16 }}>
           {[
             { icon: Icons.Lock,   text: 'ISO-grade data privacy' },
@@ -1142,7 +1120,6 @@ export default function Features() {
             </div>
           ))}
         </div>
-
       </div>
     </section>
   )
