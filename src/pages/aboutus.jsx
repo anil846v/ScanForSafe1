@@ -107,12 +107,21 @@ const ShieldStat = () => (
     <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /><polyline points="9 12 11 14 15 10" />
   </svg>
 );
-const PeopleIcon = () => (
-  <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" /><circle cx="9" cy="7" r="4" />
-    <path d="M23 21v-2a4 4 0 00-3-3.87" /><path d="M16 3.13a4 4 0 010 7.75" />
+
+const ShieldCheck = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+    <polyline points="9 11 11 13 15 9" />
   </svg>
 );
+
+const Lock = () => (
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+  </svg>
+);
+
 const PeopleIcon = ({ size = 28, color = "#fff" }) => (
   <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
     <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/>
@@ -142,6 +151,24 @@ const GreenDivider = () => (
 // ── Leader Avatar ─────────────────────────────────────────────────────────
 const LeaderAvatar = ({ src, name, size = 128, color = "#22C55E", borderColor = "#d1fae5" }) => {
   const initials = name.split(" ").map(n => n[0]).slice(0, 2).join("").toUpperCase();
+  return (
+    <div style={{
+      width: size, height: size, borderRadius: "50%",
+      background: "#fff", border: `3px solid ${borderColor}`,
+      display: "flex", alignItems: "center", justifyContent: "center",
+      position: "relative", overflow: "hidden", flexShrink: 0
+    }}>
+      {src ? (
+        <img src={src} alt={name} style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+      ) : (
+        <span style={{ fontSize: size * 0.35, fontWeight: 700, color: color }}>{initials}</span>
+      )}
+    </div>
+  );
+};
+
+export default function AboutUs() {
+  const isMobile = useIsMobile();
   return (
     <div style={{ fontFamily: "'Segoe UI', system-ui, Arial, sans-serif", color: "#1a2332", background: "#fff", margin: 0, padding: 0, paddingTop: "80px" }}>
 
@@ -548,41 +575,6 @@ const LeaderAvatar = ({ src, name, size = 128, color = "#22C55E", borderColor = 
             </div>
           </div>
 
-          {/* RIGHT: Logo image — properly fitted, centered, with glow */}
-          <div style={{
-            flex: isMobile ? "none" : "0 0 48%",
-            width: isMobile ? "100%" : "48%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            position: "relative",
-            zIndex: 2,
-          }}>
-            {/* Glow ring behind logo */}
-            <div style={{
-              position: "absolute",
-              width: isMobile ? 220 : 340,
-              height: isMobile ? 220 : 340,
-              borderRadius: "50%",
-              background: "radial-gradient(circle, rgba(34,197,94,0.10) 0%, rgba(59,130,246,0.06) 50%, transparent 75%)",
-              filter: "blur(24px)",
-            }}/>
-            <img
-              src="/aboutus.png"
-              alt="ScanForSafe Logo"
-              style={{
-                width: isMobile ? "78%" : "88%",
-                maxWidth: isMobile ? 300 : 460,
-                height: "auto",
-                objectFit: "contain",
-                display: "block",
-                position: "relative",
-                zIndex: 1,
-                filter: "drop-shadow(0 8px 40px rgba(34,197,94,0.18)) drop-shadow(0 4px 20px rgba(59,130,246,0.15))",
-              }}
-            />
-          </div>
-
         </div>
       </section>
 
@@ -743,6 +735,35 @@ const LeaderAvatar = ({ src, name, size = 128, color = "#22C55E", borderColor = 
             gap: 20
           }} className="leader-grid">
             <style>{`
+              .leader-card {
+                border: 2px solid #bbf7d0 !important;
+                transition: all 0.3s ease;
+                display: flex;
+                align-items: stretch;
+                padding: 0 !important;
+                overflow: hidden;
+                gap: 20px !important;
+              }
+              .leader-card:hover {
+                border-color: #22c55e !important;
+                transform: translateY(-4px);
+                box-shadow: 0 12px 30px -10px rgba(34, 197, 94, 0.12) !important;
+              }
+              .leader-card-image-wrapper {
+                width: 240px;
+                height: auto;
+                align-self: stretch;
+                position: relative;
+                overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                background: #f1f5f9;
+              }
+              .leader-card-info {
+                padding: 32px 32px 32px 0 !important;
+              }
               @media (max-width: 900px) {
                 .leader-grid {
                   grid-template-columns: 1fr !important;
@@ -754,11 +775,18 @@ const LeaderAvatar = ({ src, name, size = 128, color = "#22C55E", borderColor = 
                   align-items: center !important;
                   padding: 24px !important;
                 }
+                .leader-card-image-wrapper {
+                  width: 220px !important;
+                  height: 260px !important;
+                  align-self: auto !important;
+                  border-radius: 12px !important;
+                }
                 .leader-card-info {
                   align-items: center !important;
                   text-align: center !important;
                   display: flex !important;
                   flex-direction: column !important;
+                  padding: 12px 0 0 0 !important;
                 }
                 .leader-card-info ul {
                   padding-left: 0 !important;
@@ -771,26 +799,12 @@ const LeaderAvatar = ({ src, name, size = 128, color = "#22C55E", borderColor = 
             <div style={{
               background: "#ffffff",
               borderRadius: 16,
-              padding: "32px",
               boxShadow: "0 10px 25px -5px rgba(0,0,0,0.03)",
-              border: "1px solid #e2e8f0",
               display: "flex",
-              gap: 28,
-              alignItems: "flex-start"
+              gap: 28
             }} className="leader-card">
               {/* Image Frame Placeholder */}
-              <div style={{
-                width: 200, height: 240,
-                borderRadius: 12,
-                background: "#f1f5f9",
-                border: "1px solid #e2e8f0",
-                position: "relative",
-                overflow: "hidden",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0
-              }}>
+              <div className="leader-card-image-wrapper">
                 <div style={{ position: "absolute", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
                   <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -809,6 +823,7 @@ const LeaderAvatar = ({ src, name, size = 128, color = "#22C55E", borderColor = 
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
+                    objectPosition: "top",
                     zIndex: 2
                   }}
                 />
@@ -839,26 +854,12 @@ const LeaderAvatar = ({ src, name, size = 128, color = "#22C55E", borderColor = 
             <div style={{
               background: "#ffffff",
               borderRadius: 16,
-              padding: "32px",
               boxShadow: "0 10px 25px -5px rgba(0,0,0,0.03)",
-              border: "1px solid #e2e8f0",
               display: "flex",
-              gap: 28,
-              alignItems: "flex-start"
+              gap: 28
             }} className="leader-card">
               {/* Image Frame Placeholder */}
-              <div style={{
-                width: 200, height: 240,
-                borderRadius: 12,
-                background: "#f1f5f9",
-                border: "1px solid #e2e8f0",
-                position: "relative",
-                overflow: "hidden",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                flexShrink: 0
-              }}>
+              <div className="leader-card-image-wrapper">
                 <div style={{ position: "absolute", zIndex: 1, display: "flex", flexDirection: "column", alignItems: "center" }}>
                   <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#cbd5e1" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -877,6 +878,7 @@ const LeaderAvatar = ({ src, name, size = 128, color = "#22C55E", borderColor = 
                     width: "100%",
                     height: "100%",
                     objectFit: "cover",
+                    objectPosition: "top",
                     zIndex: 2
                   }}
                 />
@@ -912,9 +914,9 @@ const LeaderAvatar = ({ src, name, size = 128, color = "#22C55E", borderColor = 
         <div style={{
           maxWidth: 1000,
           margin: "0 auto",
-          background: "#f4f9f5",
+          background: "#f3f5f4",
           borderRadius: 16,
-          border: "1px solid #dcfce7",
+          border: "1px solid #b3e8c5",
           boxShadow: "0 10px 25px -10px rgba(34, 197, 94, 0.08)",
           padding: "36px 40px",
           display: "flex",
@@ -954,12 +956,12 @@ const LeaderAvatar = ({ src, name, size = 128, color = "#22C55E", borderColor = 
             display: "flex", alignItems: "center", justifyItems: "center", justifyContent: "center",
             color: "#16a34a", flexShrink: 0
           }}>
-            <PeopleIcon />
+            <PeopleIcon color="#16a34a" />
           </div>
 
           <div style={{ zIndex: 1, position: "relative" }}>
-            <h3 style={{ margin: "0 0 8px", fontSize: 18, fontWeight: 700, color: "#14532d", fontFamily: "'Sora', sans-serif" }}>Why We Exist</h3>
-            <p style={{ margin: 0, color: "#166534", fontSize: 14.5, lineHeight: 1.7 }}>
+            <h3 style={{ margin: "0 0 8px", fontSize: 18, fontWeight: 700, color: "#181918", fontFamily: "'Sora', sans-serif" }}>Why We Exist</h3>
+            <p style={{ margin: 0, color: "#0d0e0e", fontSize: 14.5, lineHeight: 1.7 }}>
               We believe security is not just a feature, it's a promise. ScanForSafe was created to empower individuals and organizations with smart, simple, and secure technology that protects, connects, and gives peace of mind.
             </p>
           </div>

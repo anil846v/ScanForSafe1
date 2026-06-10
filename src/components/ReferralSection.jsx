@@ -34,21 +34,66 @@ const IconActivation = () => (
 );
 
 // 3. Earn Rewards – wallet with dollar coin
-const IconWallet = () => (
+const IconGiftBox = () => (
   <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="8" y="8" width="56" height="56" rx="14" fill="#dcfce7"/>
-    {/* wallet flap top */}
-    <path d="M18 28 L18 24 C18 21 54 21 54 24 L54 28" stroke="#16a34a" strokeWidth="2.5" strokeLinecap="round"/>
-    {/* wallet body */}
-    <rect x="14" y="28" width="44" height="30" rx="7" fill="#dcfce7" stroke="#16a34a" strokeWidth="2.8"/>
-    {/* divider line */}
-    <line x1="14" y1="38" x2="58" y2="38" stroke="#16a34a" strokeWidth="2.2" strokeLinecap="round"/>
-    {/* coin pocket */}
-    <rect x="40" y="42" width="14" height="10" rx="5" fill="#16a34a"/>
-    <circle cx="47" cy="47" r="2.5" fill="#dcfce7"/>
-    {/* dollar coin top-left */}
-    <circle cx="26" cy="24" r="7" fill="#bbf7d0" stroke="#16a34a" strokeWidth="2"/>
-    <text x="26" y="28" fontFamily="sans-serif" fontSize="9" fontWeight="800" fill="#166534" textAnchor="middle">$</text>
+    {/* Background */}
+    <rect x="8" y="8" width="56" height="56" rx="14" fill="#dcfce7" />
+
+    {/* Gift Box Bottom */}
+    <rect
+      x="18"
+      y="32"
+      width="36"
+      height="22"
+      rx="4"
+      fill="#bbf7d0"
+      stroke="#16a34a"
+      strokeWidth="2.8"
+    />
+
+    {/* Gift Box Lid */}
+    <rect
+      x="16"
+      y="26"
+      width="40"
+      height="10"
+      rx="3"
+      fill="#dcfce7"
+      stroke="#16a34a"
+      strokeWidth="2.8"
+    />
+
+    {/* Vertical Ribbon */}
+    <rect x="33" y="26" width="6" height="28" fill="#16a34a" />
+
+    {/* Horizontal Ribbon */}
+    <rect x="18" y="38" width="36" height="5" fill="#16a34a" />
+
+    {/* Bow Left */}
+    <path
+      d="M36 26C32 18 24 19 24 25C24 29 29 30 36 26Z"
+      fill="#86efac"
+      stroke="#16a34a"
+      strokeWidth="2"
+    />
+
+    {/* Bow Right */}
+    <path
+      d="M36 26C40 18 48 19 48 25C48 29 43 30 36 26Z"
+      fill="#86efac"
+      stroke="#16a34a"
+      strokeWidth="2"
+    />
+
+    {/* Sparkles */}
+    <path
+      d="M55 20L56 23L59 24L56 25L55 28L54 25L51 24L54 23Z"
+      fill="#16a34a"
+    />
+    <path
+      d="M18 18L19 21L22 22L19 23L18 26L17 23L14 22L17 21Z"
+      fill="#16a34a"
+    />
   </svg>
 );
 
@@ -223,29 +268,185 @@ const CatVehicle = () => (
     <rect x="14" y="10" width="12" height="8" rx="2" fill="#bbf7d0" stroke="#16a34a" strokeWidth="1.5"/>
   </svg>
 );
-
 const CatSenior = () => (
-  <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="20" cy="10" r="6" fill="none" stroke="#ca8a04" strokeWidth="2.2"/>
-    <path d="M8 35 C8 26 32 26 32 35" stroke="#ca8a04" strokeWidth="2.2" strokeLinecap="round"/>
-    <path d="M16 7 C17 4 23 4 24 7" stroke="#ca8a04" strokeWidth="1.8" strokeLinecap="round"/>
-    <rect x="27" y="17" width="10" height="6" rx="3" fill="#fef9c3" stroke="#ca8a04" strokeWidth="1.8"/>
-    <path d="M29 20 L31 22 L35 18" stroke="#16a34a" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+  <svg 
+    width="40" 
+    height="40" 
+    viewBox="0 0 40 40" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    {/* Head */}
+    <circle 
+      cx="20" 
+      cy="13" 
+      r="7.5" 
+      fill="#fefce8" 
+      stroke="#d4a94c" 
+      strokeWidth="2.5"
+    />
+    
+    {/* Senior hair / bald top with sides
+    <ellipse 
+      cx="20" 
+      cy="9" 
+      rx="6.5" 
+      ry="4" 
+      fill="#854d0e" 
+    /> */}
+
+    {/* Eyes */}
+    <circle cx="17" cy="12.5" r="1" fill="#1f2937" />
+    <circle cx="23" cy="12.5" r="1" fill="#1f2937" />
+    
+    {/* Smile */}
+    <path 
+      d="M16.5 17 Q20 19 23.5 17" 
+      fill="none" 
+      stroke="#1f2937" 
+      strokeWidth="1" 
+      strokeLinecap="round"
+    />
+
+    {/* Body */}
+    <rect 
+      x="13.5" 
+      y="20.5" 
+      width="13" 
+      height="14" 
+      rx="3" 
+      fill="#facc15" 
+      stroke="#d1bf97" 
+      strokeWidth="2.5"
+    />
+
+    {/* Arms */}
+    <path 
+      d="M14 24 Q10 26 11.5 31" 
+      fill="none" 
+      stroke="#ca8a04" 
+      strokeWidth="2.8" 
+      strokeLinecap="round"
+    />
+    <path 
+      d="M26 24 Q30 26 28.5 31" 
+      fill="none" 
+      stroke="#ca8a04" 
+      strokeWidth="2.8" 
+      strokeLinecap="round"
+    />
+
+    {/* Legs */}
+    <path 
+      d="M18 33.5 L16.5 39" 
+      fill="none" 
+      stroke="#ca8a04" 
+      strokeWidth="2.8" 
+      strokeLinecap="round"
+    />
+    <path 
+      d="M22 33.5 L23.5 39" 
+      fill="none" 
+      stroke="#ca8a04" 
+      strokeWidth="2.8" 
+      strokeLinecap="round"
+    />
+
+    {/* Cane */}
+    <path 
+      d="M29 26 L30.5 37" 
+      fill="none" 
+      stroke="#966935" 
+      strokeWidth="2.6" 
+      strokeLinecap="round"
+    />
+    <path 
+      d="M28 37 Q30 38.5 32 37.5" 
+      fill="none" 
+      stroke="#6a5e50" 
+      strokeWidth="2.6" 
+      strokeLinecap="round"
+    />
   </svg>
 );
 
 const CatChild = () => (
-  <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="20" cy="10" r="6" fill="none" stroke="#3b82f6" strokeWidth="2.2"/>
-    <path d="M8 35 C8 26 32 26 32 35" stroke="#3b82f6" strokeWidth="2.2" strokeLinecap="round"/>
-    <circle cx="17" cy="11" r="1.2" fill="#3b82f6"/>
-    <circle cx="23" cy="11" r="1.2" fill="#3b82f6"/>
-    <path d="M17 14 C18 16 22 16 23 14" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round"/>
-    <rect x="26" y="16" width="10" height="12" rx="3" fill="#dbeafe" stroke="#3b82f6" strokeWidth="1.6"/>
-    <text x="31" y="25" fontFamily="sans-serif" fontSize="5" fontWeight="800" fill="#1d4ed8" textAnchor="middle">ID</text>
+  <svg 
+    width="40" 
+    height="40" 
+    viewBox="0 0 40 40" 
+    fill="none" 
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    {/* Head */}
+    <circle 
+      cx="20" 
+      cy="13" 
+      r="7.5" 
+      fill="#e0f2fe" 
+      stroke="#3b82f6" 
+      strokeWidth="2.5"
+    />
+    
+    
+    {/* Eyes */}
+    <circle cx="17" cy="12.5" r="1.1" fill="#1e40af" />
+    <circle cx="23" cy="12.5" r="1.1" fill="#1e40af" />
+    
+    {/* Happy smile */}
+    <path 
+      d="M16.5 17 Q20 19.5 23.5 17" 
+      fill="none" 
+      stroke="#1e40af" 
+      strokeWidth="1.1" 
+      strokeLinecap="round"
+    />
+
+    {/* Body */}
+    <rect 
+      x="13.5" 
+      y="20.5" 
+      width="13" 
+      height="14.5" 
+      rx="3.5" 
+      fill="#60a5fa" 
+      stroke="#3b82f6" 
+      strokeWidth="2.5"
+    />
+
+    {/* Arms */}
+    <path 
+      d="M13.5 24 Q9.5 26 11 31" 
+      fill="none" 
+      stroke="#3b82f6" 
+      strokeWidth="2.8" 
+      strokeLinecap="round"
+    />
+    <path 
+      d="M26.5 24 Q30.5 26 29 31" 
+      fill="none" 
+      stroke="#3b82f6" 
+      strokeWidth="2.8" 
+      strokeLinecap="round"
+    />
+
+    {/* Legs */}
+    <path 
+      d="M18 34 L16 39" 
+      fill="none" 
+      stroke="#3b82f6" 
+      strokeWidth="2.8" 
+      strokeLinecap="round"
+    />
+    <path 
+      d="M22 34 L24 39" 
+      fill="none" 
+      stroke="#3b82f6" 
+      strokeWidth="2.8" 
+      strokeLinecap="round"
+    />
   </svg>
 );
-
 const CatPet = () => (
   <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
     <polygon points="14,16 10,8 18,12" fill="#fce7f3" stroke="#ec4899" strokeWidth="1.8" strokeLinejoin="round"/>
@@ -261,14 +462,65 @@ const CatPet = () => (
 );
 
 const CatLuggage = () => (
-  <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <rect x="8" y="14" width="24" height="20" rx="4" fill="#dbeafe" stroke="#3b82f6" strokeWidth="2.2"/>
-    <path d="M25 14 L25 10 C25 8 22 7 20 7 C18 7 15 8 15 10 L15 14" stroke="#3b82f6" strokeWidth="2.2" strokeLinecap="round"/>
-    <line x1="20" y1="20" x2="20" y2="28" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round"/>
-    <line x1="16" y1="24" x2="24" y2="24" stroke="#3b82f6" strokeWidth="2" strokeLinecap="round"/>
-    <line x1="8" y1="20" x2="32" y2="20" stroke="#3b82f6" strokeWidth="1.5" strokeLinecap="round" strokeDasharray="2.5 2.5"/>
-    <rect x="6" y="29" width="4" height="6" rx="2" fill="#93c5fd"/>
-    <rect x="30" y="29" width="4" height="6" rx="2" fill="#93c5fd"/>
+  <svg
+    width="34"
+    height="34"
+    viewBox="0 0 40 40"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    {/* Suitcase */}
+    <rect
+      x="9"
+      y="12"
+      width="22"
+      height="20"
+      rx="4"
+      fill="#dbeafe"
+      stroke="#3b82f6"
+      strokeWidth="2.2"
+    />
+
+    {/* Handle */}
+    <path
+      d="M16 12V9.5C16 7.8 17.8 7 20 7C22.2 7 24 7.8 24 9.5V12"
+      stroke="#3b82f6"
+      strokeWidth="2.2"
+      strokeLinecap="round"
+    />
+
+    {/* Center divider */}
+    <line
+      x1="20"
+      y1="12"
+      x2="20"
+      y2="32"
+      stroke="#3b82f6"
+      strokeWidth="1.8"
+    />
+
+    {/* Luggage tag */}
+    <rect
+      x="23"
+      y="17"
+      width="6"
+      height="8"
+      rx="1.5"
+      fill="#bfdbfe"
+      stroke="#2563eb"
+      strokeWidth="1.4"
+    />
+
+    <circle
+      cx="26"
+      cy="19"
+      r="0.8"
+      fill="#2563eb"
+    />
+
+    {/* Wheels */}
+    <circle cx="14" cy="34" r="1.8" fill="#60a5fa" />
+    <circle cx="26" cy="34" r="1.8" fill="#60a5fa" />
   </svg>
 );
 
@@ -589,7 +841,7 @@ export default function ReferralSection() {
           <div className="rs-card">
             <div className="rs-step" style={{ background: "#dcfce7", color: "#16a34a" }}>03</div>
             <div className="rs-icon-wrap" style={{ background: "#dcfce7" }}>
-              <IconWallet />
+              <IconGiftBox  />
             </div>
             <h3 className="rs-card-title">Earn Rewards</h3>
             <p className="rs-card-desc">
