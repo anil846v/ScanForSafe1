@@ -746,7 +746,7 @@ export default function HowItWorks() {
   return (
     <div style={{ paddingTop:"80px", background:"linear-gradient(160deg,#f8fafc 0%,#fafcfa 50%,#f8fafc 100%)", fontFamily:"'DM Sans',system-ui,sans-serif" }}>
       <SEO
-  title="How It Works"
+  title="ScanForSafe | Smart QR & NFC Safety Tags India"
   description="Order your ScanForSafe QR & NFC tag, activate it in 3 minutes, and stay protected 24/7. Scan to call or message — no app required."
   keywords="how QR safety tag works, no app required QR scan, QR tag registration,how NFC safety tag works,scan to call emergency contact, NFC vs QR code tag,emergency contact QR technology"
   url="https://www.scanforsafe.com/how-it-works"
