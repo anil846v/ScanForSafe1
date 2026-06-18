@@ -4,6 +4,9 @@ import {
   Zap, MapPin, Bell, Clock, ScanLine, CreditCard,
   MessageCircle, Lock, Smartphone,
 } from 'lucide-react'
+import SEO from '../components/SEO'
+import { useNavigate } from "react-router-dom";
+
 
 import bike1img  from '../../assets/bike.png'
 import petimg    from '../../assets/dog.png'
@@ -151,6 +154,7 @@ const FEATURES = [
   },
 ]
 
+
 /* ─────────────────────────── SECTION ─────────────────────────── */
 export default function UseCases() {
   return (
@@ -158,6 +162,13 @@ export default function UseCases() {
       id="use-cases"
       style={{ background: '#f0f6f1', padding: '0 0 60px' }}
     >
+      <SEO
+  title="Use Cases — Who It's For"
+  description="ScanForSafe QR & NFC tags for bikes, pets, laptops, children, senior citizens, and ID cards. See how each smart tag protects what matters most."
+  keywords="child safety QR tag, senior citizen safety band, pet ID tag India, vehicle NFC sticker India,child safety tips India,lost child identification,dog lost during storm
+, smart luggage tag India, special needs ID tag India"
+  url="https://www.scanforsafe.com/use-cases"
+/>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
 
@@ -467,6 +478,8 @@ function UCCard({
   tag, tagBg, tagColor, titleColor, subColor, descColor,
   image, badge, qrPosition, isNew, features, stats,
 }) {
+    const navigate = useNavigate();
+
   return (
     <div
       className="uc-card"
@@ -550,9 +563,14 @@ function UCCard({
             <span className="uc-dot" />
             Finder-friendly
           </div>
-          <button type="button" className="uc-btn" style={{ color: titleColor }}>
-            Learn more <ArrowUpRight size={11} />
-          </button>
+          <button
+      type="button"
+      className="uc-btn"
+      style={{ color: titleColor }}
+      onClick={() => navigate("/how-it-works")}
+    >
+      Learn more <ArrowUpRight size={11} />
+    </button>
         </div>
       </div>
     </div>

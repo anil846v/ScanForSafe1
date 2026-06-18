@@ -219,8 +219,8 @@ export default function VehicleDetails() {
 
           <Fade visible={visible} delay={80}>
             <h2 style={{ fontFamily: "'Sora', sans-serif", fontSize: 'clamp(28px,4vw,44px)', fontWeight: 900, margin: '0 0 14px', lineHeight: 1.1, color: '#0f172a', letterSpacing: '-0.03em' }}>
-              Everything Your Vehicle{' '}
-              <span style={{ color: '#22c55e' }}>Tag Can Do</span>
+               Vehicle NFC Sticker & QR Tag for{' '}
+              <span style={{ color: '#22c55e' }}>Cars & Bikes in India</span>
             </h2>
           </Fade>
 

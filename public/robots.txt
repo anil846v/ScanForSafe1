@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://scanforsafe.com/sitemap.xml

@@ -138,194 +138,6 @@ function TypingMessage({ text, onProgress }) {
 }
 
 /* =========================================
-   FULL DOCUMENT KNOWLEDGE — SYSTEM PROMPT
-========================================= */
-const SYSTEM_PROMPT = `You are the official ScanForSafe AI Assistant. You answer questions using the detailed knowledge base below. Be friendly, warm, and concise. Use simple formatting with line breaks. Never say you don't know — use the knowledge base to answer accurately.
-
-=== SCANFORSAFE KNOWLEDGE BASE ===
-
-WHAT IS SCANFORSAFE:
-Scan for Safe Business is a QR-code-based safety and identity platform developed by Genius Minds Making Code Pvt Ltd. It enables vehicle owners and families to be contactable during emergencies, report missing vehicles, and manage their digital identity securely. The platform uses smart QR + NFC tags — no app required to scan.
-
-CORE BUSINESS OBJECTIVES:
-- Connect vehicle owners with the public in emergency situations via scanned QR codes
-- Enable missing vehicle reporting with verified, fraud-resistant workflows
-- Support three sales channels: marketing executives, direct online portal, and third-party platforms
-- Ensure QR code lifecycle integrity from admin generation through customer activation
-- Support senior citizens emergency workflow, school kids workflow, pet and luggage workflows
-- Deliver a scalable multi-role platform supporting Admin, Retailer/Franchise, Online Users, Marketing Team, and Customers
-
-PRICE & PAYMENT:
-- QR code costs Rs 199 + delivery charges
-- Delivery charges vary by region in India:
-  • South India (AP, Telangana, Karnataka, TN, Kerala): Rs 40 — delivery 5-7 days
-  • West India (Maharashtra, Goa, Gujarat): Rs 50 — delivery 5-7 days
-  • North India (Delhi, UP, Punjab, Rajasthan, etc.): Rs 60 — delivery 7-10 days
-  • East India (West Bengal, Bihar, Odisha, etc.): Rs 65 — delivery 7-10 days
-  • Central India (MP, Chhattisgarh): Rs 55 — delivery 7-10 days
-  • North-East India (Assam, Meghalaya, etc.): Rs 80 — delivery 10-14 days
-- Payment methods: UPI, Credit/Debit Card, Net Banking, Wallets (via Razorpay)
-- QR activation validity: 2 years from activation date
-
-HOW IT WORKS (STEP BY STEP):
-1. Purchase a ScanForSafe QR code tag (online at Rs 199 + delivery, or from a retailer)
-2. Receive the physical QR sticker (white background, green QR code, radium/tamper-evident label)
-3. Activate it on the portal: enter QR Code + Batch No + Series No + Vendor Code + Seller Code
-4. Register your vehicle/item details: make, model, colour, year, owner name
-5. Add up to 3 emergency contacts (name + mobile + relationship)
-6. Also add: blood group, gender, vehicle insurance details, health insurance details
-7. QR is now active for 2 years — stick it on your vehicle/item
-8. If someone finds your lost item or sees an emergency: they scan the QR with any phone camera (no app needed)
-9. Owner receives instant alert; secure communication begins; recovery assistance activated
-
-QR SCAN WORKFLOW (EMERGENCY):
-- Step 1: Public scans QR code on vehicle/item — no app required, just phone camera
-- Step 2: System logs scan event (captures location, mobile type, time)
-- Step 3: Scanner enters their mobile number; OTP sent via SMS for verification
-- Step 4: Two options shown: "Call Owner" or "Report Emergency Alert"
-- Step 5a: Call Owner → direct call to registered owner mobile
-- Step 5b: Report Emergency Alert → disclaimer shown → emergency contacts alerted with location
-- Step 6: SOS alert triggered — automated call to emergency contact numbers
-
-WHAT CAN BE PROTECTED:
-- Vehicles (bikes, cars, scooters) — radium sticker on vehicle
-- Luggage — durable bag tag (tamper-resistant, weatherproof)
-- Children — woven fabric tag stitched on school uniform (left arm)
-- Pets — collar tag with QR, includes vet contact
-- Elderly family members — medical wristband with QR (stores medical profile + emergency contact)
-- Mentally challenged / special needs individuals — neck lanyard ID card
-- Any valuable item
-
-REAL WORLD USE CASES:
-
-1. LUGGAGE RECOVERY (Airport): Traveller attaches QR bag tag → loses luggage → kind person scans QR → masked contact appears → call placed → luggage returned in minutes.
-2. LOST PET (Park): Pet goes missing → stranger finds pet, scans collar QR → owner's masked contact appears → owner called → pet reunited.
-3. SCHOOL CHILD SAFETY (Bus): QR woven tag on uniform → child goes missing from bus → found by public → QR scanned → automated call to parent AND school admin simultaneously → school staff picks up child safely.
-4. SENIOR CITIZEN MEDICAL EMERGENCY (Park): Senior wears QR wristband → collapses in park → passerby scans wristband → son (emergency contact) gets automated call → medical info displayed for first responders → senior taken to hospital on time.
-5. MENTALLY CHALLENGED INDIVIDUAL: Wears QR lanyard → gets lost → found on road → public scans QR → family called → safely reunited.
-6. VEHICLE ROAD ACCIDENT: QR sticker on vehicle → accident occurs → bystander scans QR → emergency contacts get alert with location + timestamp → ambulance alerted → health and insurance info available for hospital staff.
-7. MISSING VEHICLE: Vehicle stolen → owner logs in and activates Missing Vehicle Alert → customer care publishes alert on platform + social channels → 1,00,000+ community subscribers → subscriber spots vehicle → police alerted → vehicle recovered.
-
-MISSING VEHICLE REPORTING:
-- Login to portal → 'Report Missing Vehicle'
-- Upload photos; select from your registered vehicles only
-- Enter missing location; upload FIR copy or mark 'Pending FIR' (48-hour expiry for pending)
-- Optional: set reward amount; choose owner info visibility (masked/visible)
-- Customer care validates and publishes report
-- Status: Pending FIR (amber) / Verified (green)
-- Community of 1,00,000+ subscribers helps spread alert via WhatsApp, Facebook, social platforms
-- Recovery: Owner confirms → case closed and archived
-
-QR STICKER DESIGN:
-- White background with green QR code
-- Radium / tamper-evident label
-- Format includes: QR Code + Batch No + Series No + Vendor Code + Order ID
-
-ROLES ON THE PLATFORM:
-1. ADMIN — Full platform control; generates QR batches; manages all users; tracks sales, commissions, missing vehicles
-2. RETAILER/FRANCHISE — Authorised reseller; franchise earns 2% commission, shops earn 1%; manages inventory
-3. ONLINE USER — Self-service purchase via portal; Rs 199 + delivery; activates QR themselves
-4. MARKETING TEAM — Field sales executives with seller codes; onboard customers directly
-5. CUSTOMER — Vehicle owner who activates QR and manages their digital identity
-
-COMMISSION STRUCTURE:
-- Seller → Customer (direct): No commission split — full margin retained
-- Seller → Shop → Customer: 1% to shop
-- Seller → Commission Agent → Customer: 1% to agent
-- Seller → Franchise → Customer: 2% to franchise
-- Admin can change commission rates at any time
-
-NOTIFICATIONS & ALERTS:
-- PWA Browser Push (recommended — free, no app needed, works even when browser closed)
-- Email alerts (SendGrid — nearly free, unlimited)
-- SMS OTP (for verification and password reset only)
-- WhatsApp Business API (optional premium tier at Rs 299/yr — 98% open rate)
-- Recommended combination: PWA Push + Email (unlimited, Rs 0 cost, no app needed)
-
-TECHNOLOGY:
-- QR + NFC smart tags
-- No app required to scan — just a phone camera
-- Web portal for all roles (mobile-responsive)
-- Payment: Razorpay (UPI, cards, net banking, wallets)
-- SMS Gateway: MSG91 / TextLocal / Kaleyra
-- WhatsApp: Twilio / Gupshup / Interakt
-- Hosted on AWS with SSL
-
-PROJECT TIMELINE:
-- Phase 1 (Weeks 1-4): Foundation & Admin portal
-- Phase 2 (Weeks 5-8): Retailer, Franchise & Marketing Team
-- Phase 3 (Weeks 9-13): Customer portal & Online Purchase
-- Phase 4 (Weeks 14-17): Missing Vehicle & Security
-- Phase 5 (Weeks 18-20): UAT, Go-Live & Handover
-- Total: 20 weeks (5 months)
-- Native mobile apps (iOS/Android) are Phase 2 — not in current scope
-
-WHAT IS OUT OF SCOPE (PHASE 1):
-- Native mobile apps (iOS/Android) — Phase 2
-- Amazon/Meesho/Blinkit marketplace integrations — Phase 2
-- Multi-language support — Phase 2
-- Hardware (printers, scanners)
-- ERP/Accounting software integration
-
-SECURITY:
-- Role-based access control (RBAC) for all 5 roles
-- OWASP Top 10 security audit + penetration testing
-- PCI-DSS compliant payment gateway (no card data stored)
-- Anti-fraud: duplicate detection, rate limiting, CAPTCHA
-- Contact masking: relay calls, OTP-gated contact reveal
-- All QR lifecycle events are logged with timestamps and actor codes
-
-TAGLINES:
-- "Secure • Scan • Protect"
-- "One Scan, A Safe Tomorrow. Because Every Child Matters."
-- "A Simple Scan Saved a Life."
-- "ScanForSafe — Because Every Second Counts, Every Life Matters."
-- "Together, We Secure What Matters. #SecureScanProtect"
-- "Small Step Today, Safety Every Day."
-
-COMPANY INFO:
-- Developed by: Genius Minds Making Code Pvt Ltd
-- Contact: support@geniusmindstech.com
-- Address: Door No. 3-161-21-A-3, SBI Colony, Madanapalle – 517325
-- WhatsApp Channel: https://whatsapp.com/channel/0029VbCNFw0JP2105GmsoT0H
-
-=== END OF KNOWLEDGE BASE ===
-
-Instructions:
-- Always answer based on the knowledge base above
-- For greetings (hi, hello, hey), respond warmly and introduce what ScanForSafe can help with
-- Format responses clearly with line breaks — no markdown headers, use simple emoji bullets
-- Keep responses concise but complete
-- If asked something not covered, say "For more details, please contact us at support@geniusmindstech.com"
-`
-
-/* =========================================
-   FIX 1: CLAUDE API CALL — added required headers
-========================================= */
-async function callClaudeAPI(conversationHistory) {
-  const response = await fetch('https://api.anthropic.com/v1/messages', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      // FIX: These two headers are required for direct browser calls
-      'anthropic-version': '2023-06-01',
-      'anthropic-dangerous-direct-browser-access': 'true',
-    },
-    body: JSON.stringify({
-      model: 'claude-sonnet-4-20250514',
-      max_tokens: 1000,
-      system: SYSTEM_PROMPT,
-      messages: conversationHistory,
-    }),
-  })
-  if (!response.ok) {
-    const errBody = await response.json().catch(() => ({}))
-    throw new Error(errBody?.error?.message || `HTTP ${response.status}`)
-  }
-  const data = await response.json()
-  return data.content.map(i => i.type === 'text' ? i.text : '').filter(Boolean).join('\n')
-}
-
 /* =========================================
    SMALL BOT AVATAR (reused inside messages)
 ========================================= */
@@ -347,6 +159,222 @@ function SmallBotAvatar() {
       </svg>
     </div>
   )
+}
+
+/* =========================================
+   PREDEFINED CLIENT-SIDE RESPONSES
+========================================= */
+function getPredefinedResponse(query) {
+  const q = query.toLowerCase().trim();
+
+  // Greetings
+  if (q === 'hi' || q === 'hello' || q === 'hey' || q === 'greetings' || q === 'hai') {
+    return `👋 Hello! Welcome to ScanForSafe.
+
+I can assist you with:
+• How ScanForSafe works
+• Vehicle & family protection
+• Lost item recovery
+• QR tag pricing & delivery
+• Emergency support & SOS alerts
+• Missing vehicle reports
+
+What would you like to know today?`;
+  }
+
+  // How ScanForSafe works
+  if (q.includes('how scanforsafe works') || q.includes('how it works') || q.includes('how does it work') || q.includes('how to use') || q.includes('steps')) {
+    return `🔧 How ScanForSafe Works:
+
+• Purchase & Receive: Buy a ScanForSafe QR code tag online  from an authorized retailer.
+• Activate: Scan the code to register your vehicle/item, owner details, emergency contacts, blood group, and insurance info.
+• Apply the Tag: Stick the weatherproof radium tag on your vehicle or attach it to your luggage, pet collar, or family member's lanyard/wristband.
+• Scan in Emergency: In an emergency or if lost, anyone can scan the QR code using their phone camera (no app needed).
+• Instant Alert & Call: The scanner can securely call you (with contact masking) or trigger an SOS alert to your emergency contacts with the scan location.`;
+  }
+
+  // Vehicle Protection
+  if (q.includes('vehicle protection') || q.includes('vehicle') || q.includes('car') || q.includes('bike') || q.includes('scooter') || q.includes('motorcycle')) {
+    return `🚗 Vehicle Protection:
+
+• Radium Smart Sticker: Apply our weather-resistant, tamper-evident radium QR tag onto your car windshield, bike, or scooter.
+• Accident SOS: If an accident occurs, bystanders can scan the QR tag to alert your emergency contacts with your live location.
+• Masked Calls: People can contact you to report issues (like blocking parking, open doors, or windows left open) without seeing your actual phone number.
+• Missing Vehicle Alerts: If your vehicle is stolen, flag it in the portal to publish an alert to our community of 100,000+ subscribers.`;
+  }
+
+  // Lost Item Recovery
+  if (q.includes('lost item recovery') || q.includes('lost') || q.includes('find') || q.includes('recovery') || q.includes('luggage') || q.includes('bag') || q.includes('pet') || q.includes('dog') || q.includes('cat')) {
+    return `🎒 Lost Item & Asset Recovery:
+
+• Smart Luggage & Bag Tags: Attach durable, weatherproof tags to your travel luggage, laptop bags, or everyday valuables.
+• Instant Notification: When a finder scans the QR tag, the system logs the scan event (location, time, device type) and alerts you immediately.
+• Masked Contact: The finder can call you directly through our masked relay system, ensuring your privacy while facilitating quick returns.
+• Pet Protection: Keep your pets safe with smart collar tags containing owner contacts and vital vet info.`;
+  }
+
+  // Emergency Support
+  if (q.includes('emergency support') || q.includes('emergency') || q.includes('sos') || q.includes('accident') || q.includes('alert') || q.includes('medical') || q.includes('hospital')) {
+    return `🚨 Emergency Support & SOS:
+
+• Public Scan: Bystanders scan the QR code on the vehicle/item with a smartphone camera.
+• Verified Scanner: Scanner enters their mobile number and verifies it with a quick SMS OTP.
+• SOS Alert: Scanner can trigger an emergency alert, which automatically alerts your 3 registered contacts with your live location.
+• First Responders: Displays crucial information like blood group, medical profile, and health/vehicle insurance for immediate medical assistance.`;
+  }
+
+  // QR Smart Tags
+  if (q.includes('qr smart tags') || q.includes('qr tags') || q.includes('qr tag') || q.includes('sticker') || q.includes('stickers') || q.includes('labels')) {
+    return `🏷️ QR Smart Tags:
+
+• Physical Design: Premium white background stickers with green QR codes. Made from radium and tamper-evident materials.
+• Secure Lifecycle: Each tag has a unique QR Code, Batch No, Series No, Vendor Code, and Order ID.
+• Easy Activation: Self-activation takes under 2 minutes on our responsive web portal.
+• Validity: Active for 2 years from the date of activation.`;
+  }
+
+  // NFC Technology
+  if (q.includes('nfc technology') || q.includes('nfc') || q.includes('tap') || q.includes('near field')) {
+    return `⚡ NFC (Near Field Communication) Technology:
+
+• Tap to Connect: In addition to scanning the QR code, select tags include NFC chips for tap-and-connect ease.
+• No App Required: Finders can simply tap their NFC-enabled smartphone against the tag to open the safety profile instantly.
+• Dual Protection: Combining both QR and NFC ensures maximum compatibility with all smartphone devices.`;
+  }
+
+  // Pricing & Shipping
+  if (q.includes('price') || q.includes('pricing') || q.includes('cost') || q.includes('buy') || q.includes('order') || q.includes('delivery') || q.includes('shipping') || q.includes('fees') || q.includes('charges')) {
+    return `💳 Pricing & Delivery:
+
+• Base Price: A ScanForSafe smart tag costs ₹199 (includes 2-year activation).
+• Regional Delivery Charges:
+  • South India (AP, Telangana, Karnataka, TN, Kerala): ₹40 (5-7 days)
+  • Central India (MP, Chhattisgarh): ₹55 (7-10 days)
+  • West India (Maharashtra, Goa, Gujarat): ₹50 (5-7 days)
+  • North India (Delhi, UP, Punjab, Rajasthan, etc.): ₹60 (7-10 days)
+  • East India (West Bengal, Bihar, Odisha, etc.): ₹65 (7-10 days)
+  • North-East India (Assam, Meghalaya, etc.): ₹80 (10-14 days)
+• Payment Methods: Razorpay (UPI, Credit/Debit cards, Net Banking, Wallets).`;
+  }
+
+  // Contact Information
+  if (q.includes('contact') || q.includes('support') || q.includes('email') || q.includes('phone') || q.includes('whatsapp') || q.includes('address') || q.includes('office') || q.includes('kurnool')) {
+    return `📞 Contact Information:
+
+• Support Phone/WhatsApp: +91 8639322479
+• Support Email: customercare@scanforsafe.com
+• Corporate Email: support@geniusmindstech.com
+• Corporate Office Address:
+  R/o 87/1151-4-a-vf-501, Nagireddy Revenue Colony, Revenue Ward No. 87, Kurnool, Andhra Pradesh, PIN Code: 518002
+• WhatsApp Channel: https://whatsapp.com/channel/0029VbCNFw0JP2105GmsoT0H`;
+  }
+
+  // About & Developer
+  if (q.includes('about') || q.includes('developer') || q.includes('who made') || q.includes('company') || q.includes('genius minds') || q.includes('madanapalle')) {
+    return `🏢 About the Developer & Company:
+
+• Platform Operator: ScanForSafe is developed and operated by Genius Minds Making Code Pvt. Ltd.
+• Corporate Address: Door No. 3-161-21-A-3, SBI Colony, Madanapalle – 517325.
+• Focus: Creating advanced IoT, QR, and NFC-based safety systems to protect lives and secure assets.
+• Support: support@geniusmindstech.com`;
+  }
+
+  // Missing Vehicle Reporting
+  if (q.includes('missing') || q.includes('stolen') || q.includes('theft') || q.includes('report missing')) {
+    return `🚗 Missing Vehicle Reporting:
+
+• Portal Dashboard: Log in to the customer portal and select "Report Missing Vehicle".
+• Required Steps: Upload photos of your vehicle, select from registered vehicles, input missing location, and upload an FIR copy (or mark "Pending FIR" with a 48-hour validation grace period).
+• Community Reach: Once verified, customer support publishes the alert to our community of 100,000+ subscribers via WhatsApp and social channels.
+• Recovery: Community subscribers and local authorities help locate the vehicle to resolve the case.`;
+  }
+
+  // Privacy & Security
+  if (q.includes('secure') || q.includes('security') || q.includes('privacy') || q.includes('safety') || q.includes('mask') || q.includes('masking') || q.includes('data') || q.includes('gdpr')) {
+    return `🛡️ Security & Privacy:
+
+• Contact Masking: Call routing hides your actual mobile number from finders. Finder check-ins and emergency SOS triggers require SMS OTP verification.
+• Platform Security: Role-Based Access Control (RBAC) manages Admin, Retailer, Franchise, Marketing, and Customer actions.
+• Compliance: Designed to align with OWASP Top 10 guidelines and uses a PCI-DSS compliant Razorpay gateway (no raw credit card data is stored).`;
+  }
+
+  // Refund Policy
+  if (q.includes('refund') || q.includes('satisfaction') || q.includes('return') || q.includes('cancel')) {
+    return `📦 Refund & Satisfaction Policy:
+
+• 30-Day Guarantee: We offer a 30-day satisfaction guarantee on all physical QR tags.
+• Full Refund: If you are unsatisfied, contact customer support within 30 days of delivery for a full refund of physical items.
+• Exclusions: Digital activation services are non-refundable once activated.`;
+  }
+
+  // Project Timeline
+  if (q.includes('timeline') || q.includes('weeks') || q.includes('schedule') || q.includes('duration') || q.includes('phase')) {
+    return `📅 Project Timeline & Launch Schedule:
+
+• Official Launch: Scheduled for July.
+• Total Duration: 20 weeks (5 months).
+• Timeline Phases:
+  • Phase 1 (Weeks 1-4): Foundation & Admin Portal.
+  • Phase 2 (Weeks 5-8): Retailer, Franchise & Marketing Dashboard. (Native mobile apps are slated for Phase 2).
+  • Phase 3 (Weeks 9-13): Customer Portal & Online purchasing.
+  • Phase 4 (Weeks 14-17): Missing Vehicle Alerts & Security.
+  • Phase 5 (Weeks 18-20): UAT, Go-Live, & Handover.`;
+  }
+
+  // Pre-Registration
+  if (q.includes('preregistration') || q.includes('pre-registration') || q.includes('early bird') || q.includes('campaign') || q.includes('discount') || q.includes('offer')) {
+    return `📝 ScanForSafe Early Bird Pre-Registration:
+
+• Campaign Offer: Join our pre-registration campaign to get an exclusive ₹20 instant discount code on launch!
+• Required Fields: To register, you will provide:
+  • Contact & Shipping: Full Name, 10-digit Mobile Number, Email, City, Address, and PIN Code.
+  • Visual Tag Types: Choose from Car, Bike/Scooty, Cycle, Truck, Auto Rickshaw, Senior Citizen, Support Needed, Pets, or School Kids (you can select multiple).
+  • Emergency Contacts: Emergency Name and Phone number (used for instant alerts and SOS calls).
+• Account Setup: You will also set up a password to manage your tags after launch.
+• Secure Setup: All form data is encrypted and saved securely. Go to the Pre-Registration page to join!`;
+  }
+
+  // Franchise & Partnership
+  if (q.includes('franchise') || q.includes('partner') || q.includes('partnership') || q.includes('invest') || q.includes('investment') || q.includes('margins') || q.includes('tier') || q.includes('exclusive')) {
+    return `🤝 ScanForSafe Partnership & Franchise Models:
+
+We offer three exclusive investment tiers to partner with ScanForSafe:
+
+• Silver Partner:
+  • Investment: ₹50,000 | Margin: 10%
+  • Territory: 2 Pincodes | Inventory: 200 Safety Tags
+  • Support: Basic digital flyers & social media kit
+  • Potential ROI: ₹5,000 / month
+
+• Gold Partner:
+  • Investment: ₹1,00,000 | Margin: 20%
+  • Territory: 4 Pincodes (Exclusive) | Inventory: 500 Safety Tags
+  • Support: Brochures, banners, and digital ads support
+  • Potential ROI: ₹20,000 / month
+
+• Platinum Master Franchise:
+  • Investment: ₹3,00,000+ | Margin: 30%
+  • Territory: Entire City / District (Exclusive) | Inventory: 1,500 Tags + NFC Cards
+  • Support: Store signage, full local ad campaigns, dedicated account manager
+  • Potential ROI: ₹90,000 / month
+
+• Key Benefits: High ROI model, exclusive territory protection, marketing support, and ongoing business training. Go to the Franchise page to apply!`;
+  }
+
+  // Universal Fallback Response
+  return `🔍 Welcome to ScanForSafe Support!
+
+I couldn't find a specific match for your question. Here is a quick guide on what you can ask:
+• "how does it work" — Steps to purchase and activate tags
+• "vehicle protection" — Info on car, bike, and scooter stickers
+• "lost item recovery" — Info on luggage and pet recovery
+• "pricing & delivery" — Cost and shipping fees by region
+• "missing vehicle" — Stolen vehicle reporting workflow
+• "pre-registration" — Early bird ₹20 discount and tag registration
+• "franchise" — Silver, Gold, and Platinum partnership tiers
+• "contact info" or "office" — Support phone/WhatsApp, email, and locations
+
+For direct assistance, feel free to email customercare@scanforsafe.com or call +91 8639322479.`;
 }
 
 /* =========================================
@@ -388,37 +416,32 @@ function AIChatWindow({ onClose }) {
     conversationHistory.current.push({ role: 'user', content: text })
     setLoading(true)
 
-    try {
-      const aiReply = await callClaudeAPI(conversationHistory.current)
-      conversationHistory.current.push({ role: 'assistant', content: aiReply })
+    // Check for predefined client-side responses
+    const cleanQuery = text.toLowerCase().trim()
+    const reply = getPredefinedResponse(cleanQuery)
+
+    // Simulate a natural typing delay of 450ms
+    setTimeout(() => {
+      conversationHistory.current.push({ role: 'assistant', content: reply })
       setMessages(prev => [...prev, {
         role: 'assistant',
-        content: aiReply,
+        content: reply,
         time: getTime(),
         isNew: true, // triggers typewriter
       }])
-    } catch (err) {
-      console.error('Claude API error:', err)
-      conversationHistory.current.pop()
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        content: '⚠️ Something went wrong. Please try again in a moment.',
-        time: getTime(),
-        isNew: false,
-      }])
-    } finally {
       setLoading(false)
-    }
+    }, 450)
   }
 
   return (
-    <div style={{
+    <div className="sfs-chat-window-override" style={{
       position: 'fixed',
       bottom: '100px',
       right: '24px',
       width: '420px',
-      // FIX 3: Fixed height instead of max-height so flex children can size properly
-      height: '620px',
+      // Dynamically calculate height so top edge is always below 106px (navbar)
+      height: 'calc(100vh - 210px)',
+      maxHeight: '620px',
       zIndex: 10000,
       display: 'flex',
       flexDirection: 'column',
@@ -441,7 +464,8 @@ function AIChatWindow({ onClose }) {
             right: 16px !important;
             left: 16px !important;
             bottom: 96px !important;
-            height: calc(100vh - 130px) !important;
+            // Sit below mobile navbar (98px)
+            height: calc(100vh - 200px) !important;
           }
         }
       `}</style>
@@ -558,33 +582,33 @@ function AIChatWindow({ onClose }) {
             </div>
           </div>
         )}
-      </div>
 
-      {/* QUICK TOPICS — flexShrink:0 */}
-      <div style={{
-        padding: '10px 16px',
-        borderTop: '1px solid rgba(255,255,255,0.06)',
-        background: '#0d1b2e', flexShrink: 0,
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '10px' }}>
-          <SparklesSVG />
-          <span style={{ fontSize: '12.5px', fontWeight: 600, color: '#94a3b8' }}>Quick Topics</span>
-        </div>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
-          {QUICK_TOPICS.map(({ label, Icon }, i) => (
-            <button key={i} onClick={() => sendMessage(label)} style={{
-              display: 'flex', alignItems: 'center', gap: '6px',
-              padding: '7px 13px', borderRadius: '999px',
-              border: '1px solid rgba(99,179,255,0.2)', background: 'rgba(255,255,255,0.04)',
-              color: '#cbd5e1', cursor: 'pointer', fontSize: '12px', fontWeight: 500,
-              transition: 'all 0.2s', fontFamily: 'inherit',
-            }}
-              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(37,99,235,0.2)'; e.currentTarget.style.borderColor = 'rgba(99,179,255,0.4)' }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.borderColor = 'rgba(99,179,255,0.2)' }}
-            >
-              <Icon />{label}
-            </button>
-          ))}
+        {/* QUICK TOPICS — nested inside the scrollable area */}
+        <div style={{
+          marginTop: '16px',
+          padding: '0 4px',
+          flexShrink: 0,
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginBottom: '8px' }}>
+            <SparklesSVG />
+            <span style={{ fontSize: '12.5px', fontWeight: 600, color: '#94a3b8' }}>Quick Topics</span>
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '8px' }}>
+            {QUICK_TOPICS.map(({ label, Icon }, i) => (
+              <button key={i} onClick={() => sendMessage(label)} style={{
+                display: 'flex', alignItems: 'center', gap: '6px',
+                padding: '7px 13px', borderRadius: '999px',
+                border: '1px solid rgba(99,179,255,0.2)', background: 'rgba(255,255,255,0.04)',
+                color: '#cbd5e1', cursor: 'pointer', fontSize: '12px', fontWeight: 500,
+                transition: 'all 0.2s', fontFamily: 'inherit',
+              }}
+                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(37,99,235,0.2)'; e.currentTarget.style.borderColor = 'rgba(99,179,255,0.4)' }}
+                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.04)'; e.currentTarget.style.borderColor = 'rgba(99,179,255,0.2)' }}
+              >
+                <Icon />{label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 

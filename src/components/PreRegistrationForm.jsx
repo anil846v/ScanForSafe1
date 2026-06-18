@@ -1,5 +1,6 @@
 import { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import SEO from '../components/SEO'
 
 export default function PreRegistrationForm() {
   const navigate = useNavigate();
@@ -234,6 +235,12 @@ export default function PreRegistrationForm() {
 
   return (
     <>
+    <SEO
+  title="Pre-Register Your Smart Shield Tag"
+  description="Pre-register for ScanForSafe's QR safety tag and unlock an exclusive early bird discount. Protect your vehicle, pet, child, or senior family member today."
+  keywords="register ScanForSafe tag, pre-register smart shield, buy QR emergency tag,register smart shield tag, ScanForSafe registration"
+  url="https://www.scanforsafe.com/preregister"
+/>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
 
