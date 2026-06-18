@@ -1021,7 +1021,7 @@ export default function ScanForSafeHero() {
   ];
 
   const taglineItems = [
-    { icon: "🛡️", text: "One Scan" },
+    { icon: "🛡️", text: "QR safety tag India" },
     { icon: "👥", text: "Connect Instantly" },
     { icon: "🔒", text: "Stay Protected" },
     { icon: "❤️", text: "Protect What Matters" },

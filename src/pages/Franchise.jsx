@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, cloneElement } from "react";
 import { useNavigate } from "react-router-dom";
 import { CheckCircle, Shield, Award, Landmark, TrendingUp, HelpCircle, MapPin, Send, DollarSign, Users, Car, Briefcase, PawPrint, GraduationCap, Smartphone, ShieldCheck, Truck, Headset, Map } from "lucide-react";
+import SEO from '../components/SEO'
 
 function useInView(threshold = 0.12) {
   const ref = useRef(null);
@@ -313,6 +314,12 @@ export default function Franchise() {
 
   return (
     <>
+    <SEO
+  title="Franchise Opportunity"
+  description="Partner with ScanForSafe and build a profitable QR + NFC safety business in your city. Exclusive territory, 10-30% margins, full training and marketing support."
+  keywords="safety tag franchise India, QR tag business opportunity India, NFC franchise opportunity, QR business franchise, Smart Shield franchise"
+  url="https://www.scanforsafe.com/franchise"
+/>
       <link rel="preconnect" href="https://fonts.googleapis.com" />
       <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&family=Fira+Code:wght@400;500&family=Outfit:wght@400;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&family=Sora:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
 
@@ -1020,27 +1027,23 @@ export default function Franchise() {
 
 
               {/* Big Title */}
-              <h1 style={{
-                fontFamily: "'Bricolage Grotesque', sans-serif",
-                fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
-                fontWeight: 800, color: '#fff',
-                lineHeight: 1.08, letterSpacing: '-0.03em',
-                margin: '0 0 20px',
-                opacity: heroVisible ? 1 : 0,
-                transform: heroVisible ? 'translateY(0)' : 'translateY(30px)',
-                transition: 'opacity .75s ease .12s, transform .75s cubic-bezier(.34,1.3,.64,1) .12s',
-              }}>
-                Build a Smart Safety<br />Business with<br />
-                <span style={{
-                  background: 'linear-gradient(90deg, #4bd557 0%, #7ded88 50%, #4bd557 100%)',
-                  backgroundSize: '200% auto',
-                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent',
-                  animation: heroVisible ? 'glowPulse 3s ease-in-out infinite' : 'none',
-                  display: 'inline-block',
-                }}>
-                  ScanForSafe
-                </span>
-              </h1>
+             <h1
+  style={{
+    fontFamily: "'Sora', sans-serif",
+    fontSize: "52px",
+    fontWeight: 800,
+    lineHeight: 1.15,
+    letterSpacing: "-1.5px",
+    color: "#ffffff",
+    margin: "0 0 20px 0",
+  }}
+>
+  Build a Smart Safety<br />
+  Business with <br />
+  <span style={{ color: "#22c55e" }}>
+    ScanForSafe
+  </span>
+</h1>
 
               {/* Subtext */}
               <p style={{
@@ -1277,8 +1280,10 @@ export default function Franchise() {
 
               {/* Tagline */}
               <div className="fr-adv-tagline">
-                Be part of a mission to make safety smarter. Be a ScanForSafe Partner.
-              </div>
+ ScanForSafe franchise opportunities are available in
+    Hyderabad, Bangalore, Chennai, Delhi, Pune 
+     and other major cities
+    across India.              </div>
             </div>
           </div>
 

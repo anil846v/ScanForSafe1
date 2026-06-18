@@ -23,11 +23,11 @@ export default function Navbar() {
 
   const navLinks = [
     { label: "Home",         to: "/" },
-    { label: "About Us",     to: "/about" },
     { label: "Features",     to: "/features" },
     { label: "Use Cases",    to: "/use-cases" },
     { label: "How It Works", to: "/how-it-works" },
     { label: "Franchise",    to: "/franchise" },
+    { label: "About Us",     to: "/about" },
     { label: "Contact",      to: "/contact" },
   ];
 

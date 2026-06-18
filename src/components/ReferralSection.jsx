@@ -2,20 +2,14 @@ import { useNavigate } from "react-router-dom";
 
 // ─── STYLE: flat vector, 2.8px stroke, rounded card bg, reference-image style ─
 
-// 1. Share Referral Link – chain links with share sparkle
+// 1. Share Referral Link – diagonal chain links
 const IconLink = () => (
   <svg width="72" height="72" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
     <rect x="8" y="8" width="56" height="56" rx="14" fill="#dbeafe"/>
-    {/* left link ring */}
-    <rect x="14" y="30" width="22" height="12" rx="6" fill="none" stroke="#3b82f6" strokeWidth="2.8" strokeLinecap="round"/>
-    {/* right link ring */}
-    <rect x="36" y="30" width="22" height="12" rx="6" fill="none" stroke="#3b82f6" strokeWidth="2.8" strokeLinecap="round"/>
-    {/* overlap fill to create chain illusion */}
-    <rect x="36" y="33" width="9" height="6" fill="#dbeafe"/>
-    <line x1="36" y1="33" x2="36" y2="39" stroke="#dbeafe" strokeWidth="1.5"/>
-    {/* share arrow top-right */}
-    <path d="M52 16 L58 16 L58 22" stroke="#93c5fd" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-    <line x1="52" y1="22" x2="58" y2="16" stroke="#93c5fd" strokeWidth="2" strokeLinecap="round"/>
+    <g transform="translate(18, 18) scale(1.5)" stroke="#3b82f6" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/>
+      <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/>
+    </g>
   </svg>
 );
 
@@ -269,195 +263,46 @@ const CatVehicle = () => (
   </svg>
 );
 const CatSenior = () => (
-  <svg 
-    width="40" 
-    height="40" 
-    viewBox="0 0 40 40" 
-    fill="none" 
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    {/* Head */}
-    <circle 
-      cx="20" 
-      cy="13" 
-      r="7.5" 
-      fill="#fefce8" 
-      stroke="#d4a94c" 
-      strokeWidth="2.5"
-    />
-    
-    {/* Senior hair / bald top with sides
-    <ellipse 
-      cx="20" 
-      cy="9" 
-      rx="6.5" 
-      ry="4" 
-      fill="#854d0e" 
-    /> */}
-
-    {/* Eyes */}
-    <circle cx="17" cy="12.5" r="1" fill="#1f2937" />
-    <circle cx="23" cy="12.5" r="1" fill="#1f2937" />
-    
-    {/* Smile */}
-    <path 
-      d="M16.5 17 Q20 19 23.5 17" 
-      fill="none" 
-      stroke="#1f2937" 
-      strokeWidth="1" 
-      strokeLinecap="round"
-    />
-
-    {/* Body */}
-    <rect 
-      x="13.5" 
-      y="20.5" 
-      width="13" 
-      height="14" 
-      rx="3" 
-      fill="#facc15" 
-      stroke="#d1bf97" 
-      strokeWidth="2.5"
-    />
-
-    {/* Arms */}
-    <path 
-      d="M14 24 Q10 26 11.5 31" 
-      fill="none" 
-      stroke="#ca8a04" 
-      strokeWidth="2.8" 
-      strokeLinecap="round"
-    />
-    <path 
-      d="M26 24 Q30 26 28.5 31" 
-      fill="none" 
-      stroke="#ca8a04" 
-      strokeWidth="2.8" 
-      strokeLinecap="round"
-    />
-
+  <svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="#ca8a04" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+    {/* Head (bent forward) */}
+    <circle cx="16" cy="11" r="3.5" fill="#fefce8" />
+    {/* Hunched body */}
+    <path d="M17 14.5c-4 1.5-6 6.5-5 10.5h4.5c0-4 1.5-7.5 3.5-9.5z" fill="#fefce8" />
     {/* Legs */}
-    <path 
-      d="M18 33.5 L16.5 39" 
-      fill="none" 
-      stroke="#ca8a04" 
-      strokeWidth="2.8" 
-      strokeLinecap="round"
-    />
-    <path 
-      d="M22 33.5 L23.5 39" 
-      fill="none" 
-      stroke="#ca8a04" 
-      strokeWidth="2.8" 
-      strokeLinecap="round"
-    />
-
+    <path d="M13.5 25l-2 9 M15.5 25l1 9" />
+    {/* Arm reaching forward */}
+    <path d="M16 18c2.5 1 4.5 2.5 4.5 5.5" />
     {/* Cane */}
-    <path 
-      d="M29 26 L30.5 37" 
-      fill="none" 
-      stroke="#966935" 
-      strokeWidth="2.6" 
-      strokeLinecap="round"
-    />
-    <path 
-      d="M28 37 Q30 38.5 32 37.5" 
-      fill="none" 
-      stroke="#6a5e50" 
-      strokeWidth="2.6" 
-      strokeLinecap="round"
-    />
+    <path d="M21 21v13 M21 21c0-1.5 1-2.2 2-2.2" strokeWidth="2.4" />
   </svg>
 );
 
 const CatChild = () => (
-  <svg 
-    width="40" 
-    height="40" 
-    viewBox="0 0 40 40" 
-    fill="none" 
-    xmlns="http://www.w3.org/2000/svg"
-  >
+  <svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="#3b82f6" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
     {/* Head */}
-    <circle 
-      cx="20" 
-      cy="13" 
-      r="7.5" 
-      fill="#e0f2fe" 
-      stroke="#3b82f6" 
-      strokeWidth="2.5"
-    />
-    
-    
-    {/* Eyes */}
-    <circle cx="17" cy="12.5" r="1.1" fill="#1e40af" />
-    <circle cx="23" cy="12.5" r="1.1" fill="#1e40af" />
-    
-    {/* Happy smile */}
-    <path 
-      d="M16.5 17 Q20 19.5 23.5 17" 
-      fill="none" 
-      stroke="#1e40af" 
-      strokeWidth="1.1" 
-      strokeLinecap="round"
-    />
-
-    {/* Body */}
-    <rect 
-      x="13.5" 
-      y="20.5" 
-      width="13" 
-      height="14.5" 
-      rx="3.5" 
-      fill="#60a5fa" 
-      stroke="#3b82f6" 
-      strokeWidth="2.5"
-    />
-
-    {/* Arms */}
-    <path 
-      d="M13.5 24 Q9.5 26 11 31" 
-      fill="none" 
-      stroke="#3b82f6" 
-      strokeWidth="2.8" 
-      strokeLinecap="round"
-    />
-    <path 
-      d="M26.5 24 Q30.5 26 29 31" 
-      fill="none" 
-      stroke="#3b82f6" 
-      strokeWidth="2.8" 
-      strokeLinecap="round"
-    />
-
+    <circle cx="20" cy="12" r="4.5" fill="#eff6ff" />
+    {/* Torso (wearing t-shirt/overalls shape) */}
+    <path d="M15 18.5c0-1.8 1.8-2.5 5-2.5s5 .7 5 2.5V26h-10z" fill="#eff6ff" />
     {/* Legs */}
-    <path 
-      d="M18 34 L16 39" 
-      fill="none" 
-      stroke="#3b82f6" 
-      strokeWidth="2.8" 
-      strokeLinecap="round"
-    />
-    <path 
-      d="M22 34 L24 39" 
-      fill="none" 
-      stroke="#3b82f6" 
-      strokeWidth="2.8" 
-      strokeLinecap="round"
-    />
+    <path d="M17.5 26v8 M22.5 26v8" />
+    {/* Arms by side */}
+    <path d="M14.5 19.5v5 M25.5 19.5v5" />
+    {/* Backpack on the left shoulder */}
+    {/* <path d="M11 19.5c-1.5 0-2.5 1-2.5 2.5v3c0 1.5 1 2.5 2.5 2.5" fill="#eff6ff" /> */}
+    {/* Strap */}
+    <path d="M15 20c-1 0-2 .5-2 2s1 2.5 2 2.5" />
   </svg>
 );
+
 const CatPet = () => (
-  <svg width="34" height="34" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <polygon points="14,16 10,8 18,12" fill="#fce7f3" stroke="#ec4899" strokeWidth="1.8" strokeLinejoin="round"/>
-    <polygon points="26,16 30,8 22,12" fill="#fce7f3" stroke="#ec4899" strokeWidth="1.8" strokeLinejoin="round"/>
-    <ellipse cx="20" cy="24" rx="10" ry="9" fill="#fce7f3" stroke="#ec4899" strokeWidth="2.2"/>
-    <circle cx="16" cy="22" r="1.5" fill="#ec4899"/>
-    <circle cx="24" cy="22" r="1.5" fill="#ec4899"/>
-    <path d="M18 27 L20 25 L22 27 L20 29 Z" fill="#ec4899"/>
-    <path d="M12 33 C14 37 26 37 28 33" stroke="#ec4899" strokeWidth="2" strokeLinecap="round"/>
-    <circle cx="20" cy="36" r="4" fill="#fff" stroke="#ec4899" strokeWidth="1.6"/>
-    <text x="20" y="38.5" fontFamily="sans-serif" fontSize="3.8" fontWeight="800" fill="#be185d" textAnchor="middle">PET</text>
+  <svg width="34" height="34" viewBox="0 0 40 40" fill="none" stroke="#ec4899" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+    {/* Large center circle pad */}
+    <circle cx="20" cy="24" r="5.5" fill="#fdf2f8" />
+    {/* Toe circles */}
+    <circle cx="11" cy="19" r="2.5" fill="#fdf2f8" />
+    <circle cx="16.5" cy="13" r="2.8" fill="#fdf2f8" />
+    <circle cx="23.5" cy="13" r="2.8" fill="#fdf2f8" />
+    <circle cx="29" cy="19" r="2.5" fill="#fdf2f8" />
   </svg>
 );
 

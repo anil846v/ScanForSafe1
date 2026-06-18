@@ -64,123 +64,122 @@ export default function Footer() {
   const categories = [
     {
       label: "Vehicle Protection", sub: "Smart Tags for Vehicles",
-      svg: <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#2ebd3a" strokeWidth="1.8" strokeLinecap="round"><rect x="6" y="18" width="36" height="18" rx="4"/><circle cx="14" cy="36" r="4"/><circle cx="34" cy="36" r="4"/><path d="M6 22l4-8h28l4 8"/><path d="M18 14h12"/><path d="M10 26h28"/></svg>,
+      svg: (
+        <svg width="42" height="42" viewBox="0 0 48 48" fill="none" stroke="#2ebd3a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+          {/* Outer Rounded Box */}
+          <rect x="6" y="6" width="36" height="36" rx="8" stroke="rgba(255, 255, 255, 0.18)" strokeWidth="1.2" fill="rgba(46, 189, 58, 0.05)" />
+          {/* Front-view Car */}
+          <path d="M 15 21 L 18 15 A 2 2 0 0 1 20 14 H 28 A 2 2 0 0 1 30 15 L 33 21" />
+          <path d="M 11 21 h 26 c 1.5 0, 2.5 1, 2.5 2.5 V 29 c 0 1.5, -1 2.5, -2.5 2.5 H 11 C 9.5 31.5, 8.5 30.5, 8.5 29 v -5.5 c 0 -1.5, 1 -2.5, 2.5 -2.5 z" />
+          <path d="M 11 17.5 C 9 17.5, 8 19, 8 20.5" />
+          <path d="M 37 17.5 C 39 17.5, 40 19, 40 20.5" />
+          <circle cx="13.5" cy="26.5" r="2" />
+          <circle cx="34.5" cy="26.5" r="2" />
+          <path d="M 18.5 26.5 H 29.5" />
+          <path d="M 16 30 H 32" />
+          <path d="M 12 31.5 v 2.5 c 0 0.5, 0.5 1, 1 1" />
+          <path d="M 36 31.5 v 2.5 c 0 0.5, -0.5 1, -1 1" />
+          {/* Shield Badge */}
+          <path d="M 36 28 L 43 31 V 37 C 43 41, 39 43, 36 44 C 33 43, 29 41, 29 37 V 31 Z" fill="#06142c" stroke="#2ebd3a" strokeWidth="1.8" />
+          <path d="M 32.5 35.5 L 35 38 L 39.5 33.5" stroke="#2ebd3a" strokeWidth="2.0" />
+        </svg>
+      )
     },
     {
       label: "Senior Citizen Protection", sub: "Safety Bands",
       svg: (
-<svg
-  width="32"
-  height="32"
-  viewBox="0 0 48 48"
-  fill="none"
-  stroke="#2ebd3a"
-  strokeWidth="1.8"
-  strokeLinecap="round"
-  strokeLinejoin="round"
->
-  {/* Shield */}
-  <path
-    d="M24 4L40 10V20C40 31 33 39 24 44C15 39 8 31 8 20V10L24 4Z"
-    fill="rgba(46,189,58,0.08)"
-  />
-
-  {/* Elderly Person */}
-  <circle cx="22" cy="16" r="3" />
-  <path d="M22 19V28" />
-  <path d="M18 23L22 21L26 23" />
-  <path d="M22 28L19 34" />
-  <path d="M22 28L24 34" />
-
-  {/* Cane */}
-  <path d="M28 20V34" />
-  <path d="M28 34C28 36 29 37 31 37" />
-
-  {/* Wireless Alert Signal */}
-  <path d="M31 10C33 11 35 13 36 15" />
-  <path d="M29 8C33 10 36 13 38 17" />
-</svg>
-)
+        <svg width="42" height="42" viewBox="0 0 48 48" fill="none" stroke="#2ebd3a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+          {/* Outer Rounded Box */}
+          <rect x="6" y="6" width="36" height="36" rx="8" stroke="rgba(255, 255, 255, 0.18)" strokeWidth="1.2" fill="rgba(46, 189, 58, 0.05)" />
+          {/* Left Senior Profile */}
+          <circle cx="18" cy="17" r="4" />
+          <path d="M 13.5 17 c 0 -3, 9 -3, 9 0" />
+          <path d="M 13.5 17 c -1.5 0 -2.5 0.5 -3 1.5 c 0 -1, 1 -1.5 3 -1.5" />
+          <path d="M 10 31.5 c 0 -4.5, 3.5 -6.5, 8 -6.5 c 2.5 0, 4.5 1, 5.5 2.5" />
+          {/* Right Senior Profile */}
+          <circle cx="30" cy="19.5" r="3.5" />
+          <path d="M 26 19.5 c 0 -3, 8 -3, 8 0" />
+          <path d="M 23.5 31.5 c 1 -2.5, 3 -4, 6.5 -4 c 4 0, 6.5 2, 6.5 5.5" />
+          {/* Shield Badge */}
+          <path d="M 36 28 L 43 31 V 37 C 43 41, 39 43, 36 44 C 33 43, 29 41, 29 37 V 31 Z" fill="#06142c" stroke="#2ebd3a" strokeWidth="1.8" />
+          <path d="M 32.5 35.5 L 35 38 L 39.5 33.5" stroke="#2ebd3a" strokeWidth="2.0" />
+        </svg>
+      )
     },
-  {
-  label: "Child Safety",
-  sub: "Smart ID Tags",
-  svg: (
-    <svg
-      width="32"
-      height="32"
-      viewBox="0 0 48 48"
-      fill="none"
-      stroke="#2ebd3a"
-      strokeWidth="2.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      {/* Head */}
-      <circle cx="24" cy="14" r="6" />
-
-      {/* Hair */}
-      <path d="M19 12C21 8 27 8 29 12" />
-
-      {/* Body */}
-      <path d="M15 34V28C15 22 19 19 24 19C29 19 33 22 33 28V34" />
-
-     
-
-     
-    </svg>
-  ),
-},
-  {
-  label: "Pet Safety",
-  sub: "Smart Pet Tags",
-  svg: (
-    <svg
-      width="32"
-      height="32"
-      viewBox="0 0 24 24"
-      fill="#2ebd3a"
-    >
-      <path d="M12 14c-1.8 0-3.3 1.2-3.3 3.2 0 2.5 1.5 3.6 3.3 3.6s3.3-1.1 3.3-3.6c0-2-1.5-3.2-3.3-3.2z" />
-      <circle cx="6.2" cy="11.8" r="1.6" />
-      <circle cx="9.8" cy="8.5" r="1.6" />
-      <circle cx="14.2" cy="8.5" r="1.6" />
-      <circle cx="17.8" cy="11.8" r="1.6" />
-    </svg>
-  ),
-},
-   {
-  label: "Luggage Protection",
-  sub: "Smart Luggage Tags",
-  svg: (
-    <svg
-      width="32"
-      height="32"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="#2ebd3a"
-      strokeWidth="1.8"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      {/* Handle */}
-      <path d="M9 7V5a3 3 0 0 1 6 0v2" />
-
-      {/* Suitcase */}
-      <rect x="5" y="7" width="14" height="13" rx="2" />
-
-      {/* Center line */}
-      <line x1="12" y1="7" x2="12" y2="20" />
-
-      {/* Wheels */}
-      <line x1="8" y1="20" x2="8" y2="22" />
-      <line x1="16" y1="20" x2="16" y2="22" />
-    </svg>
-  ),
-},
+    {
+      label: "Child Safety", sub: "Smart ID Tags",
+      svg: (
+        <svg width="42" height="42" viewBox="0 0 48 48" fill="none" stroke="#2ebd3a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+          {/* Outer Rounded Box */}
+          <rect x="6" y="6" width="36" height="36" rx="8" stroke="rgba(255, 255, 255, 0.18)" strokeWidth="1.2" fill="rgba(46, 189, 58, 0.05)" />
+          {/* Child Smiling Head */}
+          <path d="M 15 21.5 c -1.5 0 -2.5 1 -2.5 2.5 s 1 2.5 2.5 2.5" />
+          <path d="M 33 21.5 c 1.5 0 2.5 1 2.5 2.5 s -1 2.5 -2.5 2.5" />
+          <circle cx="24" cy="24" r="9" />
+          <path d="M 17.5 17 c -1 -3, 1 -4.5, 2.5 -2.5 c 1 -3.5, 3 -3.5, 3.5 -0.5 c 1 -3, 3 -2.5, 2.5 3" />
+          <path d="M 19.5 22 c 0.5 -1, 1.5 -1, 2 0" />
+          <path d="M 26.5 22 c 0.5 -1, 1.5 -1, 2 0" />
+          <path d="M 19.5 26 c 1.5 3, 7.5 3, 9 0" />
+          {/* Shield Badge */}
+          <path d="M 36 28 L 43 31 V 37 C 43 41, 39 43, 36 44 C 33 43, 29 41, 29 37 V 31 Z" fill="#06142c" stroke="#2ebd3a" strokeWidth="1.8" />
+          <path d="M 32.5 35.5 L 35 38 L 39.5 33.5" stroke="#2ebd3a" strokeWidth="2.0" />
+        </svg>
+      )
+    },
+    {
+      label: "Pet Safety", sub: "Smart Pet Tags",
+      svg: (
+        <svg width="42" height="42" viewBox="0 0 48 48" fill="none" stroke="#2ebd3a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+          {/* Outer Rounded Box */}
+          <rect x="6" y="6" width="36" height="36" rx="8" stroke="rgba(255, 255, 255, 0.18)" strokeWidth="1.2" fill="rgba(46, 189, 58, 0.05)" />
+          {/* Paw Print */}
+          <path d="M 24 21 c -3.5 0, -5.5 2.5, -5.5 5 c 0 3, 2.5 5, 5.5 5 s 5.5 -2, 5.5 -5 c 0 -2.5, -2.0 -5, -5.5 -5 z" />
+          <circle cx="16.5" cy="20.5" r="2" />
+          <circle cx="21" cy="15.5" r="2.2" />
+          <circle cx="27" cy="15.5" r="2.2" />
+          <circle cx="31.5" cy="20.5" r="2" />
+          {/* Shield Badge */}
+          <path d="M 36 28 L 43 31 V 37 C 43 41, 39 43, 36 44 C 33 43, 29 41, 29 37 V 31 Z" fill="#06142c" stroke="#2ebd3a" strokeWidth="1.8" />
+          <path d="M 32.5 35.5 L 35 38 L 39.5 33.5" stroke="#2ebd3a" strokeWidth="2.0" />
+        </svg>
+      )
+    },
+    {
+      label: "Luggage Protection", sub: "Smart Luggage Tags",
+      svg: (
+        <svg width="42" height="42" viewBox="0 0 48 48" fill="none" stroke="#2ebd3a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+          {/* Outer Rounded Box */}
+          <rect x="6" y="6" width="36" height="36" rx="8" stroke="rgba(255, 255, 255, 0.18)" strokeWidth="1.2" fill="rgba(46, 189, 58, 0.05)" />
+          {/* Suitcase */}
+          <path d="M 19 16 v -4 c 0 -1.5, 1 -2.5, 2.5 -2.5 h 5 c 1.5 0, 2.5 1, 2.5 2.5 v 4" />
+          <rect x="13" y="16" width="22" height="17" rx="3" />
+          <line x1="18.5" y1="16" x2="18.5" y2="33" />
+          <line x1="29.5" y1="16" x2="29.5" y2="33" />
+          <circle cx="17" cy="35" r="1.5" />
+          <circle cx="31" cy="35" r="1.5" />
+          {/* Shield Badge */}
+          <path d="M 36 28 L 43 31 V 37 C 43 41, 39 43, 36 44 C 33 43, 29 41, 29 37 V 31 Z" fill="#06142c" stroke="#2ebd3a" strokeWidth="1.8" />
+          <path d="M 32.5 35.5 L 35 38 L 39.5 33.5" stroke="#2ebd3a" strokeWidth="2.0" />
+        </svg>
+      )
+    },
     {
       label: "Valuable Protection", sub: "For Everyday Essentials",
-      svg: <svg width="32" height="32" viewBox="0 0 48 48" fill="none" stroke="#2ebd3a" strokeWidth="1.8" strokeLinecap="round"><path d="M24 6l5 10h11l-9 8 3 11-10-6-10 6 3-11-9-8h11z"/></svg>,
+      svg: (
+        <svg width="42" height="42" viewBox="0 0 48 48" fill="none" stroke="#2ebd3a" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" xmlns="http://www.w3.org/2000/svg">
+          {/* Outer Rounded Box */}
+          <rect x="6" y="6" width="36" height="36" rx="8" stroke="rgba(255, 255, 255, 0.18)" strokeWidth="1.2" fill="rgba(46, 189, 58, 0.05)" />
+          {/* Backpack */}
+          <path d="M 20 10 c 0 -2.5, 8 -2.5, 8 0" />
+          <path d="M 13.5 34 V 20.5 A 10.5 10.5 0 0 1 24 10 A 10.5 10.5 0 0 1 34.5 20.5 V 34 Z" />
+          <rect x="17.5" y="23.5" width="13" height="10.5" rx="2" />
+          <path d="M 13.5 24.5 H 10.5 v 5.5 h 3" />
+          <path d="M 34.5 24.5 H 37.5 v 5.5 h -3" />
+          {/* Shield Badge */}
+          <path d="M 36 28 L 43 31 V 37 C 43 41, 39 43, 36 44 C 33 43, 29 41, 29 37 V 31 Z" fill="#06142c" stroke="#2ebd3a" strokeWidth="1.8" />
+          <path d="M 32.5 35.5 L 35 38 L 39.5 33.5" stroke="#2ebd3a" strokeWidth="2.0" />
+        </svg>
+      )
     },
   ];
 
@@ -308,9 +307,7 @@ export default function Footer() {
         .ft-cat-item:last-child { border-right: none; }
         .ft-cat-item:hover { background: rgba(46,189,58,0.08); }
         .ft-cat-icon {
-          width: 54px; height: 54px; border-radius: 14px;
-          background: rgba(46,189,58,0.08);
-          border: 1.5px solid rgba(46,189,58,0.18);
+          width: 54px; height: 54px;
           display: flex; align-items: center; justify-content: center;
         }
         .ft-cat-title { font-family: 'Sora', sans-serif; font-size: 11.5px; font-weight: 700; color: #fff; text-align: center; line-height: 1.3; }

@@ -625,7 +625,7 @@ export default function ContactUs() {
                   <div className="cu-channel-title">WhatsApp Support</div>
                   <div style={{ width: 24, height: 2, background: '#24b13b', margin: '4px auto 12px' }} />
                   <div className="cu-channel-desc">Chat with us on WhatsApp for quick assistance.</div>
-                  <a href="https://wa.me/919876543210" target="_blank" rel="noopener noreferrer"
+                  <a href="https://wa.me/918639322479" target="_blank" rel="noopener noreferrer"
                     className="cu-channel-btn"
                     style={{ border: '1px solid #24b13b', color: '#24b13b' }}
                     onMouseEnter={e => { e.currentTarget.style.background = '#24b13b'; e.currentTarget.style.color = '#fff' }}

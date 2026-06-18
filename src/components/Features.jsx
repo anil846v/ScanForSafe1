@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react'
-
+import SEO from '../components/SEO'
 const Icons = {
   WhatsApp: ({ size = 20, color = 'currentColor' }) => (
     <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
@@ -1052,6 +1052,12 @@ export default function Features() {
 
   return (
     <section style={{ background:'linear-gradient(180deg, #f0f4f8 0%, #f8fafc 60%, #f0f4f8 100%)', padding:'50px' }}>
+      <SEO
+  title="Features"
+  description="Explore ScanForSafe's smart safety features — instant WhatsApp alerts, one-touch call connect, live GPS tracking, and privacy-protected emergency contacts."
+  keywords="how QR safety tag works, no app required QR scan, scan to call emergency contact, NFC vs QR code tag, which is better NFC or QR"
+  url="https://www.scanforsafe.com/features"
+/>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@700;800;900&display=swap');
         * { box-sizing: border-box; }

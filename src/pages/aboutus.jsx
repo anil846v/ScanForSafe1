@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import SEO from '../components/SEO';
 // ── Responsive hook ───────────────────────────────────────────────────────
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(
@@ -171,6 +171,12 @@ export default function AboutUs() {
   const isMobile = useIsMobile();
   return (
     <div style={{ fontFamily: "'Segoe UI', system-ui, Arial, sans-serif", color: "#1a2332", background: "#fff", margin: 0, padding: 0, paddingTop: "80px" }}>
+      <SEO
+  title="Our Story & Mission"
+  description="Learn why ScanForSafe was founded — our mission to keep families, elders, pets and assets safer through smart QR & NFC technology, and the team behind it."
+  keywords="ScanForSafe founder story, road accident QR tag story, why smart shield was created, ScanForSafe mission vision"
+  url="https://www.scanforsafe.com/about"
+/>
 
 
 

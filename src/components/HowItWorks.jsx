@@ -7,7 +7,7 @@ import {
   PhoneOff, MicOff, Volume2, User, Send,
   MessageSquare, ChevronRight
 } from "lucide-react";
-
+import SEO from '../components/SEO'
 const BRAND = {
   green: "#2ebd3a", softGreen: "#e8f8eb", navy: "#0B2545",
   textMain: "#11355e", inputBg: "#f3f4f6", borderGreen: "#7ded88",
@@ -426,7 +426,7 @@ function GlossySpeechBubble({ isMobile }) {
     return (
       <div style={{
         position: "absolute",
-        top: -110,
+        top: -125,
         left: "50%",
         transform: "translateX(-50%)",
         width: 250,
@@ -446,14 +446,14 @@ function GlossySpeechBubble({ isMobile }) {
           This is what people see<br/>when they scan your tag
         </div>
         <svg
-          width="250" height="60"
-          viewBox="0 0 250 60"
+          width="250" height="90"
+          viewBox="0 0 250 90"
           fill="none"
           style={{ display:"block", margin:"0 auto" }}
         >
           {/* Straight arrow pointing down */}
           <path
-            d="M 125 4 L 125 44"
+            d="M 125 4 L 125 84"
             stroke="#1a9e2e"
             strokeWidth="2.5"
             strokeLinecap="round"
@@ -462,7 +462,7 @@ function GlossySpeechBubble({ isMobile }) {
           />
           {/* Arrowhead */}
           <path
-            d="M 119 38 L 125 44 L 131 38"
+            d="M 119 78 L 125 84 L 131 78"
             stroke="#1a9e2e"
             strokeWidth="2.5"
             strokeLinecap="round"
@@ -479,7 +479,7 @@ function GlossySpeechBubble({ isMobile }) {
       position: "absolute",
       top: -180,
       left: -200,
-      width: 210,
+      width: 240,
       pointerEvents: "none",
       zIndex: 20,
     }}>
@@ -497,14 +497,14 @@ function GlossySpeechBubble({ isMobile }) {
       </div>
       {/* ── ONLY CHANGE: arrowhead is now a clean connected V pointing down ── */}
       <svg
-        width="210" height="130"
-        viewBox="0 0 210 130"
+        width="240" height="130"
+        viewBox="0 0 240 130"
         fill="none"
         style={{ display:"block" }}
       >
         {/* Curved arrow stem */}
         <path
-          d="M 155 8 C 175 30, 195 70, 190 118"
+          d="M 155 8 C 185 25, 225 40, 220 60"
           stroke="#1a9e2e"
           strokeWidth="2.8"
           strokeLinecap="round"
@@ -512,7 +512,7 @@ function GlossySpeechBubble({ isMobile }) {
         />
         {/* Clean V-shape arrowhead pointing downward */}
         <path
-          d="M 183 112 L 190 118 L 197 110"
+          d="M 213 54 L 220 60 L 227 52"
           stroke="#1a9e2e"
           strokeWidth="2.8"
           strokeLinecap="round"
@@ -745,6 +745,12 @@ export default function HowItWorks() {
 
   return (
     <div style={{ paddingTop:"80px", background:"linear-gradient(160deg,#f8fafc 0%,#fafcfa 50%,#f8fafc 100%)", fontFamily:"'DM Sans',system-ui,sans-serif" }}>
+      <SEO
+  title="How It Works"
+  description="Order your ScanForSafe QR & NFC tag, activate it in 3 minutes, and stay protected 24/7. Scan to call or message — no app required."
+  keywords="how QR safety tag works, no app required QR scan, QR tag registration,how NFC safety tag works,scan to call emergency contact, NFC vs QR code tag,emergency contact QR technology"
+  url="https://www.scanforsafe.com/how-it-works"
+/>
       {/* dot grid */}
       <div style={{ position:"fixed", inset:0, pointerEvents:"none", zIndex:0, backgroundImage:"radial-gradient(circle,#7ded88 1px,transparent 1px)", backgroundSize:"28px 28px", opacity:0.35 }}/>
 
